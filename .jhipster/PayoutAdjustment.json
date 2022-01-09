@@ -1,0 +1,68 @@
+{
+    "name": "PayoutAdjustment",
+    "fields": [
+        {
+            "fieldName": "documentNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "unitCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "TransactionType",
+            "fieldValues": "EMPLOYEE,DEPARTMENT"
+        },
+        {
+            "fieldName": "employeeId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "departmentId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "netAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "createdDateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "payoutAdjustmentDetails",
+            "otherEntityRelationshipName": "payoutAdjustment",
+            "relationshipName": "payoutAdjustmentDetails"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "transactionApprovalDetails",
+            "otherEntityRelationshipName": "payoutAdjustment",
+            "relationshipName": "transactionApprovalDetails"
+        },
+        {
+          "relationshipType": "one-to-one",
+          "otherEntityName": "userMaster",
+          "otherEntityRelationshipName": "id",
+          "relationshipName": "createdByDetails",
+          "otherEntityField": "id",
+          "ownerSide": true
+      }
+    ],
+    "changelogDate": "20200423135300",
+    "entityTableName": "payout_adjustment",
+    "dto": "no",
+    "service": "serviceImpl",
+    "pagination": "pager",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false
+}

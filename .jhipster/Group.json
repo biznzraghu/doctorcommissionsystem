@@ -1,0 +1,69 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "type",
+            "otherEntityName": "GroupType",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "groupMaster"
+        },
+        {
+            "relationshipName": "partOf",
+            "otherEntityName": "Organization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "groupMaster"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "actual",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "context",
+            "fieldType": "Context",
+            "fieldValues": "Indent_Approval_Committee"
+        },
+        {
+            "fieldName": "members",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20201205131922",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "group_master",
+    "pagination": "pager",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false
+}

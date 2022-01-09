@@ -1,0 +1,244 @@
+$color-light-grey: #cacad3;
+$color-lighter-grey: #e6e6e6;
+$color-lighter-green: #33d63b;
+$color-light-green: #66ab5c;
+$color-medium-grey: #414146;
+$color-active-blue: #0078d7;
+$color-in-active-blue: #acd6f7;
+$color-white: #ffffff;
+$color-active-orange: #fca121;
+$color-gery-border: #b4b4be;
+.patient-header-container {
+  height: 56px;
+  padding-right: 8px;
+  .athma-icon-button:hover {
+    color: $color-active-blue !important;
+  }
+  .patient-details {
+    td {
+      border: 0;
+      padding: 0;
+      color: $color-white;
+      vertical-align: bottom;
+      line-height: 15px;
+    }
+  }
+  .plans-count {
+    color: #fca121;
+  }
+  .patient-name {
+    font-size: 14px;
+    font-weight: 500px;
+  }
+  .right-border {
+    border-right: 1px solid $color-white !important;
+  }
+  .small-text {
+    font-size: 10px;
+  }
+  .header-label {
+    color: #cacad3;
+  }
+  .text {
+    font-size: 13px;
+  }
+  .patient-image {
+    font-size: 36px;
+    color: $color-white;
+  }
+  .icon-btn {
+    font-size: 28px;
+    color: #b4b4be;
+    cursor: pointer;
+    &:focus,
+    &:hover {
+      color: $color-white !important;
+    }
+  }
+  .text-link {
+    cursor: pointer;
+    color: #7da3d2;
+  }
+}
+
+.plan-selection-container {
+  background-color: #ffff;
+  position: absolute;
+  width: 300px;
+  border: 1px solid #b4b4be;
+  z-index: 1;
+  border-radius: 4px;
+  box-shadow: -1px 1px 10px 0px #b4b4be;
+  color: #000000;
+  margin-top: 6px;
+  .plan-item {
+    border-bottom: 1px solid #b4b4be;
+  }
+}
+
+.patient-search {
+  .search-left {
+    position: absolute;
+    left: 8px;
+  }
+  .search-right {
+    position: absolute;
+    right: 8px;
+  }
+  .external-patient-icon {
+    color: #898988 !important;
+    font-size: 21px;
+    padding: 0;
+    border-radius: 0;
+    min-width: 24px !important;
+    width: 38px !important;
+    border-left: 0;
+    &:focus,
+    &:hover {
+      color: #ffffff !important;
+    }
+  }
+  input {
+    padding-left: 24px !important;
+  }
+  .search-icon {
+    height: 24px;
+    font-size: 20px !important;
+  }
+}
+
+.patient-details-popup {
+  .patient-row {
+    border-bottom: 1px solid #e5e5e6;
+  }
+  .active-plan {
+    list-style: none;
+  }
+  .active-plan::before {
+    color: #6ac41d;
+    content: '\f111';
+    font-family: FontAwesome;
+    font-size: 8px;
+    padding-right: 4px;
+    vertical-align: top;
+  }
+  .inactive-plan::before {
+    color: #e21c1c;
+    content: '\f111';
+    font-family: FontAwesome;
+    font-size: 8px;
+    padding-right: 4px;
+    vertical-align: top;
+  }
+}
+
+.header-with-line {
+  display: flex;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  .label {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    span {
+      background: #ffffff;
+      padding-right: 4px;
+    }
+  }
+  .label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    z-index: -1;
+    border-top: 1px solid #cacad3;
+    margin: 0px auto;
+  }
+}
+.header-menu-container {
+  .header-icon-button {
+    color: #b4b4be !important;
+    font-size: 19px;
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+  .header-menu-right {
+    .dropdown-toggle::after {
+      display: none !important;
+    }
+    margin-left: -10px;
+  }
+  .header-menu-list {
+    margin-top: 8px;
+    box-shadow: 0px 1px 6px 1px grey;
+    margin-right: 6px;
+  }
+  .header-menu-list::before {
+    content: '';
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    right: 6%;
+    top: -20px;
+    margin-left: -10px;
+    border: 10px solid;
+    border-color: transparent transparent rgb(255, 255, 255) transparent;
+  }
+  .header-menu-list-item {
+    border-bottom: 1px solid #ededed;
+    button {
+      padding: 8px;
+      width: 100%;
+      text-align: left;
+    }
+  }
+}
+
+.patient-header-active {
+  border-radius: 2px !important;
+  padding-left: 3px;
+  padding-right: 3px;
+  color: #000000 !important;
+  width: fit-content;
+  line-height: 11px;
+  margin-bottom: 1px;
+}
+
+.patient-header-active-plan {
+  background-color: #00ff00;
+}
+
+.patient-header-active-package {
+  background-color: #feff00;
+}
+
+.coustom-search-box {
+  max-width: 600px;
+  margin-top: -24px;
+  margin-left: 9px;
+  height: 25px;
+  border-right: 0;
+  border-radius: 0;
+  max-width: 600px;
+}
+
+//new patient search
+.patient-list-container {
+  background-color: #ffffff;
+  z-index: 1000;
+  position: absolute;
+  max-width: 600px;
+  width: 94%;
+  max-height: 340px;
+  overflow-y: none;
+  box-shadow: -1px 2px 6px 0px rgba(0, 0, 0, 0.5);
+  border-right: 1px solid #ededed;
+}

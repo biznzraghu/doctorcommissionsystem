@@ -1,0 +1,1142 @@
+@font-face {
+  font-family: 'icomoon';
+  src: url('fonts/icomoon/icomoon.eot?u8u4lz');
+  src: url('fonts/icomoon/icomoon.eot?u8u4lz#iefix') format('embedded-opentype'), url('fonts/icomoon/icomoon.ttf?u8u4lz') format('truetype'),
+    url('fonts/icomoon/icomoon.woff?u8u4lz') format('woff'), url('fonts/icomoon/icomoon.svg?u8u4lz#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^='icon-'],
+[class*=' icon-'] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-NH_feedback:before {
+  content: '\ea48';
+}
+
+.icon-average:before {
+  content: '\ea3e';
+}
+.icon-average_filled:before {
+  content: '\ea3f';
+}
+.icon-bad:before {
+  content: '\ea40';
+}
+.icon-bad_filled:before {
+  content: '\ea41';
+}
+.icon-good:before {
+  content: '\ea42';
+}
+.icon-good_filled:before {
+  content: '\ea43';
+}
+.icon-great:before {
+  content: '\ea44';
+}
+.icon-great_filled:before {
+  content: '\ea45';
+}
+.icon-terrible:before {
+  content: '\ea46';
+}
+.icon-terrible_filled:before {
+  content: '\ea47';
+}
+.icon-Blood-bank:before {
+  content: '\ea3d';
+}
+.icon-edit2:before {
+  content: '\ea3c';
+}
+.icon-mrd:before {
+  content: '\ea3a';
+}
+.icon-mrd_filled:before {
+  content: '\ea3b';
+}
+.icon-admission_icon:before {
+  content: '\ea39';
+}
+.icon-result:before {
+  content: '\ea38';
+}
+.icon-drug_interaction_1:before {
+  content: '\ea37';
+}
+.icon-OT-Menu:before {
+  content: '\ea36';
+  color: #fff;
+}
+.icon-cross_op:before {
+  content: '\ea34';
+  color: #b4b4be;
+}
+.icon-tick_op:before {
+  content: '\ea35';
+  color: #b4b4be;
+}
+.icon-claimTasks:before {
+  content: '\ea31';
+  color: #5f5f5f;
+}
+.icon-revert-Claim:before {
+  content: '\ea32';
+  color: #5f5f5f;
+}
+.icon-startTasks:before {
+  content: '\ea33';
+  color: #787877;
+}
+.icon-preview1 .path1:before {
+  content: '\ea2f';
+  color: rgb(225, 108, 146);
+}
+.icon-preview1 .path2:before {
+  content: '\ea30';
+  margin-left: -1em;
+  color: rgb(231, 148, 176);
+}
+.icon-drug .path1:before {
+  content: '\ea05';
+  color: rgb(255, 255, 255);
+}
+.icon-drug .path2:before {
+  content: '\ea06';
+  margin-left: -1em;
+  color: rgb(226, 235, 249);
+}
+.icon-drug .path3:before {
+  content: '\ea07';
+  margin-left: -1em;
+  color: rgb(93, 225, 192);
+}
+.icon-drug .path4:before {
+  content: '\ea08';
+  margin-left: -1em;
+  color: rgb(1, 195, 150);
+}
+.icon-drug .path5:before {
+  content: '\ea09';
+  margin-left: -1em;
+  color: rgb(43, 43, 43);
+}
+.icon-file_administrative .path1:before {
+  content: '\ea0a';
+  color: rgb(243, 232, 214);
+}
+.icon-file_administrative .path2:before {
+  content: '\ea0b';
+  margin-left: -1em;
+  color: rgb(214, 196, 170);
+}
+.icon-file_administrative .path3:before {
+  content: '\ea0c';
+  margin-left: -1em;
+  color: rgb(214, 196, 170);
+}
+.icon-file_administrative .path4:before {
+  content: '\ea0d';
+  margin-left: -1em;
+  color: rgb(67, 152, 209);
+}
+.icon-file_administrative .path5:before {
+  content: '\ea0e';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-file_administrative .path6:before {
+  content: '\ea0f';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-file_administrative .path7:before {
+  content: '\ea10';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-file_clinical .path1:before {
+  content: '\ea11';
+  color: rgb(243, 232, 214);
+}
+.icon-file_clinical .path2:before {
+  content: '\ea12';
+  margin-left: -1em;
+  color: rgb(214, 196, 170);
+}
+.icon-file_clinical .path3:before {
+  content: '\ea13';
+  margin-left: -1em;
+  color: rgb(214, 196, 170);
+}
+.icon-file_clinical .path4:before {
+  content: '\ea14';
+  margin-left: -1em;
+  color: rgb(242, 73, 73);
+}
+.icon-file_clinical .path5:before {
+  content: '\ea15';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-file_clinical .path6:before {
+  content: '\ea16';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path1:before {
+  content: '\ea17';
+  color: rgb(214, 196, 170);
+}
+.icon-food .path2:before {
+  content: '\ea18';
+  margin-left: -1em;
+  color: rgb(175, 154, 130);
+}
+.icon-food .path3:before {
+  content: '\ea19';
+  margin-left: -1em;
+  color: rgb(226, 235, 249);
+}
+.icon-food .path4:before {
+  content: '\ea1a';
+  margin-left: -1em;
+  color: rgb(175, 154, 130);
+}
+.icon-food .path5:before {
+  content: '\ea1b';
+  margin-left: -1em;
+  color: rgb(204, 209, 217);
+}
+.icon-food .path6:before {
+  content: '\ea1c';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path7:before {
+  content: '\ea1d';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path8:before {
+  content: '\ea1e';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path9:before {
+  content: '\ea1f';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path10:before {
+  content: '\ea20';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path11:before {
+  content: '\ea21';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path12:before {
+  content: '\ea22';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path13:before {
+  content: '\ea23';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path14:before {
+  content: '\ea24';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path15:before {
+  content: '\ea25';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path16:before {
+  content: '\ea26';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path17:before {
+  content: '\ea27';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path18:before {
+  content: '\ea28';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path19:before {
+  content: '\ea29';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path20:before {
+  content: '\ea2a';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path21:before {
+  content: '\ea2b';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path22:before {
+  content: '\ea2c';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path23:before {
+  content: '\ea2d';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-food .path24:before {
+  content: '\ea2e';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-Block-Patient:before {
+  content: '\ea02';
+}
+.icon-Link-Family:before {
+  content: '\ea03';
+}
+.icon-Merge-MRN:before {
+  content: '\ea04';
+}
+.icon-pencil:before {
+  content: '\e9ff';
+}
+.icon-pointer:before {
+  content: '\ea00';
+}
+.icon-zoom_out:before {
+  content: '\ea01';
+}
+.icon-Patient-Transfer-Icon1:before {
+  content: '\e9fd';
+}
+.icon-phone_mobile:before {
+  content: '\e9fe';
+}
+.icon-approve:before {
+  content: '\e9ea';
+}
+.icon-bedswap_pop:before {
+  content: '\e9eb';
+  color: #0078d7;
+}
+.icon-CPOE:before {
+  content: '\e9ec';
+}
+.icon-fetch_filled:before {
+  content: '\e9ed';
+}
+.icon-HSM:before {
+  content: '\e9ee';
+}
+.icon-Location-Enabled:before {
+  content: '\e9ef';
+  color: #0078d7;
+}
+.icon-Message-Icon_With-Count:before {
+  content: '\e9f0';
+}
+.icon-Message_Icon:before {
+  content: '\e9f1';
+}
+.icon-MLC_Plus_Icon:before {
+  content: '\e9f2';
+  color: #f44336;
+}
+.icon-Patient-Journey_Task-Cleared:before {
+  content: '\e9f3';
+  color: #10a822;
+}
+.icon-Patient-Journey_Task-Pending .path1:before {
+  content: '\e9f4';
+  color: rgb(255, 255, 255);
+}
+.icon-Patient-Journey_Task-Pending .path2:before {
+  content: '\e9f5';
+  margin-left: -1em;
+  color: rgb(112, 112, 112);
+}
+.icon-Patient-Journey-Task-Claimed:before {
+  content: '\e9f6';
+  color: #b4b4be;
+}
+.icon-Patient-Transfer-Icon:before {
+  content: '\e9f7';
+}
+.icon-protocol_filled:before {
+  content: '\e9f8';
+}
+.icon-reject:before {
+  content: '\e9f9';
+}
+.icon-save_order_set:before {
+  content: '\e9fa';
+}
+.icon-substitution:before {
+  content: '\e9fb';
+}
+.icon-Three-Dots_Horizontal:before {
+  content: '\e9fc';
+}
+.icon-adt_filled:before {
+  content: '\e9e8';
+}
+.icon-adt_outline:before {
+  content: '\e9e9';
+}
+.icon-add_favorites:before {
+  content: '\e9bf';
+}
+.icon-arrow_subgroup:before {
+  content: '\e9c0';
+}
+.icon-brand:before {
+  content: '\e9c1';
+}
+.icon-brand_select:before {
+  content: '\e9c2';
+}
+.icon-circle_small:before {
+  content: '\e9c3';
+}
+.icon-complete_consultation:before {
+  content: '\e9c4';
+}
+.icon-customise:before {
+  content: '\e9c5';
+}
+.icon-discharge:before {
+  content: '\e9c6';
+}
+.icon-down_arrow_line:before {
+  content: '\e9c7';
+}
+.icon-down_arrowhead:before {
+  content: '\e9c8';
+}
+.icon-drag:before {
+  content: '\e9c9';
+}
+.icon-fetch:before {
+  content: '\e9ca';
+}
+.icon-generic_select:before {
+  content: '\e9cb';
+}
+.icon-instruction:before {
+  content: '\e9cc';
+}
+.icon-left_arrowhead:before {
+  content: '\e9cd';
+}
+.icon-matrix:before {
+  content: '\e9ce';
+}
+.icon-next_patient:before {
+  content: '\e9cf';
+}
+.icon-plus:before {
+  content: '\e9d0';
+}
+.icon-preview:before {
+  content: '\e9d1';
+}
+.icon-profile2:before {
+  content: '\e9d2';
+}
+.icon-protocol:before {
+  content: '\e9d3';
+}
+.icon-refill .path1:before {
+  content: '\e9d4';
+  color: rgb(0, 0, 0);
+}
+.icon-refill .path2:before {
+  content: '\e9d5';
+  margin-left: -1em;
+  color: rgb(35, 31, 32);
+}
+.icon-refill_all .path1:before {
+  content: '\e9d6';
+  color: rgb(0, 0, 0);
+}
+.icon-refill_all .path2:before {
+  content: '\e9d7';
+  margin-left: -1em;
+  color: rgb(35, 31, 32);
+}
+.icon-refill_all .path3:before {
+  content: '\e9d8';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-refill_all .path4:before {
+  content: '\e9d9';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-refill_all .path5:before {
+  content: '\e9da';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-refill_all .path6:before {
+  content: '\e9db';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-refill_all .path7:before {
+  content: '\e9dc';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-remove:before {
+  content: '\e9dd';
+}
+.icon-report:before {
+  content: '\e9de';
+}
+.icon-right_arrowhead:before {
+  content: '\e9df';
+}
+.icon-settings_notification:before {
+  content: '\e9e0';
+}
+.icon-start_consultation:before {
+  content: '\e9e1';
+}
+.icon-stop:before {
+  content: '\e9e2';
+}
+.icon-syringe:before {
+  content: '\e9e3';
+}
+.icon-unlock:before {
+  content: '\e9e4';
+}
+.icon-up_arrow_line:before {
+  content: '\e9e5';
+}
+.icon-up_arrowhead:before {
+  content: '\e9e6';
+}
+.icon-view_ehr:before {
+  content: '\e9e7';
+}
+.icon-arrowhead_down:before {
+  content: '\e9bd';
+}
+.icon-rupee:before {
+  content: '\e9be';
+}
+.icon-drafts:before {
+  content: '\e9bc';
+}
+.icon-bed_available:before {
+  content: '\e9aa';
+}
+.icon-bed_unavailable:before {
+  content: '\e9ab';
+}
+.icon-bed_under_maintenanace:before {
+  content: '\e9ac';
+}
+.icon-cash:before {
+  content: '\e9ad';
+}
+.icon-daycare .path1:before {
+  content: '\e9ae';
+  color: rgb(29, 29, 27);
+}
+.icon-daycare .path2:before {
+  content: '\e9af';
+  margin-left: -1em;
+  color: rgb(29, 29, 27);
+}
+.icon-daycare .path3:before {
+  content: '\e9b0';
+  margin-left: -1em;
+  color: rgb(29, 29, 27);
+}
+.icon-daycare .path4:before {
+  content: '\e9b1';
+  margin-left: -1em;
+  color: rgb(29, 29, 27);
+}
+.icon-daycare .path5:before {
+  content: '\e9b2';
+  margin-left: -1em;
+  color: rgb(29, 29, 27);
+}
+.icon-daycare .path6:before {
+  content: '\e9b3';
+  margin-left: -1em;
+  color: rgb(29, 29, 27);
+}
+.icon-daycare .path7:before {
+  content: '\e9b4';
+  margin-left: -1em;
+  color: rgb(29, 29, 27);
+}
+.icon-daycare .path8:before {
+  content: '\e9b5';
+  margin-left: -1em;
+  color: rgb(29, 29, 27);
+}
+.icon-daycare .path9:before {
+  content: '\e9b6';
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-detention:before {
+  content: '\e9b7';
+}
+.icon-emergency:before {
+  content: '\e9b8';
+}
+.icon-emr:before {
+  content: '\e9b9';
+}
+.icon-emr_selected:before {
+  content: '\e9ba';
+}
+.icon-procedure:before {
+  content: '\e9bb';
+}
+.icon-addon_services:before {
+  content: '\e9a4';
+}
+.icon-case_sheet:before {
+  content: '\e9a5';
+}
+.icon-consultation:before {
+  content: '\e9a6';
+}
+.icon-list_removed:before {
+  content: '\e9a7';
+}
+.icon-pass:before {
+  content: '\e9a8';
+}
+.icon-sticker:before {
+  content: '\e9a9';
+}
+.icon-add_item:before {
+  content: '\e9a1';
+}
+.icon-collapse_down:before {
+  content: '\e9a2';
+}
+.icon-expand_up:before {
+  content: '\e9a3';
+}
+.icon-amend:before {
+  content: '\e999';
+}
+.icon-help_filled:before {
+  content: '\e99a';
+}
+.icon-history_receipt:before {
+  content: '\e99b';
+}
+.icon-invoicebills:before {
+  content: '\e99c';
+}
+.icon-move:before {
+  content: '\e99d';
+}
+.icon-move_drag:before {
+  content: '\e99e';
+}
+.icon-order_management:before {
+  content: '\e99f';
+}
+.icon-order_management_filled:before {
+  content: '\e9a0';
+}
+.icon-repeat:before {
+  content: '\e998';
+}
+.icon-copy:before {
+  content: '\e996';
+}
+.icon-preview_report:before {
+  content: '\e997';
+}
+.icon-ambulatory:before {
+  content: '\e988';
+}
+.icon-ambulatory_filled:before {
+  content: '\e989';
+}
+.icon-authorization:before {
+  content: '\e98a';
+}
+.icon-billing:before {
+  content: '\e98b';
+}
+.icon-billing_selected:before {
+  content: '\e98c';
+}
+.icon-circle_partial:before {
+  content: '\e98d';
+}
+.icon-detach:before {
+  content: '\e98e';
+}
+.icon-folder_moveto:before {
+  content: '\e98f';
+}
+.icon-frequency_dosage:before {
+  content: '\e990';
+}
+.icon-generic:before {
+  content: '\e991';
+}
+.icon-info_patient:before {
+  content: '\e992';
+}
+.icon-package:before {
+  content: '\e993';
+}
+.icon-profile_patient:before {
+  content: '\e994';
+}
+.icon-receipt:before {
+  content: '\e995';
+}
+.icon-qrcode:before {
+  content: '\e987';
+}
+.icon-add-list3:before {
+  content: '\e97b';
+}
+.icon-admin:before {
+  content: '\e97c';
+}
+.icon-admin_filled:before {
+  content: '\e97d';
+}
+.icon-attachment:before {
+  content: '\e97e';
+}
+.icon-back-chevron:before {
+  content: '\e97f';
+}
+.icon-calendar_appointment_cancel:before {
+  content: '\e980';
+}
+.icon-calendar_appointment_scheduled:before {
+  content: '\e981';
+}
+.icon-calendar_reschedule:before {
+  content: '\e982';
+}
+.icon-calendar_schedule:before {
+  content: '\e983';
+}
+.icon-inventory_filled:before {
+  content: '\e984';
+}
+.icon-pharmacy_filled:before {
+  content: '\e985';
+}
+.icon-sort-copy:before {
+  content: '\e986';
+}
+.icon-add-list2:before {
+  content: '\e955';
+}
+.icon-add_patient:before {
+  content: '\e956';
+}
+.icon-afternoon:before {
+  content: '\e957';
+}
+.icon-appointment_cancel:before {
+  content: '\e958';
+}
+.icon-appointment_reschedule:before {
+  content: '\e959';
+}
+.icon-appointment_schedule:before {
+  content: '\e95a';
+}
+.icon-appointment_scheduled:before {
+  content: '\e95b';
+}
+.icon-arrived:before {
+  content: '\e95c';
+}
+.icon-arrow_next:before {
+  content: '\e95d';
+}
+.icon-arrow_previous:before {
+  content: '\e95e';
+}
+.icon-arrowhead_next:before {
+  content: '\e95f';
+}
+.icon-arrowhead_previous:before {
+  content: '\e960';
+}
+.icon-block:before {
+  content: '\e961';
+}
+.icon-block_bulk:before {
+  content: '\e962';
+}
+.icon-calendar_favorite:before {
+  content: '\e963';
+}
+.icon-evening:before {
+  content: '\e964';
+}
+.icon-filter:before {
+  content: '\e965';
+}
+.icon-filter_filled:before {
+  content: '\e966';
+}
+.icon-help:before {
+  content: '\e967';
+}
+.icon-history_appointment:before {
+  content: '\e968';
+}
+.icon-list_unbilled:before {
+  content: '\e969';
+}
+.icon-morning:before {
+  content: '\e96a';
+}
+.icon-night:before {
+  content: '\e96b';
+}
+.icon-noshow:before {
+  content: '\e96c';
+}
+.icon-online:before {
+  content: '\e96d';
+}
+.icon-package_moveto:before {
+  content: '\e96e';
+}
+.icon-phone:before {
+  content: '\e96f';
+}
+.icon-profile_femalev:before {
+  content: '\e970';
+}
+.icon-profile_male:before {
+  content: '\e971';
+}
+.icon-refresh:before {
+  content: '\e972';
+}
+.icon-search_advance:before {
+  content: '\e973';
+}
+.icon-search_barcode:before {
+  content: '\e974';
+}
+.icon-sort_ascending:before {
+  content: '\e975';
+}
+.icon-sort_descending:before {
+  content: '\e976';
+}
+.icon-time:before {
+  content: '\e977';
+}
+.icon-update_availability:before {
+  content: '\e978';
+}
+.icon-waiting:before {
+  content: '\e979';
+}
+.icon-walkin:before {
+  content: '\e97a';
+}
+.icon-export_csv:before {
+  content: '\e950';
+}
+.icon-export_excel:before {
+  content: '\e951';
+}
+.icon-export_pdf:before {
+  content: '\e952';
+}
+.icon-export_xls:before {
+  content: '\e953';
+}
+.icon-export_xml:before {
+  content: '\e954';
+}
+.icon-administration:before {
+  content: '\e94a';
+}
+.icon-adminstration_selected:before {
+  content: '\e94b';
+}
+.icon-inventory:before {
+  content: '\e94c';
+}
+.icon-inventory_selected:before {
+  content: '\e94d';
+}
+.icon-pharmacy:before {
+  content: '\e94e';
+}
+.icon-pharmacy_selected:before {
+  content: '\e94f';
+}
+.icon-admin_packages:before {
+  content: '\e900';
+}
+.icon-admin_services:before {
+  content: '\e934';
+}
+.icon-admin_tariff:before {
+  content: '\e935';
+}
+.icon-admin_unit:before {
+  content: '\e936';
+}
+.icon-admin_user-roles:before {
+  content: '\e937';
+}
+.icon-admin_user:before {
+  content: '\e938';
+}
+.icon-audit_adjustment:before {
+  content: '\e939';
+}
+.icon-audit_audit-plan:before {
+  content: '\e93a';
+}
+.icon-audit_audit:before {
+  content: '\e93b';
+}
+.icon-dispense_cpoe:before {
+  content: '\e93c';
+}
+.icon-dispense_dashboard:before {
+  content: '\e93d';
+}
+.icon-dispense_dashboard_discount:before {
+  content: '\e93e';
+}
+.icon-dispense_dashboard_productivity:before {
+  content: '\e93f';
+}
+.icon-dispense_dashboard_revenue:before {
+  content: '\e940';
+}
+.icon-dispense_dispense:before {
+  content: '\e941';
+}
+.icon-dispense_pharmacy-configuration:before {
+  content: '\e942';
+}
+.icon-dispense_return:before {
+  content: '\e943';
+}
+.icon-inventory_correction:before {
+  content: '\e944';
+}
+.icon-inventory_direct-transfer:before {
+  content: '\e945';
+}
+.icon-inventory_indent:before {
+  content: '\e946';
+}
+.icon-inventory_issue:before {
+  content: '\e947';
+}
+.icon-Inventory_receipt:before {
+  content: '\e948';
+}
+.icon-inventory_reversal:before {
+  content: '\e949';
+}
+.icon-add-list:before {
+  content: '\e933';
+}
+.icon-add_outline:before {
+  content: '\e901';
+}
+.icon-add:before {
+  content: '\e902';
+}
+.icon-alert:before {
+  content: '\e903';
+}
+.icon-alternate:before {
+  content: '\e904';
+}
+.icon-auditlog:before {
+  content: '\e905';
+}
+.icon-back_chevron:before {
+  content: '\e906';
+}
+.icon-back_square:before {
+  content: '\e907';
+}
+.icon-barcode:before {
+  content: '\e908';
+}
+.icon-calculator:before {
+  content: '\e909';
+}
+.icon-calendar:before {
+  content: '\e90a';
+}
+.icon-checkbox_selected:before {
+  content: '\e90b';
+}
+.icon-checkbox:before {
+  content: '\e90c';
+}
+.icon-checkmark:before {
+  content: '\e90d';
+}
+.icon-circle:before {
+  content: '\e90e';
+}
+.icon-collapse:before {
+  content: '\e90f';
+}
+.icon-comment:before {
+  content: '\e910';
+}
+.icon-cross:before {
+  content: '\e911';
+}
+.icon-delete:before {
+  content: '\e912';
+}
+.icon-down_chevron:before {
+  content: '\e913';
+}
+.icon-down_square:before {
+  content: '\e914';
+}
+.icon-dropdown_small:before {
+  content: '\e915';
+}
+.icon-drug_interaction:before {
+  content: '\e916';
+}
+.icon-edit:before {
+  content: '\e917';
+}
+.icon-expand:before {
+  content: '\e918';
+}
+.icon-export:before {
+  content: '\e919';
+}
+.icon-favorites:before {
+  content: '\e91a';
+}
+.icon-import:before {
+  content: '\e91b';
+}
+.icon-info:before {
+  content: '\e91c';
+}
+.icon-menu:before {
+  content: '\e91d';
+}
+.icon-more:before {
+  content: '\e91e';
+}
+.icon-next_chevron:before {
+  content: '\e91f';
+}
+.icon-next_square:before {
+  content: '\e920';
+}
+.icon-notes:before {
+  content: '\e921';
+}
+.icon-notification:before {
+  content: '\e922';
+}
+.icon-print:before {
+  content: '\e923';
+}
+.icon-radio_selected:before {
+  content: '\e924';
+}
+.icon-radio:before {
+  content: '\e925';
+}
+.icon-search_invoice:before {
+  content: '\e926';
+}
+.icon-search_list:before {
+  content: '\e927';
+}
+.icon-search_patient:before {
+  content: '\e928';
+}
+.icon-search:before {
+  content: '\e929';
+}
+.icon-sort_outline:before {
+  content: '\e92a';
+}
+.icon-sort:before {
+  content: '\e92b';
+}
+.icon-system:before {
+  content: '\e92c';
+}
+.icon-tasks_pending:before {
+  content: '\e92d';
+}
+.icon-up_chevron:before {
+  content: '\e92e';
+}
+.icon-up_square:before {
+  content: '\e92f';
+}
+.icon-user_outline:before {
+  content: '\e930';
+}
+.icon-user:before {
+  content: '\e931';
+}
+.icon-warning:before {
+  content: '\e932';
+}

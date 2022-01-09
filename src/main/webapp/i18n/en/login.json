@@ -1,0 +1,30 @@
+{
+  "login": {
+    "title": "Sign in",
+    "form": {
+      "password": "Password",
+      "password.placeholder": "Your password",
+      "rememberme": "Remember me",
+      "button": "Login",
+      "newPwd": "New Password",
+      "oldPwd": "Old Password",
+      "confirmPwd": "Confirm New Password",
+      "cancelBtn": "Cancel",
+      "resetBtn": "Reset",
+      "visibiltyOff": "visibility_off",
+      "resetPwdTitle": "Reset Password",
+      "visibiltyOn": "visibility_on",
+      "pwdMinlength": "Minimum 6 characters long.",
+      "pwdRequired": "this is required field.",
+      "pwdMismatch": "Password mismatch."
+    },
+    "messages": {
+      "error": {
+        "authentication": "<strong>Failed to sign in!</strong> Please check your credentials and try again."
+      }
+    },
+    "password": {
+      "forgot": "Did you forget your password?"
+    }
+  }
+}

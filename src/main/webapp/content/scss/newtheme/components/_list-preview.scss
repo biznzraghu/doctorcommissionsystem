@@ -1,0 +1,219 @@
+.preview-mode {
+  border-left-width: 1px;
+  border-left-style: solid;
+  .preview-mode-header {
+    padding: 16px;
+    .preview-mode-indicator {
+      font-size: pixelToRem($default-fs);
+      padding-right: 6px;
+    }
+    .badge-container {
+      position: relative;
+      margin-left: 6px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: row;
+      .athma-badges {
+        margin-left: -6px;
+      }
+    }
+  }
+}
+
+.atham-btn-container-fixed-bottom {
+  position: absolute;
+  height: 48px;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  padding: 12px 20px 12px 0px;
+  z-index: 20;
+  border-top: 1px solid;
+  border-left: 1px solid;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  //box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.preview-mode-table {
+  height: calc(100vh - 274px);
+}
+
+// New indent
+.previewCollapsed {
+  width: 100%;
+  margin-right: 50px;
+}
+
+.fixed-height-without-header {
+  height: calc(100vh - 64px);
+}
+
+.previewExpandContainer {
+  position: absolute;
+  right: 0px;
+}
+
+.previewExpandContainer .previewExpand {
+  height: calc(100vh - 64px);
+  border-left-width: 1px;
+  border-left-style: solid;
+  padding: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 50px;
+  font-size: pixelToRem($fs-l);
+}
+
+.athma-detail-form-panel {
+  width: 18%;
+  position: relative;
+}
+
+.athma-detail-list-panel {
+  width: 82%;
+  &.previewCollapsed {
+    width: calc(100vw - 50px) !important;
+  }
+}
+
+.athma-detail-list-tools {
+  display: flex;
+  justify-content: flex-end;
+  height: 48px;
+  align-items: center;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.itemSearchOn,
+.itemSearchIconText {
+  display: flex;
+  .athma-input-group-container {
+    .athma-icon-button {
+      font-size: pixelToRem($fs-l);
+      padding-left: 5px;
+      padding-right: 5px;
+      border-width: 1px;
+      border-style: solid;
+      border-right: 0px;
+      background: #fff;
+    }
+  }
+}
+
+.itemSearchOn {
+  .athma-input-group-container {
+    .athma-icon-button {
+      border: 1px solid transparent;
+      background: transparent;
+    }
+  }
+}
+
+.preview-form-container {
+  border-width: 0px;
+  border-left-width: 1px;
+  border-style: solid;
+  width: 100%;
+  height: calc(100vh - 64px);
+  .preview-form-header {
+    padding: 0.9375rem;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    height: 6rem;
+    h5 {
+      font-size: pixelToRem($fs-l);
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .fa,
+      [class^='icon-'],
+      [class*=' icon-'] {
+        font-size: 18px;
+        cursor: pointer;
+      }
+    }
+    .preview-mode-header-icons {
+      .btn-icon-grp {
+        outline: none;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        display: inline-block;
+        padding: 5px 10px;
+        outline: none;
+        &:first-child {
+          padding-left: 0px;
+        }
+        .fa,
+        [class^='icon-'],
+        [class*=' icon-'] {
+          font-size: pixelToRem($fs-l);
+        }
+      }
+    }
+  }
+  .preview-form-body {
+    overflow-y: auto;
+    height: calc(100% - 5rem);
+    .preview-form-body-segment {
+      padding: 0.9375rem;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      padding-bottom: 0px;
+    }
+  }
+  textarea {
+    height: 60px;
+    outline: none;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 0px;
+    width: 100%;
+    resize: none;
+  }
+}
+
+.athma-field-container {
+  font-family: $ff-default;
+  margin-bottom: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
+  label.athma-field-label {
+    font-size: 0.6875rem;
+    margin-bottom: 5px;
+    font-weight: 400;
+    line-height: 0.6875rem;
+  }
+  div.athma-field-value {
+    font-size: pixelToRem($default-fs);
+    padding-top: 0px;
+    line-height: 0.875rem;
+  }
+  a.line-document-btn {
+    color: blue !important;
+    display: block;
+    padding: 5px 10px;
+  }
+  .comments-label {
+    margin-bottom: 5px;
+    outline: none;
+    label {
+      margin-bottom: 0px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+}
+
+.athma-field-container i.athma-field-action-icon {
+  position: absolute;
+  top: 5px;
+  right: 0px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}

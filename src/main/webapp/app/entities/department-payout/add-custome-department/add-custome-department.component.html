@@ -1,0 +1,24 @@
+<section class="modal-header">
+    <h3 class="modal-title">Add Custom Department</h3>
+</section>
+<div class="employee-payout-container" style="height: 90px;">
+    <div class="row mr-0 ml-0 pt-3">
+        <div class="col-md-12 tbl-div-hg-47 ">
+            <div class="athma-form-group">
+                <label>
+                    <span>
+                        Department Name
+                    </span>
+                </label>
+                <div class="form-group">
+                    <input type="text" class="athma-form-control" name="name" id="field_name" [(ngModel)]="department.name" placeholder="Enter Department Name">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="athma-btn athma-btn-secondary" (click)="close()">Cancel</button>
+    <button class="athma-btn athma-btn-primary" (click)="process()">Add</button>
+</div>

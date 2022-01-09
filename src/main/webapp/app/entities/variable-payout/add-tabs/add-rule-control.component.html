@@ -1,0 +1,224 @@
+<form #addRuleForm="ngForm" style="width: 100%;">
+<div class="d-flex w-100 input-container align-items-center" style="background:#e5e5e5;">
+    <div class="col1 common-col">
+        <!-- {{addRuleForm.dirty}} -->
+        <ng-select 
+            name="type"
+            class="auto-grow" 
+            id="type" 
+            [clearable]="false" 
+            [items]="typeList" 
+            [disabled]="isEditControl" 
+            placeholder="Select" 
+            bindLabel="name"
+            bindValue="code" 
+            [(ngModel)]="rule.type"
+            notFoundText="No results found" 
+            (change)="typeChange()"
+        >
+        </ng-select>
+    </div>
+    <div class="col11 common-col" *ngIf = "!showValueMultiSelect">
+        <div class="athma-form-group athma-flexible mb-0">
+            <div class="form-group mb-0">
+                <div class="athma-search-typeahead-container m-0">
+                    <div class="athma-search-typeahead-border result-table-format expandTypeahead">
+                        <input 
+                            type="text"
+                            id="typeValue" 
+                            name="typeValue" 
+                            [disabled]="disableValueField" 
+                            placeholder="Select" 
+                            class="athma-form-control athma-flexible"
+                            [ngbTypeahead]="valueSearchTypeahead" 
+                            [inputFormatter]="inputFormatValueTypeheadData" 
+                            [resultFormatter]="formatValueTypeheadData" 
+                            [(ngModel)]="selectedValue"  
+                        /> 
+                        <span *ngIf="!valueSearching" class="fa fa-search athma-typehead-search-left" style="top:6px !important;"></span>
+                        <span *ngIf="valueSearching" class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left" style="top:6px !important;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col3 common-col" *ngIf = "showValueMultiSelect">
+        <div class="athma-form-group mb-0">
+            <div class="form-group mb-0" *ngIf="valueMultiSelectList.length > 0; else value">
+                <ng-multiselect-dropdown
+                    id="valueId"
+                    name="value"
+                    class="multi-select-field"
+                    [placeholder]="'Select'"
+                    [settings]="valueMultiSelectDropdownSettings"                    
+                    [data]="valueMultiSelectList"
+                    [(ngModel)]="selectedValue"
+                    [ngbTooltip]="(selectedValue?.length > 1) ? valueListTemplate : '' " 
+                    > 
+                </ng-multiselect-dropdown>
+                <ng-template #valueListTemplate >
+                    <ul class="p-0 m-0 list-unstyled">
+                        <li class="p-1 text-left" *ngFor="let type of selectedValue" >
+                          {{type.name}}
+                        </li>
+                    </ul>
+                </ng-template>
+            </div>
+            <div>
+                <ng-template #value>
+                    <select></select>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="col3 common-col">
+        <div class="athma-form-group mb-0">
+            <div class="form-group mb-0" *ngIf="visitTypeList.length > 0; else valueset">
+                <ng-multiselect-dropdown
+                    id="visitId"
+                    name="visit"
+                    class="multi-select-field"
+                    [placeholder]="'Select'"
+                    [settings]="multiSelectDropdownSettings"
+                    [disabled]="disableUntilTypeSelect"
+                    [data]="visitTypeList"
+                    [(ngModel)]="selectedVisitList"
+                    [ngbTooltip]="(selectedVisitList?.length > 1) ? visitTypeListTemplate : '' " 
+                    > <!-- [(ngModel)]="selectedVisitList"-->
+                </ng-multiselect-dropdown>
+                <ng-template #visitTypeListTemplate >
+                    <ul class="p-0 m-0 list-unstyled">
+                        <li class="p-1 text-left" *ngFor="let type of selectedVisitList" >
+                          {{type.display}}
+                        </li>
+                    </ul>
+                </ng-template>
+            </div>
+            <div>
+                <ng-template #valueset>
+                    <select></select>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="col4 common-col">
+        <ng-select name="beneficiary" id="beneficiary" [items]="typeBeneficiary" placeholder="Select" bindLabel="name" [disabled]="disableUntilTypeSelect"
+            notFoundText="No results found" [clearable]="false" clearAllText="" bindValue="code" [(ngModel)]="rule.beneficiary"> <!--(change)="onBeneficiaryChange($event)"-->
+        </ng-select>
+    </div>
+    <div class="col5 common-col">
+        <input type="text" class="athma-form-control" name="amount" jhiDecimal [(ngModel)]="rule.amount" [disabled]="disableUntilTypeSelect" (blur)="checkIsAmountPercentage()" (change)="fixedAmountChanged()" />
+    </div>
+    <div class="col6 common-col">
+        <input type="text" placeholder="ex 1-100" [disabled]="disableQuentityField || disableUntilTypeSelect" name="quantityFromTo" [(ngModel)]="quantityFromTo" (blur)="validateQuantityFromTo()" (change)="quantityFromAndToChanged()" class="athma-form-control" />
+    </div>
+    <div class="col7 common-col">
+        <ng-select 
+            name="netGross"
+            class="auto-grow" 
+            id="netGross" 
+            [clearable]="false" 
+            [items]="netGrossList" 
+            placeholder="Select" 
+            [disabled]="disableUntilTypeSelect" 
+            bindLabel="name" 
+            bindValue="code"
+            notFoundText="No results found" 
+            clearAllText="" 
+            [(ngModel)]="rule.applicableOn"
+        >
+        </ng-select>
+    </div>
+    <div class="col8 common-col">
+        <ng-select 
+            name="patient-category" 
+            class="auto-grow"
+            id="patient-category" 
+            [clearable]="false" 
+            [items]="patientCategory" 
+            [disabled]="disableUntilTypeSelect" 
+            placeholder="Select" 
+            bindLabel="name" 
+            bindValue="code"
+            notFoundText="No results found" 
+            clearAllText="" 
+            [(ngModel)]="rule.patientCategory"
+        >
+        </ng-select>
+    </div>
+    <div class="col9 common-col">
+        <div class="athma-form-group mb-0">
+            <div class="form-group mb-0" *ngIf="visitTypeList.length > 0; else valueset">
+                <ng-multiselect-dropdown 
+                    id="tariffe-class"
+                    name="tariffeClass"
+                    class="multi-select-field"
+                    [disabled]="disableTariffClass || disableUntilTypeSelect"
+                    [placeholder]="'Select'"
+                    [settings]="multiSelectDropdownSettings"
+                    [data]="tariffClassList"
+                    [(ngModel)]="selectedTarrifClass"
+                    [ngbTooltip]="(selectedTarrifClass?.length > 1) ? visitTypeListTemplate : '' " 
+                    >
+                </ng-multiselect-dropdown>
+                <ng-template #visitTypeListTemplate >
+                    <ul class="p-0 m-0 list-unstyled">
+                        <li class="p-1 text-left" *ngFor="let type of selectedTarrifClass" >
+                          {{type.display}}
+                        </li>
+                    </ul>
+                </ng-template>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col10 common-col">
+        <ng-select name="material-amount" id="material-amount" [clearable]="false" [items]="materialAmount" placeholder="Select" bindLabel="name" bindValue="code"
+             notFoundText="No results found" clearAllText="" [disabled]="disableMatAmtField || disableUntilTypeSelect"  [(ngModel)]="rule.materialAmount">
+        </ng-select>
+    </div>
+    <div class="col2 common-col">
+        <div class="athma-form-group mb-0">
+            <div class="form-group mb-0">
+                <ng-multiselect-dropdown 
+                    id="departmentsId"
+                    name="departments"
+                    class="multi-select-field"
+                    [placeholder]="'Select'"
+                    [settings]="departmentDropdownSettings"
+                    [disabled]="disableUntilTypeSelect"
+                    [data]="departmentList"
+                    [(ngModel)]="selectedDepartment" 
+                    [ngbTooltip]="(selectedDepartment?.length > 1) ? departmentListTemplate : '' "
+                    >
+                </ng-multiselect-dropdown>
+                <ng-template #departmentListTemplate >
+                    <ul class="p-0 m-0 list-unstyled">
+                        <li class="p-1 text-left" *ngFor="let department of selectedDepartment" >
+                          {{department?.codeName}}
+                        </li>
+                    </ul>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+    <div class="col12 common-col text-center athma-pointer" (click)="onAddExceptionsModal()">
+        <span>
+            <i class="icon-Three-Dots_Horizontal" style="font-size: 1.5em;"></i>
+        </span>
+    </div>
+    <div class="col13 common-col athma-pointer" *ngIf="!isEditControl">
+        <button class="adm-icon-button mt-1"> 
+            <i aria-hidden="true" class="fa fa-plus-circle fa-2x" style="font-size: 1.5em;" (click)="addRules()"></i>
+        </button>
+    </div>
+    <div class="col13 common-col athma-pointer" *ngIf="isEditControl">
+        <button class="adm-icon-button mt-1" (click)="onClickUpdateRecord()">
+            <span class="icon-checkmark small-btn" style="font-size: 14px;"></span>
+        </button>
+        <button class="adm-icon-button mt-1" (click)="onClickCancelUpdate()">
+            <span class="icon-cross small-btn" style="font-size: 14px;"></span>
+        </button>
+    </div>
+</div>
+</form>

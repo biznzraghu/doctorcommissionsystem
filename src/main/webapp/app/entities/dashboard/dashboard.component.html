@@ -1,0 +1,28 @@
+<div class="dashboard-header">
+    <div class="athma-page-header">
+        <jhi-dashboard-header (tabChange)="tabChanged($event)" [tabs]="allTabs" [preferences]="preferences"
+            [authorities]="userAuthorities" (settingModalClose)="reloadDashboard()"></jhi-dashboard-header>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<div class="dashboard-container ps ">
+    <div *ngIf="allTabs.length>0" class="widget-dashboard-height">
+        <gridster [options]="options" [style.height.px]="setDashboardPageHeight()" [perfectScrollbar]="config">
+            <ng-container *ngIf="dashboards?.length>0">
+                <gridster-item *ngFor="let item of dashboards" [item]="item?.customProperties ? item?.customProperties : item.widgetMaster.properties">
+                    <jhi-dashboard-widget [item]="item"></jhi-dashboard-widget>
+                </gridster-item>
+            </ng-container>
+            <ng-container *ngIf="dashboards?.length===0">
+                <div class="empty-dashboard" [style.height.px]="setDashboardPageHeight()">
+                    <span>Click on configure to add widgets to your dashboard!</span>
+                </div>
+            </ng-container>
+        </gridster>
+    </div>
+    <div *ngIf="allTabs.length===0" class="empty-dashboard" [style.height.px]="setDashboardPageHeight()">
+        <span>Click on configure to create your dashboard!</span>
+    </div>
+</div>
+<jhi-header-breadcrumb></jhi-header-breadcrumb>

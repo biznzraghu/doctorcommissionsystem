@@ -1,0 +1,716 @@
+// Role
+// role- color code
+.list-inline-block {
+  margin: 0px;
+  padding: 0px;
+  li {
+    display: inline-block;
+    margin-right: 8px;
+    margin: 5px;
+    padding: 5px 8px;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 12px;
+    border-radius: 2px;
+    text-align: center;
+  }
+}
+
+.athma-bg-lightgrey {
+  background: #f5f5f5;
+  color: #333;
+}
+
+.athma-bg-lightgreen {
+  background: #84c184;
+  color: #fff;
+}
+
+.show .dropdown-menu {
+  font-size: $default-fs;
+  font-family: $ff-default;
+  padding: 0px;
+}
+
+.dropdown-labels ul {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  li {
+    padding: 5px;
+    border-bottom: 1px solid #ededed;
+    display: flex;
+    align-items: center;
+    &.removeFilters {
+      background-color: #f6f8fa;
+      font-size: 12px;
+      justify-content: center;
+      font-weight: 700;
+    }
+  }
+}
+
+.athma-privilege-colorBox {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.athma-privilege {
+  &.all {
+    background: #0e8200;
+    color: #fff;
+  }
+  &.delete {
+    background: #b60205;
+    color: #fff;
+  }
+  &.edit {
+    background-color: #ff8e5c;
+    color: #fff;
+  }
+  &.view {
+    background-color: #507889;
+    color: #fff;
+  }
+  &.create {
+    background: #a2e0a2;
+    color: #333333;
+  }
+  &.list {
+    background-color: #fbca04;
+    color: #332900;
+  }
+  &.approval {
+    background-color: #cccccc;
+    color: #333333;
+  }
+  &.default {
+    background-color: #ffe4e1;
+    color: #0f0f0f;
+    border: 1px solid #cccccc;
+  }
+  .privilege-delete {
+    padding-left: 8px;
+  }
+}
+
+.ver-middle {
+  vertical-align: middle !important;
+}
+
+.item-highlight {
+  background: #fcfdfd;
+  font-weight: 400;
+}
+
+.border-bottom,
+.border-left,
+.border-right,
+.border-top {
+  border-color: #eceeef;
+}
+
+.border-color-grey {
+  border-color: #eceeef !important;
+}
+
+/* to fix default height role assigned privialge icon */
+
+.height-80 {
+  height: 80px;
+}
+
+.athma-role-privilege-search-header {
+  background: #f5f5f5;
+  padding: 8px;
+  font-weight: 400;
+}
+
+/* item master */
+
+.athma-tab-overide {
+  padding-top: 0px;
+  .nav.nav-tabs {
+    border-bottom: 1px solid #b4b4be;
+    .nav-link {
+      border: 0px;
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+      font-weight: 400;
+      padding: 10px 20px;
+      font-size: 12px;
+      color: #414146;
+      cursor: pointer;
+      &:hover {
+        color: #0078d7;
+      }
+      &.active {
+        color: #0078d7;
+        background-color: #fff;
+        border-bottom: 4px solid #0078d7;
+      }
+    }
+  }
+}
+
+.athma-table-nostyle-hover {
+  &.table-bordered {
+    border: 1px solid #b4b4be;
+    th,
+    td {
+      border: 1px solid #b4b4be;
+    }
+  }
+  color: #414146;
+  tr {
+    th,
+    td {
+      padding: 10px 8px;
+    }
+    &:hover {
+      td {
+        background-color: #d7e3f4;
+      }
+    }
+  }
+}
+
+.athma-searchbar {
+  background: #f0f0f6;
+  border: 1px solid #b4b4be;
+  border-width: 0px 1px 0px 1px;
+  padding: 0.25rem 0.25rem !important;
+}
+
+.user-image-background {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAADvklEQVR4nO3YvW8jRRjH8e845uUqTEFDc4nQQYViOjqcEiFxae8EOv8JRicuJ0XAIwRICIrwH+QkJFqDhKBAOqelciqUay5XU5ArkWAfihlje7N+S2YjGX6fxuPZ2WcmeXbn2TWIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiMi0kCvQtWeuxYChMuSn6fPj8gF3B2Bvfy/XUq6MmWWP2cwe8bx9d/8IIITwJ/D5Fcy5tho1x7/v7p+NvqT2/ZrnXGt1JuSeu39R7kx992qcd63VlZC77v4l1TUqpGN3a5p7reWuIU3gw6o7o8zdvw4hPAt8Bfw1a5yZbQItMxuW+jvA0MzO0vdZIbpAG+jNW88qBdrM2sAB0Fn6pCXlTsgNd38d+A4ogDeBVyYHBMIjx38FmmnsDeC3OTG7xD+8U+p/COwAgwVr2iQmJKcW8FbmmED+LesEuA3cDoT3godfygPc/WfgfeBWGnuSeQ2blx2X7sqq/tbqy1lN7jukAAgEggcc36gYs4EzWV2Ky05qZgPgDLiZuh4Qt5RhaWiLuHV1gevA92ncIMUZAtupfQx0zWyYEnEA3DGzJxVxs8le1IPHZMzieMNx3P3fl8JM2sAbwFZqH1SM6TFOyBYxiX1iogAs9b+YvnfT56he7KTPzZwLn5Q/Ifle/lfVJ165p8Ah1Xt8h3g3DNK4A+AFxjVmmMb0iMlqT5zXN7OBmY3i1yJvQgJ4WHjVh6nWcvmb2rtn7OVnE+3TObGGVW0z2wUeE++Kcvzrpfjrs2UVi0vCqnP2ge1Sod0FnqbaMTL5JNUBnlbEOk3nTsaB+M/uAcdm1jGzHtNJOaqIX4tafssqKGjE//tzFYefdzwW/iVuj1RUnwADMxvt97uc3zZuTvTdAb6pCDcq4APiVd4FjlO7D/RSMtrE4n6UzhsAn5jZITF53YULv6CcCXkXeAl47MEfFo3CKTjCaTJ+8WsSOCIABcHxnUDYAn4HfpgTu0O8gkdXqZlZuWh/kI63mH4/GTDewkY1oksszF1iImCczN00bieNwaI+49qyyYIXzYvK+fP7CfAqzk/AOzRwnHNPXB6cUUKAHwm8DTza29977aJzp63LWPySOC/GlZyzSC1bVoNGoKCyugcPpCNhiXrzv5MzIfGlMIRtd/8W+JvZd6ADGyGEbY/ZuWxmDpn/ZLU2ciakCeD4ywRuXeU6UrH9T8iZkD+oftRc9lwREREREREREREREREREREREREREREREREREREREREREZGM/gFi6iCvwmcXHQAAAABJRU5ErkJggg==);
+  border: 1px solid #eee;
+  height: 102px;
+  width: 102px;
+  cursor: pointer;
+}
+
+.user-image-sign {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAwCAMAAADQIy+HAAAA51BMVEUAAAAJBQkKBgqAgIAKBQoLBAsJBAkKBAoIBAgJBgkIBQgHBAcJBwkHBgcKBgoKBgoKBgoKBgoJBQkKBgoJBQkKBgoAAAAAAAAAAAAAAAAAAAAAAAAAAAAJBQkJBQkJBQkJBQkKBQoJBQkJBQkAAAAJBQkKBAoJBAkKBAoJBAkAAAAAAAAAAAAAAAAIBAgAAAAAAAAAAAAIBAgIBAgKBAoIBAgJBQkJBgkIBQgIBQgJBQkJBAkJBAkIBQgIBAgJBQkJBAkJBAkLBAsJBQkKBQoKBAoKBAoKBAoJBQkJBQkJBQkJBQkAAACHXwZMAAAAS3RSTlMAAAAAAAAAAAAAAAAAAIJ7eHb+cwR5IDBAEGCQwCmmpNzZo6eAApiRm5SwoODQlvBQcJeZoqFOY0IBY6aiYgHZtgEC1+Wmo6TbyvAhGxAPAAAACXBIWXMAAABIAAAASABGyWs+AAABw0lEQVRYw+3UaVPcIBjAcShGE2u9BRJw7YFXCGbT1qPV1ttq4ft/Hh92E0fXTidxzBuH/4tcw+wvCxkQCoVCoVDbMH7nm58fnTAmXeqGLFi70DeyaKHFfpGlZY8sL/WJrNi6ld6Q1TX70NpqjVDmjzxtficTzfhHBJOtkfXBYOOjFz59/jJYrxEl/dHxBlHyHwh3rZFNjKe2PLKNMdw8R+gDQscIHQ1JuyBgRDse2Z2G60lE5s5p5pFUFS7niBjnDCOpdkXeAZmJxsheHMfPkYJRIz2iSk51mZIhTY0guuDUdECi/yKw4pXziMwRYvCEZkpKUghCqvZIMlUjX+N4NmkQ42fdIwqh4RiBK+T40EkBiFOdFj6ZrZFvjxDmYHWzkhD//qL0iDaeYxJ4I+E5vEkXZDr67pH99zFuEFIUQpcwJdJp7YRHWClFaVBVVNpJALQoWyMHh0c/5n4en5wc//rw++jwoEYozEkFZ1lp+KQQz2BBRD5EKK2k4Bn8V61S1RY5tWfnCZ6BcHJ+Zk8nNg7JJ8a/aFsB5CKqu+gLubRX1zd/Rt1cX9nLCSSjr4Hc2ifd9rIL3/190l0vSCgUCoXeVveiCFZNtKrMxwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxNy0wMi0yNFQwMDowNDozOS0wNTowMJhiSlsAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTctMDItMjRUMDA6MDQ6MzktMDU6MDDpP/LnAAAAAElFTkSuQmCC);
+  height: 52px;
+  width: 102px;
+  border: 1px solid #eee;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.athma-dev-depts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    padding: 8px;
+    background: #f4f5f6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+    margin-bottom: 8px;
+  }
+}
+
+.athma-dev-chips {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 5px;
+  list-style: none;
+  li {
+    margin-right: 8px;
+    display: inline-block;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    font-size: 13px;
+    a {
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      display: block;
+    }
+  }
+}
+
+.athma-hsc-text,
+.table td.athma-hsc-text {
+  vertical-align: middle;
+  text-align: center;
+  width: 36%;
+  padding: 20px;
+}
+
+.lightblue-pannel-heading {
+  padding: 10px;
+  background: #f0f0f6;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.outer-div {
+  border: 1px solid #ddd;
+  padding: 5px;
+  border-radius: 1px;
+}
+
+.athma-user-language {
+  display: inline-block;
+  background: #eee;
+  padding: 2px 5px;
+  margin-bottom: 6px;
+  border-radius: 3px;
+}
+
+.user-images {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
+.user-signs {
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.searchbox {
+  position: relative;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  height: 28px;
+  .athma-custom-ddr {
+    padding: 5px 10px;
+    width: 324px;
+    display: inline-block;
+  }
+  .searchResults {
+    position: absolute;
+    width: 100%;
+    border: 1px solid #b4b4be;
+    // box-shadow: 0 5px 5px 3px #888;
+    z-index: 10;
+    max-height: 300px;
+    overflow-y: scroll;
+    top: 32px;
+    list-style: none;
+    padding: 0px 0;
+    background: #fff;
+    li {
+      width: 100%;
+      margin: 0;
+      a {
+        display: block;
+        padding: 8px;
+        border: 0;
+        font-size: 12px;
+        border-bottom: 1px solid #e9e9e9;
+        color: #787877;
+        font-weight: 400;
+        &:hover {
+          background-color: #d4deec;
+          color: #787877;
+        }
+      }
+    }
+  }
+}
+
+/*----------------------------------------------------------------
+[ HSC ]
+---------------------------------------------------------------- */
+
+.athma-org-holiday-view {
+  position: relative;
+  a {
+    text-decoration: underline !important;
+  }
+  .popover {
+    max-width: 800px;
+  }
+  .popover-content {
+    padding: 0;
+  }
+  .popover .table {
+    margin: 0;
+  }
+}
+
+.athma-working-days {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  li {
+    padding: 8px;
+    margin: 0;
+    display: inline-block;
+    float: left;
+    border-width: 1px 1px 1px 0px;
+    border-style: solid;
+    &:first-child {
+      border-width: 1px 1px 1px 1px;
+    }
+  }
+}
+
+.timeValueBox input {
+  width: 40px;
+  text-align: center;
+  display: inline-block;
+}
+
+.patient-coverage {
+  .search-container {
+    height: 56px;
+    padding: 8px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: 1px solid #d6d6d6;
+    border-width: 2px;
+  }
+  .popover-body {
+    padding: 0 !important;
+  }
+  .option {
+    padding: 4px 8px;
+    height: auto;
+  }
+}
+
+ul.side-view-ul {
+  list-style: none;
+  margin-bottom: 2px;
+  overflow: hidden;
+  li {
+    float: right;
+    display: block;
+    padding: 3px 2px;
+    i {
+      font-size: 16px;
+    }
+  }
+}
+
+.preview-mode {
+  .tarrif-preview {
+    padding: 10px 0 0 10px;
+    .row {
+      margin-left: -10px !important;
+      margin-right: -10px !important;
+    }
+
+    .tariff-ser-pack-header {
+      h3 {
+        line-height: 19px;
+        .mb-6 {
+          margin-bottom: 6px;
+        }
+      }
+    }
+  }
+}
+
+.read-datepicker {
+  background: #ffffff !important;
+  color: #414146 !important;
+}
+
+.sm-dnd {
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid #e1e1e1;
+  display: block;
+  padding: 5px;
+  margin-bottom: 5px;
+
+  .pcount {
+    border: 1px solid #e1e1e1;
+    padding: 5px;
+    float: left;
+  }
+
+  .left {
+    width: 82%;
+    float: left;
+    display: block;
+    padding: 8px;
+  }
+  .right {
+    width: 9%;
+    float: left;
+    display: block;
+    padding: 5px;
+  }
+}
+
+.athma-header-searchbtn {
+  padding: 6px 10px;
+  display: block;
+  border-right: 1px solid #ccc;
+  color: #888;
+}
+
+.athma-page-header.athma-header-search-height {
+  height: 100px;
+}
+
+.code {
+  min-height: 12px;
+}
+
+button.trf-add-btn {
+  border: 0px;
+  background: transparent;
+  font-size: 17px;
+}
+
+tr {
+  &.tariff-rules-tr {
+    td a.remove-rule {
+      color: transparent;
+    }
+    &:hover td a.remove-rule {
+      color: #333;
+    }
+  }
+}
+
+.tariffrule-sidetable-withoutbox {
+  height: calc(100vh - 365px);
+}
+
+.tariffDefinition-view-table {
+  height: calc(100vh - 320px);
+}
+
+.tariffrule-sidetable {
+  height: calc(100vh - 408px) !important;
+}
+
+.skin-blueberry {
+  .sm-select.is-modified .ng-control,
+  .athma-form-control.is-modified {
+    background: #fff8e1 !important;
+  }
+}
+
+// Tariff document
+ul.tariff-doc-header {
+  overflow: hidden;
+  margin: 0px;
+  padding: 0;
+  li {
+    list-style: none;
+    float: left;
+    display: block;
+  }
+}
+
+.current-active-tariffValue {
+  color: #0078d7;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+ul.tariff-doc-header.block-left li {
+  width: 14.25%;
+}
+
+ul.tariff-doc-header.block-right li {
+  width: 20%;
+}
+
+.tariff-tab-border {
+  border: 1px solid #ccc;
+}
+
+.tr-line {
+  height: 1px;
+  background: #ccc;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+}
+.trd-subheading {
+  font-size: 16px;
+  padding: 6px 0;
+  display: block;
+}
+
+.tariff-scroll-table {
+  height: calc(100vh - 433px) !important;
+}
+
+.ismodified {
+  border: 1px solid #ccc;
+  display: block;
+  padding: 4px 10px;
+  background: antiquewhite;
+  border-radius: 1px;
+}
+
+.smadd-btn {
+  display: block;
+  border: 0px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.more-profile .popover {
+  width: 500px !important;
+  max-width: 500px !important;
+}
+
+.tariff-more-border-right {
+  border-right: 1px solid;
+  border-right-color: #b4b4be;
+}
+
+.node-content-wrapper:hover,
+.node-content-wrapper-active {
+  background: #d7e3f4 !important;
+}
+
+.white-dropdown .multiselect-dropdown {
+  background: white;
+}
+
+.disable-tariff {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 999;
+  opacity: 0.6;
+  background-color: #f1f1f1;
+}
+
+.radio-button-label-disabled {
+  color: #b4b4be !important;
+}
+
+.radio-button-container-disabled {
+  label {
+    color: #b4b4be !important;
+  }
+  input[type='radio'] {
+    &:disabled {
+      &:checked {
+        & ~ .athma-radio-button {
+          &.normal {
+            &:before {
+              background: #b4b4be !important;
+            }
+          }
+        }
+      }
+    }
+    & ~ .athma-radio-button {
+      &.normal {
+        border-color: #b4b4be !important;
+      }
+    }
+  }
+}
+
+.tariff-unit-dropdown {
+  .ng-select-dropdown-outer,
+  .ng-dropdown-panel-items {
+    z-index: 1000;
+  }
+  .ng-select.disabled {
+    .ng-control,
+    .ng-select-container {
+      background-color: #f0f0f6;
+    }
+  }
+  .ng-select.ng-single .ng-control .ng-select-container .ng-value-container .ng-value {
+    line-height: 15px;
+  }
+}
+
+.tariff-list-header {
+  table-layout: fixed;
+  .text-wrap {
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+.tariff-definition-more-section {
+  .mb-12 {
+    margin-bottom: 12px;
+  }
+}
+
+.no-tariff-available {
+  display: flex;
+  height: 275px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 17px;
+  color: #aeaeae;
+}
+
+.trf-side-hdr {
+  background-color: #e4e4ef;
+}
+
+.pl-16 {
+  padding-left: 16px;
+}
+
+.icon-cross-container {
+  .icon-cross:hover {
+    color: red;
+  }
+}
+
+.date-picker-ngx {
+  .ngxmdp .header {
+    td:first-child {
+      padding-left: 6px;
+      & > div {
+        background-color: #ffffff !important;
+      }
+    }
+    td:last-child > div {
+      background-color: #ffffff !important;
+    }
+  }
+}
+
+// device master
+.device-master {
+  .bank-select {
+    ng-select .ng-select-dropdown-outer .ng-dropdown-panel-items .ng-select-dropdown {
+      max-height: 216px !important;
+    }
+  }
+  .bottom-20 {
+    margin-bottom: 20px;
+  }
+}
+
+.attribute-modal {
+  .modal-dialog {
+    width: 500px !important;
+  }
+}
+.attributes-table {
+  td {
+    border: 1px solid #ededed;
+  }
+}
+//   .capabilities {
+//     ng-select {
+//         .ng-value-icon {
+//             display: none;
+//         }
+//     }
+//   }

@@ -1,0 +1,103 @@
+{
+  "name": "PayoutDetails",
+  "fields": [
+    {
+      "fieldName": "commencementDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "contractEndDate",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "minimumAssuredAmount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "minimumAssuredValidity",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "maximumPayoutAmount",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "uploadContract",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "ACTIVE, INACTIVE",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "visitType",
+      "fieldType": "VisitType",
+      "fieldValues": "OP, IP, DC, ER",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "discount",
+      "fieldType": "DiscountType",
+      "fieldValues": "NET, GROSS",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "payoutRange",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "applicableInvoices",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "materialReduction",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "exception",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "comments",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "userMaster",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "userDetails",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "departmentRevenue",
+      "otherEntityRelationshipName": "id",
+      "relationshipName": "departmentalRevenue"
+    }
+  ],
+  "changelogDate": "20191212112937",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "payout_details",
+  "pagination": "pager",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false
+}

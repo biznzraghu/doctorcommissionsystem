@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20202210123720_added_Department_hsc_counsumption__StagingTable" author="animesh">
+        <createTable tableName="department_hsc_consumption_staging">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="document_number" type="varchar(255)">
+            </column>
+
+            <column name="patient_mrn" type="varchar(255)">
+            </column>
+
+            <column name="patient_name" type="varchar(255)">
+            </column>
+
+            <column name="unit_name" type="varchar(255)">
+            </column>
+
+            <column name="unit_code" type="varchar(255)">
+            </column>
+
+            <column name="created_date" type="timestamp">
+            </column>
+
+            <column name="consumption_department_name" type="varchar(255)">
+            </column>
+
+            <column name="consumption_department_code" type="varchar(255)">
+            </column>
+
+            <column name="consumption_hsc_name" type="varchar(255)">
+            </column>
+
+            <column name="consumption_hsc_code" type="varchar(255)">
+            </column>
+
+            <column name="issued_hsc_name" type="varchar(255)">
+            </column>
+
+            <column name="issued_hsc_code" type="varchar(255)">
+            </column>
+
+            <column name="approved_date" type="timestamp">
+            </column>
+
+            <column name="approver_name" type="varchar(255)">
+            </column>
+
+            <column name="approver_code" type="varchar(255)">
+            </column>
+
+            <column name="issued_by_name" type="varchar(255)">
+            </column>
+
+            <column name="issued_by_code" type="varchar(255)">
+            </column>
+
+            <column name="item_name" type="varchar(255)">
+            </column>
+
+            <column name="item_code" type="varchar(255)">
+            </column>
+
+            <column name="batch_number" type="varchar(255)">
+            </column>
+
+            <column name="uom" type="varchar(255)">
+            </column>
+
+            <column name="quantity" type="double">
+            </column>
+
+            <column name="cost" type="double">
+            </column>
+
+            <column name="total_cost" type="double">
+            </column>
+
+            <column name="executed" type="boolean" defaultValue="false">
+            </column>
+
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20210106124055_added_entity_DepartmentRevenueCalculation" author="jhipster">
+        <createTable tableName="department_revenue_calculation">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="year" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="month" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="dept_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sum" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="department_payout_adjustment" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="iu_datetime" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department_id" type="bigint">
+            </column>
+            <column name="unit_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

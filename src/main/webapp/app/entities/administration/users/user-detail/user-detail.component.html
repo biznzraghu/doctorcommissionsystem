@@ -1,0 +1,279 @@
+<jhi-alert></jhi-alert>
+<section class="user-detail-page">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-0 sticky-top">
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto">
+        <ng-container *ngFor="let tab of tabs">
+          <li class="nav-item" (click)="onTabChange(tab)">
+            <a class="nav-link text-uppercase font-weight-bold mr-3 mt-1"
+              [class.active]="tab.active">
+              {{tab.name}}
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+      <div class="nav-item nav-link font-weight-bold mr-3 mt-1 text-white"
+        (click)="openResetPwdPop(user)">
+        <span style="font-size: 16px;" class="icon-unlock"></span>
+        <span>Reset Password</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Basic details started -->
+  <section class="p-3 bg-light user-detail-container" *ngIf="activeTab.code === 'BASIC_DETAILS'">
+    <article class="card text-center mb-2 user-profile">
+      <div class="card-body">
+        <form class="form d-flex align-items-start" role="form" (ngSubmit)="save()"
+          [formGroup]="userForm">
+          <div class="profile-photo rounded position-relative">
+            <ng-container *ngIf="!isImageSelected else selctedImage">
+              <label for="profile_photo"
+                class="img-placeholder d-flex flex-column justify-content-center">
+                <i class="fa fa-camera fa-3x mb-3" aria-hidden="true"></i>
+                <span class="font-weight-bold">Drop files here to upload</span>
+                <span class="text">File size: max 2mb, jpg, jpeg, png</span>
+              </label>
+              <input type="file" id="profile_photo" name="imgSrc"
+                accept="image/png, image/jpeg, image/jpg" (change)="onFotoUpload($event)" hidden>
+            </ng-container>
+            <ng-template #selctedImage>
+              <img [src]="imgSource" class="image">
+              <div class="replace-img d-flex justify-content-between w-100 py-1">
+                <label for="profile_change_photo" class="d-flex align-items-center mb-0">
+                  <span class="text-white px-3">Change</span>
+                </label>
+                <input type="file" id="profile_change_photo" name="imgSrc2"
+                  accept="image/png, image/jpeg, image/jpg" (change)="onFotoUpload($event)" hidden>
+                <input id="id_cancel" class="btn text-white" value="Remove" type="button"
+                  (click)="isImageSelected = false">
+              </div>
+            </ng-template>
+          </div>
+          <div class="profile-fields flex-grow-1">
+            <dl class="row form-dl four-column-form mb-0 pb-0 pt-1">
+
+              <dd>
+                <div class="athma-form-group">
+                  <label class="float-left" for="empCode">
+                    <span jhiTranslate="gatewayApp.user.label.code">Employee Code</span>
+                  </label>
+                  <div class="form-group">
+                    <input type="text" class="athma-form-control user-field-color" name="empCode" id="empCode"
+                      formControlName="employeeNumber" />
+                  </div>
+                </div>
+              </dd>
+
+              <dd>
+                <div class="athma-form-group">
+                  <label class="float-left" for="display_name">
+                    <span jhiTranslate="gatewayApp.user.label.name">Display Name</span>
+                  </label>
+                  <div class="form-group">
+                    <input type="text" class="athma-form-control user-field-color" name="displayName"
+                      id="display_name" formControlName="displayName" />
+                  </div>
+                </div>
+              </dd>
+
+              <dd>
+                <div class="athma-form-group">
+                  <label class="float-left" for="first_name">
+                    <span jhiTranslate="gatewayApp.user.label.firstName">First Name</span>
+                  </label>
+                  <div class="form-group">
+                    <input type="text" class="athma-form-control user-field-color" name="firstName" id="first_name"
+                      formControlName="firstName" />
+                  </div>
+                </div>
+              </dd>
+
+              <dd>
+                <div class="athma-form-group">
+                  <label class="float-left" for="last_name">
+                    <span jhiTranslate="gatewayApp.user.label.lastName">Last Name</span>
+                  </label>
+                  <div class="form-group">
+                    <input type="text" class="athma-form-control user-field-color" name="lastName" id="last_name"
+                      formControlName="lastName" />
+                  </div>
+                </div>
+              </dd>
+            </dl>
+
+            <dl class="row form-dl four-column-form mb-0 pb-0 pt-1">
+
+              <dd>
+                <div class="athma-form-group">
+                  <label class="float-left" for="email">
+                    <span jhiTranslate="gatewayApp.user.label.email">Email ID</span>
+                  </label>
+                  <div class="form-group">
+                    <input type="text" class="athma-form-control user-field-color" name="email" id="email"
+                      formControlName="email" />
+                  </div>
+                </div>
+              </dd>
+
+              <dd>
+                <div class="athma-form-group">
+                  <label class="float-left" for="status">
+                    <span jhiTranslate="gatewayApp.user.label.status">Status</span>
+                  </label>
+                  <div class="form-group">
+                    <jhi-athma-switch style="width: max-content;" class="athma-form-control pl-0 pt-0" name="vsc_active" id="status" [ngModelOptions]="{standalone: true}" [(ngModel)]="status" (ngModelChange)="onStatusChange()"></jhi-athma-switch>
+                    <!-- <input type="text" class="athma-form-control user-field-color" name="email" id="status"
+                      formControlName="status" /> -->
+                  </div>
+                </div>
+              </dd>
+
+            </dl>
+          </div>
+        </form>
+      </div>
+    </article>
+
+    <article class="card text-center mb-2 privileges">
+      <h5 class="card-header text-left bg-white" style="font-size: 12px;">Privilege</h5>
+      
+      <section class="user-role-mapping">
+           <jhi-app-user-role-mapping [user]="user"
+                [preferences]="preferences"
+                (roleSelected)="onRoleSelected($event)"
+                (roleDeleted)="onRoleDelete($event)"></jhi-app-user-role-mapping>
+      </section>     
+    </article>
+  </section>
+  <!-- Basic details ended -->
+
+  <!-- Unit and department started -->
+  <section class="unit-and-department-container" *ngIf="activeTab.code === 'UNIT_AND_DEPARTMENT'">
+    <div class="unit-and-department-header">
+      <table class="table athma-table fixed-header-table-head mb-0">
+        <thead class="dark-table-heading md-table">
+          <tr arthaSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th width="40%" arthaSortBy="organization.name.keyword"> <span class="item-heading"> Unit </span> <span class="fa fa-sort"></span></th>
+            <th width="56%" arthaSortBy="department.name.keyword"> <span class="item-heading">Payout Department </span><span class="fa fa-sort"></span></th>
+            <th width="4%"></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="unit-and-department-add">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td width="40% ">
+              <ng-select 
+                [items]="unit$ | async" 
+                bindLabel="name" 
+                [hideSelected]="true"
+                [trackByFn]="trackByFn" 
+                [loading]="unitLoading" 
+                [typeahead]="unitInput$"
+                [(ngModel)]="selectedUnit" 
+                placeholder="Search" 
+                class="m-1 unit-selector"
+                (change)="onUnitChange($event)">
+                <ng-template ng-option-tmp let-unit="item" let-index="index"
+                  let-search="searchTerm">
+                  <div>{{unit.code}}</div>&nbsp;|
+                  <div>{{unit.name}}</div>
+                </ng-template>
+              </ng-select>
+            </td>
+            <td width="56%">
+              <ng-select 
+                [items]="department$ | async" 
+                bindLabel="name" 
+                [hideSelected]="true"
+                [trackByFn]="trackByFn" 
+                [loading]="deptLoading" 
+                [typeahead]="departmentInput$"
+                [(ngModel)]="selectedDepartment" 
+                placeholder="Search with Code / Name" [multiple]="true"
+                class="m-1 department-selector"
+                [disabled]="!selectedUnit">
+              </ng-select>
+            </td>
+            <td width="4%">
+              <button class="athma-icon-button add-icon mt-2" (click)="addUserDepartment()">
+                <span class="icon-add" style="font-size: 20px;"></span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="unit-and-department-list">
+      <table class="table" (mouseleave)="unitDeptHoveredIndex=null">
+        <tbody>
+          <tr *ngFor="let unitDept of unitDepartments; index as idx"
+            (mouseover)="unitDeptHoveredIndex = idx">
+            <td width="40%">{{unitDept.organization.code}} | {{unitDept.organization.name}}</td>
+            <td width="54%">
+              <ng-container *ngIf="(idx == rowIdx && unitDeptEditable) else defaultService">
+                  <article>
+                    <ng-select 
+                      [items]="department$ | async" 
+                      bindLabel="name" 
+                      [hideSelected]="true"
+                      [trackByFn]="trackByFn" 
+                      [loading]="deptLoading" 
+                      [typeahead]="departmentInput$"
+                      placeholder="Search" 
+                      (change)="onDeptSelectInRow($event, idx)"
+                      class="m-1 department-selector w-25 float-left">
+                    </ng-select>
+                    <ul class="list-unstyled list-inline dept-list mb-0">
+                      <li class="list-inline-item p-2 m-1"
+                          *ngFor="let dept of unitDept.department; index as deptIdx">
+                        <span>{{dept?.name}}</span>
+                        <span class="icon-cross" (click)="removeSelectedDept(idx,deptIdx)"></span>
+                      </li>
+                    </ul>
+                  </article>
+              </ng-container>
+              <ng-template #defaultService>
+                <ul class="list-unstyled list-inline dept-list mb-0">
+                  <li class="list-inline-item p-1" *ngFor="let dept of unitDept.department">
+                    {{dept.name}}
+                  </li>
+                </ul>
+              </ng-template>
+            </td>
+            <td width="6%">
+              <ng-container *ngIf="unitDeptHoveredIndex == idx && !unitDeptEditable">
+                <section class="de-flex align-items-center">
+                   <span class="icon-edit fs-14 mr-2" (click)="editUnitDept(idx);"></span>
+                   <span class="icon-cross fs-14" (click)="deleteUnitDept(unitDept.id)"></span>
+                </section>
+              </ng-container>
+              <ng-container *ngIf="idx == rowIdx && unitDeptEditable">
+                <article *ngIf="idx == rowIdx">
+                  <button class="athma-icon-button add-icon mr-2" (click)="saveEditableData(unitDept);unitDeptEditable = false">
+                          <span class="icon-tick_op"></span>
+                  </button>
+                  <button class="athma-icon-button add-icon m-0"
+                           (click)="unEdit(unitDept, idx);unitDeptEditable = false">
+                    <span class="icon-cross"></span>
+                  </button>
+                 </article>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <div class="button-container justify-content-end">
+    <button class="athma-btn athma-btn-secondary" type="button" (click)="cancel()">Cancel</button>
+    <button class="athma-btn athma-btn-primary" [disabled]="unitDeptEditable" type="submit" (click)="onSave()">Save</button>
+  </footer>
+</section>
+
+<jhi-header-dialog-breadcrumb [routeUrl]=" '/administrator/users'">
+  <span class="navbar-version" jhiTranslate="global.menu.entities.users">User</span>
+</jhi-header-dialog-breadcrumb>

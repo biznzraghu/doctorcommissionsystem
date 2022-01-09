@@ -1,0 +1,46 @@
+{
+    "name": "PayoutAdjustmentDetails",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "month",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sign",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "contraEmployeeId",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "payoutAdjustment",
+            "otherEntityRelationshipName": "payoutAdjustmentDetails",
+            "relationshipName": "payoutAdjustment",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200423135400",
+    "entityTableName": "payout_adjustment_details",
+    "dto": "no",
+    "service": "serviceImpl",
+    "pagination": "pager",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false
+}

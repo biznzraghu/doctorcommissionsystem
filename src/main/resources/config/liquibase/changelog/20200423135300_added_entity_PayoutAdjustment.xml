@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle,mssql"/>
+
+    <!--
+        Added the entity PayoutAdjustment.
+    -->
+    <changeSet id="20200423135300-1" author="jhipster">
+        <createTable tableName="payout_adjustment">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="document_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="unit_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="employee_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="employee_detail" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+            <column name="department_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="department" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+            <column name="net_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_date_time" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="modified_by_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="modified_by" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+            <column name="modified_date_time" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="payout_adjustment" columnName="created_date_time" columnDataType="timestamp"/>
+    </changeSet>
+    <changeSet id="20200707112322-1" author="anurag">
+        <addColumn tableName="payout_adjustment">
+            <column name="iu_datetime" type="timestamp" defaultValue="now()">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

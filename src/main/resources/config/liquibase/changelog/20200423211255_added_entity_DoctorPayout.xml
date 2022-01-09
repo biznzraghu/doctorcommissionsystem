@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity DoctorPayout.
+    -->
+    <changeSet id="20200423211255-1" author="jhipster">
+        <createTable tableName="doctor_payout">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unit" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="employee_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="year" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="month" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="date" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="variable_payout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="doctor_payout_invoice" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="consultatnt_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="department_revenue_benefit_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="department_revenue_benefit_amount" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="los_benefiet_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="service_item_benefit_amount" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="22005051055-1" author="anurag">
+        <renameColumn tableName="doctor_payout" oldColumnName="unit" newColumnName="unit_code"></renameColumn>
+    </changeSet>
+    <changeSet id="20201606110722-1" author="anurag">
+        <addColumn tableName="doctor_payout" >
+            <column name="iu_datetime" type="timestamp" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20203107123322-2" author="anurag">
+        <addColumn tableName="doctor_payout">
+            <column name="exported_report_path" type="varchar(255)"></column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

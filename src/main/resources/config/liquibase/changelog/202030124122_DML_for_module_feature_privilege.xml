@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="20203010151322-module_id_seq" author="anurag">
+        <createSequence sequenceName="module_id_seq" incrementBy="1" minValue="1" maxValue="9223372036854775807"
+                        startValue="1" cacheSize="1"></createSequence>
+    </changeSet>
+    <changeSet id="20203010151322-hibernate_id_seq" author="anurag">
+        <createSequence sequenceName="hibernate_sequence" incrementBy="1" minValue="1" maxValue="9223372036854775807"
+                        startValue="1" cacheSize="1"></createSequence>
+    </changeSet>
+
+    <changeSet id="202030124122_super_user_module_feature_privilege" author="anurag">
+        <!--SUPER_USER  starts here-->
+        <insert tableName="module">
+            <column name="id" valueSequenceNext="module_id_seq"/>
+            <column name="code" value="000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="999"/>
+        </insert>
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="000000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="type" value="MASTER"/>
+            <column name="menue_link" value="all"/>
+            <column name="module_id" valueComputed="(select id from module where code ='000')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="000000000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="999"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='000000')"/>
+        </insert>
+        <!--SUPER_USER Privilege ends here-->
+
+        <!--MASTER MDM Privilege starts here-->
+        <insert tableName="module">
+            <column name="id" valueSequenceNext="module_id_seq"/>
+            <column name="code" value="100"/>
+            <column name="name" value="Administration"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="999"/>
+        </insert>
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="100000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="type" value="MASTER"/>
+            <column name="menue_link" value="all"/>
+            <column name="module_id" valueComputed="(select id from module where code ='100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="100000000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="99"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='100000')"/>
+        </insert>
+        <!--SUPER_USER Privilege ends here-->
+    </changeSet>
+
+
+    <changeSet id="202030124122_Payout_adjustment_module_feature_privilege" author="anurag">
+        <insert tableName="module">
+            <column name="id" valueSequenceNext="module_id_seq"/>
+            <column name="code" value="101"/>
+            <column name="name" value="Payout Adjustment"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+        </insert>
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="101100"/>
+            <column name="name" value="Payout Adjutment"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="type" value="TRANSACTION"/>
+            <column name="menue_link" value="artha/payout-adjustment"/>
+            <column name="module_id" valueComputed="(select id from module where code ='101')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="101100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='101100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="101101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='101100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="101102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='101100')"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet id="20203010131322_department_payout_module_feature_privilege" author="anurag">
+        <insert tableName="module">
+            <column name="id" valueSequenceNext="module_id_seq"/>
+            <column name="code" value="102"/>
+            <column name="name" value="Department Payout"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+        </insert>
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="102100"/>
+            <column name="name" value="Department Payout"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="type" value="TRANSACTION"/>
+            <column name="menue_link" value="artha/department-payout"/>
+            <column name="module_id" valueComputed="(select id from module where code ='102')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="102100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='102100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="102101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='102100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="102102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='102100')"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet id="20203010131322_variable_payout_module_feature_privilege" author="anurag">
+        <insert tableName="module">
+            <column name="id" valueSequenceNext="module_id_seq"/>
+            <column name="code" value="103"/>
+            <column name="name" value="Variable Payout"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+        </insert>
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="103100"/>
+            <column name="name" value="Variable Payout"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="type" value="TRANSACTION"/>
+            <column name="menue_link" value="artha/variable-payouts"/>
+            <column name="module_id" valueComputed="(select id from module where code ='103')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="103100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='103100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="103101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='103100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="103102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='103100')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="20203010131322_master_module_feature_privilege" author="anurag">
+        <!--For master screen-->
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="104100"/>
+            <column name="name" value="Unit"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="type" value="MASTER"/>
+            <column name="menue_link" value="administrator/units"/>
+            <column name="module_id" valueComputed="(select id from module where code ='100')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104100')"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="104102"/>
+            <column name="name" value="User"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="type" value="MASTER"/>
+            <column name="menue_link" value="administrator/users"/>
+            <column name="module_id" valueComputed="(select id from module where code ='100')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104102')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104102')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104102')"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="104103"/>
+            <column name="name" value="Roles"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="type" value="MASTER"/>
+            <column name="menue_link" value="administrator/role"/>
+            <column name="module_id" valueComputed="(select id from module where code ='100')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104103')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104103')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104103')"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="104104"/>
+            <column name="name" value="Value set"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="4"/>
+            <column name="type" value="MASTER"/>
+            <column name="menue_link" value="administrator/value-set"/>
+            <column name="module_id" valueComputed="(select id from module where code ='100')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104104')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104104')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104104')"/>
+        </insert>
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="104105"/>
+            <column name="name" value="Group"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="5"/>
+            <column name="type" value="MASTER"/>
+            <column name="menue_link" value="administrator/group"/>
+            <column name="module_id" valueComputed="(select id from module where code ='100')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104105')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104105')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="104102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='104105')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="20203010131322_report_module_feature_privilege" author="anurag">
+        <insert tableName="module">
+            <column name="id" valueSequenceNext="module_id_seq"/>
+            <column name="code" value="105"/>
+            <column name="name" value="REPORT"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="4"/>
+        </insert>
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="105100"/>
+            <column name="name" value="Variable Payout Breakup"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="type" value="REPORT"/>
+            <column name="menue_link" value="report/variable-payout-breakup"/>
+            <column name="module_id" valueComputed="(select id from module where code ='105')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105100')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105100')"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="105101"/>
+            <column name="name" value="Variable Payout Breakup Summary"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="type" value="REPORT"/>
+            <column name="menue_link" value="report/variable-payout-breakup-summary"/>
+            <column name="module_id" valueComputed="(select id from module where code ='105')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105101')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105101')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105101')"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="20200712112822-2" author="anurag">
+        <update tableName="module" >
+            <column name="display_order" value="3">
+            </column>
+            <where>name='Payout Adjustment'</where>
+        </update>
+        <update tableName="module" >
+            <column name="display_order" value="1">
+            </column>
+            <where>name='Variable Payout'</where>
+        </update>
+    </changeSet>
+    <changeSet id="20201712113022-2" author="anurag">
+        <!-- Department Wise Revenue feature and privilege starts-->
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="105102"/>
+            <column name="name" value="Department Wise Revenue"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="type" value="REPORT"/>
+            <column name="menue_link" value="report/department-wise-revenue"/>
+            <column name="module_id" valueComputed="(select id from module where code ='105')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105102')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105102')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105102')"/>
+        </insert>
+        <!-- Department Wise Revenue feature and privilege end-->
+
+        <!-- Department Revenue Break-Up feature and privilege starts-->
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="105103"/>
+            <column name="name" value="Department Revenue Break-Up"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="4"/>
+            <column name="type" value="REPORT"/>
+            <column name="menue_link" value="report/department-revenue-break-up"/>
+            <column name="module_id" valueComputed="(select id from module where code ='105')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105103')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105103')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105103')"/>
+        </insert>
+        <!-- Department Revenue Break-Up feature and privilege ends here-->
+
+        <!-- Item/Service wise payout breakup feature and privilege starts-->
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="105104"/>
+            <column name="name" value="Item/Service wise payout breakup"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="5"/>
+            <column name="type" value="REPORT"/>
+            <column name="menue_link" value="report/item-service-wise-payout-breakup"/>
+            <column name="module_id" valueComputed="(select id from module where code ='105')"/>
+        </insert>
+        <!--privilege code variable payout  -->
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105100"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105104')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105101"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105104')"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="105102"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='105104')"/>
+        </insert>
+        <!-- Item/Service wise payout breakup feature and privilege ends-->
+    </changeSet>
+</databaseChangeLog>

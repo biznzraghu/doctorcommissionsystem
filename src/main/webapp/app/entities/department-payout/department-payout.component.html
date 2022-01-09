@@ -1,0 +1,169 @@
+<!-- HEADER START-->
+<jhi-athma-page-header [height]="80">
+    <!--[height]="70" for tab view-->
+    <jhi-athma-list-header [title]="title" [createBtnTitle]="createBtnTitle" (openNew)="createNewPage()"
+        (searchItem)='search($event)' (clearSearch)='clear()' [options]="options"
+        (onSelectedTabChange)="onTabChange($event)" (openAdvanceSearch)="openAdvanceSearch()" (exportCSV)="export()">
+    </jhi-athma-list-header>
+</jhi-athma-page-header>
+<!-- HEADER END-->
+<!-- TABLE START-->
+<div class="row department-payout">
+    <div class="col-sm-12 fixed-header-table">
+        <div class="fixed-header-table-head-container">
+            <table class="table athma-table fixed-header-table-head mb-0">
+                <thead class="dark-table-heading md-table">
+                    <tr arthaSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                        <th style="width:20%" arthaSortBy="departmentName.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.department-payout.tbl-headers.department">
+                                Department
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:20%" arthaSortBy="createdBy.displayName.keyword">
+                            <span class="item-heading" jhiTranslate="arthaApp.department-payout.tbl-headers.created-by">
+                                Created By
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:20%" arthaSortBy="createdDate">
+                            <span class="item-heading"
+                                jhiTranslate="arthaApp.department-payout.tbl-headers.created-date">
+                                Created Date
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:20%" *ngIf="selectedTab == 1" arthaSortBy="transactionApprovalDetails.approvedBy.displayName.keyword">
+                            <span class="item-heading"
+                                jhiTranslate="arthaApp.department-payout.tbl-headers.approved-by">
+                                Approved By
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="version">
+                            <span class="item-heading" jhiTranslate="arthaApp.department-payout.tbl-headers.version">
+                                Version
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="status.sort" *ngIf="selectedTab == 0">
+                            <span class="item-heading" jhiTranslate="arthaApp.department-payout.tbl-headers.status">
+                                Status
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="changeRequestStatus.sort" *ngIf="selectedTab == 1">
+                            <span class="item-heading" jhiTranslate="arthaApp.department-payout.tbl-headers.status">
+                                Status
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="support-dialog infinite-scroll-table ps ">
+            <div class="infinite-scroll-table ps position-relative" infinite-scroll debounce
+                [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="300" [scrollWindow]="false" [style.height.px]="setInfiniteScrollHeight()"
+                (scrolled)="loadPage(page + 1)" [perfectScrollbar]="config">
+                <table class="table athma-table fixed-header-table-body athma-table-layout-fixed">
+                    <tbody class="md-table">
+                        <tr class="athma-pointer" *ngFor="let payout of departmentPayoutList"
+                            >
+                            <td width="20%" (click)="selectedTab===0 ? editPayoutRange(payout) : editPayoutRange(payout)">
+                                <div class="col-sm-12 px-0 py-1 d-flex flex-column">
+                                    <jhi-athma-string-manipulation
+                                        [stringModified]="payout?.departmentName ? payout?.departmentName :'-' "
+                                        [stringLength]="40" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                    <!-- <span>{{payout?.departmentName}}</span> -->
+                                </div>
+                               
+                                <span class="status-new" *ngIf="payout?.customDepartment">Custom</span>
+                            </td>
+                            <td width="20%" (click)="selectedTab===0 ? editPayoutRange(payout) : editPayoutRange(payout)">
+                                <span>{{payout?.createdBy?.displayName}}</span>
+                                <!-- <jhi-athma-string-manipulation
+                                    [stringModified]="payout?.createdBy?.displayName ? payout?.createdBy?.displayName : '-' "
+                                    [stringLength]="30" [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation> -->
+                            </td>
+                            <td width="20%" (click)="selectedTab===0 ? editPayoutRange(payout) : editPayoutRange(payout)">
+                                <!-- <div class="col-sm-12 px-0 d-flex flex-column">
+                                    <span class="small-text header-label">
+                                        {{payout?.createdDate | date : dateFormat}}</span>
+                                    <span class="text">
+                                        {{payout?.createdDate | date : timeFirmate}}
+                                    </span>
+                                </div> -->
+                                <span>
+                                    {{payout?.createdDate | date : dateFormat}}
+                                </span>
+                                <br>
+                                <span class="small-text-display">
+                                    {{payout?.createdDate | date : timeFirmate}}
+                                </span>
+                            </td>
+
+                            <td width="20%" *ngIf="selectedTab === 1" (click)="payout?.transactionApprovalDetails.length < 2 ? editPayoutRange(payout) : ''">
+                                <div class="col-sm-12 px-0 d-flex flex-column ">
+                                    <span
+                                        class="text">{{payout?.transactionApprovalDetails ? payout?.transactionApprovalDetails[0]?.approvedByDisplayName :'-'}}
+                                        <span class="list-count-clr athma-pointer"
+                                            [ngbPopover]="preferredLanguageListTemplate" [placement]="['top','bottom']"
+                                            #preferredLanguageToolTip="ngbPopover" triggers="click" container="body" popoverClass="approved-by-custom-popover"
+                                            *ngIf="payout?.transactionApprovalDetails && payout?.transactionApprovalDetails.length > 1">+{{payout?.transactionApprovalDetails.length -1}}
+                                        </span>
+                                    </span>
+                                    <ng-template #preferredLanguageListTemplate style="background-color: antiquewhite;">
+                                        <div class="ps" style="position: relative;height: 150px;width: 162px;" [perfectScrollbar]="config">
+                                            <div class="row p-1" style="width: 176px;"
+                                                *ngFor="let approved of payout?.transactionApprovalDetails ;let i = index">
+                                                <div class="col-1 pt-1" *ngIf="i !== 0" >
+                                                    <div class="approval-status-badge"
+                                                        [ngClass]="(approved.type==='REJECTED') ? 'reject':'approved'" >
+                                                        <i class="fa"
+                                                            [ngClass]="(approved.type==='REJECTED') ? 'fa-times':'fa-check'"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-10 " *ngIf="i !== 0" style="margin-left:-10px">
+                                                    <span>{{approved.approvedByDisplayName}}</span>
+                                                    <!-- <jhi-athma-string-manipulation [stringTrim]="approved.approvedByDisplayName" [stringLength]="18" [tooltipDisplay]="false">
+                                                    </jhi-athma-string-manipulation> -->
+                                                    <div class="approve-dateTime">
+                                                        {{approved?.approvedDateTime | date:'dd/MM/yyyy H:mm'}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                            </td>
+                            <td width="10%" (click)="selectedTab===0 ? editPayoutRange(payout) : editPayoutRange(payout)">
+                                {{payout?.version ? 'v'+payout?.version+'.0' : 'v0.0'}}
+                            </td>
+                            <td width="10%" *ngIf="selectedTab === 0" (click)="selectedTab===0 ? editPayoutRange(payout) : editPayoutRange(payout)">
+                                <span class="athma-status-label"
+                                    [ngClass]="(payout?.status) ? 'status-active' : 'status-inactive'">{{payout?.status | activeAsStatus }}</span>
+                            </td>
+                            <td width="10%" *ngIf="selectedTab === 1" (click)="selectedTab===1 ? editPayoutRange(payout) : editPayoutRange(payout)">
+                                <span [ngClass]="statusCssClassMap[payout?.changeRequestStatus]">
+                                    {{statusClassMap[payout?.changeRequestStatus]}}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr *ngIf="departmentPayoutList.length === 0">
+                            <td colspan="9" class="athma-no-records">
+                                <span jhiTranslate="global.common.no-records-found"></span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- TABLE END-->
+<jhi-header-breadcrumb></jhi-header-breadcrumb>

@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+      {
+        "fieldName": "employeeNumber",
+        "fieldType": "String",
+        "fieldValidateRules": [
+          "required"
+        ]
+      },
+      {
+        "fieldName": "firstName",
+        "fieldType": "String",
+        "fieldValidateRules": [
+          "required"
+        ]
+      },
+      {
+        "fieldName": "lastName",
+        "fieldType": "String"
+
+      },
+      {
+        "fieldName": "displayName",
+        "fieldType": "String"
+      },
+      {
+        "fieldName": "departmentName",
+        "fieldType": "String"
+      },
+      {
+        "fieldName": "status",
+        "fieldType": "Status",
+        "fieldValues": "ACTIVE, INACTIVE",
+        "fieldValidateRules": [
+          "required"
+        ]
+      }
+    ],
+    "changelogDate": "20191209084949",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "user_master",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": true
+}

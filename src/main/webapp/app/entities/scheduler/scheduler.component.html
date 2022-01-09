@@ -1,0 +1,66 @@
+<div disable-sidebar class="athma-vertical-scroll">
+    <!-- <h2><span jhiTranslate="gatewayApp.scheduler.home.title">Schedulers</span></h2> -->
+    <div class="table-responsive" *ngIf="schedulers">
+    <jhi-alert></jhi-alert>
+        <table class="table athma-table dark-table-header bordered-bottom-table athma-table-listing table-hover">
+            <thead> 
+            <tr class="align-middle">
+            <th style="width:125px;"><span jhiTranslate="gatewayApp.scheduler.instanceName">Instance Name</span></th>
+            <th><span jhiTranslate="gatewayApp.scheduler.scheduler">Scheduler</span><span class="pl-2"><input type="text" style="width:150px; display:inline-block;" class="athma-form-control" placeholder="Search" [(ngModel)]="searchQuery"/></span></th>
+            <th style="width:150px;"><span jhiTranslate="gatewayApp.scheduler.expression">Expression</span> / <span jhiTranslate="gatewayApp.scheduler.repeatInterval">Repeat Interval</span></th>
+            <th style="width:150px;"><div><span jhiTranslate="gatewayApp.scheduler.previousFireTime">Previous Fire Time</span></div>
+                <div class="text-sm">(<span jhiTranslate="gatewayApp.scheduler.startTime">Start Time</span>)</div></th>
+            <th colspan="2" style="width:300px;"><span jhiTranslate="gatewayApp.scheduler.nextFireTime">Next Fire Time</span></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let scheduler of schedulers | schedulerfilter:searchQuery">
+                <td style="width:125px;">{{scheduler.instanceName}}</td>
+                <td>
+                    <div>{{scheduler.scheduler}}</div>
+                    <div class="text-sm">{{scheduler.description}}</div>
+                </td>
+                <td style="width:150px;">
+                    <div *ngIf="scheduler.expression">
+                        <input type="text" class="athma-form-control" name="expression" id="field_expression"
+                               [(ngModel)]="scheduler.expression" #expression="ngModel"
+                               required />
+                        <div [hidden]="!(expression?.dirty && expression?.invalid)">
+                            <small class="form-text text-danger"
+                                   [hidden]="!expression?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                    <div *ngIf="scheduler.repeatInterval">
+                        <input type="text" class="athma-form-control" name="repeatInterval" id="field_repeatInterval"
+                               [(ngModel)]="scheduler.repeatInterval" #repeatInterval="ngModel"
+                               required />
+                        <div [hidden]="!(repeatInterval?.dirty && repeatInterval?.invalid)">
+                            <small class="form-text text-danger"
+                                   [hidden]="!repeatInterval?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-center" style="width:150px;">
+                    <div style="min-height:20px;"><span *ngIf="scheduler.previousFireTime > 0">{{scheduler.previousFireTime | date:'y/MM/dd HH:mm:ss'}}</span></div>
+                    <div class="small">({{scheduler.startTime | date:'y/MM/dd HH:mm:ss'}})</div>
+                </td>
+                <td style="width:150px;">
+                    <input id="field_nextFireDateTime" type="text" class="athma-form-control" name="nextFireDateTime" [(ngModel)]="scheduler.nextFireDateTime"
+                    required />
+                </td>
+                <td style="width:150px; white-space: nowrap;" class="text-center">
+                    <button type="button" class="athma-btn athma-btn-primary m-0 p-2 small scheduler-hover" style="min-width: auto;" (click)="trigger(scheduler)">Trigger</button> 
+                    <button type="button" class="athma-btn athma-btn-primary m-0 p-2 small" style="min-width: auto;" (click)="save(scheduler)">Save</button>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot *ngIf="schedulers.length === 0">
+                <tr><td  colspan="9" class="athma-no-records"><span jhiTranslate="global.common.no-records-found"></span></td></tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

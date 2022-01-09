@@ -1,0 +1,253 @@
+<div class="row patient-header-container">
+    <!--[style.padding-top]="!patient ? '16px' : '8px'"-->
+    <div class="col-5" style="margin-left: 18px;margin-top: 16px;max-width: 36%; " *ngIf="showSearchBox">
+        <jhi-artha-search [validatePatient]="validatePatient" (onSearchUser)="onSearch($event)"
+            [searchResultList]="searchResultList" (onUserSelection)="onUserSelection($event)"
+            [departmentSearch]="departmentSearch" (newDepartment)="onAddDepartment()" [showSearchIcon]="showSearchIcon">
+        </jhi-artha-search>
+    </div>
+    <div class="col-9" *ngIf="!showSearchBox">
+        <!--*ngIf="patient"-->
+        <table class="table patient-details mt-2 mb-0 w-100">
+            <tbody>
+                <tr>
+                    <td style="width: 0%" *ngIf=" options && !options?.isHeaderForEmployee && options?.showSearchIcon">
+                        <div class="col-sm-12 px-0 d-flex justify-content-center">
+                            <span>
+                                <span class="icon-search coustom-dept-search" (click)="onDepartmentSearch()"></span>
+                            </span>
+                        </div>
+                    </td>
+                    <td style="width: 5%">
+                        <div class="col-sm-12 px-0 d-flex justify-content-center">
+                            <span *ngIf="options && options?.isHeaderForEmployee">
+                                <span class="icon-profile_patient patient-image"></span>
+                            </span>
+                            <span *ngIf="options && !options?.isHeaderForEmployee">
+                                <!-- <span class="icon-admin_unit patient-image"></span> -->
+                                <img class="patient-image" [src]="departmentIcon" />
+                            </span>
+                        </div>
+                    </td>
+                    <td style="width: 20%" *ngIf="options && options?.isHeaderForEmployee">
+                        <div class="col-sm-12 px-0 d-flex flex-column">
+                            <span class="patient-name" *ngIf=" options && options?.employee?.displayName">
+                                <!-- *ngIf="patient.displayName"-->
+                                <jhi-athma-string-manipulation [suffixCharacterLength]="5" [prefixCharacterLength]="8"
+                                    [stringModified]="options?.employee?.displayName" [stringLength]="18"
+                                    [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation>
+                            </span>
+                            <span *ngIf="!options?.employee?.displayName">-</span>
+                            <span class="small-text" *ngIf="options && options?.isHeaderForEmployee">
+                                <span *ngIf="options?.employee?.employeeNo || options?.employee?.employeeNumber">{{
+                                    options?.employee?.employeeNo ? options?.employee?.employeeNo :
+                                    options?.employee?.employeeNumber }} </span>
+                                <span *ngIf="options?.employee?.gender ">({{options?.employee?.gender}})</span>
+
+                            </span>
+                        </div>
+                    </td>
+                    <td style="width: 20%" *ngIf="options && !options?.isHeaderForEmployee">
+                        <div class="col-sm-12 px-0 d-flex flex-column">
+                            <span class="patient-name" *ngIf=" options && options?.department?.name">
+                                <!-- *ngIf="patient.displayName"-->
+                                <jhi-athma-string-manipulation [suffixCharacterLength]="5" [prefixCharacterLength]="8"
+                                    [stringModified]="options?.department?.name" [stringLength]="18"
+                                    [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation>
+                            </span>
+                            <span *ngIf="!options?.department?.name">-</span>
+                            <span class="payout-adjustment ">
+                                <span class="status-new" style="height: 13px;"
+                                    *ngIf="options?.department?.custom === false && options?.department?.code !==undefined">{{options?.department?.code
+                                    ? options?.department?.code:'' }}</span>
+                                <span class="status-new" style="height: 13px;"
+                                    *ngIf="options?.department?.custom===true">Custom</span>
+                            </span>
+
+                        </div>
+                    </td>
+                    <td style="width: 15%" *ngIf="options && options?.isHeaderForEmployee">
+                        <div class="col-sm-12 px-0 d-flex flex-column">
+                            <span class="small-text header-label">Department</span>
+                            <!--jhiTranslate="gatewayApp.patientUtil.phoneNo"-->
+                            <span class="text" *ngIf="options?.departmentList && options?.departmentList.length >0 ">
+                                <jhi-athma-string-manipulation [suffixCharacterLength]="5" [prefixCharacterLength]="8"
+                                    [stringModified]="options.departmentList[0].name " [stringLength]="18"
+                                    [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation>
+                                <span class="list-count-clr athma-pointer" [ngbTooltip]="departmentListTemplate"
+                                    [placement]="'bottom'" #departmentToolTip="ngbTooltip"
+                                    *ngIf="options && options.departmentList.length >1">+{{options?.departmentList.length
+                                    -1}}
+                                </span>
+                            </span>
+                            <span *ngIf="options?.departmentList?.length === 0 ">
+                                -
+                            </span>
+
+                            <ng-template #departmentListTemplate style="background-color: antiquewhite;">
+                                <div class="row p-1">
+                                    <div class="col-12 " *ngFor="let dept of options.departmentList; let i = index">
+                                        <span *ngIf="i !== 0">
+                                            <jhi-athma-string-manipulation [suffixCharacterLength]="5"
+                                                [prefixCharacterLength]="8" [stringModified]="dept?.name"
+                                                [stringLength]="18" [tooltipDisplay]="true">
+                                            </jhi-athma-string-manipulation>
+                                        </span>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </td>
+                    <td style="width: 13%" *ngIf="options && options?.showVersionNo  && options?.showVersionNo ">
+                        <div class="col-sm-12 px-0 d-flex flex-column">
+                            <span class="small-text header-label">Version No.</span>
+                            <span class="text" *ngIf="options && options?.versionNo">
+                                <!-- {{options && options?.versionNo ? options.versionNo : '-'}} -->
+                                v{{options?.versionNo }}.0
+                            </span>
+                            <span class="text" *ngIf="options && !options?.versionNo">
+                                -
+                            </span>
+                        </div>
+                    </td>
+                    <td style="width: 13%" *ngIf="options && options?.showVersionNo  && !options?.showVersionNo ">
+
+                    </td>
+                    <td style="width: 13%">
+                        <div class="col-sm-12 px-0 d-flex flex-column">
+                            <span class="small-text header-label">Created By</span>
+                            <span class="text">
+                                <jhi-athma-string-manipulation [suffixCharacterLength]="5" [prefixCharacterLength]="8"
+                                    [stringModified]="options?.createdBy?.displayName ? options?.createdBy?.displayName : '-'"
+                                    [stringLength]="18" [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation>
+                            </span>
+                        </div>
+                    </td>
+                    <td style="width: 15%">
+                        <div class="col-sm-12 px-0 d-flex flex-column">
+                            <span class="small-text header-label">Created Date</span>
+                            <span class="first-line text-nowrap d-flex ward-bed-details position-relative">
+                                {{options?.createdDate ? (options?.createdDate | date:dateFormate) : '-'}}
+                            </span>
+                        </div>
+                    </td>
+                    <td style="width: 20%" *ngIf="options && options?.documentNo && options?.isHeaderForEmployee">
+                        <div class="col-sm-12 px-0 d-flex flex-column">
+                            <span class="small-text header-label">Document No.</span>
+                            <span class="text">
+                                <jhi-athma-string-manipulation [suffixCharacterLength]="5" [prefixCharacterLength]="8"
+                                    [stringModified]="options.documentNo ? options.documentNo :'-'" [stringLength]="18"
+                                    [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation>
+                            </span>
+                        </div>
+                    </td>
+                    <td style="width: 17%">
+                        <div class="col-sm-12 px-0 d-flex flex-column">
+                            <span class="small-text header-label">Approved By</span>
+                            <span class="text">
+                                <jhi-athma-string-manipulation [suffixCharacterLength]="5" [prefixCharacterLength]="8"
+                                    [stringModified]="approvedByDisplayName ? approvedByDisplayName :'-'"
+                                    [stringLength]="18" [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation>
+                                <span class="list-count-clr athma-pointer" [ngbTooltip]="approvedByListTemplate"
+                                    [placement]="'bottom'" #preferredLanguageToolTip="ngbTooltip" triggers="click"
+                                    *ngIf="options && options?.approvedBy && options?.approvedBy.length > 1 && approvedByCount>0">+{{
+                                    approvedByCount}}
+                                </span>
+                            </span>
+                            <span *ngIf="!options && options?.approvedBy ">
+                                -
+                            </span>
+                            <ng-template #approvedByListTemplate style="background-color: antiquewhite;">
+                                <div class="row p-1 " style="width: 176px;"
+                                    *ngFor="let approved of options.approvedBy ;let i = index">
+                                    <div class="col-1"
+                                        *ngIf="(approved.status==='REJECTED' || approved.status==='APPROVED')">
+                                        <div class="approval-status-badge mt-1" style="margin-top: -3px"
+                                            [ngClass]="(approved.status==='REJECTED') ? 'reject':'approved'">
+                                            <i class="fa"
+                                                [ngClass]="(approved.status==='REJECTED') ? 'fa-times':'fa-check'"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-10 " style="margin-left:-15px"
+                                        *ngIf="(approved.status==='REJECTED' || approved.status==='APPROVED')">
+                                        <jhi-athma-string-manipulation [suffixCharacterLength]="5"
+                                            [prefixCharacterLength]="8" [stringModified]="approved.displayName"
+                                            [stringLength]="18" [tooltipDisplay]="true">
+                                        </jhi-athma-string-manipulation>
+                                        <!-- <small class="d-block detail" >{{approved.onDate | date:'dd/MM/yyyy H:mm'}}</small> -->
+                                        <div class="approve-dateTime">{{approved.onDate | date:'dd/MM/yyyy H:mm'}}</div>
+
+                                    </div>
+                                </div>
+                                
+                            </ng-template>
+                        </div>
+                    </td>
+                    <td style="width: 20%" *ngIf="options && !options?.isHeaderForEmployee &&  !options?.documentNo ">
+
+                    </td>
+                    <!-- <td style="width:4%">
+                        <div class="col-sm-12 px-0 d-flex flex-column">
+                            <span class="text-link" (click)="openPatientDetails()" >More</span>
+                        </div>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-3 d-flex align-items-center justify-content-end department-payout" *ngIf="!showSearchBox">
+
+        <div class="header-status">
+            <span [ngClass]="statusCssClassMap[options?.status]? statusCssClassMap[options?.status]:'staus-new'">
+                {{statusClassMap[options?.status]? statusClassMap[options?.status]:'New'}}
+            </span>
+        </div>
+        <div class="export" *ngIf="showEditIcon" style="margin-left: 5px; margin-right: -8px;">
+            <button class="athma-icon-button header-icon-button" style="font-size:18px;"
+                (click)="onClickEditDocument()">
+                <span class="active-icon-clr icon-edit" title="Update">
+                </span>
+            </button>
+        </div>
+        <div class="export" style="margin-right: -4px;">
+            <!-- <button class="athma-icon-button header-icon-button" [disabled]="options?.versionList?.length < 1" style="font-size:18px;" (click)="onOpenCommentBlock()"> -->
+            <button class="athma-icon-button header-icon-button" style="font-size:18px;" (click)="onOpenCommentBlock()">
+                <!--[ngClass]="{'disabled' : !patient}" icon-comment-->
+                <span class="active-icon-clr " *ngIf="viewModeCommentIcon">
+                    <img [src]="commentIcon" />
+                </span>
+                <span class="active-icon-clr " *ngIf="!viewModeCommentIcon">
+                    <img [src]="enableCommentIcon" />
+                </span>
+            </button>
+            <span class="badge badge-light remarks-badge"
+                *ngIf="options && options?.remarksListCount && options?.remarksListCount >0">
+                {{options?.remarksListCount}}
+            </span>
+        </div>
+        <div class="export" *ngIf="options && options?.versionList && options?.versionList.length >0">
+            <button class="athma-icon-button header-icon-button" style="font-size:18px;" [ngbTooltip]="versionTemplate"
+                placement="bottom-right" tooltipClass="version-list-tooltip" triggers="click">
+                <!--[ngClass]="{'disabled' : !patient}"-->
+                <span class="fa fa-history" style="color: #fff;">
+                </span>
+            </button>
+            <ng-template #versionTemplate style="background-color: rgb(230, 134, 8);" style="height:100px;">
+                <ng-container *ngFor="let version of options?.versionList; let i = index" style="background: green;">
+                    <div class="version-row row pl-2 pr-4 py-2 m-0 athma-pointer" (click)="onVersionClick(version)">
+                        <div class="col-12 p-0" >
+                            <span >v{{version}}.0</span>
+                        </div>
+                    </div>
+                </ng-container>
+            </ng-template>
+        </div>
+    </div>
+</div>

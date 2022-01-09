@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Group.
+    -->
+    <changeSet id="20201205131922-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="type_id"
+                                 baseTableName="group_master"
+                                 constraintName="fk_group_master_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="value_set_code"/>
+
+        <addForeignKeyConstraint baseColumnNames="part_of_id"
+                                 baseTableName="group_master"
+                                 constraintName="fk_group_master_part_of_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organization"/>
+
+    </changeSet>
+</databaseChangeLog>

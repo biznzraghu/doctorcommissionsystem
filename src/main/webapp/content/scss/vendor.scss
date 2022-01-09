@@ -1,0 +1,15 @@
+/* after changing this file run 'npm run webpack:build:vendor' or 'npm install' or 'npm run webpack:build' */
+$fa-font-path: '~font-awesome/fonts';
+
+/***************************
+put Sass variables here:
+eg $input-color: red;
+****************************/
+
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/font-awesome/scss/font-awesome';
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+@import '~@ng-select/ng-select/themes/default.theme.css';
+@import '~ng2-daterangepicker/assets/daterangepicker.css';
+@import '../ng-select.css';
+@import 'node_modules/c3/src/scss/main';

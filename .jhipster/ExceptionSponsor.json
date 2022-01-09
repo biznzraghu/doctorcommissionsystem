@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "plan",
+            "otherEntityName": "Plan",
+            "relationshipType": "one-to-many",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+      {
+        "fieldName": "applicable",
+        "fieldType": "Boolean"
+      },
+      {
+        "fieldName": "sponsorType",
+        "fieldType": "String"
+      }
+    ],
+  "changelogDate": "20200727123100",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "exception_sponsor",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "ExceptionSponsor"
+}

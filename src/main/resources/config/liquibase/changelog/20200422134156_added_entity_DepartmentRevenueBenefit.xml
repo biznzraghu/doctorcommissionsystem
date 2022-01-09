@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity DepartmentRevenueBenefit.
+    -->
+    <changeSet id="20200422134156-1" author="jhipster">
+        <createTable tableName="department_revenue_benefit">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="revenue_benefit_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="payout_percentage" type="${floatType}">
+                <constraints nullable="false" />
+            </column>
+            <column name="upper_limit" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="starting_version" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="current_version" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="department_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_department_revenue_benefit_department_id" />
+            </column>
+            <column name="variable_payout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20200308155022-2" author="anurag">
+        <dropUniqueConstraint tableName="department_revenue_benefit" constraintName="ux_department_revenue_benefit_department_id"></dropUniqueConstraint>
+    </changeSet>
+    <changeSet id="20201208103822-2" author="anurag">
+        <dropNotNullConstraint tableName="department_revenue_benefit" columnName="payout_percentage"></dropNotNullConstraint>
+    </changeSet>
+</databaseChangeLog>

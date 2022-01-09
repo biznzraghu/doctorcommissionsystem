@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle,mssql"/>
+
+    <!--
+        Added the entity PayoutAdjustmentDetails.
+    -->
+    <changeSet id="20200423135400-1" author="jhipster">
+        <createTable tableName="payout_adjustment_details">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="year" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="month" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="sign" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="contra_employee_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="contra_employee_detail" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+            <column name="payout_adjustment_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20202709113522-2" author="anurag">
+        <addColumn tableName="payout_adjustment_details">
+            <column name="executed" type="boolean" defaultValue="false"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="202019100622-2" author="anurag">
+        <addColumn tableName="payout_adjustment_details">
+            <column name="contra_department" type="jsonb">
+                <constraints nullable="true"></constraints>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="202011301533" author="animesh">
+        <modifyDataType
+            columnName="description"
+            newDataType="varchar(1024)"
+            tableName="payout_adjustment_details"/>
+    </changeSet>
+
+    <changeSet id="20210701163722-3" author="animesh">
+        <addColumn tableName="payout_adjustment_details">
+            <column name="department_executed" type="boolean" defaultValue="false"></column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,13 @@
+{
+  "arthaApp": {
+    "common": {
+      "action": {
+        "cancel": "Cancel",
+        "add": "Add",
+        "save": "Save",
+        "edit": "Edit",
+        "close": "Close"
+      }
+    }
+  }
+}

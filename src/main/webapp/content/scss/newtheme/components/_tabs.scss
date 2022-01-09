@@ -1,0 +1,24 @@
+.athma-tab-container {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  padding-bottom: 12px;
+  li {
+    display: inline-block;
+    margin-right: 24px;
+    a {
+      cursor: pointer;
+      line-height: 25px;
+      &.active {
+        border-bottom-width: 4px;
+        border-bottom-style: solid;
+        padding-bottom: 12px;
+      }
+      &:hover {
+        border-bottom-width: 0px;
+        border-bottom-style: solid;
+        padding-bottom: 12px;
+      }
+    }
+  }
+}

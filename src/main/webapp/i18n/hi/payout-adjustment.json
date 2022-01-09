@@ -1,0 +1,52 @@
+{
+    "arthaApp": {
+      "payoutAdjustment": {
+        "home": {
+          "title": "Payout Adjustment"
+        },
+        "created": "A new Payout Adjustment created",
+        "updated": "A Payout Adjustment updated",
+        "button": {
+          "close": "Close",
+          "proceed": "Proceed",
+          "reject": "Reject",
+          "approve": "Approve",
+          "cancel": "Cancel",
+          "sendForApproval": "Send for Approval"
+        },
+        "tbl-headers": {
+          "document-no": "Document No.",
+          "type": "Type",
+          "employee-details": "Employee Details",
+          "department": "Department",
+          "net-amount": "Net Amount",
+          "created-by": "Created By",
+          "date": "Date",
+          "time": "Time",
+          "date-time": "Date & Time",
+          "approved-by": "Approved By",
+          "status": "Status",
+          "remarks": "Remarks"
+        },
+        "label": {
+          "description": "Description",
+          "year": "Year",
+          "month": "Month",
+          "year-month": "Year & Month",
+          "positive": "Positive",
+          "positive/": "Positive/",
+          "negative": "Negative",
+          "amount": "Amount",
+          "contra": "Contra"
+        },
+        "dataInfo": {
+          "DEPARTMENT": "Department",
+          "EMPLOYEE": "Employee"
+        },
+        "validation": {
+          "payoutAmountValidity": "Amount cannot be greater than <strong>9,99,99,999.99 </strong>"
+        }
+      }
+    }
+  }
+  

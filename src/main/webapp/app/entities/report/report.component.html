@@ -1,0 +1,100 @@
+<div class="container-fluid p-0">
+    <div class="athma-list-header">
+        <div class="row">
+            <div class="col">
+                <div class="p-2 col-sm-12" style="min-height: 71px;" class="report-header">
+                    <h3 class="p-4">
+                        <span *ngIf="title === 'variable payout breakup'">Variable Payout Breakup</span>
+                        <span *ngIf="title === 'variable payout breakup summary'">Variable Payout Breakup Summary</span>
+                        <span *ngIf="title === 'department wise revenue'">Department Wise Revenue</span>
+                        <span *ngIf="title === 'department revenue break up'">Department Revenue Break Up</span>
+                        <span *ngIf="title === 'item service wise payout breakup'">Item Service Wise Payout Breakup</span>
+                    </h3>
+                </div>
+                <div class="d-flex flex-column col-sm-12 p-2 filter-section">
+                    <div class="flex-row col-sm-12 p-0 m-0" [ngStyle]="{'display' : expandReport ? 'flex' :'none' }">
+                        <div class="col-3" *ngIf="unitFilterList.indexOf(reportName) !== -1">
+                            <jhi-unit [userIdentity]="userIdentity" (selectedUnit)="passUnit($event)"></jhi-unit>
+                        </div>
+                        <div class="col-2" *ngIf="yearMonth.indexOf(reportName) !== -1">
+                            <jhi-year (selectedDates)="getDates($event)"></jhi-year>
+                        </div>
+                        <div class="col-3" *ngIf="deptFilterList.indexOf(reportName) !== -1">
+                            <jhi-department [selectedUnit]="selectedUnit" (emitDepartment)="getDepartment($event)"></jhi-department>
+                        </div>
+                        <div class="col-3" *ngIf="empFilterList.indexOf(reportName) !== -1">
+                            <jhi-employee [selectedUnit]="selectedUnit" (emitEmployee)="getEmployee($event)"></jhi-employee>
+                        </div>
+                    </div>
+                    <!-- button panel -->
+                    <div class="d-flex flex-row p-2 col-12 mt-2" *ngIf="!isMisReport">
+                        <button class="athma-btn mr-2 mb-1 payout-btn-bg" jhiTranslate="arthaApp.report.button.execute" (click)="schedule()">Execute</button>
+                        <button class="athma-btn athma-btn-secondary mb-1" jhiTranslate="arthaApp.report.button.refreshReports" (click)="reset()">Refresh Reports</button>
+                    </div>
+
+                    <div class="d-flex flex-row-reverse pull-right" *ngIf="isMisReport">
+                        <button class="athma-btn payout-btn-bg" jhiTranslate="arthaApp.misReport.button.schedule" (click)="scheduleMisReport()"></button>
+                        <button class="athma-btn athma-btn-secondary" (click)="refreshReports()" jhiTranslate="arthaApp.misReport.button.refreshReports"></button>
+                        <button class="athma-btn athma-btn-secondary" (click)="expandPeriodReport()" jhiTranslate="arthaApp.misReport.button.{{ expandBtnName }}">{{ expandBtnName }}</button>
+                    </div>
+                    <!-- button panel -->
+                </div>
+                <div class="d-flex flex-column col-12  report-details-section">
+                    <jhi-mis-report *ngIf="isMisReport" [scheduleEvent]="misReportScheduleSubject.asObservable()" [refreshEvent]="misReportRefreshReportsSubject.asObservable()" [featureCode]="featureCode" [contentHeight]="tableContentHeight"></jhi-mis-report>
+
+                    <!-- <div class="d-flex flex-row col-12 p-2 header">
+                        <div class="col-2 p-0">
+                            <span class="item-heading">Created By</span>
+                            <span class="fa fa-sort"></span>
+                        </div>
+                        <div class="col-2 p-0">
+                            <span class="item-heading">Created Date</span>
+                            <span class="fa fa-sort"></span>
+                        </div>
+                        <div class="col-2 p-0">
+                            <span class="item-heading">Year & Month</span>
+                            <span class="fa fa-sort"></span>
+                        </div>
+                        <div class="col-2 p-0">
+                            <span class="item-heading">Status</span>
+                            <span class="fa fa-sort"></span>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- json value will be displayed here -->
+                <!-- <div class="d-flex flex-row col-12 p-2 report-details-section" *ngFor="let user of userList">
+                    <div class="col-2">
+                        <span>{{ user.user}}</span>
+                    </div>
+                    <div class="col-2">
+                        <span>{{ user.date}}</span>
+                    </div>
+                    <div class="col-2 px-1">
+                        <span>{{ user.year}}</span>
+                    </div>
+                    <div class="col-2 px-0">
+                        <span>{{ user.status}}</span>
+                    </div>
+                    <div>
+                        <span placement="right" [ngbPopover]="popContent" [popoverTitle]="">
+                            <i aria-hidden="true" class="icon-export" style="font-size: 18px;" title="Export"></i>
+                        </span>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #popContent>
+    <table>
+        <tr>
+            <td>PDF</td>
+        </tr>
+        <tr>
+            <td>EXCEL</td>
+        </tr>
+        <tr>
+            <td>CSV</td>
+        </tr>
+    </table>
+</ng-template>

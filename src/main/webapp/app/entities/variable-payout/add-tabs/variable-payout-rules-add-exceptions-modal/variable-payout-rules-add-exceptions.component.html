@@ -1,0 +1,211 @@
+<div class="rule-add-exception-modal">
+    <section class="modal-header d-flex align-items-center">
+        <h3 class="modal-title" jhiTranslate="arthaApp.variable-payout.modal-header.additionalRules">Additional Rules</h3>
+    </section>
+    <div class="modal-body p-0">
+        <div class="col-md-12 pt-procedure-header d-flex align-items-center mr-2" style=" height: 24px; background-color: #FEF8CA;">
+            <div style="width:50%"><span style="font-weight:bold;">Type: </span>{{ rule?.type ? rule?.type : '-' }}</div>
+            <div style="width:50%"><span style="font-weight:bold;">Value: </span>{{ rule?.templateValueDisplay ? rule?.templateValueDisplay : '-' }}</div>
+        </div>
+        <div class="variable-payout-tabs d-flex align-items-center justify-content-between">
+            <ul class="variable-tabs pl-3">
+                <li class="variable-tabs-tab variable-tab pr-3" [ngClass]="{'active': activeTab === 0}"
+                    (click)="getTabInfo(0)">
+                    <a href="javascript:void(0)"><span jhiTranslate="arthaApp.variable-payout.tab-headers.sponsor">SPONSOR</span>
+                    </a></li>
+                <li class="variable-tabs-tab variable-tab" [ngClass]="{'active': disableServiceItemExcetion ? '' : activeTab === 1}"
+                    (click)="disableServiceItemExcetion ? '' : getTabInfo(1) ">
+                    <a href="javascript:void(0)"><span jhiTranslate="arthaApp.variable-payout.tab-headers.serviceItemException">SERVICE / ITEM EXCEPTION</span></a></li>
+            </ul>
+            <div class="athma-checkbox-container">
+                <div class="athma-checkbox-sm">
+                    <input class="form-check-input" type="checkbox" name="noIncentive" id="noIncentive" [disabled]="!isEdit" [(ngModel)]="onDeathIncentive" />
+                    <label for="noIncentive"></label>
+                </div>
+                <label>
+                    <span jhiTranslate="arthaApp.variable-payout.rules.noIncentive">No Incentive for Surgery if patient dies</span>
+                </label>
+            </div>
+        </div>
+        <div class="sponsor-tab" *ngIf="activeTab === 0">
+            <div class="type-container d-flex align-items-center border-bottom">
+                <div class="d-flex align-items-center">
+                    <div class="type pl-3" jhiTranslate="arthaApp.variable-payout.rules.type">Type: </div>
+                    <div class="athma-radio-container d-flex align-items-center">
+                        <input id="applicableSponsor" name="SponsorType" type="radio" value="applicableSponsor"
+                            [(ngModel)]="SponsorType" [disabled]="!isEdit || patientCatg === 'CASH'" checked>
+                        <label for="applicableSponsor" jhiTranslate="arthaApp.variable-payout.rules.applicableSponsor">Applicable Sponsor</label>
+                        <div class="athma-radio-button normal"></div>
+                    </div>
+                    <div class="athma-radio-container ml-4 d-flex align-items-center">
+                        <input id="exemptedSponsor" name="SponsorType" type="radio" value="exemptedSponsor"
+                            [(ngModel)]="SponsorType" [disabled]="!isEdit || patientCatg === 'CASH'" >
+                        <label for="exemptedSponsor" jhiTranslate="arthaApp.variable-payout.rules.exemptedSponsor">Exempted Sponsor</label>
+                        <div class="athma-radio-button normal"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="sponsor-type-tags pl-3">
+                <div class="sponsor-type pb-1" jhiTranslate="arthaApp.variable-payout.rules.sponsorType">Sponsor Type</div>
+                <div class="d-flex align-items-center">
+                    <div class="athma-form-group athma-flexible mb-0">
+                        <div class="form-group mb-0">
+                            <div class="athma-search-typeahead-container m-0">
+                                <div class="athma-search-typeahead-border">
+                                    <input  id="sponsor-typeahead-format" 
+                                            name="sponsor-typeahead" 
+                                            type="text"
+                                            class="athma-form-control" 
+                                            [ngbTypeahead]="searchSponsorTypeTypehead"
+                                            [inputFormatter]="inputFormatSponsorTypeheadData"
+                                            [resultFormatter]="formatSponsorTypeheadData"
+                                            placeholder="Search"
+                                            [ngModel]="sponsorTypeSearch"
+                                            (selectItem)="selectedSponsorType($event)"
+                                            [disabled]="!isEdit"
+                                            />
+                                    <span *ngIf="!sponsorTypeSearching" class="fa fa-search athma-typehead-search-left"
+                                        style="top:8px !important;"></span>
+                                    <span *ngIf="sponsorTypeSearching"
+                                        class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left"
+                                        style="top:8px !important;"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngFor="let sponsorTypeTag of sponsorTypeTags; let i = index;" class="tag d-flex align-items-center">
+                        <span>{{sponsorTypeTag?.display}}</span>
+                        <span class="pl-1 icon-cross cursor-pointer" *ngIf="isEdit" (click)="removeSponsorType(i)"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="plan-search">
+                <div class="plan-name pl-3 pb-1" jhiTranslate="arthaApp.variable-payout.rules.plan">Plan</div>
+                <div class="plan-input-container px-3 py-2">
+                    <div class="athma-form-group athma-flexible mb-0">
+                        <div class="form-group mb-0">
+                            <div class="athma-search-typeahead-container m-0">
+                                <div class="athma-search-typeahead-border">
+                                    <input  id="plan-typeahead-format" 
+                                            name="plan-typeahead" type="text"
+                                            class="athma-form-control" 
+                                            [ngbTypeahead]="planSearchTypeahead"
+                                            [inputFormatter]="inputFormatPlanTypeheadData"
+                                            [resultTemplate]="planSearchTemplate"
+                                            placeholder="Search with Code / Name" 
+                                            [ngModel]="planSearch"
+                                            [disabled]="!isEdit"
+                                            (selectItem)="selectedPlan($event)"
+                                        />
+                                    <span *ngIf="!planSearching" class="fa fa-search athma-typehead-search-left"
+                                        style="top:8px !important;"></span>
+                                    <span *ngIf="planSearching"
+                                        class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left"
+                                        style="top:8px !important;"></span>
+                                </div>
+                            </div>
+                            <ng-template class="item-list" #planSearchTemplate let-r="result" let-t="term">
+                                <li>
+                                    <div class="d-flex align-items-center pl-2">
+                                        <span> {{ r?.code ? r?.code : '-' }}
+                                            <span class="pr-1" *ngIf="r?.name">
+                                                <b class="text-gray">|</b>
+                                            </span>
+                                            {{r?.name }}
+                                        </span>
+                                    </div>
+                                </li>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div class="ps position-relative " [perfectScrollbar]="config" style="height: 135px;">
+                    <div *ngFor="let planList of planLists; let i = index;"
+                        class="plan-row d-flex align-items-center justify-content-between px-3 border-bottom">
+                        <span>{{planList?.code}} | {{planList?.name}}</span>
+                        <span class="pl-1 icon-cross cursor-pointer" *ngIf="isEdit" (click)="removePlan(i)"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="service-tab" *ngIf="activeTab === 1">
+
+            <div class="plan-search" style="height: 376px;">
+                <div class="plan-name pl-3 pb-1 pt-3">Services / Items</div>
+                <div class="plan-input-container py-2 d-flex align-items-center">
+                    <div class="col-3">
+                        <ng-select 
+                            name="type" 
+                            id="type" 
+                            [clearable]="true" 
+                            [(ngModel)]="selectedType" 
+                            [items]="typeList" 
+                            placeholder="Select" 
+                            bindLabel="name" 
+                            bindValue="code"
+                            notFoundText="No results found" 
+                            (change)="selectedTypeChange()"
+                            [searchable]="true"
+                            [disabled]="!isEdit"
+                            >
+                        </ng-select>
+                    </div>
+                    <div class="athma-form-group athma-flexible mb-0 col-8 p-0 pl-3">
+                        <div class="form-group mb-0">
+                            <div class="athma-search-typeahead-container m-0">
+                                <div class="athma-search-typeahead-border">
+                                    <input  id="service-typeahead-format" 
+                                            name="service-typeahead" 
+                                            [disabled]="!selectedType || !isEdit"
+                                            type="text"
+                                            class="athma-form-control" 
+                                            [ngbTypeahead]="ServiceItemValueSearchTypeahead"
+                                            [inputFormatter]="inputFormatServiceItemValueTypeheadData" 
+                                            [resultTemplate]="serviceValueTemplate"
+                                            placeholder="Search with Code / Name" 
+                                            [(ngModel)]="selectedServiceItemValue" 
+                                        />
+                                    <span *ngIf="!ServiceItemValueSearching" class="fa fa-search athma-typehead-search-left"
+                                        style="top:7px !important;"></span>
+                                    <span *ngIf="ServiceItemValueSearching"
+                                        class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left"
+                                        style="top:7px !important;"></span>
+                                </div>
+                            </div>
+                            <ng-template class="item-list" #serviceValueTemplate let-r="result" let-t="term">
+                                <li>
+                                    <div class="d-flex align-items-center pl-2">
+                                        <span> {{ r?.code ? r?.code : '-' }}
+                                            <span class="pr-1" *ngIf="r?.name">
+                                                <b class="text-gray">|</b>
+                                            </span>
+                                            {{r?.name }}
+                                        </span>
+                                    </div>
+                                </li>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <button class="adm-icon-button mt-1" [disabled]="!isEdit">
+                            <i aria-hidden="true" class="fa fa-plus-circle fa-2x" style="font-size: 1.5em;" (click)="addServices()"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="ps position-relative " [perfectScrollbar]="config" style="max-height: 300px;">
+                    <div *ngFor="let item of servicesList; let i = index;"
+                        class="plan-row d-flex align-items-center px-3 border-bottom">
+                        <div class="col-3 p-0">{{item?.exceptionType}}</div>
+                        <div class="col-8 p-0 pl-2">{{item?.value?.name}}</div>
+                        <span class="col-1 icon-cross cursor-pointer" style="padding-left: 31px;"
+                            (click)="removeService(i)" *ngIf="isEdit"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="athma-btn athma-btn-secondary" type="button" jhiTranslate="entity.action.cancel" (click)="no()">Cancel</button>
+        <button *ngIf="isEdit" class="athma-btn athma-btn-primary mr-0" jhiTranslate="entity.action.done" (click)="save()" [disabled]="!isEdit" type="submit">Done</button>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity ExceptionSponsor.
+    -->
+    <changeSet id="20200727123100-1" author="jhipster">
+        <createTable tableName="exception_sponsor">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">>
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="applicable" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="sponsor_type" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20200728121000-1" author="animesh">
+        <addColumn tableName="exception_sponsor">
+            <column name="plans" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200728151000-1" author="animesh">
+        <addColumn tableName="service_item_benefit">
+            <column name="exception_sponsor_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+        <addForeignKeyConstraint baseColumnNames="exception_sponsor_id"
+                                 baseTableName="service_item_benefit"
+                                 constraintName="fk_service_item_benefit_exception_sponsor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exception_sponsor"/>
+    </changeSet>
+</databaseChangeLog>
+

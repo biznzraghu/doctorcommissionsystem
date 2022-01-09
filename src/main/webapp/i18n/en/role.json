@@ -1,0 +1,29 @@
+{
+  "gatewayApp": {
+    "role": {
+      "home": {
+        "title": "Role"
+      },
+      "label": {
+        "name": "Role Name",
+        "desc": "Description",
+        "status": "Status"
+      },
+      "header": {
+        "assignedPrivileges": "Assigned Privileges",
+        "assignedRoles": "Assigned Roles",
+        "privilegesAndRoles": "Privileges & Roles",
+        "createOrEditRole": "CREATE OR EDIT ROLE"
+      },
+      "message": {
+        "success": {
+          "created": "New role created successfully",
+          "updated": "Role updated successfully"
+        },
+        "error": {
+          "default": "Oops! Something went wrong"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        Added the constraints for entity StayBenefitService.
+    -->
+    <changeSet id="20200422134156-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="length_of_stay_benefit_id"
+                                 baseTableName="stay_benefit_service"
+                                 constraintName="fk_stay_benefit_service_length_of_stay_benefit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="length_of_stay_benefit"/>
+
+    </changeSet>
+</databaseChangeLog>

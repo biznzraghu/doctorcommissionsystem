@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity DoctorPayoutAdjustment.
+    -->
+    <changeSet id="20201104182000-1" author="jhipster">
+        <createTable tableName="doctor_payout_adjustment">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="true" />
+            </column>
+            <column name="amount" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="adjustment_configuration_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="doctor_payout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20201104182000-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="doctor_payout_id"
+                                 baseTableName="doctor_payout_adjustment"
+                                 constraintName="fk_doctor_payout_adjustment_doctor_payout_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doctor_payout"/>
+
+    </changeSet>
+</databaseChangeLog>

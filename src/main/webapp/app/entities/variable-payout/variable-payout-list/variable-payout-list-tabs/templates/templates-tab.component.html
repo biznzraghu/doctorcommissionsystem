@@ -1,0 +1,110 @@
+<div class="row payout-adjustment">
+    <div class="col-sm-12 fixed-header-table">
+        <div class="fixed-header-table-head-container">
+            <table class="table athma-table fixed-header-table-head mb-0" [style.width.px]="fixedHeaderWidth()">
+                <thead class="dark-table-heading md-table">
+                    <tr arthaSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                        <th style="width:25%" arthaSortBy="templateName.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.templateDetails">
+                                Template Details
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:25%" arthaSortBy="createdBy.firstName.keyword">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.createdBy">
+                                Created By
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:25%" arthaSortBy="createdDate">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.createdDate">
+                                Created Date
+                            </span>
+                            <span class="fa fa-sort fa-sort-desc"></span>
+                        </th>
+                        <th style="width:25%" arthaSortBy="lastModifiedBy.lastModifiedDate">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.lastModifiedBy">
+                                Last Modified By
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="si-detail-table">
+            <div class="infinite-scroll-table ps position-relative" infinite-scroll debounce
+                [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="300" [scrollWindow]="false" [style.height.px]="setInfiniteScrollHeight()"
+                (scrolled)="loadPage(page + 1)" [perfectScrollbar]="config">
+                <table class="table athma-table fixed-header-table-body athma-table-layout-fixed">
+                    <tbody class="md-table" *ngIf="variablePayoutDatas && variablePayoutDatas?.length > 0">
+                        <ng-container
+                            *ngFor="let variablePayoutData of variablePayoutDatas;let i=index;">
+                            <tr (click)="viewDetail(variablePayoutData.id)">
+                                <td width="25%">
+                                    <jhi-athma-string-manipulation [suffixCharacterLength]="25" [prefixCharacterLength]="10"
+                                        [stringModified]="variablePayoutData?.templateName ? variablePayoutData?.templateName  : '-'" [stringLength]="55"
+                                        [tooltipDisplay]="true"> <!-- AR-456 fix-->
+                                    </jhi-athma-string-manipulation>
+                                    <br>
+                                    <span class="small-text-display">{{variablePayoutData?.code}}</span>
+                                </td>
+                                <td width="25%">
+                                    <span *ngIf="variablePayoutData?.createdBy?.displayName">
+                                        <!-- <span>{{variablePayoutData?.createdBy?.displayName ? variablePayoutData?.createdBy?.displayName  : '-'}}</span> -->
+                                        <jhi-athma-string-manipulation [stringModified]="variablePayoutData?.createdBy?.displayName ? variablePayoutData?.createdBy?.displayName :'-' "
+                                            [stringLength]="40" [tooltipDisplay]="true">
+                                        </jhi-athma-string-manipulation>
+                                    </span>
+                                    <span *ngIf="!variablePayoutData?.createdBy?.displayName">
+                                        <span>{{variablePayoutData?.createdBy?.firstName ? (variablePayoutData?.createdBy?.firstName) + ' ' + (variablePayoutData?.createdBy?.lastName)  : '-'}}</span>
+                                    </span>
+                                </td>
+                                <td width="25%">
+                                    <span>
+                                        {{variablePayoutData?.createdDate ? (variablePayoutData?.createdDate | date: dateFormat) : '-'}}
+                                    </span>
+                                    <br>
+                                    <span class="small-text-display">
+                                        <span>{{variablePayoutData?.createdDate ? (variablePayoutData?.createdDate | date: dateTimeFormat)
+                                            : '-'}}</span>
+                                    </span>
+                                </td>
+                                <td width="25%">
+                                    <span *ngIf="variablePayoutData?.lastModifiedBy?.displayName">
+                                        <!-- <span>{{variablePayoutData?.lastModifiedBy?.displayName ? variablePayoutData?.lastModifiedBy?.displayName  : '-' }}</span> -->
+                                        <jhi-athma-string-manipulation [stringModified]="variablePayoutData?.lastModifiedBy?.displayName ? variablePayoutData?.lastModifiedBy?.displayName :'-' "
+                                            [stringLength]="40" [tooltipDisplay]="true">
+                                        </jhi-athma-string-manipulation>
+                                        <br>
+                                        <span class="small-text-display">
+                                            <span>{{variablePayoutData?.lastModifiedBy?.lastModifiedDate ? (variablePayoutData?.lastModifiedBy?.lastModifiedDate | date: dateTimeBothFormat)
+                                                : '-'}}</span>
+                                        </span>
+                                    </span>
+                                    <span *ngIf="!variablePayoutData?.lastModifiedBy?.displayName">
+                                        <span>{{variablePayoutData?.lastModifiedBy?.firstName ? (variablePayoutData?.lastModifiedBy?.firstName) + ' ' + (variablePayoutData?.createdBy?.lastName)  : '-'}}</span>
+                                        <br>
+                                        <span class="small-text-display">
+                                            <span>{{variablePayoutData?.lastModifiedBy?.lastModifiedDate ? (variablePayoutData?.lastModifiedBy?.lastModifiedDate | date: dateTimeBothFormat)
+                                                : '-'}}</span>
+                                        </span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                    <tfoot *ngIf="variablePayoutDatas?.length===0 && noRecordFound">
+                        <tr>
+                            <td colspan="8" class="athma-no-records"><span
+                                    jhiTranslate="global.common.no-records-found"></span></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

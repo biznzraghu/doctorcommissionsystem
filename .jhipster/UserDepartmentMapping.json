@@ -1,0 +1,33 @@
+{
+  "fluentMethods": true,
+  "relationships": [
+    {
+      "relationshipName": "usermaster",
+      "otherEntityName": "userMaster",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": [
+        "required"
+      ],
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipName": "department",
+      "otherEntityName": "department",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": [
+        "required"
+      ],
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+
+  ],
+  "changelogDate": "202006145722",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "user_department_mapping",
+  "pagination": "pager",
+  "enableEntityAudit": false
+}

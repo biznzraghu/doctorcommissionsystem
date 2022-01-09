@@ -1,0 +1,141 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+
+        {
+            "relationshipName": "serviceGroup",
+            "otherEntityName": "group",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "billingGroup",
+            "otherEntityName": "group",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "mainProcedure",
+            "otherEntityName": "ServiceMaster",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "partOf",
+            "otherEntityName": "PackageMaster",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "financialGroup",
+            "otherEntityName": "group",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "packageCategory",
+            "fieldType": "packageCategory",
+            "fieldValues": "SURGICAL",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "visitType",
+            "fieldType": "visitType",
+            "fieldValues": "IP,OP,DC,ER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "duration",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "durationUnit",
+            "fieldType": "durationUnit",
+            "fieldValues": "DAYS",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "numberOfAllowedVisit",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "template",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "planValidation",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "comments",
+            "fieldType": "String",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "abbreviation",
+            "fieldType": "String",
+            "fieldValidateRules": [
+            ]
+        }
+
+    ],
+    "changelogDate": "202012905140122",
+    "dto": "no",
+    "service": "serviceImpl",
+    "pagination": "pager",
+    "entityTableName": "package_master",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": true
+}

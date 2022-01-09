@@ -1,0 +1,224 @@
+<jhi-alert></jhi-alert>
+<!-- HEADER START-->
+<jhi-athma-page-header>
+    <!--[height]="70" for tab view-->
+    <jhi-athma-list-header [title]="title" [createBtnTitle]="createBtnTitle" (openNew)="openNewPage()"
+        (searchItem)='search($event)' (clearSearch)='clear()' [options]="options"
+        (openAdvanceSearch)="openAdvanceSearch()">
+    </jhi-athma-list-header>
+
+</jhi-athma-page-header>
+<!-- <button type="button" (click)="openAdvanceSearch()">Advance Search</button> -->
+<!-- HEADER END-->
+<!-- TABLE START-->
+<div class="row payout-adjustment">
+    <div class="col-sm-12 fixed-header-table">
+        <!--HEADER TABLE START-->
+        <div class="fixed-header-table-head-container">
+            <table class="table athma-table mb-0">
+                <thead class="dark-table-heading md-table fixed-header-table-head">
+                    <tr arthaSort [(ascending)]="reverse" [(predicate)]="predicate" [callback]="reset.bind(this)">
+                        <th style="width:14%" arthaSortBy="documentNumber.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.document-no">
+                                Code
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="type.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.type">
+                                Type
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:15%" arthaSortBy="employeeDetail.displayName.sort">
+                            <span class="item-heading"
+                                jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.employee-details">
+                                Employee Detail
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:15%" arthaSortBy="department.name.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.department">
+                                Department
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:8%" arthaSortBy="netAmount">
+                            <span class="item-heading" jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.net-amount">
+                                Net Amount
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="createdDateTime">
+                            <div style="display: inline-block;">
+                                <span class="thead-text-sm  d-block"
+                                    jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.created-by">
+                                    Created By
+                                </span>
+                                <span class="item-heading" jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.date-time">
+                                    Date & Time
+                                </span>
+                            </div>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="transactionApprovalDetails.approvedDateTime">
+                            <div style="display: inline-block;">
+                                <span class="thead-text-sm  d-block"
+                                jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.approved-by">
+                                Approved By
+                                </span>
+                                <span class="item-heading" jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.date-time">
+                                    Date & Time
+                                </span>
+                            </div>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="status.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.status">
+                                Status
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:8%">
+                            <span class="item-heading" jhiTranslate="arthaApp.payoutAdjustment.tbl-headers.remarks">
+                                Remarks
+                            </span>
+                            <!-- <span class="fa fa-sort fa-sort-desc"></span> -->
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <!--HEADER TABLE END-->
+        <div class="support-dialog infinite-scroll-table ps">
+            <div class="infinite-scroll-table ps position-relative" infinite-scroll debounce
+                [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="300" [scrollWindow]="false" [style.height.px]="setInfiniteScrollHeight()"
+                (scrolled)="loadPage(page + 1)" [perfectScrollbar]="config">
+                <table class="table athma-table ">
+                    <tbody class="md-table fixed-header-table-body" *ngIf="payoutList?.length > 0">
+                        <tr class="athma-pointer" *ngFor="let payout of payoutList; trackBy: trackId; let i = index;"
+                            (click)="viewDetail(payout?.id)">
+                            <td style="width:14%">
+                                {{payout?.documentNumber}}
+                            </td>
+                            <!-- <td style="width:10%">
+                                {{payout?.type}}
+                            </td> -->
+                            <td style="width:10%">
+                                    {{'arthaApp.payoutAdjustment.dataInfo.' + payout?.type | translate}}
+                            </td>
+                            <td style="width:15%" *ngIf="payout?.employeeDetail else noData">
+                                <!-- {{payout?.employeeDetail?.displayName ? payout?.employeeDetail?.displayName : '-'}}
+                                <small class="d-block detail">{{payout?.employeeDetail?.employeeNo}}</small> -->
+                                <span>
+                                    <!-- {{payout?.employeeDetail?.displayName ? payout?.employeeDetail?.displayName : '-'}} -->
+                                    <jhi-athma-string-manipulation [stringModified]="payout?.employeeDetail?.displayName ? payout?.employeeDetail?.displayName:'-' " [stringLength]="40"
+                                        [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </span>
+                                <br>
+                                <span class="small-text-display">
+                                    {{payout?.employeeDetail?.employeeNo ? payout?.employeeDetail?.employeeNo : '-'}}
+                                </span>
+                            </td>
+                            <td style="width:15%" *ngIf="payout?.department else noData">
+                                {{payout?.department?.name}}
+                                <!-- <small class="d-block detail">{{payout?.department?.id}}</small> -->
+                            </td>
+                            <td style="width:8%">
+                                {{(payout?.netAmount  || 0) | number: amountFormat }}
+                            </td>
+                            <td style="width:10%">
+                                <!-- <jhi-athma-string-manipulation
+                                    [stringModified]="payout?.createdBy?.displayName ? payout?.createdBy?.displayName : '-' "
+                                    [stringLength]="18" [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation> -->
+                                <!-- {{payout?.createdBy?.displayName ? payout?.createdBy?.displayName : '-' }}
+                                <small class="d-block detail">{{payout?.createdDateTime | date : dateFormat}}</small> -->
+                                <span>
+                                    <!-- {{payout?.createdBy?.displayName ? payout?.createdBy?.displayName : '-' }} -->
+                                    <jhi-athma-string-manipulation [stringModified]="payout?.createdBy?.displayName ? payout?.createdBy?.displayName:'-' "
+                                        [stringLength]="40" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </span>
+                                <br>
+                                <span class="small-text-display">
+                                    {{payout?.createdDateTime | date : dateFormat}}       
+                                </span>
+                            </td>
+                            <td style="width:10%" *ngIf="payout?.transactionApprovalDetails?.length > 1 else noData">
+                                <!-- <jhi-athma-string-manipulation
+                                    [stringModified]="payout?.transactionApprovalDetails[0].approvedByDisplayName"
+                                    [stringLength]="18" [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation> -->
+                                {{payout?.transactionApprovalDetails[0]?.approvedByDisplayName ? payout?.transactionApprovalDetails[0]?.approvedByDisplayName : '-' }}
+                                <span class="approval-count athma-pointer"
+                                    *ngIf="payout?.transactionApprovalDetails?.length > 2"
+                                    [ngbTooltip]="preferredLanguageListTemplate" [placement]="'bottom'"
+                                    #preferredLanguageToolTip="ngbTooltip">
+                                    + {{payout?.transactionApprovalDetails?.length - 2}}
+                                </span>
+                                <br>
+                                <span class="small-text-display">
+                                    {{payout?.transactionApprovalDetails[0].approvedDateTime | date : dateFormat}}
+                                </small>
+                            </td>
+                            <ng-template #preferredLanguageListTemplate style="background-color: antiquewhite;">
+                                <div class="row p-1" *ngFor="let approver of payout?.transactionApprovalDetails">
+                                    <div class="col-1">
+                                        <div class="approval-status-badge approved mt-1"
+                                            *ngIf="approver?.type === 'APPROVED'">
+                                            <i class="fa fa-check"></i>
+                                        </div>
+                                        <div class="approval-status-badge reject mt-1"
+                                            *ngIf="approver?.type === 'REJECTED'">
+                                            <i class="fa fa-times"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-9 approved-by-border">
+                                        <span>{{approver?.approvedByDisplayName}}</span>
+                                        <small
+                                            class="d-block detail">{{approver?.approvedDateTime | date: dateFormat}}</small>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <td style="width:10%">
+                                <span [ngClass]="statusCssClassMap[payout?.status]">
+                                    {{statusClassMap[payout?.status]}}
+                                </span>
+                            </td>
+                            <td style="width:8%; position: relative;"
+                                (click)="$event.stopPropagation(); openCommentBlock(payout.transactionApprovalDetails)">
+                                <span class="icon-Message_Icon icon-msg-fs" 
+                                    [ngStyle]="{
+                                            color: payout.transactionApprovalDetails.length > 0 ? 'black' : 'gray',
+                                            cursor: payout.transactionApprovalDetails.length > 0 ? 'pointer' : 'default'
+                                        }">
+                                </span>
+                                <span class="athma-badges remark-count"
+                                    *ngIf="payout.transactionApprovalDetails && payout.transactionApprovalDetails.length >0 ">
+                                    {{payout.transactionApprovalDetails.length}}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot *ngIf="payoutList?.length === 0">
+                        <tr>
+                            <td colspan="9" class="athma-no-records">
+                                <span jhiTranslate="global.common.no-records-found"></span>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #noData>
+    <td style="width:10%">
+        -
+    </td>
+</ng-template>
+<!-- TABLE END-->
+<jhi-header-breadcrumb></jhi-header-breadcrumb>

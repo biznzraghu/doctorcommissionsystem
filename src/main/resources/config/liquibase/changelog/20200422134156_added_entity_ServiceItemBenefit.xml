@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity ServiceItemBenefit.
+    -->
+    <changeSet id="20200422134156-1" author="jhipster">
+        <createTable tableName="service_item_benefit">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="rule_key" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="service_group" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="service_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="item_category" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="item_group" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="package_category" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="visit_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="components" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="beneficiary" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="payment_mode" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="payment_value" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="min_quantity" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="max_quantity" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="applicable_on" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="patient_category" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="tariff_class" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="material_amount" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="department" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="applicable_sponsor" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="exempted_sponsor" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="service_exception" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="item_exception" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="on_death_incentive" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="variable_payout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20200505125222-1" author="anurag">
+        <modifyDataType tableName="service_item_benefit" columnName="rule_key" newDataType="jsonb"></modifyDataType>
+    </changeSet>
+    <changeSet id="202000505125222-2" author="anurga">
+        <addColumn tableName="service_item_benefit">
+            <column name="plan_template_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="rule_key_objects" type="varchar(255)"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="202000505125222-3" author="anurag">
+        <addColumn tableName="service_item_benefit">
+            <column name="priority_order" type="bigint">
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="202000505125222-4" author="anurag">
+        <modifyDataType tableName="service_item_benefit" columnName="service_group" newDataType="jsonb"></modifyDataType>
+        <modifyDataType tableName="service_item_benefit" columnName="service_type" newDataType="jsonb"></modifyDataType>
+        <modifyDataType tableName="service_item_benefit" columnName="item_category" newDataType="jsonb"></modifyDataType>
+        <modifyDataType tableName="service_item_benefit" columnName="item_group" newDataType="jsonb"></modifyDataType>
+        <modifyDataType tableName="service_item_benefit" columnName="package_category" newDataType="jsonb"></modifyDataType>
+    </changeSet>
+    <changeSet id="202000505125222-5" author="anurag">
+        <addColumn tableName="service_item_benefit">
+            <column name="service_master" type="jsonb"></column>
+        </addColumn>
+        <addColumn tableName="service_item_benefit">
+            <column name="package_master" type="jsonb"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200608122122-2" author="anurag">
+        <modifyDataType tableName="service_item_benefit" columnName="visit_type" newDataType="jsonb"></modifyDataType>
+        <modifyDataType tableName="service_item_benefit" columnName="tariff_class" newDataType="jsonb"></modifyDataType>
+    </changeSet>
+    <changeSet id="20200608123622-2" author="anurag">
+        <dropColumn tableName="service_item_benefit" columnName="department"></dropColumn>
+    </changeSet>
+    <changeSet id="20200608123822-2" author="anurag">
+        <addColumn tableName="service_item_benefit">
+            <column name="department" type="jsonb">
+                <constraints nullable="true"></constraints>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20201108130922-2" author="anurag">
+        <addColumn tableName="service_item_benefit">
+            <column name="template_value_display" type="varchar(255)">
+                <constraints nullable="true"></constraints>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20202608105222-2" author="anurga">
+        <modifyDataType tableName="service_item_benefit" columnName="components" newDataType="jsonb"></modifyDataType>
+    </changeSet>
+
+    <changeSet id="20200709132822-2" author="anurag">
+        <addColumn tableName="service_item_benefit">
+            <column name="iu_datetime" type="timestamp" defaultValue="now()"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200909113222-2" author="anurag">
+        <addColumn tableName="service_item_benefit">
+            <column name="variable_payout_base_id" type="bigint"></column>
+            <column name="latest" type="boolean" defaultValue="true"></column>
+            <column name="valid_from" type="bigint"></column>
+            <column name="valid_to" type="bigint"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20202409122722-2" author="anurag">
+        <modifyDataType tableName="service_item_benefit" columnName="amount" newDataType="varchar(255)"></modifyDataType>
+    </changeSet>
+    <changeSet id="2020141215522-2" author="anurag">
+        <addColumn tableName="service_item_benefit">
+            <column name="invoice_value" type="varchar(255)">
+                <constraints nullable="true"></constraints>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="2010170220211020" author="anurag">
+        <modifyDataType tableName="service_item_benefit" columnName="package_category" newDataType="varchar(255)"></modifyDataType>
+    </changeSet>
+</databaseChangeLog>

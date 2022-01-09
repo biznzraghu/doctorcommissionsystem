@@ -1,0 +1,82 @@
+{
+    "name": "invoiceDoctorPayout",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "variablePayoutId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "invoiceId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "invoiceLineItemId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "employeeId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "serviceBenefietId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "serviceBenefietAmount",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "invoiceNumber",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "mrn",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "visitType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "orderDateTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "issueDateTime",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "invoiceApprovedDateTime",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "doctorPayout",
+            "otherEntityRelationshipName": "doctorPayoutInvoice",
+            "relationshipName": "doctorPayout",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200423211254",
+    "entityTableName": "invoice_doctor_payout",
+    "dto": "no",
+    "pagination": "pager",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ServiceMaster.
+    -->
+    <changeSet id="20170105134156-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="service_type_id"
+                                 baseTableName="service_master"
+                                 constraintName="fk_service_master_service_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="value_set_code"/>
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="service_master"
+                                 constraintName="fk_service_master_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="value_set_code"/>
+
+        <addForeignKeyConstraint baseColumnNames="service_group_id"
+                                 baseTableName="service_master"
+                                 constraintName="fk_service_master_service_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="group_master"/>
+
+    </changeSet>
+</databaseChangeLog>

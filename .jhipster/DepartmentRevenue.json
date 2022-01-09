@@ -1,0 +1,67 @@
+{
+    "fluentMethods": true,
+    "relationships":[
+      {
+        "relationshipType":"one-to-one",
+        "otherEntityName":"department",
+        "otherEntityRelationShipName":"id",
+        "relationshipName":"department",
+        "otherEntityField":"id",
+        "ownerSide":true
+
+      }
+    ],
+
+    "fields": [
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+         {
+            "fieldName": "createdDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+       {
+            "fieldName": "version",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+         {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "Active,InActive",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+         {
+            "fieldName": "approvedBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "requestStatus",
+            "fieldType": "RequestStatus",
+            "fieldValues": "DRAFT,PENDINGAPPROVAL,APPROVED,REJECTED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20191211115600",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "department_revenue",
+    "microserviceName": "artha",
+    "enableEntityAudit": false
+}

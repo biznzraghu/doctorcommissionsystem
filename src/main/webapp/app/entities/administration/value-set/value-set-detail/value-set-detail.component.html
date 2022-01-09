@@ -1,0 +1,153 @@
+<div *ngIf="valueSet" class=" value-set-detail">
+    <jhi-athma-page-header [height]="85" >
+        <jhi-athma-list-header [title]="title" [createBtnTitle]="createBtnTitle"
+            [options]="options">
+        </jhi-athma-list-header>
+        <div class="row mt-1">
+            <div class="col-1" style="margin-left: -8px;">
+                <button type="button" class="athma-btn athma-btn-primary" (click)="editValueSet()">
+                    <i class="fa fa-pencil-square-o"></i>
+                    <span>
+                        Edit
+                    </span>
+                </button>
+            </div>
+            <div class="col-9 input-border-none">
+                <!-- Search Box -->
+                <div class="input-group search-btn list-header-search border-1">
+                    <span class="input-group-addon  border-0" id="list-header-search-input" style="border-right:0px;">
+                        <i *ngIf="!isSearching" class="fa fa-search"></i>
+                        <i *ngIf="isSearching" class="fa fa-spinner fa-pulse"></i>
+                    </span>
+                    <input id="stock-search" placeholder="Search" name="searchText" #searchValueSet [(ngModel)]="searchText" 
+                            class="athma-form-control input-border-none w-full" style="width: 435px; border: 0; margin-left:0px"
+                            [ngbTypeahead]="searchViewHeaderTypehead" [inputFormatter]="inputformatSearchTypeheadData" [resultFormatter]="displayformatSearchTypeheadData"
+                            (selectItem)="onSelectSearchResultItem($event, searchValueSet)" >
+                    <span *ngIf="searchText" (click)="clear()" class="input-group-addon athma-pointer border-0"
+                        aria-describedby="list-header-search-input">
+                        <i class="icon-cross"></i>
+                    </span>
+                </div>
+                <!-- Search Box -->
+            </div>
+            <div class="col-2">
+                <button type="button" class="athma-btn athma-btn-secondary back-btn" (click)="backToList()">
+                    <i class="fa fa-arrow-left"></i>
+                    <span>
+                        Back to list
+                    </span>
+                </button>
+            </div>
+        </div>
+    </jhi-athma-page-header>
+    <!-- Header End-->
+    <perfect-scrollbar [style.height.px]="setScrollHeight()">
+        <dl class="row form-dl four-column-form mb-0 pb-0">
+
+            <dd>
+                <div class="athma-form-group">
+                    <label>
+                        <span jhiTranslate="arthaApp.valueSet.code">Code</span>
+                    </label>
+                    <div class="form-group">
+                        <span>{{valueSet.code}}</span>
+                    </div>
+                </div>
+            </dd>
+
+            <dd>
+                <div class="athma-form-group">
+                    <label>
+                        <span jhiTranslate="arthaApp.valueSet.name">Name</span>
+                    </label>
+                    <div class="form-group">
+                        <span>{{valueSet.name}}</span>
+                    </div>
+                </div>
+            </dd>
+
+            <dd>
+                <div class="athma-form-group">
+                    <label>
+                        <span jhiTranslate="arthaApp.valueSet.definition">Definition</span>
+                    </label>
+                    <div class="form-group">
+                        <span>{{valueSet.definition ? valueSet.definition : '---'}}</span>
+                    </div>
+                </div>
+            </dd>
+
+            <dd>
+                <div class="athma-form-group">
+                    <label>
+                        <span jhiTranslate="arthaApp.valueSet.oid">OID</span>
+                    </label>
+                    <div class="form-group">
+                        <span>{{valueSet.oid ? valueSet.oid : '---'}}</span>
+                    </div>
+                </div>
+            </dd>
+
+            <dd>
+                <div class="athma-form-group">
+                    <label>
+                        <span jhiTranslate="arthaApp.valueSet.systemURL">System URL</span>
+                    </label>
+                    <div class="form-group">
+                        <span>{{valueSet.systemURL ? valueSet.systemURL : '---'}}</span>
+                    </div>
+                </div>
+            </dd>
+
+            <dd>
+                <div class="athma-form-group">
+                    <label>
+                        <span jhiTranslate="arthaApp.valueSet.systemOID">System OID</span>
+                    </label>
+                    <div class="form-group">
+                        <span>{{valueSet.systemOID ? valueSet.systemOID : '---'}}</span>
+                    </div>
+                </div>
+            </dd>
+
+        </dl>
+
+
+        <div class="card rounded-0 border-right-0 border-left-0">
+            <div class="card-header border-bottom-0">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3 class="title mb-0"><span jhiTranslate="arthaApp.valueSetCode.detail.title">ValueSet Code</span></h3>
+                    </div>
+                </div>
+            </div>
+        <div class="container-fluid table-responsive" *ngIf="valueSetCodes">
+            <table class="table table-striped athma-table-listing athma-table">
+                <thead>
+                <tr>
+                    <th><span jhiTranslate="arthaApp.valueSetCode.code">Code</span></th>
+                    <th><span jhiTranslate="arthaApp.valueSetCode.display">Display</span> <span class="fa fa-sort fa-sort-asc"></span></th>
+                    <th><span jhiTranslate="global.common.status">Active</span></th>
+                    <th><span jhiTranslate="arthaApp.valueSetCode.displayOrder">Display Order</span></th>
+                </tr>
+                </thead>
+                <tbody *ngIf="valueSetCodes?.length > 0">
+                    <tr *ngFor="let valueSetCode of valueSetCodes; ">
+                        <td>{{valueSetCode?.code ? valueSetCode?.code : '-'}}</td>
+                        <td>{{valueSetCode?.display ? valueSetCode?.display : '-'}}</td>
+                        <td>{{valueSetCode?.active | activeAsStatus }}</td>
+                        <td>{{valueSetCode?.displayOrder ? valueSetCode?.displayOrder : '-'}}</td>
+                    </tr>
+                </tbody>
+                <tfoot *ngIf="valueSetCodes?.length === 0">
+                    <tr>
+                        <td colspan="9" class="athma-no-records">
+                            <span jhiTranslate="global.common.no-records-found"></span>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        </div>
+    </perfect-scrollbar>
+</div>

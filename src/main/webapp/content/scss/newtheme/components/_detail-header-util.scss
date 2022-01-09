@@ -1,0 +1,333 @@
+$color-light-grey: #cacad3;
+$color-lighter-grey: #e6e6e6;
+$color-lighter-green: #33d63b;
+$color-light-green: #66ab5c;
+$color-medium-grey: #414146;
+$color-active-blue: #0078d7;
+$color-in-active-blue: #acd6f7;
+$color-white: #ffffff;
+$color-active-orange: #fca121;
+$color-gery-border: #b4b4be;
+$color-theam-gray: #343536;
+.patient-header-container {
+  background-color: $color-theam-gray;
+  height: 56px;
+  padding-right: 8px;
+
+  .version-list-tooltip {
+    opacity: 1;
+    .tooltip-inner {
+      padding: 0px;
+      width: 70px;
+    }
+    .version-row {
+      text-align: left;
+      &:hover {
+        background-color: #eeeeee;
+      }
+    }
+  }
+  .athma-icon-button:hover {
+    color: $color-active-blue !important;
+  }
+  .patient-details {
+    td {
+      border: 0;
+      padding: 0;
+      color: $color-white;
+      vertical-align: bottom;
+      line-height: 15px;
+    }
+  }
+  .plans-count {
+    color: #fca121;
+  }
+  .patient-name {
+    font-size: 14px;
+    font-weight: 500px;
+  }
+  .right-border {
+    border-right: 1px solid $color-white !important;
+  }
+  .small-text {
+    font-size: 10px;
+  }
+  .header-label {
+    color: #cacad3;
+  }
+  .text {
+    font-size: 13px;
+  }
+  .patient-image {
+    font-size: 36px;
+    color: $color-white;
+  }
+
+  .patient-image-department {
+    font-size: 31px;
+    color: $color-white;
+    margin-left: -55px;
+  }
+
+  .icon-btn {
+    font-size: 28px;
+    color: #b4b4be;
+    cursor: pointer;
+    &:focus,
+    &:hover {
+      color: $color-white !important;
+    }
+  }
+  .text-link {
+    cursor: pointer;
+    color: #7da3d2;
+  }
+  .tooltip-inner {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 10px 30px #00000029;
+    border: 1px solid #eeeeee;
+    color: #080414;
+    opacity: 1;
+    width: max-content;
+  }
+  .arrow::before {
+    border-bottom-color: #fff;
+  }
+  .approval-status-badge {
+    width: 12px;
+    height: 12px;
+    font-size: 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .approved-by-border {
+    border-bottom: 1px solid #eeeeee;
+  }
+  .approved {
+    background-color: #4caf50;
+    color: #ffffff;
+    font-size: 8px;
+  }
+  .reject {
+    background-color: #ff0000;
+    color: #ffffff;
+    font-size: 8px;
+  }
+}
+.plan-selection-container {
+  background-color: #ffff;
+  position: absolute;
+  width: 300px;
+  border: 1px solid #b4b4be;
+  z-index: 1;
+  border-radius: 4px;
+  box-shadow: -1px 1px 10px 0px #b4b4be;
+  color: #000000;
+  margin-top: 6px;
+  .plan-item {
+    border-bottom: 1px solid #b4b4be;
+  }
+}
+
+.patient-search {
+  .search-left {
+    position: absolute;
+    left: 8px;
+  }
+  .search-right {
+    position: absolute;
+    right: 8px;
+  }
+  .external-patient-icon {
+    color: #898988 !important;
+    font-size: 21px;
+    padding: 0;
+    border-radius: 0;
+    min-width: 24px !important;
+    width: 38px !important;
+    border-left: 0;
+    &:focus,
+    &:hover {
+      color: #ffffff !important;
+    }
+  }
+  input {
+    padding-left: 24px !important;
+  }
+  .search-icon {
+    height: 24px;
+    font-size: 20px !important;
+  }
+}
+
+.patient-details-popup {
+  .patient-row {
+    border-bottom: 1px solid #e5e5e6;
+  }
+  .active-plan {
+    list-style: none;
+  }
+  .active-plan::before {
+    color: #6ac41d;
+    content: '\f111';
+    font-family: FontAwesome;
+    font-size: 8px;
+    padding-right: 4px;
+    vertical-align: top;
+  }
+  .inactive-plan::before {
+    color: #e21c1c;
+    content: '\f111';
+    font-family: FontAwesome;
+    font-size: 8px;
+    padding-right: 4px;
+    vertical-align: top;
+  }
+}
+
+.header-with-line {
+  display: flex;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  .label {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    span {
+      background: #ffffff;
+      padding-right: 4px;
+    }
+  }
+  .label::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    z-index: -1;
+    border-top: 1px solid #cacad3;
+    margin: 0px auto;
+  }
+}
+.header-menu-container {
+  .header-icon-button {
+    color: #b4b4be !important;
+    font-size: 19px;
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+  .header-menu-right {
+    .dropdown-toggle::after {
+      display: none !important;
+    }
+    margin-left: -10px;
+  }
+  .header-menu-list {
+    margin-top: 8px;
+    box-shadow: 0px 1px 6px 1px grey;
+    margin-right: 6px;
+  }
+  .header-menu-list::before {
+    content: '';
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    right: 6%;
+    top: -20px;
+    margin-left: -10px;
+    border: 10px solid;
+    border-color: transparent transparent rgb(255, 255, 255) transparent;
+  }
+  .header-menu-list-item {
+    border-bottom: 1px solid #ededed;
+    button {
+      padding: 8px;
+      width: 100%;
+      text-align: left;
+    }
+  }
+}
+
+.patient-header-active {
+  border-radius: 2px !important;
+  padding-left: 3px;
+  padding-right: 3px;
+  color: #000000 !important;
+  width: fit-content;
+  line-height: 11px;
+  margin-bottom: 1px;
+}
+
+.patient-header-active-plan {
+  background-color: #00ff00;
+}
+
+.patient-header-active-package {
+  background-color: #feff00;
+}
+.remarks-badge {
+  margin-left: -15px;
+  margin-top: -27px;
+  vertical-align: middle;
+  font-size: 69%;
+  padding: 0.25em 0.4em;
+}
+
+.coustom-dept-search {
+  margin-left: 10px;
+  font-size: 21px;
+  border-right: 1px solid;
+  vertical-align: super;
+}
+
+.coustom-department-add {
+  margin-top: -18px;
+  margin-left: 455px;
+  height: 16px;
+  width: 16px;
+  border-left: 2px solid #fff;
+}
+.header-status {
+  .status-new {
+    font-size: pixelToRem(11px);
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 12px;
+    height: 14px;
+  }
+  .status-pending-approval {
+    background-color: #2196f3;
+    color: #e3f2fd;
+  }
+  .status-approved,
+  .status-active {
+    background-color: #43a047;
+    color: #e8f5e9;
+  }
+  .status-rejected,
+  .status-in-active {
+    background-color: #f44336;
+    color: #ffebee;
+  }
+  .status-draft {
+    background-color: #f06292;
+    color: #feeff4;
+  }
+}
+.approve-dateTime {
+  font-size: 10px;
+  line-height: 14px;
+  text-align: left;
+  margin-left: 3px;
+  color: #605e5c;
+}

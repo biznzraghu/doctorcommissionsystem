@@ -1,0 +1,100 @@
+<jhi-athma-page-header [height]="75"> <!--[height]="70" for tab view-->
+    <jhi-athma-list-header [title]="title" [createBtnTitle]="createBtnTitle" (searchItem)='search($event)' (clearSearch)='clear()' (openNew)='createUser()'
+        [options]="options" (openImportDocument)="openDocumentUpload()" (exportCSV)="export()">
+    </jhi-athma-list-header>
+</jhi-athma-page-header>
+
+<div class="row">
+    <div class="col-sm-12 fixed-header-table">
+        <div class="fixed-header-table-head-container">
+                <table class="table athma-table fixed-header-table-head mb-0">
+                    <thead class="dark-table-heading md-table">
+                        <tr arthaSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)"> 
+                            <th style="width:10%" arthaSortBy="employeeNumber.sort">
+                                <span class="item-heading" jhiTranslate="gatewayApp.user.label.employeeNo">Employee No</span>
+                                <span class="fa fa-sort"></span>
+                            </th>
+                            <th style="width:24%" arthaSortBy="displayName.sort">
+                                <span class="item-heading" jhiTranslate="gatewayApp.user.label.name">Display Name</span>
+                                <span class="fa fa-sort fa-sort-desc"></span>
+                            </th>
+                            <th style="width:22%" arthaSortBy="firstName.sort">
+                                <span class="item-heading" jhiTranslate="gatewayApp.user.label.firstName">First Name</span>
+                                <span class="fa fa-sort"></span>
+                            </th>
+                            <th style="width:22%" arthaSortBy="lastName.sort">
+                                <span class="item-heading" jhiTranslate="gatewayApp.user.label.lastName">Last Name</span>
+                                <span class="fa fa-sort"></span>
+                            </th>
+                            <th style="width:12%" arthaSortBy="status.sort">
+                                <span class="item-heading" jhiTranslate="gatewayApp.user.label.status">Status</span>
+                                <span class="fa fa-sort fa-sort-desc"></span>
+                            </th>
+                            <th style="width:10%"></th>
+                        </tr>
+                    </thead>
+                </table>
+        </div>
+        <!-- <div class=""> -->
+            <div class="support-dialog infinite-scroll-table ps">
+                <div class="infinite-scroll-table ps position-relative" infinite-scroll debounce [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="2"
+                    [infiniteScrollThrottle]="300" [scrollWindow]="false" [style.height.px]="setInfiniteScrollHeight()" (scrolled)="loadPage(page + 1)"
+                    [perfectScrollbar]="config">
+                    <table class="table athma-table fixed-header-table-body">
+                        <tbody class="md-table" *ngIf="users?.length > 0">
+                            <tr class="on-hover" *ngFor="let user of users; trackBy: trackId; let i = index;">
+                                <td style="width:10%">
+                                    {{user?.employeeNumber ? user?.employeeNumber : '-'}}
+                                </td>
+                                <td style="width:24%">
+                                    <!-- {{user?.displayName ? user?.displayName : '-'}} -->
+                                    <jhi-athma-string-manipulation [stringModified]="user?.displayName ? user?.displayName :'-' "
+                                        [stringLength]="40" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </td>
+                                <td style="width:22%">
+                                    <!-- {{user?.firstName ? user?.firstName : '-'}} -->
+                                    <jhi-athma-string-manipulation [stringModified]="user?.firstName ? user?.firstName :'-' "
+                                        [stringLength]="40" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </td>
+                                <td style="width:22%">
+                                    <!-- {{user?.lastName ? user?.lastName : '-'}} -->
+                                    <jhi-athma-string-manipulation [stringModified]="user?.lastName ? user?.lastName :'-' "
+                                        [stringLength]="40" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </td>
+                                <td style="width:12%">
+                                    <!-- <span class="athma-status-label" [ngClass]="(user?.status) ? 'status-active' : 'status-inactive'">{{user?.status | activeAsStatus }}</span> -->
+                                    <span *ngIf="user.status === 'Inactive'">
+                                        <span class="athma-status-label"
+                                            [ngClass]="(user.status === 'Inactive') ? 'status-inactive' : 'status-active'">{{false | activeAsStatus }}
+                                        </span>
+                                    </span>
+                                    <span *ngIf="user.status === 'Active'">
+                                        <span class="athma-status-label" 
+                                            [ngClass]="(user.status === 'Active') ? 'status-active' : 'status-Inactive'">{{true| activeAsStatus }}
+                                        </span>
+                                    </span>
+                                </td>
+                                <td style="width:10%">
+                                    <button class="athma-icon-button" (click) = "onUserUpdate(user)">
+                                        <span style="font-size: 15px;" class="icon-edit"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot *ngIf="users?.length === 0">
+                            <tr>
+                                <td colspan="9" class="athma-no-records">
+                                    <span jhiTranslate="global.common.no-records-found"></span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+</div>
+<jhi-header-breadcrumb></jhi-header-breadcrumb>

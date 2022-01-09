@@ -1,0 +1,52 @@
+<div class="applicable-services-modal">
+    <div class="modal-header">
+        <h3 class="modal-title" jhiTranslate="arthaApp.variable-payout.modal-header.applicableServicesforLengthofStay">Applicable Services for Length of Stay</h3>
+    </div>
+    <div class="modal-body p-0">
+        <div class="applicable-services-header pl-3">
+            <span class="pull-right icon-import applicable-icon"></span>
+        </div>
+        <div class="ps position-relative" style="height:390px">
+            <div class="w-100 padding-left-services">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="athma-form-group m-0 p-0">
+                            <div class="form-group m-0 p-0">
+                                <div class="athma-search-typeahead-container mt-3 ml-2">
+                                    <div class="athma-search-typeahead-border result-table-format">
+                                        <input type="text" id="stayBenefit" name="stayBenefit" class="athma-form-control padding-left-30" [ngbTypeahead]="serviceSearchTypeahead"
+                                            [inputFormatter]="inputFormatServiceTypeheadData" [resultFormatter]="formatServiceTypeheadData"
+                                            placeholder="Search" (selectItem)="selectedApplicableServices($event)" [ngModel]="appServSearch" required/>
+                                        <span *ngIf="!serviceSearching" class="fa fa-search athma-typehead-search-left" style="top:8px !important;"></span>
+                                        <span *ngIf="serviceSearching" class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left" style="top:9px !important;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-0 infinite-scroll-table ps position-relative" style="height:354px;" [perfectScrollbar]="config" *ngIf="applicableServices?.length > 0">
+                <div class="col-sm-12">
+                    <div class="athma-tag-container ml-3 mt-2"
+                        *ngFor="let applicableService of applicableServices;let itemIndex = index;">
+                        <div class="tag-content">{{ applicableService?.serviceName }}</div>
+                        <div>
+                            <span class="close-tag" (click)="removeApplicableServices(itemIndex)">x</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-actions">
+            <button class="athma-btn athma-btn-secondary" type="button" data-dismiss="modal" jhiTranslate="entity.action.cancel" (click)="cancel()">
+                Cancel
+            </button>
+            <ng-container>
+                <button type="button" class="athma-btn athma-btn-primary pull-right" jhiTranslate="entity.action.done" (click)="done()">Done</button>
+            </ng-container>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+{
+  "arthaApp": {
+    "dashboardWidget": {
+      "home": {
+        "title": "Dashboard Widgets",
+        "createLabel": "Create a new Dashboard Widget",
+        "createOrEditLabel": "Create or edit a Dashboard Widget",
+        "search": "Search for Dashboard Widget"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Dashboard Widget {{ id }}?"
+      },
+      "detail": {
+        "title": "Dashboard Widget"
+      },
+      "settings": "Settings",
+      "displayOrder": "Display Order",
+      "widget": "Widget",
+      "cash": "Cash",
+      "card": "Card",
+      "e_wallet": "E-Wallet",
+      "sponsor": "Sponsor Revenue",
+      "sponsorCollection": "Sponsor Collection",
+      "refund": "Refund",
+      "sponserRefund": "Sponsor Refund",
+      "patientRefund": "Patient Refund",
+      "plan": "Plan",
+      "unit": "Unit",
+      "discretionary": "Discretionary",
+      "planDiscount": "Plan Discount",
+      "planPatientDiscount": "Plan Patient Discount",
+      "planSponsorDiscount": "Plan Sponsor Discount",
+      "unitDiscount": "Unit Discount",
+      "discretionaryDiscount": "Discretionary Discount",
+      "7days": "Last 7 days",
+      "4weeks": "Last 5 weeks",
+      "6months": "Last 6 months",
+      "dispenses": "Dispenses",
+      "invoice": "Invoice",
+      "refunds": "Refunds",
+      "avgAmount": "Average Amount per Dispense",
+      "appointment": {
+        "CANCELLED_BY_DOCTOR": "Cancelled By Doctor",
+        "CANCELLED_BY_PATIENT": "Cancelled By Patient",
+        "DONE": "Done",
+        "NO_SHOW": "No Show",
+        "RESCHEDULED": "Rescheduled",
+        "IN_PROGRESS": "In Progess",
+        "ARRIVED": "Arrived",
+        "BOOKED": "Booked",
+        "PENDING_APPROVAL": "Pending Approval"
+      },
+      "insight": {
+        "regenerate_draft_count": "Draft Regenerated Invoices",
+        "registration_count": "Registration",
+        "outstanding_invoice_amount": "Outstanding Invoice",
+        "refund_amount_count": "Pending Refund Amount",
+        "availablebed": "Available Bed"
+      },
+      "inPatient": {
+        "PENDING_FC": "Pending FC",
+        "BILLING_CLEARED": "Billing Cleared",
+        "UNDER_IP_CARE": "Under IP Care",
+        "UNDER_DAY_CARE": "Under Day Care",
+        "UNDER_CARE": "Under Care",
+        "UNDER_EMERGENCY": "Under Emergency",
+        "DISCHARGE_INTIMATED": "Discharge Intimated",
+        "MARKED_FOR_DISCHARGE": "Marked for Discharge",
+        "DISCHARGED": "Discharged",
+        "ABSCONDED": "Absconded",
+        "MARKED_FOR_IP": "Marked for IP",
+        "ADMITTED_TO_IP": "Admitted To IP",
+        "FC_CLEARED": "FC Cleared",
+        "CANCELLED": "Cancelled",
+        "FC_REJECTED": "FC Rejectded"
+      },
+      "BANK_TRANSFER": "Bank Transfer",
+      "DEMAND_DRAFT": "Demand Draft",
+      "CARD": "Card",
+      "E_WALLET": "E-Wallet",
+      "CASH": "Cash",
+      "CHEQUE": "CHEQUE"
+    }
+  },
+  "dashboardApp": {
+    "dashboardWidget": {
+      "created": "A new Dashboard Widget is created with identifier {{ param }}",
+      "updated": "A Dashboard Widget is updated with identifier {{ param }}",
+      "deleted": "A Dashboard Widget is deleted with identifier {{ param }}"
+    }
+  }
+}

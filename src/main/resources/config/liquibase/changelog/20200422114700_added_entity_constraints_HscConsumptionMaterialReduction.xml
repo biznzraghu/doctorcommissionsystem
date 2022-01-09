@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <!--
+        Added the constraints for entity HscConsumptionMaterialReduction.
+    -->
+    <changeSet id="20200730114700-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="department_payout_id"
+                                 baseTableName="hsc_consumption"
+                                 constraintName="fk_hsc_consumption_department_payout_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="department_payout"/>
+        </changeSet>
+    <changeSet id="20200730111000-2" author="animesh">
+
+        <addColumn tableName="transaction_approval_details">
+            <column name="department_payout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="department_payout_id"
+                                 baseTableName="service_item_exception"
+                                 constraintName="fk_service_item_exception_department_payout_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="department_payout"/>
+        <addForeignKeyConstraint baseColumnNames="department_payout_id"
+                                 baseTableName="transaction_approval_details"
+                                 constraintName="fk_transaction_approval_details_pdepartment_payout_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="department_payout"/>
+    </changeSet>
+
+</databaseChangeLog>

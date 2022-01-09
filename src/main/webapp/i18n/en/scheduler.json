@@ -1,0 +1,35 @@
+{
+  "gatewayApp": {
+    "scheduler": {
+      "home": {
+        "title": "Schedulers",
+        "createLabel": "Create a new Scheduler",
+        "createOrEditLabel": "Create or edit a Scheduler"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Scheduler {{ id }}?"
+      },
+      "detail": {
+        "title": "Scheduler"
+      },
+      "instanceName": "Instance Name",
+      "scheduler": "Scheduler",
+      "description": "Description",
+      "expression": "Expression",
+      "repeatInterval": "Repeat Interval",
+      "startTime": "Start Time",
+      "nextFireTime": "Next Fire Time",
+      "previousFireTime": "Previous Fire Time",
+      "triggerState": "Trigger State",
+      "triggered": "Scheduler '{{scheduler}}' is triggered to run in next minute",
+      "saved": "Scheduler '{{scheduler}}' is saved"
+    }
+  },
+  "mdmApp": {
+    "scheduler": {
+      "created": "A new Scheduler is created with identifier {{ param }}",
+      "updated": "A Scheduler is updated with identifier {{ param }}",
+      "deleted": "A Scheduler is deleted with identifier {{ param }}"
+    }
+  }
+}

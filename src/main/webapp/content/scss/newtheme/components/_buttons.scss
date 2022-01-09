@@ -1,0 +1,173 @@
+%button-cursor-outline {
+  cursor: pointer;
+  touch-action: manipulation;
+  // focus,hover, active and visited
+  &:focus,
+  &:active,
+  &:visited {
+    outline: none !important;
+    outline-style: none;
+  }
+  &:disabled,
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    // background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzhhYWGMYAEYB8RmROaABADeOQ8CXl/xfgAAAABJRU5ErkJggg==);
+    background-repeat: repeat;
+    pointer-events: none;
+    cursor: default;
+    @include box-shadow(none);
+  }
+}
+
+@mixin button-bg(
+  $bg,
+  $hoverBg,
+  $disabledBg,
+  $borderColor: null,
+  $hoverBorderColor: null,
+  $disabledBorderColor: null,
+  $textColor: null,
+  $hoverTextColor: null,
+  $disabledTextColor: null
+) {
+  background-color: $bg;
+  color: $textColor;
+  border-color: $borderColor;
+  &:hover,
+  &:focus {
+    background: $hoverBg; // background:darken($bg,8%);
+    transition: all 0.3s ease;
+    color: $hoverTextColor;
+    border-color: $hoverBorderColor;
+  }
+  &:disabled,
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    background-color: $disabledBg;
+    color: $disabledTextColor;
+    border-color: $disabledBorderColor;
+  }
+  /* commenting states for future use
+    &:active {
+        background: $bg; // background:darken($bg,25%);
+        border-color: $borderColor;
+        color: $textColor;
+    }
+
+    &:focus {
+        outline: 0;
+        background: $bg;
+        border-color: $borderColor;
+        color: $textColor;
+    } */
+}
+
+.athma-btn {
+  height: $athma-btn-height;
+  line-height: pixelToRem($lh-s);
+  min-width: $athma-btn-min-width;
+  padding: $athma-btn-padding;
+  margin: $athma-btn-margin;
+  @include border-radius($athma-btn-border-radius);
+  border-width: $athma-btn-border-width;
+  border-style: solid;
+  vertical-align: middle;
+  font-family: $ff-default;
+  font-size: pixelToRem($athma-btn-fs);
+  font-weight: $athma-btn-fw;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  @extend %button-cursor-outline;
+}
+
+.athma-btn-height-sm {
+  height: $athma-btn-sm-height;
+  padding: $athma-btn-sm-padding;
+}
+
+.athma-btn-group {
+  margin: $athma-btn-margin;
+  display: inline-flex;
+  position: relative;
+  vertical-align: middle;
+  & > .athma-btn {
+    position: relative;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    &:first-child {
+      margin-left: 0;
+      &:not(:last-child):not(.dropdown-toggle) {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+    &:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+      border-radius: 0;
+    }
+    &:last-child:not(:first-child),
+    & > .dropdown-toggle:not(:first-child) {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+  }
+  .athma-btn {
+    display: inline-block;
+    margin: 0px;
+    & + .athma-btn {
+      margin-left: -1px;
+    }
+  }
+}
+
+.athma-icon-btn-group {
+  .athma-icon-button {
+    padding: 5px 10px;
+  }
+}
+
+.athma-icon-button {
+  padding: 0px;
+  margin: $athma-btn-margin;
+  // margin-right: $athma-btn-margin;
+  border: none;
+  background: transparent;
+  font-size: $ifs-deafult-size;
+  @extend %button-cursor-outline;
+}
+
+.athma-icon-button-border {
+  height: $athma-btn-height;
+  line-height: pixelToRem($lh-s);
+  padding: $athma-btn-padding;
+  margin: $athma-btn-margin;
+  @include border-radius($athma-btn-border-radius);
+  border-width: $athma-btn-border-width;
+  border-style: solid;
+  vertical-align: middle;
+  font-size: $ifs-deafult-size;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  @extend %button-cursor-outline;
+}
+
+.athma-btn-primary {
+  // Any specific properties will goes here
+}
+
+.athma-btn-primary-outline {
+  // Any specific properties will goes here
+}
+
+.athma-btn-secondary {
+  // Any specific properties will goes here
+}
+
+.athma-btn-auxillary {
+  // Any specific properties will goes here
+}

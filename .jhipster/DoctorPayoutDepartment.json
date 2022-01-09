@@ -1,0 +1,42 @@
+{
+    "name": "DoctorPayoutDepartment",
+    "fields": [
+        {
+            "fieldName": "doctorPayoutDepartmentId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "amount",
+            "fieldType": "Double"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "department",
+            "otherEntityRelationshipName": "doctorPayoutDepartment",
+            "relationshipName": "department",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "doctorPayout",
+            "otherEntityRelationshipName": "departmentRevenueBenefitId",
+            "relationshipName": "doctorPayout",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200423211256",
+    "entityTableName": "doctor_payout_department",
+    "dto": "no",
+    "pagination": "pager",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "service": "seriviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

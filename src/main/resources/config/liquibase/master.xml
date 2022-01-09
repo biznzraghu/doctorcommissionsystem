@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql, mariadb"/>
+    <property name="clobType" value="longvarchar" dbms="h2"/>
+    <property name="clobType" value="clob" dbms="mysql, oracle, mssql, mariadb, postgresql"/>
+    <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203062912_added_entity_Configurationdefination.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200807107222_added_entity_Module.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191204112937_added_entity_Privilege.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191204112938_added_entity_Feature.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203084949_added_entity_ValueSetCodeMapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203084948_added_entity_ValueSetCode.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203084947_added_entity_ValueSet.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191205071352_added_entity_Configurations.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191209084949_added_entity_UserMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191212134156_added_entity_Organization.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190209113620_added_entity_Department.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191212112937_added_entity_PayoutDetails.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191211115600_added_entity_DepartmentRevenue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191211132509_added_entity_Role.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727120000_added_entity_Plan.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191222095735_added_entity_UserOrganizationRoleMapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191212051842_added_entity_UserOrganizationMapping.xml" relativeToChangelogFile="false"/>
+    <!--<include file="config/liquibase/changelog/20191204071352_added_entity_McrStaging.xml" relativeToChangelogFile="false"/>-->
+    <include file="config/liquibase/changelog/20200422134156_added_entity_DepartmentRevenueBenefit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422134156_added_entity_LengthOfStayBenefit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422134156_added_entity_StayBenefitService.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422134156_added_entity_ServiceItemBenefit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200421134156_added_entity_VariablePayout.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423211255_added_entity_DoctorPayout.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423211256_added_entity_DoctorPayoutDepartment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423211257_added_entity_DoctorPayoutLOS.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423211254_added_entity_InvoiceDoctorPayout.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200506082635_added_entity_ServiceItemBenefitTemplate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201205110922_added_entity_Item.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201205111002_added_entity_ItemCategory.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201205131922_added_entity_Group.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170105134156_added_entity_ServiceMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201205140522_added_entity_PackageCodeMapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201205140522_added_entity_PackageComponent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202012905140122_added_entity_PackageMaster.xml" relativeToChangelogFile="false"/>
+   <!-- <include file="config/liquibase/changelog/20201205140322_added_entity_PackageUnitMapping.xml" relativeToChangelogFile="false"/>-->
+    <include file="config/liquibase/changelog/20200506082635_added_entity_ServiceItemBenefitTemplate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202006145722_added_entity_UserDepartmentMapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200807107222_added_entity_Module.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200714140600_added_entity_ServiceItemException.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727123100_added_entity_ExceptionSponsor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200819050000_added_entity_UserOrganizationDepartmentMapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202008133722-2_added_entity_DepartmentMaster.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20191203062912_added_entity_constraints_Configurationdefination.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191204112937_added_entity_constraints_Privilege.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203084949_added_entity_constraints_ValueSetCodeMapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191203084948_added_entity_constraints_ValueSetCode.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/201912100000_test_schema.xml" relativeToChangelogFile="false"/>
+    <!--<include file="config/liquibase/changelog/201912100000_added-master-reated-data-in-feature-table.xml" relativeToChangelogFile="false"/>-->
+    <!--<include file="config/liquibase/changelog/201912010000000_added-privaleges-for-master.xml" relativeToChangelogFile="false"/>-->
+    <include file="config/liquibase/changelog/20191211115600_added_entity_constraints_DepartmentRevenue.xml" relativeToChangelogFile="false"/>
+   <!-- <include file="config/liquibase/changelog/20191211132509_added_entity_constraints_Role.xml" relativeToChangelogFile="false"/>-->
+
+    <include file="config/liquibase/changelog/20191212112937_added_entity_constraints_PayoutDetails.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191212051842_added_entity_constraints_UserOrganizationMapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191212134156_added_entity_constraints_Organization.xml" relativeToChangelogFile="false"/>
+    <!--<include file="config/liquibase/changelog/20191112101953_added_entity_constraints_OrganizationType.xml" relativeToChangelogFile="false"/>-->
+    <include file="config/liquibase/changelog/20200422134156_added_entity_constraints_DepartmentRevenueBenefit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422134156_added_entity_constraints_LengthOfStayBenefit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422134156_added_entity_constraints_StayBenefitService.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422134156_added_entity_constraints_ServiceItemBenefit.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423211256_added_entity_constraints_DoctorPayoutDepartment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423211257_added_entity_constraints_DoctorPayoutLOS.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423211254_added_entity_constraints_InvoiceDoctorPayout.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200506082635_added_entity_constraints_ServiceItemBenefitTemplate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201205111002_added_entity_constraints_ItemCategory.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201205131922_added_entity_constraints_Group.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170105134156_added_entity_constraints_ServiceMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201205140522_added_entity_constraints_PackageCodeMapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201205140522_added_entity_constraints_PackageComponent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202012905140122_added_entity_constraints_PackageMaster.xml" relativeToChangelogFile="false"/>
+    <!--<include file="config/liquibase/changelog/20201205140322_added_entity_constraints_PackageUnitMapping.xml" relativeToChangelogFile="false"/>-->
+    <include file="config/liquibase/changelog/20200506082635_added_entity_constraints_ServiceItemBenefitTemplate.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202006145722_added_entity_constraints_UserDepartmentMapping.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200714140600_added_entity_constraints_ServiceItemException.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200727120000_added_entity_constraints_Plan.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200819050000_added_entity_constraints_UserOrganizationDepartmentMapping.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+
+    <include file="config/liquibase/changelog/20191210113620_added_MCR_StagingTable.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20191210113620_added_Service_Analysis_StagingTable.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20200104100222_added_entity_Preferences.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20200104100222_added_entity_constraints_Preferences.xml" relativeToChangelogFile="false"></include>
+
+    <include file="config/liquibase/changelog/20200423135300_added_entity_PayoutAdjustment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423135400_added_entity_PayoutAdjustmentDetails.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423135500_added_entity_TransactionApprovalDetails.xml" relativeToChangelogFile="false"/>
+
+    <include file="config/liquibase/changelog/20200423135400_added_entity_constraints_PayoutAdjustmentDetails.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423135500_added_entity_constraints_TransactionApprovalDetails.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200423135300_added_entity_constraints_PayoutAdjustment.xml" relativeToChangelogFile="false"/>
+
+    <include file="config/liquibase/changelog/20200422114400_added_entity_DepartmentPayout.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422114600_added_entity_ApplicableConsultant.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422114500_added_entity_PayoutRange.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422114700_added_entity_DepartmentConsumptionMaterialReduction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422114700_added_entity_HscConsumptionMaterialReduction.xml" relativeToChangelogFile="false"/>
+
+   <!--<include file="config/liquibase/changelog/20200422114400_added_entity_constraints_DepartmentPayout.xml" relativeToChangelogFile="false"/>!-->
+    <include file="config/liquibase/changelog/20200422114600_added_entity_constraints_ApplicableConsultant.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422114500_added_entity_constraints_PayoutRange.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422114700_added_entity_constraints_DepartmentConsumptionMaterialReduction.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200422114700_added_entity_constraints_HscConsumptionMaterialReduction.xml" relativeToChangelogFile="false"/>
+
+    <include file="classpath:config/liquibase/sequence_generator_master.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200428150000_added_sequence_format_payout_adjustment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20202107181022_added_entity_UserPersonalisation.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/sql/quartz_tables.sql" relativeToChangelogFile="false"/>
+    <!--<include file="config/liquibase/changelog/202027071814_Added_Feature_Privlige_PayoutAdjustment_DML.xml" relativeToChangelogFile="false"></include>-->
+    <include file="config/liquibase/sql/user_organizationMapping_unique_contraints.sql" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20202010103720_added_invoice_list__StagingTable.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20202210123720_added_Department_hsc_counsumption__StagingTable.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201028120000_added_columns_SAR_MCR_INVLIST_DHC_concept.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/202030124122_DML_for_module_feature_privilege.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/role_dml.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20202102110100_feat_8220_service_type_value_set_dml.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20201104182000_added_entity_DoctorPayoutAdjustment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201110130000_added_columns_MCR_staging.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201111110000_added_columns_services_analysis_staging.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20200201130000_added_entity_HealthcareServiceCentre.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201223064634_added_entity_MisReport.xml" relativeToChangelogFile="false"></include>
+    <include file="config/liquibase/changelog/20210106124055_added_entity_DepartmentRevenueCalculation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/2021010612471254_added_entity_DepartmentPayoutAdjustment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210106125954_added_entity_constraints_DepartmentPayoutAdjustment.xml" relativeToChangelogFile="false"></include>
+
+    <include file="config/liquibase/changelog/20180115090100_added_entity_WidgetMaster.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180115090101_added_entity_UserDashboard.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180115090102_added_entity_UserDashboardWidget.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180115090102_added_entity_constraints_UserDashboardWidget.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180115200501_added_widget_master_dml.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210119125100_added_entity_AdmissionDischargeStaging.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210120180000_added_etl_concept_admissionstaging_added_index.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20210121190000_added_colum_admission_numbr_service_analysis_staging.xml" relativeToChangelogFile="false"/>
+
+</databaseChangeLog>

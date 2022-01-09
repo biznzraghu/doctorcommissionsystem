@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity PayoutDetails.
+    -->
+    <changeSet id="20191212112937-1" author="jhipster">
+        <createTable tableName="payout_details">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="commencement_date" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="contract_end_date" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="minimum_assured_amount" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="minimum_assured_validity" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="maximum_payout_amount" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="upload_contract" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="visit_type" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="discount" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="payout_range" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="applicable_invoices" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="material_reduction" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="exception" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="comments" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="user_details_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_payout_details_user_details_id" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="payout_details" columnName="commencement_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="payout_details" columnName="contract_end_date" columnDataType="datetime"/>
+    </changeSet>
+
+    <changeSet id="20201001150001-1" author="anurag">
+        <addColumn tableName="payout_details">
+            <column name="iu_datetime" type="timestamp" defaultValue="now()">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

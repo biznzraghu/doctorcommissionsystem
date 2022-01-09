@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity PayoutRange.
+    -->
+    <changeSet id="20200505180000-addedprimarykey" author="Animesh">
+
+        <dropPrimaryKey tableName="department_payout" />
+        <addPrimaryKey columnNames="id, version"
+                       tableName="department_payout"/>
+
+        <dropPrimaryKey tableName="payout_range" />
+        <addPrimaryKey columnNames="id, version"
+                       tableName="payout_range"/>
+
+        <dropPrimaryKey tableName="applicable_consultant" />
+        <addPrimaryKey columnNames="id, version"
+                       tableName="applicable_consultant"/>
+
+        <dropPrimaryKey tableName="department_consumption" />
+        <addPrimaryKey columnNames="id, version"
+                       tableName="department_consumption"/>
+
+        <dropPrimaryKey tableName="hsc_consumption" />
+        <addPrimaryKey columnNames="id, version"
+                       tableName="hsc_consumption"/>
+
+    </changeSet>
+    <changeSet id="20202907110000-addedprimarykey" author="Animesh">
+
+        <dropPrimaryKey tableName="department_payout" />
+        <addPrimaryKey columnNames="id"
+                       tableName="department_payout"/>
+
+        <dropPrimaryKey tableName="payout_range" />
+        <addPrimaryKey columnNames="id"
+                       tableName="payout_range"/>
+
+        <dropPrimaryKey tableName="applicable_consultant" />
+        <addPrimaryKey columnNames="id"
+                       tableName="applicable_consultant"/>
+
+        <dropPrimaryKey tableName="department_consumption" />
+        <addPrimaryKey columnNames="id"
+                       tableName="department_consumption"/>
+
+        <dropPrimaryKey tableName="hsc_consumption" />
+        <addPrimaryKey columnNames="id"
+                       tableName="hsc_consumption"/>
+        <addColumn tableName="department_payout">
+            <column name="starting_version" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="current_version" type="integer">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+    </changeSet>
+    <changeSet id="20202907112022-2" author="anurag">
+        <addForeignKeyConstraint baseColumnNames="department_payout_id"
+                                 baseTableName="service_item_exception"
+                                 constraintName="fk_service_item_exception_department_payout_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="department_payout"/>
+    </changeSet>
+
+</databaseChangeLog>

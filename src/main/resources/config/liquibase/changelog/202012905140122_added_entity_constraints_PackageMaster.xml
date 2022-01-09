@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity PackageMaster.
+    -->
+    <changeSet id="202012905140122-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="service_group_id"
+                                 baseTableName="package_master"
+                                 constraintName="fk_package_master_service_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="group_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="billing_group_id"
+                                 baseTableName="package_master"
+                                 constraintName="fk_package_master_billing_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="group_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="main_procedure_id"
+                                 baseTableName="package_master"
+                                 constraintName="fk_package_master_main_procedure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="service_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="part_of_id"
+                                 baseTableName="package_master"
+                                 constraintName="fk_package_master_part_of_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="package_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="financial_group_id"
+                                 baseTableName="package_master"
+                                 constraintName="fk_package_master_financial_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="group_master"/>
+
+    </changeSet>
+</databaseChangeLog>

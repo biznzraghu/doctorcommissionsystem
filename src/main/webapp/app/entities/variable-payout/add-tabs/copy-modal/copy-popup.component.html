@@ -1,0 +1,103 @@
+<section class="modal-header">
+    <h3 class="modal-title" jhiTranslate="arthaApp.variable-payout.modal-header.copyRules">Copy Rules</h3>
+</section>
+<div class="copy-rules">
+    <div class="copy-modal modal-body pt-0 pb-0"  [ngClass]="isExistingRules ? 'copy-height' : ''">
+        <div class="row">
+            <span  *ngIf="isVariablePayout === true" class="pt-3 pl-3 pb-1 copy-label" jhiTranslate="arthaApp.variable-payout.tab-headers.employeeNameAndCode">Employee Name/Code</span>
+            <span  *ngIf="isVariablePayout === false" class="pt-3 pl-3 pb-1 copy-label" jhiTranslate="arthaApp.variable-payout.tab-headers.templateNameAndCode">Template Name/Code</span>
+            <div class="col-12 pb-3">
+                <div class="input-group search-btn list-header-search border-1">
+                    <span *ngIf="isVariablePayout === true" class="input-group-addon  border-0" id="list-header-search-input" style="border-right:0px;">
+                        <i class="fa fa-search" *ngIf="!this.isDataSearching"></i>
+                        <i class="fa fa-spinner fa-spin" *ngIf="this.isDataSearching"></i>
+                    </span>
+                    <span *ngIf="isVariablePayout === false" class="input-group-addon  border-0" id="list-header-search-input" style="border-right:0px;">
+                        <i class="fa fa-search" *ngIf="!this.isTemplateSearching"></i>
+                        <i class="fa fa-spinner fa-spin" *ngIf="this.isTemplateSearching"></i>
+                    </span>
+                    <input 
+                        *ngIf="isVariablePayout === true"
+                        style="width: 91%;" 
+                        id="employeeInputDebounce" 
+                        type="text" 
+                        class="athma-form-control border-0 w-full" 
+                        placeholder="Search by Employee No./Name"
+                        [(ngModel)]="searchText" 
+                        [ngbTypeahead]="employeeSearchTypeahead" 
+                        #Empinput 
+                        [inputFormatter]="employeeSearchData" 
+                        [resultTemplate]="employeeSearchTemplate"
+                        (selectItem)="onSelectEmployee($event)" 
+                    />
+                    <span *ngIf="searchText" (click)="clearSearch()" class="input-group-addon athma-pointer border-0" aria-describedby="list-header-search-input">
+                        <i class="icon-cross"></i>
+                    </span>
+                    <input
+                        *ngIf="isVariablePayout === false"
+                        style="width: 91%;"
+                        id="employeeInputDebounce"
+                        type="text" 
+                        class="athma-form-control border-0 w-full"  
+                        placeholder="Search by Template Code/Name"
+                        [ngbTypeahead]="templateSearchTypeahead" 
+                        [inputFormatter]="templateInputFormatter" 
+                        [(ngModel)]="templateSearch"
+                        [resultFormatter]="templateResultFormatter" 
+                        (selectItem)="onSelectTemplate($event)"
+                    />
+                    <span *ngIf="templateSearch" (click)="clearTemplate()" class="input-group-addon athma-pointer border-0" aria-describedby="list-header-search-input">
+                        <i class="icon-cross"></i>
+                    </span>
+                </div>
+
+                <div class="row select-payout-row" *ngIf="isExistingRules">
+                    <div class="col-12 p-0" *ngIf="selectedValue && selectedValue.displayName">
+                        <div class="athma-radio-container pb-1" id="lowp" style="display:block !important;">
+                            <input id="keep_rules" name="priorityGrp" type="radio" value="true">
+                            <label for="keep_rules" class="copy-overflow">
+                                <span>Keep existing rules of {{variablePayoutObj?.employee?.displayName}}</span>
+                            </label>
+                            <div class="athma-radio-button normal"></div>
+                        </div>
+                        <div class="athma-radio-container pb-1" id="lowp" style="display:block !important;">
+                            <input id="remove_rules" name="priorityGrp" type="radio" value="false" checked>
+                            <label for="remove_rules" class="copy-overflow">Remove existing rules of {{variablePayoutObj?.employee?.displayName}}</label>
+                            <div class="athma-radio-button normal"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 p-0" *ngIf="selectedTemplate && selectedTemplate.templateName">
+                        <div class="athma-radio-container pb-1" id="lowp" style="display:block !important;">
+                            <input id="keep_rules" name="priorityGrp" type="radio" value="true" (change)="templateRuleSelect($event)">
+                            <label for="keep_rules" class="copy-overflow">
+                               Keep existing rules of {{templateInfo.templateName}}</label>
+                            <div class="athma-radio-button normal"></div>
+                        </div>
+                        <div class="athma-radio-container pb-1" id="lowp" style="display:block !important;">
+                            <input id="remove_rules" name="priorityGrp" type="radio" value="false" (change)="templateRuleRemove($event)" checked>
+                            <label for="remove_rules" class="copy-overflow">Remove existing rules of {{templateInfo.templateName}}</label>
+                            <div class="athma-radio-button normal"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template class="item-list" #employeeSearchTemplate let-r="result" let-t="term">
+            <li>
+                <div class="d-flex align-items-center pl-2">
+                    <span> {{ r?.employeeNumber ? r?.employeeNumber : '-' }}
+                        <span class="pr-1" *ngIf="r?.displayName">
+                            <b class="text-gray">|</b>
+                        </span>
+                        {{r?.displayName }}
+                    </span>
+                </div>
+            </li>
+        </ng-template>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="athma-btn athma-btn-secondary" jhiTranslate="entity.action.cancel" (click)="cancel()">Cancel</button>
+    <button class="athma-btn athma-btn-primary" jhiTranslate="entity.action.copy" (click)="copy()" [disabled]="!isExistingRules">Copy</button>
+</div>

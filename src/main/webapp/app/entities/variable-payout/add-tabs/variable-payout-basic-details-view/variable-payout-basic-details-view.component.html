@@ -1,0 +1,178 @@
+<!-- Payout Details start-->
+<div class="variable-payout-container mb-3">
+    <div class="col-sm-12 pr-0 heading pl-2 pb-3 border-bottom">
+        <span jhiTranslate="arthaApp.variable-payout.basic-details.payoutDetails">Payout Details</span>
+    </div>
+    <div class="row p-0 mr-0 pl-2">
+        <div class="col-sm-2 pr-0">
+            <label class="athma-form-label d-block">
+                <span jhiTranslate="arthaApp.variable-payout.basic-details.commencementDate">Commencement
+                    Date</span>
+            </label>
+            <div class="input-group">
+                {{variablePayoutObj?.commencementDate | date: dateFormat}}
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <label class="athma-form-label d-block">
+                <span jhiTranslate="arthaApp.variable-payout.basic-details.contractEndDate">Contract End
+                    Date</span>
+                <span class="icon-info" placement="right" tooltipClass="tooltip-text-container"
+                    ngbTooltip="Payout will be generated only till this date"></span>
+            </label>
+            <div>
+                {{variablePayoutObj?.contractEndDate | date: dateFormat}}
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <label>
+                <span jhiTranslate="arthaApp.variable-payout.basic-details.minimumAssuredAmount">Minimum Assured
+                    Amount</span>
+            </label>
+            <div>
+                {{variablePayoutObj?.minAssuredAmount}}
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <label class="athma-form-label d-block">
+                <span jhiTranslate="arthaApp.variable-payout.basic-details.minimumAssuredValidity">Minimum
+                    Assured Validity</span>
+            </label>
+            <div>
+                {{variablePayoutObj?.minAssuredValidityDate | date: dateFormat}}
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <label>
+                <span jhiTranslate="arthaApp.variable-payout.basic-details.maximumPayoutAmt">Maximum Payout
+                    Amt</span>
+            </label>
+            <div>
+                {{variablePayoutObj?.maxPayoutAmount}}
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <label>
+                <span jhiTranslate="arthaApp.variable-payout.basic-details.status">Status</span>
+            </label>
+            <div>
+                <jhi-athma-switch name="active" [checked]="variablePayoutObj?.status" disabled="true">
+                </jhi-athma-switch>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Payout Details End-->
+
+<!-- Department Revenue Benefit Start-->
+<div class="variable-payout-container mb-3">
+    <div class="col-sm-12 pr-0 heading pl-2 pb-3 mb-1 border-bottom">
+        <span jhiTranslate="arthaApp.variable-payout.basic-details.departmentRevenueBenefit">Department Revenue
+            Benefit</span>
+        <span class="icon-info" placement="right"
+            tooltipClass="tooltip-text-container department-length-of-stay-tooltip"
+            ngbTooltip="Department revenue benefit will allot the % of the department revenue to the associate based on the allotted pool revenue which is configured in Dept revenue configuration. If the type is selected as “Fixed” then a fixed % of the entered value will be allotted as Dept Revenue and if it is selected as “Contribution Based” then based on the user contribution to the department revenue it will arrive at the percentage."></span>
+    </div>
+    <table class="table athma-table mb-0">
+        <thead>
+            <tr>
+                <th width="40%" class="pl-2">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.department">Department</span>
+                </th>
+                <th width="20%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.revenueBenefitType">Revenue Benefit
+                        Type</span>
+                </th>
+                <th width="20%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.payoutPercentage">Payout
+                        Percentage(%)</span>
+                </th>
+                <th width="20%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.upperLimit">Upper Limit</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container
+                *ngFor="let departmentRevenueBenefit of variablePayoutObj?.departmentRevenueBenefits; let Index = index">
+                <tr class="athma-pointer on-hover">
+                    <td width="40%" class="pl-2">
+                        {{departmentRevenueBenefit?.department?.code ? departmentRevenueBenefit?.department?.code : '-'}}
+                        |
+                        {{departmentRevenueBenefit?.department?.name ? departmentRevenueBenefit?.department?.name : '-'}}
+                    </td>
+                    <td width="25%">
+                        {{departmentRevenueBenefit?.revenueBenefitType ? departmentRevenueBenefit?.revenueBenefitType : '-'}}
+                    </td>
+                    <td width="20%">
+                        {{departmentRevenueBenefit?.payoutPercentage ? departmentRevenueBenefit?.payoutPercentage : '-'}}
+                    </td>
+                    <td width="20%">
+                        {{departmentRevenueBenefit?.upperLimit ? departmentRevenueBenefit?.upperLimit : '-'}}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+<!-- Department Revenue Benefit End-->
+
+<!-- Length of Stay Benefit Start-->
+<div class="variable-payout-container mb-3">
+    <div class="col-sm-12 pr-0 heading pl-2 pb-3 mb-1 border-bottom">
+        <span jhiTranslate="arthaApp.variable-payout.basic-details.lengthOfStayBenefit">Length of Stay
+            Benefit</span>
+        <span class="icon-info" placement="right"
+            tooltipClass="tooltip-text-container department-length-of-stay-tooltip"
+            ngbTooltip="If case of “Average” the payout will be given only if the criteria matches. ALOS for a doc will be calculated based on all the IP patients that are admitted under him (for the selected services Final invoice) and the if average stay duration of all the patients is less than the entered days value. If the criteria matches then for the cases where discharge is done earlier than the entered average value, payout amount will be given for the entered amount. Payable amt = Per day payout amount x No of days (Across patients with early discharge) In case of “Fixed” the payout will be given irrespective of the average for each patient for whom there is an early discharge"></span>
+    </div>
+    <table class="table athma-table mb-0">
+        <thead>
+            <tr>
+                <th width="35%" class="pl-2">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.department">Department</span>
+                </th>
+                <th width="15%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.lengthOfStayCriteria">Length of Stay
+                        Criteria</span>
+                </th>
+                <th width="10%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.days">Days</span>
+                </th>
+                <th width="15%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.perDayPayoutAmount">Per Day Payout
+                        Amount</span>
+                </th>
+                <th width="30%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.services">Services</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container
+                *ngFor="let lengthOfStayBenefit of variablePayoutObj?.lengthOfStayBenefits; let Index = index">
+                <tr class="athma-pointer on-hover">
+                    <td width="35%" class="pl-2">
+                        {{lengthOfStayBenefit?.department?.code ? lengthOfStayBenefit?.department?.code : '-'}} |
+                        {{lengthOfStayBenefit?.department?.name ? lengthOfStayBenefit?.department?.name : '-'}}
+                    </td>
+                    <td width="15%">
+                        {{lengthOfStayBenefit?.lengthOfStayCriteria ? lengthOfStayBenefit?.lengthOfStayCriteria : '-'}}
+                    </td>
+                    <td width="10%">
+                        {{lengthOfStayBenefit?.days ? lengthOfStayBenefit?.days : '-'}}
+                    </td>
+                    <td width="15%">
+                        {{lengthOfStayBenefit?.perDayPayoutAmount ? lengthOfStayBenefit?.perDayPayoutAmount : '-'}}
+                    </td>
+                    <td width="30%" (click)="applicableServicesModal(Index)">
+                        <span
+                            *ngIf="lengthOfStayBenefit?.stayBenefitServices?.length">{{lengthOfStayBenefit?.stayBenefitServices[0]?.name || lengthOfStayBenefit?.stayBenefitServices[0]?.serviceName}}</span>
+                        <span style="font-weight: 700; color: #1AB394;" *ngIf="lengthOfStayBenefit?.stayBenefitServices?.length > 1">
+                            +{{lengthOfStayBenefit?.stayBenefitServices?.length - 1}}</span>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>

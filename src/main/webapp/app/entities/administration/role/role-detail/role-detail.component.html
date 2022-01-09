@@ -1,0 +1,64 @@
+<section class="role-dialog-page">
+  <jhi-athma-page-header *ngIf="role">
+    <jhi-artha-view-details-header (showAuditVersion)="showAuditVersion()"
+      (backToList)="previousState()" [viewDetailsHeaderOptions]="headerOptions"
+      (searchResult)="searchResult($event)">
+    </jhi-artha-view-details-header>
+  </jhi-athma-page-header>
+  <article class="role-form" *ngIf="role">
+      <dl class="row form-dl four-column-form mb-0 pb-0">
+
+        <dd>
+          <div class="athma-form-group">
+            <label>
+              <span jhiTranslate="gatewayApp.role.label.name">Name</span>
+            </label>
+            <div class="form-group">
+              <p>{{role?.name}}</p>
+            </div>
+          </div>
+        </dd>
+
+        <dd>
+          <div class="athma-form-group">
+            <label>
+              <span jhiTranslate="gatewayApp.role.label.desc">Description</span>
+            </label>
+            <div class="form-group">
+              <p>{{role?.description}}</p>
+            </div>
+          </div>
+        </dd>
+
+        <dd>
+          <div class="athma-form-group">
+            <label>
+              <span jhiTranslate="gatewayApp.role.label.status">Active</span>
+            </label>
+            <div class="form-group">
+              <jhi-athma-switch class="athma-form-control pl-0 pt-0"
+                                [(ngModel)]="role.active"></jhi-athma-switch>
+            </div>
+          </div>
+        </dd>
+
+      </dl>
+  </article>
+
+  <article class="privileges-and-role">
+    <header class="d-flex align-items-center">
+      <h2 class="mx-3" jhiTranslate="gatewayApp.role.header.privilegesAndRoles">Privileges & Roles</h2>
+    </header>
+    <div class="card-block  card-body privilage-role-panel p-0">
+      <jhi-assigned-privileges *ngIf="role" [privileges]="role?.privileges"
+        [showAddFeatureBtn]="false">
+      </jhi-assigned-privileges>
+      <jhi-assigned-roles  *ngIf="role" [roles]="role.roles"
+         [showAddRoleBtn]="false"></jhi-assigned-roles>
+    </div>
+  </article>
+
+  <article>
+
+  </article>
+</section>

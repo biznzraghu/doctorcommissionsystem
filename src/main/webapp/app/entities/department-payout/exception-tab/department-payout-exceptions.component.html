@@ -1,0 +1,80 @@
+<div class="department-payout" [class.disabled]="formDisabled">
+    <div class="col-md-12 p-0 tbl-div-hg-47 ">
+        <table class="table athma-table mb-0">
+            <thead>
+                <tr>
+                    <th width="16%">
+                        <span jhiTranslate="arthaApp.variable-payout.rules.type">Type</span>
+                    </th>
+                    <th width="80%">
+                        <span jhiTranslate="arthaApp.variable-payout.rules.value">Value</span>
+                    </th>
+                    <th width="4%">
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="md-table">
+                <tr style="background:#e5e5e5;">
+                    <td style="width: 16%;">
+                        <ng-select name="netGross" id="netGrossId" [clearable]="true" [items]="typeList"
+                            placeholder="Select" bindLabel="name" bindValue="code" [(ngModel)]="selectedType"
+                            notFoundText="No results found" [clearable]="true" clearAllText=""
+                            (change)="onChangeType($event)">
+                        </ng-select>
+                    </td>
+
+                    <td width="80%" class="pr-0">
+                        <div class="athma-search-typeahead-container">
+                            <div class="athma-search-typeahead position-relative">
+                                <span *ngIf="!serviceSearching" class="fa fa-search athma-typehead-search-left"
+                                    style="top:8px !important;position:absolute"></span>
+                                <span *ngIf="serviceSearching"
+                                    class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left "
+                                    style="top:8px !important; position:absolute"></span>
+                                <input id="sponsor-typeahead-format" name="sponsor-typeahead" type="text" style="max-width:1100px !important"
+                                    class="athma-form-control" [(ngModel)]="serviceSelected"
+                                    (selectItem)="onSelectUserfromTyeahead($event)" [ngbTypeahead]="searchUserTypehead"
+                                    [resultFormatter]="displayFormatUserTypeheadData"
+                                    [inputFormatter]="inputFormatUserTypeheadData" />
+                                <span *ngIf="serviceSelected" (click)="clearSearch()" class="athma-pointer border-0"
+                                    style="position: absolute !important; bottom: 10px; right: 10px;"
+                                    aria-describedby="list-header-search-input">
+                                    <i class="icon-cross"></i>
+                                </span>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td width="4%" class="pr-0">
+                        <button class="adm-icon-button mt-1"
+                            [ngClass]="{'disabledLink':(serviceItemException.value ===null || serviceItemException.value ===undefined || serviceItemException.exceptionType ===null || serviceItemException.exceptionType ===undefined)}">
+                            <i aria-hidden="true" class="fa fa-plus-circle fa-2x" style="font-size: 1.5em;"
+                                (click)="addExceptions()"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngFor="let serviceExp of serviceItemExceptionList; let i=index;">
+                    <td class="text-left pl-3" style="width: 16%">
+                        <span>{{displayExcptParams(serviceExp)}}</span>
+                    </td>
+                    <td class="text-left pl-3" style="width: 80%">
+
+                        <span>{{serviceExp?.value?.name}}</span>
+                    </td>
+
+                    <td class="pr-2 text-left" style="width: 4%">
+                        <div class="hideicons">
+                            <span (click)="deleteRange(serviceExp)" class="athma-pointer">
+                                <i class="icon-cross" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="noRecordFound" class="d-flex justify-content-center align-items-center no-record-found">
+        <i style="font-size:32px" class="icon-audit_audit" aria-hidden="true"></i>
+        <span style="font-size:18px">Exceptions</span>
+    </div>
+</div>

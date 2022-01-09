@@ -1,0 +1,75 @@
+<jhi-athma-page-header [height]="75"> <!--[height]="70" for tab view-->
+    <jhi-athma-list-header [title]="title" [createBtnTitle]="createBtnTitle" (searchItem)='search($event)' (clearSearch)='clear()' (openNew)='createGroup()'
+        [options]="options">
+    </jhi-athma-list-header>
+</jhi-athma-page-header>
+<div class="row">
+    <div class="col-sm-12 fixed-header-table">
+        <div class="fixed-header-table-head-container">
+                <table class="table athma-table fixed-header-table-head mb-0">
+                    <thead class="dark-table-heading md-table">
+                        <tr arthaSort [(ascending)]="reverse" [(predicate)]="predicate" [callback]="reset.bind(this)"> 
+                            <th style="width:20%">
+                                <span class="item-heading">Code</span>
+                            </th>
+                            <th style="width:40%" arthaSortBy="name.sort">
+                                <span class="item-heading" jhiTranslate="arthaApp.group.name">Name</span>
+                                <span class="fa fa-sort"></span>
+                            </th>
+                            <th style="width:20%" arthaSortBy="type.display.sort">
+                                <span class="item-heading"  jhiTranslate="arthaApp.group.type">Type</span>
+                                <span class="fa fa-sort"></span>
+                            </th>
+                            <th style="width:20%" arthaSortBy="active.sort">
+                                <span class="item-heading" jhiTranslate="arthaApp.group.status">Status</span>
+                                <span class="fa fa-sort fa-sort-desc"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+        </div>
+        <!-- <div class=""> -->
+            <div class="support-dialog infinite-scroll-table ps">
+                <div class="infinite-scroll-table ps position-relative" infinite-scroll debounce [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="2"
+                    [infiniteScrollThrottle]="300" [scrollWindow]="false" [style.height.px]="setInfiniteScrollHeight()" (scrolled)="loadPage(page + 1)"
+                    [perfectScrollbar]="config">
+                    <table class="table athma-table fixed-header-table-body">
+                        <tbody class="md-table" *ngIf="groups?.length > 0">
+                            <tr class="on-hover" *ngFor="let group of groups; trackBy: trackId; let i = index;" (click)="goToDetailPage(group.id)">
+                                <td style="width:20%">
+                                    <!-- {{group?.code ? group?.code : '-'}} -->
+                                    <jhi-athma-string-manipulation [stringModified]="group?.code ? group?.code :'-' "
+                                        [stringLength]="40" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </td>
+                                <td style="width:40%">
+                                    <!-- {{group?.name ? group?.name : '-'}} -->
+                                    <jhi-athma-string-manipulation [stringModified]="group?.name ? group?.name :'-' "
+                                        [stringLength]="40" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </td> 
+                                <td style="width:20%">
+                                    <!-- {{group?.type ? group?.type?.display : '-'}} -->
+                                    <jhi-athma-string-manipulation [stringModified]="group?.type ? group?.type?.display :'-' " 
+                                        [stringLength]="40" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </td>  
+                                <td style="width:20%">
+                                    <span class="athma-status-label" [ngClass]="(group.active) ? 'status-active' : 'status-inactive'">{{group.active | activeAsStatus }}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot *ngIf="groups?.length === 0">
+                            <tr>
+                                <td colspan="9" class="athma-no-records">
+                                    <span jhiTranslate="global.common.no-records-found"></span>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+</div>
+<jhi-header-breadcrumb></jhi-header-breadcrumb>

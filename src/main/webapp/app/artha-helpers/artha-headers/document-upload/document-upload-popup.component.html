@@ -1,0 +1,97 @@
+<div style="width: 532px;">
+<section class="modal-header">
+    <h3 class="modal-title">{{headerTitle}}</h3>
+</section>
+<div class="modal-body">
+    <div class="document-upload popup-parameter-container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="modal-body attach-file">
+                    <div class="row">
+                        <div class="col-sm-12 pl-1 pr-1" >
+                            <table class="table athma-table mb-0" *ngIf="saveDocuments?.length > 0">
+                                <thead>
+                                    <tr>
+                                        <th><span class="semi-bold">File Name </span></th>
+                                        <!-- <th class="text-center"><span class="semi-bold">Document Class</span></th>
+                                        <th><span class="semi-bold">Document Type</span></th> -->
+                                        <th><span class="semi-bold">File Size </span></th>
+                                        <th></th>
+                                        
+                                    </tr>
+                                    <tr class="filename-container" style="padding-top:0px !important" *ngFor="let file of saveDocuments;let i=index;">
+                                        <th> <span class="semi-bold">
+                                            <jhi-athma-string-manipulation [stringModified]="file.fileName" [stringLength]="18" [tooltipDisplay]="true">
+                                            </jhi-athma-string-manipulation>
+                                        </span></th>
+                                        <!-- <th class="text-center" style="width: 25%">
+                                            <select class="athma-form-control athma-flexible" name="documentClass{{i}}" required (change)="documentClassSelect(i)" [(ngModel)]="file.documentClass">
+                                                <option [ngValue]="null" selected disabled>Select</option>
+                                                <option *ngFor="let value of valueSetList" [ngValue]="value" >{{value.name}}</option>
+                                            </select>
+                                        </th>
+                                        <th class="text-center" style="width: 25%">
+                                            <select class="athma-form-control athma-flexible" name="type{{i}}" required [(ngModel)]="file.type">
+                                                <option [ngValue]="null" selected disabled>Select</option>
+                                                <option *ngFor="let list of file.typeList" [ngValue]="list" >{{list.display}}</option>
+                                            </select>
+                                        </th> -->
+                                        <th>
+                                            <span class="size-text">{{file.fileSize}}KB</span>                                            
+                                        </th>
+                                        <th>
+                                            <span class="icon-delete athma-pointer" [ngbPopover]="removeFilePopover" placement="bottom-right" #removeFileRef="ngbPopover"
+                                                (clickOutside)="removeFileRef.close();">
+                                            </span>
+                                        </th>
+                                        <ng-template #removeFilePopover>
+                                            <div class="popover-container width-225">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <p>Do you want to remove the files?</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <button class="athma-btn athma-btn-secondary pull-left ml-0" (click)="removeFileRef.close();">Cancel</button>
+                                                        <button class="athma-btn athma-btn-priamry-outline pull-right mr-0" (click)="removeFile(i)">Remove</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div *ngIf = "saveDocuments.length < 1 && !isMultipleFiles" class="upload-container" (drop)="$event.preventDefault();onDrop($event)" (dragover)="$event.preventDefault();$event.stopPropagation();">
+                                <span class="upload-icon">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </span>                               
+                               
+                                    <input type="file" class="hidden" style="display: none;" #uploadFileRef name="uploadFile" accept="{{acceptFiles}}"  (change)="uploadFile($event.target)"
+                                /> Drag & Drop files here or
+                                <a href="" (click)="$event.preventDefault();uploadFileRef.click()" [class.disabled]="isDocumentUploading" >Upload</a>
+                                
+                                
+                            </div>
+                            <div *ngIf = "isMultipleFiles" class="upload-container" (drop)="$event.preventDefault();onDrop($event)" (dragover)="$event.preventDefault();$event.stopPropagation();">
+                                <span class="upload-icon">
+                                    <i class="fa fa-upload" aria-hidden="true"></i>
+                                </span>                                
+                                    <input type="file" class="hidden" style="display: none;" #uploadFileRef name="uploadFile" accept="{{acceptFiles}}" multiple (change)="uploadFile($event.target)"
+                                /> Drag & Drop files here or
+                                <a href="" (click)="$event.preventDefault();uploadFileRef.click()" [class.disabled]="isDocumentUploading" >Upload</a>
+                                                              
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="athma-btn athma-btn-secondary" jhiTranslate="arthaApp.payoutAdjustment.button.close" (click)="cancel()" >Close</button>
+    <button class="athma-btn athma-btn-primary" jhiTranslate="arthaApp.payoutAdjustment.button.proceed" (click)="importFromFile()" >Proceed</button>
+</div>
+</div>

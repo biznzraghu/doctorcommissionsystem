@@ -1,0 +1,42 @@
+.login-reset-form {
+  .form-group {
+    .label {
+      font-size: 14px;
+      color: #343536;
+      opacity: 0.7;
+    }
+    .input-group-text {
+      border-radius: 2px;
+      color: #cccccc;
+      font-size: 18px;
+    }
+    input:focus {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    .athma-form-control,
+    .input-group-text {
+      border-color: #cccccc;
+    }
+    .athma-form-control:focus {
+      border-color: #cccccc !important;
+    }
+    .reset-btn {
+      .athma-btn {
+        min-width: 140px !important;
+      }
+    }
+    .visibilty-label {
+      font-size: 14px;
+    }
+  }
+  .reset-pwd-title {
+    color: #343536;
+    opacity: 0.7;
+  }
+  .newPwd,
+  .confirmPwd {
+    min-height: 80px;
+    width: 300px;
+  }
+}

@@ -1,0 +1,37 @@
+<section class="modal-header">
+    <h3 class="modal-title">{{headerTitle}}</h3>
+</section>
+<div class="modal-body p-0">
+    <div style="margin: 10px;">
+        <textarea *ngIf="!isDisplayMode" class="athma-form athma-form-control " rows="3" placeholder="Enter Comment"
+            [(ngModel)]="comment"></textarea>
+    </div>
+
+    <div *ngIf="transctionDetailList && transctionDetailList.length >0 " class=" ps position-relative" infinite-scroll
+        debounce [infiniteScrollDistance]="2" [infiniteScrollThrottle]="200" [scrollWindow]="false"
+        [style.max-height.px]="272" [perfectScrollbar]="config">
+
+        <div style="background-color:#F5F5F5;margin-bottom: 4px; padding: 10px;"
+            *ngFor="let comment of transctionDetailList">
+            <p>
+                <span
+                    style="color: #1AB394;"><b>{{comment?.approvedBy?.displayName ? comment?.approvedBy?.displayName : ( comment?.approvedBy?.firstName && comment?.approvedBy?.lastName ) ? ( comment?.approvedBy?.firstName +' '+ comment?.approvedBy?.lastName ) : comment?.approvedBy?.firstName}}</b></span>
+                {{comment?.comments}}
+            </p>
+            <small>{{comment?.approvedDateTime | date:displayFormat}}</small>
+        </div>
+    </div>
+</div>
+<div class="modal-body p-0" *ngIf=" isDisplayMode && transctionDetailList && transctionDetailList.length == 0 ">
+    <p class="ml-2"> No Comments </p>
+</div>
+<div class="modal-footer">
+    <ng-container *ngIf="!isDisplayMode">
+        <button class="athma-btn athma-btn-secondary" (click)="no()">Cancel</button>
+        <button class="athma-btn athma-btn-auxillary" *ngIf="displayRejectBtn" (click)="yes('REJECTED')">Reject</button>
+        <button [ngClass]="['athma-btn', primaryBtnClass]" (click)="yes()">{{primaryBtnLabel}}</button>
+    </ng-container>
+    <ng-container *ngIf="isDisplayMode">
+        <button class="athma-btn athma-btn-primary" (click)="no()">Close</button>
+    </ng-container>
+</div>

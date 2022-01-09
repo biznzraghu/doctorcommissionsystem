@@ -1,0 +1,91 @@
+<div class="container-fluid p-0 ">
+    <div class="athma-list-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h3><span>{{title}}</span></h3>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-inline justify-content-end">
+                    <!-- Create New Btn -->
+                    <ng-container *jhiHasAnyAuthority="createPrivileges">
+                        <ng-container *ngIf ="title !== 'Variable Payout'" >
+                            <button type="button" class="athma-btn athma-btn-primary" (click)="createNew()"  *ngIf="!options.disableCreate">
+                                <span>
+                                    {{createBtnTitle}}
+                                </span>
+                            </button>
+                        </ng-container>
+                        <!-- Create New Btn -->
+                        <ng-container *ngIf ="title == 'Variable Payout'">    
+                            <div ngbDropdown class="d-flex position-relative" >
+                                <button class="athma-btn athma-btn-primary" id="dropdownBasic1" 
+                                    ngbDropdownToggle>{{createBtnTitle}}</button>
+                                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                    <button class="dropdown-item p-2 athma-pointer" (click)="goToVariablePayout()">Variable Payout</button>
+                                    <button class="dropdown-item p-2 athma-pointer" (click)="goToTemplate()" >Template</button>
+                                </div>
+                                <div class="position-absolute" style="margin-top:3px;background: #B4B4BE;width:1px; content: ''; height: 23px; top:0; right: 0">&nbsp;</div>
+                            </div>          
+                        </ng-container>
+                    </ng-container>
+                    <!-- Search Box -->
+                    <div class="input-group search-btn list-header-search border-1" *ngIf="!options.disableSearch">
+                        <span class="input-group-addon  border-0" id="list-header-search-input" style="border-right:0px;">
+                            <i class="fa fa-search"></i>
+                        </span>
+                        <jhi-input-debounce id="stock-search" delay="500" placeholder="Search" [valueChange]="searchText" (value)="search($event)" className="athma-form-control border-0 w-full">
+                        </jhi-input-debounce>
+                        <span *ngIf="searchText" (click)="clear()" class="input-group-addon athma-pointer border-0"
+                            aria-describedby="list-header-search-input">
+                            <i class="icon-cross"></i>
+                        </span>
+                        <button class="athma-btn  athma-btn-primary-outline mr-0" (click)="saveSearch()" *ngIf="!options.disableAdvanceSearch">
+                            Advanced
+                        </button>
+                    </div>
+                    <!-- Search Box -->
+                    <!-- Export & Audit btn -->
+                    <div class="athma-list-header-btn-group">
+                        <button class="athma-icon-button" id="exportDropdownList" (click)="export()" *ngIf="!options.disableExport">
+                            <i class="fa fa-external-link"></i>
+                        </button>
+                        <button class="athma-icon-button" id="importButton" (click)="importDocument()" *ngIf=" options.disableImport != undefined  && options.disableImport == false">
+                            <i class="icon-import"></i>
+                        </button>
+                        <!-- <button class="athma-icon-button" id="auditLog" (click)="audit()" *ngIf="!options.disableAuditLog">
+                            <i class="icon-import"></i>
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class= "d-flex align-items-center justify-content-end " >
+            <span *ngIf="showClearSearch" class="link pull-right " (click)="clear()" title="Clear Search">Clear Search</span>
+        </div> 
+        <!-- If Tabs Only UI-->
+
+        
+        <div class="row" *ngIf="options.displayTabView && options.displayTabViewList && options.displayTabViewList.length >0">
+            <div class="list-header-tab " *ngFor = "let tabItem of options.displayTabViewList; let i = index" (click)="onTabChange(i)">    
+                <div class="my-1 pb-2 athma-pointer hvr"  style="width: auto"  [ngClass]="{'active-status': options.selectedTabIndex === i }">
+                    <label class="m-0 p-0 active-font-clr athma-pointer" >{{tabItem.label}}</label>
+                    <span class="mx-1 px-1 tasks-badge" *ngIf = "tabItem.count">{{tabItem.count}}</span>
+                </div>               
+            </div>  
+                      
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+ <!-- <div class="my-1 pb-2 ml-3 athma-pointer hvr" style="width: auto" (click)="taskMode = 'abc';" [ngClass]="{'active-status': taskMode === 'abc' }">
+                    <label class="m-0 p-0 active-font-clr athma-pointer">TAB 2</label>
+                    <span class="mx-1 px-1 tasks-badge">12</span>
+                </div>
+                <div class="my-1 pb-2 ml-3 athma-pointer hvr" style="width: auto" (click)="taskMode = 'jbp';" [ngClass]="{'active-status': taskMode === 'jbp' }">
+                    <label class="m-0 p-0 active-font-clr athma-pointer">TAB 3</label>
+                    <span class="mx-1 px-1 tasks-badge">9</span>
+                </div> -->

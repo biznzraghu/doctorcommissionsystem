@@ -1,0 +1,153 @@
+.payout-adjustment {
+  .status-pending-approval,
+  .status-approved,
+  .status-rejected,
+  .status-active,
+  .status-in-active,
+  .status-draft,
+  .status-new {
+    font-size: pixelToRem(11px);
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    line-height: 12px;
+    height: 14px;
+  }
+  .status-pending-approval {
+    background-color: #2196f3;
+    color: #e3f2fd;
+  }
+  .status-approved,
+  .status-active {
+    background-color: #43a047;
+    color: #e8f5e9;
+  }
+  .status-rejected,
+  .status-in-active {
+    background-color: #f44336;
+    color: #ffebee;
+  }
+  .status-draft {
+    background-color: #f06292;
+    color: #feeff4;
+  }
+  .status-new {
+    background-color: #5c6bc0;
+    color: #e8eaf6;
+  }
+  small.detail {
+    color: #605e5c;
+  }
+  .approval-count {
+    color: #1ab394;
+  }
+  .tooltip-inner {
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 10px 30px #00000029;
+    border: 1px solid #eeeeee;
+    color: #080414;
+    opacity: 1;
+  }
+  .arrow::before {
+    border-bottom-color: #fff;
+  }
+  .approval-status-badge {
+    width: 12px;
+    height: 12px;
+    font-size: 10px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .approved-by-border {
+    border-bottom: 1px solid #eeeeee;
+  }
+  .approved {
+    background-color: #4caf50;
+    color: #ffffff;
+    font-size: 8px;
+  }
+  .reject {
+    background-color: #ff0000;
+    color: #ffffff;
+    font-size: 8px;
+  }
+  .icon-msg-fs {
+    font-size: 16px;
+  }
+  .remark-count {
+    background-color: #343536 !important;
+    font-size: 8px;
+    position: absolute;
+    top: 3px;
+    left: 18px;
+    border-radius: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+}
+
+.insert-payout-modal {
+  .select-payout-row {
+    background-color: #eeeeee;
+    height: 40px;
+    padding: 13px;
+    margin-top: 0;
+  }
+  ngb-typeahead-window.dropdown-menu {
+    transform: translate(0px, 28px) !important;
+  }
+  .text-gray {
+    color: #999999;
+  }
+}
+.payout-row-typeahead {
+  ngb-typeahead-window.dropdown-menu {
+    width: 0% !important;
+    max-width: 0% !important;
+    min-width: 0% !important;
+  }
+}
+
+//************************************ ADD EMPLOYEEMENT PAYOUT ADJUSTMENT ***************************************//
+.employee-payout-container {
+  .tbl-div-hg-47 {
+    height: 47px;
+  }
+  .positive-indication {
+    text-align: left;
+    font-style: Bold 12px/17px Open Sans;
+    letter-spacing: 0.1px;
+    color: #01a400;
+    opacity: 1;
+  }
+  .negative-indication {
+    text-align: left;
+    font-style: Bold 12px/17px Open Sans;
+    letter-spacing: 0.1px;
+    color: #f44336;
+    opacity: 1;
+  }
+  .add-payout-controls {
+    background-color: #eeeeee;
+  }
+  .no-record-found {
+    // height: calc(100vh - 221px);
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    opacity: 0.5;
+    background: #fff;
+  }
+  .group-btn {
+    .small-btn {
+      position: relative;
+      font-size: 16px;
+      top: -4px;
+    }
+  }
+  .ng-select .ng-arrow-wrapper {
+    display: none;
+  }
+}

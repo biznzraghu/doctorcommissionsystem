@@ -1,0 +1,62 @@
+<jhi-athma-page-header [height]="70">
+    <jhi-athma-list-header [title]="title" [createBtnTitle]="createBtnTitle" (openNew)="indexAllUtility()" (searchItem)='search($event)'
+        (clearSearch)='clear()' [options]="options" (onSelectedTabChange)="onTabChange($event)">
+    </jhi-athma-list-header>
+</jhi-athma-page-header>
+
+<!-- Index Date Start -->
+<div class="row border-bottom patient-selection m-0 d-flex pt-2">
+    <div class="col-2">
+        <div class="athma-form-group">
+            <label class="athma-field-label font-weight-bold">From Date</label>
+            <div class="input-group">
+                <input name="fromDate" class="athma-form-control indexDisabled" [(ngModel)]="ngxFromDateModel" [options]="indexUtilDatepicker"
+                    ngx-mydatepicker #fromDateDp="ngx-mydatepicker" />
+                <span style="right: 0; position: absolute; font-size: 16px; padding: 6px; color: #787877;" (click)="fromDateDp.toggleCalendar()">
+                    <i class="icon-calendar" aria-hidden="true" style="cursor:pointer;"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="athma-form-group">
+            <label class="athma-field-label font-weight-bold">To Date</label>
+            <div class="input-group">
+                <input name="toDate" class="athma-form-control indexDisabled" [(ngModel)]="ngxToDateModel" [options]="indexUtilDatepicker"
+                    ngx-mydatepicker #toDateDp="ngx-mydatepicker" />
+                <span style="right: 0; position: absolute; font-size: 16px; padding: 6px; color: #787877;" (click)="toDateDp.toggleCalendar()">
+                    <i class="icon-calendar" aria-hidden="true" style="cursor:pointer;"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Index Date End -->
+
+<form name="editForm" disable-sidebar role="form" novalidate #editForm="ngForm" class="athma-form white athma-vertical-scroll p-2" style="height:calc(100vh - 205px);">
+    <!-- <jhi-alert-error></jhi-alert-error> -->
+    <div class="row mr-0">
+        <ng-container *ngFor="let indexUtils of indexUtilList; let parentIndex = index;">
+            <div class="col-sm-12 row pr-0" *ngFor="let util of indexUtils;let subTabIndex=index">
+                <div class="col-sm-12 pr-0" *ngIf="parentIndex=== checkTabStatus(tabStatus)">
+                    <div class="col-sm-12 util-sub-title border-bottom" *ngIf="util.title!='master'">{{util.title | uppercase}}</div>
+                    <div class="row">
+                        <div class="col-sm-6 m-0 row" *ngFor="let indexUtil of util.value;let i = index;">
+                            <div class="col-sm-4" style="padding:0.6rem;font-weight:600;">
+                                <span jhiTranslate="global.menu.index-util.{{indexUtil.entity}}" for="field_master">Master</span>
+                            </div>
+                            <div class="col-sm-4 pr-0">
+                                <input type="text" class="athma-form-control" name="master_{{subTabIndex}}_{{i}}" [(ngModel)]="indexUtil.master" disabled="true" required />
+                            </div>
+                            <div class="col-sm-4 pl-0">
+                                <button type="button" [disabled]="indexUtil.isIndexing" class="athma-btn athma-btn-primary-theme-outline" (click)="doIndex(indexUtil,parentIndex,subTabIndex)">
+                                    <span class="fa fa-refresh" [class.fa-spin]="indexUtil.isIndexing"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</form>

@@ -1,0 +1,220 @@
+<jhi-artha-detail-header [options]="options" (onUserSearchType)="onEmployeeSearch($event)" [searchResultList]="empList" [showEditIcon]="allowToEditDocument"
+    (onUserSelect)="selectedEmployee($event)" (onVersionChange)="onVersionChange($event)" (onOpenComment)="openCommentBlock(true)" (onEditDocument)="onClickEditDocument()" ></jhi-artha-detail-header>
+
+<div *ngIf="isEmployeeSelected">
+    <div class="row pl-2">
+        <div class="col-12 payout-bottom-border">
+            <div class="variable-payout-tabs" style="position:relative;">
+                <ul class="variable-tabs">
+                    <li class="variable-tabs-tab variable-tab" [ngClass]="{'active': activeTab == 0}"
+                        (click)="getTabInfo(0)">
+                        <a href="javascript:void(0)"><span
+                                jhiTranslate="arthaApp.variable-payout.tab-headers.basicDetails">BASIC
+                                DETAILS</span>
+                        </a></li>
+                    <li class="variable-tabs-tab" [ngClass]="{
+                        'variable-tab-disabled': !variablePayoutObj.id,
+                        'variable-tab': variablePayoutObj.id,
+                        'active': activeTab == 1}"
+                        (click)="variablePayoutObj.id ? getTabInfo(1) : '' ">
+                        <a href="javascript:void(0)"><span
+                                jhiTranslate="arthaApp.variable-payout.tab-headers.rules">RULES</span></a></li>
+                    <li class="variable-tabs-tab" 
+                    [ngClass]="{
+                                'variable-tab-disabled': !variablePayoutObj.id,
+                                'variable-tab': variablePayoutObj.id,
+                                'active': activeTab == 2}"
+                        (click)="variablePayoutObj.id ? getTabInfo(2) : '' ">
+                        <a href="javascript:void(0)"><span
+                                jhiTranslate="arthaApp.variable-payout.tab-headers.exceptions">EXCEPTIONS</span></a>
+                    </li>
+                </ul>
+                <div *ngIf=" activeTab === 1">
+                    <span class="pull-right icon-export payout-export" (click)="exportRules()"></span>
+                    <span class="pull-right icon-copy payout-copy" [class.disabled]="this.serviceItemBenefits.length === 0" (click)="copy()"></span>
+                    <span class="pull-right">
+                        <input 
+                            #payoutInput 
+                            type="text" 
+                            id="payoutInput" 
+                            class="athma-form-control rounded-0 payout-search"  
+                            placeholder="Search" 
+                            style="border-right: 0;border-radius:0;" 
+                            name="payoutInput" 
+                            style="max-width:200px;padding-left: 21px; padding-right: 21px;" 
+                            autocomplete="off"
+                            autocomplete="false" 
+                            [(ngModel)]="searchRuleText"
+                            (ngModelChange) = "search($event)"
+                        />
+                        <span  class="fa fa-search payout-search-icon"></span>
+                        <span  class="icon-cross payout-clear-icon athma-pointer" *ngIf="searchRuleText" (click)="clearRuleSearch()"></span>
+                    </span>
+                </div>
+                <div *ngIf=" activeTab === 2">
+                    <span class="pull-right">
+                        <input 
+                            #payoutInput 
+                            type="text" 
+                            id="payoutInput" 
+                            class="athma-form-control rounded-0 payout-exception-search" 
+                            placeholder="Search"
+                            style="border-right: 0;border-radius:0;" 
+                            name="patientInput" 
+                            style="max-width:200px;padding-left: 21px;" 
+                            autocomplete="off" 
+                            autocomplete="false" 
+                        />
+                        <span class="fa fa-search search-left payout-exception-search-icon"></span>
+                        <!-- <span *ngIf="patientSearching" class="fa fa-spinner fa-pulse fa-fw search-left" [style.left]="showSearchIcon ? '40px' : '8px'"
+                                                    [style.top]="inputHeight == 'sm' ? '6px' : '8px'"></span> -->
+                    </span>
+                    <span class="pull-right icon-export payout-export" (click)="exportExceptions()"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="variable-payout">
+        <!-- Basic Detail Start -->
+        <div class="w-100 pl-2 pr-2 pt-2 pb-2 position-relative each-tab-height" [ngStyle]="{'display':(activeTab === 0) ? 'block' : 'none'}"
+            [perfectScrollbar]="config">
+            <jhi-variable-payout-basic-details *ngIf="isEditMode" [organizationCode]="unitCode" [variablePayoutObj]="variablePayoutObj">
+            </jhi-variable-payout-basic-details>
+            <jhi-variable-payout-basic-details-view *ngIf="!isEditMode" [variablePayoutObj]="variablePayoutObj">
+            </jhi-variable-payout-basic-details-view>
+        </div>
+        <!-- Basic Detail End -->
+
+        <!-- Rules Start -->
+        <div class="w-100" [ngStyle]="{'display':(activeTab === 1) ? 'block' : 'none'}">
+            <jhi-variable-payout-rules  [parentData]="variablePayoutObj"
+                                        [viewMode]="(allowToEditDocument || variablePayoutObj.changeRequestStatus === 'APPROVED' || variablePayoutObj.changeRequestStatus === 'REJECTED')? true : !isEditMode"
+                                        [organizationCode]="unitCode"
+                                        [selectedUserId]="selectedEmp?.id ? selectedEmp?.id : this.variablePayoutObj.employeeId" 
+                                        [(rulesDataInstance)]="serviceItemBenefits">
+            </jhi-variable-payout-rules>
+        </div>
+        <!-- Rules End -->
+
+        <!-- Exceptions Start -->
+        <div class="w-100" [ngStyle]="{'display':(activeTab === 2) ? 'block' : 'none'}">
+            <jhi-variable-payout-exceptions [viewMode]="!isEditMode"
+                                            [(templateExceptions)]="variablePayoutObj.serviceItemExceptions">
+            </jhi-variable-payout-exceptions>
+        </div>
+        <!-- Exceptions End -->
+    </div>
+</div>
+<div *ngIf="!isEmployeeSelected" style="margin-top:248px;">
+    <div class="d-flex justify-content-center align-items-center no-record-found">
+        <i style="font-size:32px" class="icon-audit_audit" aria-hidden="true"></i>
+        <span style="font-size:18px;" jhiTranslate="arthaApp.variable-payout.validation.selectEmployee">Select Employee
+            to proceed</span>
+    </div>
+</div>
+<div class="template-search-container fixed-template-hg" 
+[ngStyle]="{'max-height': showMoreTemplate ? 'initial' : '44px'}"
+ *ngIf="isEmployeeSelected && activeTab === 1">
+    <!-- Start of Template Search -->
+    <div class="text-left template-search-body d-flex d-if-wf-90" id="template-search-body">
+        <div class="d-flex align-items-center m-2">
+            <div class="mr-1">Template:</div>
+            <div class="athma-form-group athma-flexible template-search  my-0">
+                <div class="form-group mb-0">
+                    <div class="athma-search-typeahead-container m-0 admission-policy-details-container">
+                        <div class="athma-search-typeahead-border result-table-format">
+                                <input  type="text" 
+                                    class="athma-form-control athma-flexible" 
+                                    style="width: 266px;padding-left:10px;" 
+                                    placeholder="Search Template"
+                                    name="serviceCode" 
+                                    [ngbTypeahead]="templateSearchTypeahead" 
+                                    [inputFormatter]="templateInputFormatter" 
+                                    [ngModel]="templateSearch"
+                                    [resultFormatter]="templateResultFormatter" 
+                                    [focusFirst]="true" 
+                                    (selectItem)="onSelectTemplate($event)" 
+                                    [disabled]= "(allowToEditDocument || variablePayoutObj.changeRequestStatus === 'APPROVED' || variablePayoutObj.changeRequestStatus === 'REJECTED')? true : !isEditMode" />
+                            <span *ngIf="isTemplateSearching" class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left" style="top:8px !important;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <ng-container *ngIf="templateLists && templateLists.length > 0"> -->
+            <div style="display: contents;" *ngIf="templateLists && templateLists.length > 0" [sortablejs]="templateLists" [sortablejsOptions]="sortjsOptions">
+                <div class="athma-tag-container m-2" *ngFor="let templateList of templateLists;let itemIndex = index;">
+                <div class="tag-content">
+                    <span class="tag-number-span">P{{itemIndex+1}}</span>
+                    {{ templateList?.templateName }}
+                </div>
+                <div class="close-tag" (click)="template(templateList)"><i class="icon-info"></i></div>
+                <!-- <span *ngIf="variablePayoutObj.changeRequestStatus !== 'APPROVED'" class="close-tag" (click)="removeTemplate(itemIndex)">x</span> -->
+                <div *ngIf="variablePayoutObj.changeRequestStatus === 'DRAFT' || variablePayoutObj.changeRequestStatus === 'PENDING_APPROVAL'"
+                    class="close-tag ml-0" (click)="removeTemplate(itemIndex)">
+                    <i class="icon-cross"></i>
+                </div>
+            </div>
+            </div>
+            
+        <!-- </ng-container> -->
+        
+    </div>
+    <div class="d-ib-wf-10" *ngIf="showMoreTemplateBtn">
+        <span (click)="onClickShowMore()"> {{showMoreTemplate ? 'View Less' : 'Show More'}} </span>
+    </div>
+    
+    <!-- End of Template Search -->
+</div>
+
+<!-- Button Start -->
+<div class="button-container" *ngIf="showAllBtns">
+    <div class="text-left">
+        <ng-container>
+            <button class="athma-btn athma-btn-secondary" jhiTranslate="entity.action.cancel" 
+                (click)="cancel()">Cancel</button>
+        </ng-container>
+        <ng-container *jhiHasAnyAuthority="modifyPrivileges">
+            <!-- <button class="athma-btn athma-btn-auxillary" jhiTranslate="entity.action.delete"  *ngIf="!allowToEditDocument && variablePayoutObj?.changeRequestStatus === 'DRAFT'"
+                    (click)="delete(variablePayoutObj?.id)">
+                Delete
+            </button> -->
+            <button class="athma-btn athma-btn-auxillary" jhiTranslate="entity.action.delete" *ngIf="!allowToEditDocument && variablePayoutObj?.changeRequestStatus === 'DRAFT'"
+                (click)="delete(variablePayoutObj)">
+                Delete
+            </button>
+        </ng-container>
+    </div>
+    <div class="text-right">
+        <ng-container *jhiHasAnyAuthority="modifyPrivileges">
+            <ng-container
+                *ngIf="variablePayoutObj?.changeRequestStatus === 'DRAFT' || !variablePayoutObj?.changeRequestStatus || variablePayoutObj?.changeRequestStatus === ''">
+                <button class="athma-btn athma-btn-secondary"  (click)="save('DRAFT')"
+                    [disabled]="!isEmployeeSelected">{{buttonHeading}}</button>
+                <button class="athma-btn athma-btn-primary" jhiTranslate="entity.action.sendForApproval"
+                    (click)="save('PENDING_APPROVAL')" [disabled]="!isEmployeeSelected">Send for Approval</button>
+            </ng-container>
+            <ng-container *ngIf="(variablePayoutObj?.changeRequestStatus === 'PENDING_APPROVAL')  && (variablePayoutObj?.createdBy?.id !== preferences?.user?.id) ">
+                <button class="athma-btn athma-btn-auxillary" jhiTranslate="entity.action.approve" (click)="save('APPROVED')"
+                    [disabled]="!isEmployeeSelected">Approve</button>
+                <button class="athma-btn athma-btn-primary" jhiTranslate="entity.action.reject" (click)="save('REJECTED')"
+                    [disabled]="!isEmployeeSelected">Reject</button>
+            </ng-container>
+            <!-- <button class="athma-btn athma-btn-primary" jhiTranslate="entity.action.close"
+                *ngIf="variablePayoutObj?.changeRequestStatus === 'APPROVED' || variablePayoutObj?.changeRequestStatus === 'REJECTED'"
+            (click)="cancel()">Close</button> -->
+        </ng-container>
+    </div>
+</div>
+<div class="button-container justify-content-end" *ngIf="!showAllBtns">
+    <div class="text-right">
+        <button class="athma-btn athma-btn-primary" (click)="cancel()">
+            Close
+        </button>
+    </div>
+</div>
+<!-- Button End -->
+<jhi-header-dialog-breadcrumb [routeUrl]=" '/artha/variable-payouts'" [params]="{ currentTabIndex: 0 }">
+    <span class="navbar-version" jhiTranslate="arthaApp.variable-payout.home.title"></span>
+</jhi-header-dialog-breadcrumb>

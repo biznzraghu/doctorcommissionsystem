@@ -1,0 +1,27 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "packageMaster",
+            "otherEntityName": "PackageMaster",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "valueSetCode",
+            "otherEntityName": "ValueSetCode",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+
+    ],
+    "changelogDate": "20201205140522",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "package_code_mapping",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": true
+}

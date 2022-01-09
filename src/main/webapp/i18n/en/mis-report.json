@@ -1,0 +1,18 @@
+{
+  "arthaApp": {
+    "misReport": {
+      "tbl-headers": {
+        "createdBy": "Created By",
+        "createdDate": "Created Date",
+        "queryParams": "Query Params",
+        "status": "Status"
+      },
+      "button": {
+        "schedule": "Schedule",
+        "refreshReports": "Refresh Reports",
+        "hideFilter": "Hide Filter",
+        "showFilter": "Show Filter"
+      }
+    }
+  }
+}

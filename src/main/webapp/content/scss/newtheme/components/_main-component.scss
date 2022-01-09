@@ -1,0 +1,14 @@
+.main-component {
+  display: flex;
+  // height: calc( 100vh - 64px);
+  height: calc(100vh);
+  .app-content {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+}
+
+.idleTimeout-modal-window {
+  z-index: 10000 !important;
+}

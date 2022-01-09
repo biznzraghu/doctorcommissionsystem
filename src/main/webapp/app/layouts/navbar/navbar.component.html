@@ -1,0 +1,188 @@
+<jhi-alert></jhi-alert>
+<nav class="navbar navbar-toggleable-md jh-navbar">
+
+    <div class="jh-logo-container float-left col-6 pl-0">
+        <a class="jh-navbar-toggler d-block d-sm-none float-right" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars"></i>
+        </a>
+        <a class="float-left athma-app d-none" href="javascript:void(0);" (click)="isAppMenuVisible = !isAppMenuVisible;" [class.active]="isAppMenuVisible" [class.hide]="hideMenu" (clickOutside)="onClickedOutside($event)" *ngIf="isAuthenticated()">
+            <span class="athma-app-icon">
+                <span class="icon-menu"></span>
+            </span>
+            <!--Drop Down -->
+            <!-- <div class="athma-navbar-appmenu">
+                <div class="athma-navbar-appmenu-items" routerLink="" (click)="updateUserMenu(null)">
+                    <div class="athma-module-icon athma-home-icon"></div>
+                    <div class="tile-title">Home</div>
+                </div>
+                <div class="athma-navbar-appmenu-items" (click)="updateUserMenu('administration')">
+                    <div class="athma-module-icon athma-admin-icon"></div>
+                    <div class="tile-title">Administration</div>
+                </div>
+                <div class="athma-navbar-appmenu-items" (click)="updateUserMenu('inventory')">
+                    <div class="athma-module-icon athma-inventory-icon"></div>
+                    <div class="tile-title">Inventory</div>
+                </div>
+                <div class="athma-navbar-appmenu-items" (click)="updateUserMenu('pharmacy')">
+                    <div class="athma-module-icon athma-pharmacy-icon"></div>
+                    <div class="tile-title">Pharmacy</div>
+                </div>
+
+                <div class="athma-navbar-appmenu-items">
+                    <div class="athma-module-icon athma-outpatientcare-icon"></div>
+                    <div class="tile-title">Outpatient Care</div>
+                </div>
+
+                <div class="athma-navbar-appmenu-items">
+                    <div class="athma-module-icon athma-rcm-icon"></div>
+                    <div class="tile-title">RCM</div>
+                </div>
+
+                <div class="athma-navbar-appmenu-items">
+                    <div class="athma-module-icon athma-sms-icon"></div>
+                    <div class="tile-title">SMS</div>
+                </div>
+
+                <div class="athma-navbar-appmenu-items">
+                    <div class="athma-module-icon athma-adt-icon"></div>
+                    <div class="tile-title">ADT</div>
+                </div>
+
+                <div class="athma-navbar-appmenu-items">
+                    <div class="athma-module-icon athma-lims-icon"></div>
+                    <div class="tile-title">LIMS</div>
+                </div>
+
+                <div class="athma-navbar-appmenu-items">
+                    <div class="athma-module-icon athma-ris-icon"></div>
+                    <div class="tile-title">RIS</div>
+                </div>
+
+                <div class="athma-navbar-appmenu-items">
+                    <div class="athma-module-icon athma-ehr-icon"></div>
+                    <div class="tile-title">EHR</div>
+                </div>
+
+                <div class="athma-navbar-appmenu-items">
+                    <div class="athma-module-icon athma-emergencycare-icon"></div>
+                    <div class="tile-title">Emergency Care</div>
+                </div>
+
+                <div class="athma-navbar-appmenu-items">
+                    <div class="athma-module-icon athma-transfusionmedicine-icon"></div>
+                    <div class="tile-title">Transfusion Med.</div>
+                </div>
+            </div> -->
+        </a>
+        <!-- <ng-container *ngIf="headerView">
+            <ng-container *ngTemplateOutlet="headerView"></ng-container>
+        </ng-container> -->
+        <ng-container  *ngIf="headerView">
+            <ng-container *ngTemplateOutlet="headerView"></ng-container>
+        </ng-container>
+    </div>
+
+    <!-- <div class="col-2 text-center">
+        <span class="logo-img m-auto"></span>
+    </div> -->
+    <!--<div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()" *ngIf="isAuthenticated()">-->
+
+    <div class="navbar-collapse collapse col-6 pr-0" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
+       <!-- <span class="navbar-brand"> Doctor Payout</span> -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item" *ngSwitchCase="true">
+                <a class="nav-link icon-link position-relative athma-highlight-focus" (click)="openHelp()" href="javascript:void(0);" title="Notification">
+                    <!-- <span class="icon-help_filled"></span> -->
+                    <img [src]="taskIcon" >
+                </a>
+                <span class="badge badge-light navbar-remarks-badge">
+                    <span style="color: white;">10</span>
+                </span>
+            </li>
+            <li class="nav-item user-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngSwitchCase="true">
+                <!-- <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="account-menu" (click)="closeTaskPanel()"> -->
+                <a class="athma-highlight-focus nav-link p-0 " style="margin-top: -10px;" href="javascript:void(0);">
+                    <span *ngIf="getImageUrl()">
+                        <img [src]="getImageUrl()" class="profile-image rounded-circle" alt="Avatar">
+                    </span>
+                    <span *ngIf="!getImageUrl()">
+                            <i class="fa fa-user-circle" aria-hidden="true"></i>
+                            <!-- <img [src]="userIcon" > -->
+                    </span>
+                    <div class="nav-userPref">
+                        <span class="nav-username">
+                            {{userIdentity?.firstName ? userIdentity?.firstName : ''}}
+                        </span>
+                        <span class="nav-unit">
+                            <!-- <jhi-athma-string-manipulation class="nav-unit" [stringModified]="hospital?.name" [stringLength]="21" [tooltipDisplay]="true">
+                            </jhi-athma-string-manipulation> -->
+                            <!-- <jhi-athma-string-manipulation class="nav-unit" 
+                                [stringModified]="hospital?.name" [stringLength]="21"
+                                [tooltipDisplay]="true">
+                            </jhi-athma-string-manipulation> -->
+                            <jhi-athma-string-manipulation [suffixCharacterLength]="12" [prefixCharacterLength]="10" [stringModified]="hospital?.name"
+                                [stringLength]="20" [tooltipDisplay]="true">
+                            </jhi-athma-string-manipulation>
+                        </span>
+                    </div>
+                    <!-- <b class="caret"></b> -->
+                </a>
+                <!-- </a> -->
+                <!-- <ul class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+
+
+                </ul> -->
+            </li>
+
+            <li ngbDropdown class="dropdown pointer logPanel ml-1">
+                <a class="nav-link dropdown-toggle athma-highlight-focus pl-0 pr-0" ngbDropdownToggle href="javascript:void(0);" id="account-more" title="More">
+                    <span class="icon-more"></span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right" ngbDropdownMenu style="z-index: 5000;">
+                    <li *ngSwitchCase="false">
+                        <a class="dropdown-item" (click)="login()" id="login">
+                            <span jhiTranslate="global.menu.account.login">Sign in</span>
+                        </a>
+                    </li>
+                    <li *ngSwitchCase="true">
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="openChangeUnitDialog()" id="changeUnit">
+                            <span>Preferences</span>
+                        </a>
+                    </li>
+                    <ng-container *jhiHasAnyAuthority="createPrivileges">
+                        <li *ngSwitchCase="true">
+                            <a class="dropdown-item" href="javascript:void(0)" (click)="navigateTo('administrator/index-util')" id="changeUnit">
+                                <span>Index Utility</span>
+                            </a>
+                        </li>
+                        <li *ngSwitchCase="true">
+                            <a class="dropdown-item" href="javascript:void(0)" (click)="navigateTo('scheduler')" id="scheduler">
+                                <span>Scheduler</span>
+                            </a>
+                        </li>
+                    </ng-container>
+                    <li *ngSwitchCase="true">
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="openAbout()">
+                            <!-- <i class="fa fa-fw fa-registered" aria-hidden="true"></i> -->
+                            <span>About</span>
+                        </a>
+                    </li>
+
+                    <li *ngSwitchCase="true">
+                        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()" id="logout">
+                            <!-- <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i> -->
+                            <span jhiTranslate="global.menu.account.logout">Sign out</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+<ng-template #defaultHeaderView>
+    <a class="navbar-brand float-left" routerLink="/" (click)="updateUserMenu(null)">
+        <span jhiTranslate="global.app-title" class="navbar-brand">Artha</span>
+    </a>
+</ng-template>
+<!-- Reject reason template - End-->

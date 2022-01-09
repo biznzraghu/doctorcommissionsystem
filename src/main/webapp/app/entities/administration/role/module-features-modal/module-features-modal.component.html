@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h6 class="modal-title">Features</h6>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="d-flex align-items-center">
+      <div class="form-group col-12 p-0">
+          <label>Select Module</label>
+          <select class="position-relative athma-form-control" id="dropDownmodule"
+              (change)="onModuleChange($event.target.value)" placeholder="select">
+              <ng-container *ngFor="let module of modules$ | async">
+                  <option [value]="module.id">{{module?.name}}</option>
+              </ng-container>
+          </select>
+      </div>
+  </div>
+  <div *ngIf="modulesWithFeatures" class="si-detail-table">
+      <div class="position-relative" [style.height.px]="'320'" [style.maxHeight.px]="'320'" perfectScrollbar>
+          <table class="table border-color-grey role-search-table table-bordered">
+              <tbody >
+                  <tr *ngFor="let type of modulesWithFeatures$ | async | keyvalue">
+                      <td  class="ver-middle item-highlight  text-center"
+                          width="15%">
+                          <div class="d-block margin-5 ver-middle privilege-module-name"> {{type.key}} </div>
+                      </td>
+                      <td class="ver-middle">
+                          <ul class="list-inline-block">
+                              <li *ngFor="let feature of type.value | sort: 'name'; index as idx" class="athma-privilege athma-pointer"
+                                   [ngClass]="{'athma-bg-lightgrey':!isSelected(feature),'athma-bg-lightgreen':isSelected(feature)}"
+                                  (click)="addOrRemoveFeature(feature, idx)">
+                                  <span> {{feature.name}} </span>
+                              </li>
+                          </ul>
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+  <!-- <div *ngIf="typesAskey?.length === 0" class="athma-no-records-block"> No records found </div> -->
+</div>
+<div class="modal-footer">
+  <div class="modal-actions">
+      <button  class="athma-btn athma-btn-primary"
+          (click)="addSelectedFeature()">Add</button>
+  </div>
+</div>

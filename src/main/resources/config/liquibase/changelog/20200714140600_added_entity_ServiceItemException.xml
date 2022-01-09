@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity ServiceItemException.
+    -->
+    <changeSet id="20200714140600-1" author="jhipster">
+        <createTable tableName="service_item_exception">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="level" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="exception_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="value" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="service_item_benefit_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="department_payout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="variable_payout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20200716090800-2" author="anurag">
+
+        <addColumn tableName="service_item_exception">
+            <column  name="service_item_benefit_template_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+
+        <addForeignKeyConstraint baseColumnNames="service_item_benefit_template_id"
+                                 baseTableName="service_item_exception"
+                                 constraintName="fk_service_item_exception_service_item_benefit_template_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="service_item_benefit_template"/>
+
+    </changeSet>
+    <changeSet id="20201308125622-2" author="anurag">
+        <addColumn tableName="service_item_benefit_template">
+            <column name="iu_datetime" type="timestamp" defaultValue="now()"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200411104622-2" author="animesh">
+        <modifyDataType tableName="service_item_exception" columnName="value" newDataType="jsonb"></modifyDataType>
+    </changeSet>
+</databaseChangeLog>

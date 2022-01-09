@@ -1,0 +1,27 @@
+{
+    "name": "HscConsumptionMaterialReduction",
+    "fields": [
+      {
+        "fieldName": "hscId",
+        "fieldType": "Long"
+      }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "departmentPayout",
+            "otherEntityRelationshipName": "HscConsumptionMaterialReduction",
+            "relationshipName": "departmentPayout",
+            "otherEntityField": "id"
+        }
+    ],
+  "changelogDate": "20200422114700",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "hsc_consumption",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "HscConsumptionMaterialReduction"
+}

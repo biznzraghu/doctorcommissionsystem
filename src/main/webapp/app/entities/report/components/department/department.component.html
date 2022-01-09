@@ -1,0 +1,28 @@
+<div class="d-flex flex-column p-1 mt-1">
+    <label>
+        <span jhiTranslate="arthaApp.report.inputLabel.department"> Department</span>
+        <sup class="mandatorySign">*</sup>
+    </label>
+    <ng-select 
+        class="auto-grow"
+        [items]="deptList | async" 
+        bindLabel="name" 
+        name="departmentSearch" 
+        id="departmentSearch" 
+        placeholder="Search by Department Name"
+        [(ngModel)]="selectedDept" 
+        #deptSearchSearch 
+        notFoundText="No results found" 
+        clearAllText=""  
+        [loading]="false"
+        [typeahead]="departmentInput$"
+        (change)="onChange($event)"
+    >
+        <ng-template ng-label-tmp let-item="item">
+            <span>{{ item.code }}, {{ item.name }}</span>
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item" let-index="index">
+            <span>{{ item.code }}, {{ item.name }}</span>
+        </ng-template>
+    </ng-select>
+</div>

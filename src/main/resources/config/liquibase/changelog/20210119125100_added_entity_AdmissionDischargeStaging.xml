@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity AdmissionDischargeStaging.
+    -->
+    <changeSet id="20210119125100-1" author="Damodhar">
+        <createTable tableName="admission_discharge_staging">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="document_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="patient_mrn" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="patient_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="visit_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="visit_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="visit_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="admission_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="admission_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="admission_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="received_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="tariff_class_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="tariff_class_display" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="category_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="unit_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="unit_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="admitting_consultant_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="admitting_consultant_display_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="admitting_department_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="admitting_department_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="admitting_department_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="patient_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ward_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="ward_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="bed_number" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="mark_discharge_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="discharge_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="discharge_reason_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="discharge_reason_display" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="admitting_user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="admitting_user_login" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="admitting_user_display_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="discharging_user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="discharging_user_login" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="discharging_user_display_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="patient_type_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="patient_type_name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="admission_discharge_staging" columnName="admission_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="admission_discharge_staging" columnName="received_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="admission_discharge_staging" columnName="mark_discharge_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="admission_discharge_staging" columnName="discharge_date" columnDataType="datetime"/>
+    </changeSet>
+
+</databaseChangeLog>

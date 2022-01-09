@@ -1,0 +1,53 @@
+    <section class="modal-header">
+        <h3 class="modal-title">{{isEdit ? 'Update Department' : 'Create New'}}</h3>
+    </section>
+    <form name="editForm" disable-sidebar role="form" novalidate (ngSubmit)="save()" #editForm="ngForm" class="athma-form white">
+        <div class="modal-body">
+            <div class="athma-form-group">
+                <label>
+                    <span>
+                        Department Code
+                        <sup class="mandatorySign">*</sup>
+                    </span>
+                </label>
+                <div class="form-group">
+                    <input type="text" class="athma-form-control" name="code" id="field_code" [(ngModel)]="department.code" required />
+                    <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                        <small class="form-text text-danger" [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="athma-form-group">
+                <label>
+                    <span>
+                        Department Name
+                        <sup class="mandatorySign">*</sup>
+                    </span>
+                </label>
+                <div class="form-group">
+                    <input type="text" class="athma-form-control" name="name" id="field_name" [(ngModel)]="department.name" required />
+                    <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                        <small class="form-text text-danger" [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="athma-form-group">
+                <label>
+                    <span>
+                        Status
+                    </span>
+                </label>
+                <div class="form-group">
+                    <jhi-athma-switch class="athma-form-control pl-0 pt-0" name="active" [(ngModel)]="department.active"></jhi-athma-switch>
+                </div>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <button class="athma-btn athma-btn-secondary" type="button" (click)="no()">Cancel</button>
+        <button class="athma-btn athma-btn-primary" type="submit" >{{isEdit ? 'Update' : 'Save'}}</button>
+    </div>
+</form>

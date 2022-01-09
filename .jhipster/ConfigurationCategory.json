@@ -1,0 +1,13 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20170202062912",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "value_set_code",
+    "pagination": "pager",
+    "microserviceName": "mdm",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false
+}

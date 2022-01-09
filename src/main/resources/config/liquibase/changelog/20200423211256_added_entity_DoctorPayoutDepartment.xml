@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity DoctorPayoutDepartment.
+    -->
+    <changeSet id="20200423211256-1" author="jhipster">
+        <createTable tableName="doctor_payout_department">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="doctor_payout_department_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="amount" type="double">
+                <constraints nullable="true" />
+            </column>
+            <column name="department_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_doctor_payout_department_department_id" />
+            </column>
+            <column name="doctor_payout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20202909141922-2" author="anurag">
+        <dropUniqueConstraint tableName="doctor_payout_department" constraintName="ux_doctor_payout_department_department_id"></dropUniqueConstraint>
+    </changeSet>
+    <changeSet id="20201612163322-2" author="animesh">
+        <addColumn tableName="doctor_payout_department">
+            <column name="year" type="integer">
+                <constraints nullable="true" /></column>
+            <column name="month" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="department_payout_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+                <column name="unit_code" type="varchar(255)">
+                    <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20211101152522-2" author="animesh">
+        <addColumn tableName="doctor_payout_department">
+            <column name="invoice_date" type="timestamp" defaultValue="now()">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20211101170722-2" author="animesh">
+        <addColumn tableName="doctor_payout_department">
+            <column name="department_master_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

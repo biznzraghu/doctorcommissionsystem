@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+
+    <changeSet id="20200428150000_added_sequence_format_payout_adjustment" author="Damodhar">
+
+        <insert tableName="sequence_format">
+            <column name="id" valueSequenceNext="sequence_format_id_seq"/>
+            <column name="document_type" value="PayoutAdjustmentNumber" />
+            <column name="reset_expression" value="&lt;UNIT_CODE&gt;|-|&lt;YY&gt;" />
+            <column name="prefix" value="PAY-|&lt;UNIT_CODE&gt;|-|&lt;YY&gt;|&lt;MM&gt;" />
+            <column name="padding" value="5" />
+            <column name="organization_code" value="NH" />
+            <column name="delimiter" value="|" />
+        </insert>
+
+    </changeSet>
+    <changeSet id="2020090150922-2" author="anurag">
+        <insert tableName="sequence_format">
+            <column name="id" valueSequenceNext="sequence_format_id_seq"/>
+            <column name="document_type" value="VariablePayout" />
+            <column name="reset_expression" value="&lt;UNIT_CODE&gt;|-|&lt;YY&gt;" />
+            <column name="prefix" value="PAY-|&lt;UNIT_CODE&gt;|-|&lt;YY&gt;|&lt;MM&gt;" />
+            <column name="padding" value="5" />
+            <column name="organization_code" value="NH" />
+            <column name="delimiter" value="|" />
+        </insert>
+    </changeSet>
+    <changeSet id="20203010232322-2" author="anurag">
+        <update tableName="sequence_format">
+            <column name="prefix" value="PAY-|&lt;UNIT_CODE&gt;|-|&lt;YY&gt;|&lt;MM&gt;">
+            </column>
+            <where>id='1'</where>
+        </update>
+        <update tableName="sequence_format">
+            <column name="prefix" value="VAR-|&lt;UNIT_CODE&gt;|-|&lt;YY&gt;|&lt;MM&gt;">
+            </column>
+            <where>id='2'</where>
+        </update>
+
+        <update tableName="sequence_expression">
+            <column name="expression" value="organization.code">
+            </column>
+            <where>id='5'</where>
+        </update>
+    </changeSet>
+    <changeSet id="2020091250922-1" author="animesh">
+        <insert tableName="sequence_format">
+            <column name="id" valueSequenceNext="sequence_format_id_seq"/>
+            <column name="document_type" value="DepartmentPayout" />
+            <column name="reset_expression" value="&lt;UNIT_CODE&gt;|-|&lt;YY&gt;" />
+            <column name="prefix" value="DEPAY-|&lt;UNIT_CODE&gt;|-|&lt;YY&gt;|&lt;MM&gt;" />
+            <column name="padding" value="5" />
+            <column name="organization_code" value="NH" />
+            <column name="delimiter" value="|" />
+        </insert>
+    </changeSet>
+    <changeSet id="20200412202020-2" author="anurag">
+        <insert tableName="sequence_format">
+            <column name="id" valueSequenceNext="sequence_format_id_seq"/>
+            <column name="document_type" value="templateCode" />
+            <column name="reset_expression" value="&lt;UNIT_CODE&gt;|-|&lt;YY&gt;" />
+            <column name="prefix" value="TPL-" />
+            <column name="padding" value="5" />
+            <column name="organization_code" value="NH" />
+            <column name="delimiter" value="|" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

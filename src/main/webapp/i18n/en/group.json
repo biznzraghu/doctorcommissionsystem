@@ -1,0 +1,79 @@
+{
+  "arthaApp": {
+    "group": {
+      "home": {
+        "title": "Groups",
+        "createLabel": "Create a new Group",
+        "createOrEditLabel": "Create or edit a Group",
+        "search": "Search for Group"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Group {{ id }}?"
+      },
+      "detail": {
+        "title": "Group"
+      },
+      "name": "Name",
+      "code": "Code",
+      "active": "Active",
+      "actual": "Actual",
+      "members": "Members",
+      "type": "Type",
+      "partOf": "Part Of",
+      "parent": "Parent",
+      "add-member": "Add Member",
+      "context": "Context",
+      "null": "-",
+      "status": "Status",
+      "Indent_Approval_Committee": "Indent Approval Group",
+      "Issue_Approval_Committee": "Issue Approval Group",
+      "Receipt_Approval_Committee": "Receipt Approval Group",
+      "Consumption_Approval_Committee": "Consumption Approval Group",
+      "Audit_Approval_Committee": "Audit Approval Group",
+      "Adjustment_Level_One_Approval_Committee": "Adjustment Approval Group Level One",
+      "Adjustment_Level_Two_Approval_Committee": "Adjustment Approval Group Level Two",
+      "Issue_Notification_Committee": "Issue Notification Group",
+      "Correction_Approval_Committee": "Correction Approval Group",
+      "Discount_Approval_Committee": "Discount Approval Group",
+      "DirectTransfer_Approval_Committee": "Direct Transfer Approval Group",
+      "DispenseReturn_Approval_Committee": "Return Approval Group",
+      "DirectTransfer_Notification_Committee": "Direct Transfer Notification Group",
+      "WorkPattern_Reschedule_Committee": "Work Pattern Reschedule Group",
+      "BlockingRequest_Reschedule_Committee": "Blocking Request Reschedule Group",
+      "Invoice_Discount_Approval_Committee": "Invoice Discount Approval Group",
+      "Employee_Category_Committee": "Employee Category Committee",
+      "Reversal_Invoice_Approval_Committee": "Reversal Invoice Approval Group",
+      "TariffRule_Approval_Committee": "Tariff Rule Approval Group",
+      "UnBilled_Invoice_Approval_Committee": "Unbill Approval Group",
+      "UpdateAvailability_Reschedule_Committee": "UpdateAvailability Committee",
+      "Receipt_Cancellation_Approval_Committee": "Receipt Cancellation Approval Group",
+      "TariffDefinition_Approval_Committee": "Tariff Definition Approval Group",
+      "Retrospect_Invoice_Approval_Committee": "Retrospect Invoice Approval Committee",
+      "Unit_Fund_Transfer_Approval_Committee": "Unit Fund Transfer Approval Committee",
+      "Refund_Approval_Committee": "Refund Approval Group",
+      "Dietry_Approval_Committee": "Dietry Approval Committee",
+      "Admission_Approval_Committee": "Admission Approval Committee",
+      "Discharge_Summary_Approval_Committee": "Discharge Summary Approval Committee",
+      "Drug_Clearance_Approval_Committee": "Drug Clearance Approval Committee",
+      "Drug_Return_Approval_Committee": "Drug Return Approval Committee",
+      "Invoice_Generation_Approval_Committee": "Invoice Generation Approval Committee",
+      "Partial_Invoice_Approval_Committee": "Partial Invoice Approval Committee",
+      "Patient_Transfer_Committee": "Patient_Transfer_Committee",
+      "Physical_Discharge_Approval_Committee": "Physical Discharge Approval Committee",
+      "Service_Clearance_Approval_Committee": "Service Clearance Approval Committee",
+      "Service_Group": "Service Group",
+      "Billing_Group": "Billing Group",
+      "Financial_Group": "Financial Group",
+      "messages": {
+        "userIsNotMappedToUnit": "User is not mapped to selected Unit"
+      }
+    }
+  },
+  "mdmApp": {
+    "group": {
+      "created": "A new Group is created with identifier {{ param }}",
+      "updated": "A Group is updated with identifier {{ param }}",
+      "deleted": "A Group is deleted with identifier {{ param }}"
+    }
+  }
+}

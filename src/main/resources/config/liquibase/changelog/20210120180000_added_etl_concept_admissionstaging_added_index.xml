@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="20210120180000_added_etl_concept_admissionstaging" author="Damodhar">
+
+        <insert tableName="etl_concept">
+            <column name="key" value="admission_discharge_from_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="admission_discharge_to_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="admission_discharge_last_sync_id"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="admission_discharge_last_sync_transaction_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="admission_discharge_last_sync_time"/>
+            <column name="value" value=""/>
+        </insert>
+
+    </changeSet>
+
+
+    <changeSet id="20210120180000_added_index_staging_table" author="Damodhar">
+
+        <createIndex tableName="admission_discharge_staging" indexName="admission_discharge_staging_doc_id_idx">
+            <column name="document_id"/>
+        </createIndex>
+
+        <createIndex tableName="invoice_list_staging" indexName="invoice_list_staging_inv_id_idx">
+            <column name="invoice_id"/>
+        </createIndex>
+
+        <createIndex tableName="service_analysis_staging" indexName="service_analysis_staging_inv_id_line_id_idx">
+            <column name="invoice_id"/>
+            <column name="invoice_item_id"/>
+        </createIndex>
+
+        <createIndex tableName="mcr_staging" indexName="mcr_staging_inv_id_line_id_idx">
+            <column name="invoice_id"/>
+            <column name="invoice_item_id"/>
+        </createIndex>
+
+    </changeSet>
+
+
+</databaseChangeLog>

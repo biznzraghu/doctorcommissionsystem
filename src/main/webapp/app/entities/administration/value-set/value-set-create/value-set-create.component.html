@@ -1,0 +1,300 @@
+<jhi-athma-page-header> <!--[height]="70" for tab view-->
+    <jhi-athma-list-header [title]="title" [options]="options">
+    </jhi-athma-list-header>
+</jhi-athma-page-header>
+<perfect-scrollbar [style.height.px]="setScrollHeight()">
+    <div>
+        <form name="editForm" role="form" novalidate (ngSubmit)="save(editForm)" #editForm="ngForm" class="athma-form white">
+            <!-- <jhi-alert></jhi-alert> -->
+    <!--Value Set Section Start-->
+            <dl class="row form-dl four-column-form mb-0 pb-0 m-0">
+                <dd>
+                    <div class="athma-form-group">
+                        <label>
+                        <span jhiTranslate="arthaApp.valueSet.code">Code</span>
+                    </label>
+                        <div class="form-group">
+                            <input type="text" class="athma-form-control" name="code" id="field_code" [(ngModel)]="valueSet.code" required />
+                            <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                            </div>
+                        </div>
+                    </div>
+                </dd>
+    
+                <dd>
+                    <div class="athma-form-group">
+                        <label>
+                        <span jhiTranslate="arthaApp.valueSet.name">Name</span>
+                    </label>
+                        <div class="form-group">
+                            <input type="text" class="athma-form-control" name="name" id="field_name" [(ngModel)]="valueSet.name" required />
+                            <div [hidden]="!(editForm.controls.name?.dirty && editForm.controls.name?.invalid)">
+                                <small class="form-text text-danger" [hidden]="!editForm.controls.name?.errors?.required" jhiTranslate="entity.validation.required">
+                       This field is required.
+                    </small>
+                            </div>
+                        </div>
+                    </div>
+                </dd>
+    
+                <dd>
+                    <div class="athma-form-group">
+                        <label>
+                        <span jhiTranslate="arthaApp.valueSet.definition">Definition</span>
+                    </label>
+                        <div class="form-group">
+                            <input type="text" class="athma-form-control" name="definition" id="field_definition" [(ngModel)]="valueSet.definition" />
+                        </div>
+                    </div>
+                </dd>
+    
+                <dd>
+                    <div class="athma-form-group">
+                        <label>
+                        <span jhiTranslate="global.common.status">Active</span>
+                    </label>
+                        <div class="form-group">
+                            <jhi-athma-switch class="athma-form-control pl-0 pt-0" name="active" [(ngModel)]="valueSet.active"></jhi-athma-switch>
+                        </div>
+                    </div>
+                </dd>
+    
+                <dd>
+                    <div class="athma-form-group">
+                        <label>
+                        <span jhiTranslate="arthaApp.valueSet.source">Source</span>
+                    </label>
+                        <div class="form-group">
+                            <input type="text" class="athma-form-control" name="source" id="field_source" [(ngModel)]="valueSet.source" />
+                        </div>
+                    </div>
+                </dd>
+    
+                <dd>
+                    <div class="athma-form-group">
+                        <label>
+                        <span jhiTranslate="arthaApp.valueSet.definingURL">Defining URL</span>
+                    </label>
+                        <div class="form-group">
+                            <input type="text" class="athma-form-control" name="definingURL" id="field_definingURL" [(ngModel)]="valueSet.definingURL" />
+                        </div>
+                    </div>
+                </dd>
+    
+                <dd>
+                    <div class="athma-form-group">
+                        <label>
+                        <span jhiTranslate="arthaApp.valueSet.oid">Oid</span>
+                    </label>
+                        <div class="form-group">
+                            <input type="text" class="athma-form-control" name="oid" id="field_oid" [(ngModel)]="valueSet.oid" />
+                        </div>
+                    </div>
+                </dd>
+    
+                <dd>
+                    <div class="athma-form-group">
+                        <label>
+                        <span jhiTranslate="arthaApp.valueSet.systemURL">System URL</span>
+                    </label>
+                        <div class="form-group">
+                            <input type="text" class="athma-form-control" name="systemURL" id="field_systemURL" [(ngModel)]="valueSet.systemURL" />
+                        </div>
+                    </div>
+                </dd>
+    
+                <dd>
+                    <div class="athma-form-group">
+                        <label>
+                        <span jhiTranslate="arthaApp.valueSet.systemOID">System OID</span>
+                    </label>
+                        <div class="form-group">
+                            <input type="text" class="athma-form-control" name="systemOID" id="field_systemOID" [(ngModel)]="valueSet.systemOID" />
+                        </div>
+                    </div>
+                </dd>
+    
+            </dl>
+    <!--Value Set Section End-->
+    <!--Value Set Code Section Start-->
+            <div class="card rounded-0 border-right-0 border-left-0 m-0">
+                <div class="card-header border-bottom-0">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3 class="title mb-0"><span jhiTranslate="arthaApp.valueSetCode.detail.title">ValueSet Code</span></h3>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="table-responsive" *ngIf="valueSetCodes">
+                    <div class="container-fluid">
+                        <br />
+                        <div class="card">
+                            <div class="card-header athma-panel-add-header">
+                                <h6 *ngIf="valueSetCode" class="padding-10"><span jhiTranslate="arthaApp.valueSetCode.add-valueSetCode">Add Value Set Code</span></h6>
+                                <div *ngIf="!valueSetCode" class="padding-6">
+                                    <button type="button" [disabled]="!valueSet.modifiable" class="athma-btn athma-btn-secondary athma-btn-action" (click)="createValueSetCode()">
+                                        <span jhiTranslate="arthaApp.valueSetCode.add-valueSetCode">Add Value Set Code</span>
+                                    </button>
+                                </div>
+                            </div>
+    
+                            <div class="card-block card-body" *ngIf="valueSetCode">
+                                <br />
+                                <dl>
+                                    <dd>
+                                        <div class="athma-form-group">
+                                            <label>
+                                        <span jhiTranslate="arthaApp.valueSetCode.code">Code</span>
+                                    </label>
+                                            <div class="form-group">
+                                                <input type="text" class="athma-form-control" name="vsc_code" id="vsc_field_code" [(ngModel)]="valueSetCode.code" required />
+                                                <div [hidden]="!(editForm.controls.code?.dirty && editForm.controls.code?.invalid)">
+                                                    <small class="form-text text-danger" [hidden]="!editForm.controls.code?.errors?.required" jhiTranslate="entity.validation.required">
+                                        This field is required.
+                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </dd>
+    
+                                    <dd>
+                                        <div class="athma-form-group">
+                                            <label>
+                                        <span jhiTranslate="arthaApp.valueSetCode.display">Display</span>
+                                    </label>
+                                            <div class="form-group">
+                                                <input type="text" class="athma-form-control" name="vsc_display" id="field_display" [(ngModel)]="valueSetCode.display" />
+                                            </div>
+                                        </div>
+                                    </dd>
+    
+                                    <dd>
+                                        <div class="athma-form-group">
+                                            <label>
+                                        <span>Status</span>
+                                    </label>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <jhi-athma-switch class="athma-form-control pl-0 pt-0" name="vsc_active" [(ngModel)]="valueSetCode.active"></jhi-athma-switch>
+                                                </div>
+                                                <div [hidden]="!(editForm.controls.active?.dirty && editForm.controls.active?.invalid)">
+                                                    <small class="form-text text-danger" [hidden]="!editForm.controls.active?.errors?.required" jhiTranslate="entity.validation.required">
+                                                This field is required.
+                                            </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </dd>
+    
+                                    <dd>
+                                        <div class="athma-form-group">
+                                            <label>
+                                        <span jhiTranslate="arthaApp.valueSetCode.definition">Definition</span>
+                                    </label>
+                                            <div class="form-group">
+                                                <input type="text" class="athma-form-control" name="vsc_definition" id="field_definition" [(ngModel)]="valueSetCode.definition" />
+                                            </div>
+                                        </div>
+                                    </dd>
+    
+                                    <dd>
+                                        <div class="athma-form-group">
+                                            <label>
+                                        <span jhiTranslate="arthaApp.valueSetCode.source">Source</span>
+                                    </label>
+                                            <div class="form-group">
+                                                <input type="text" class="athma-form-control" name="vsc_source" id="field_source" [(ngModel)]="valueSetCode.source" />
+                                            </div>
+                                        </div>
+                                    </dd>
+    
+                                    <dd>
+                                        <div class="athma-form-group">
+                                            <label>
+                                        <span jhiTranslate="arthaApp.valueSetCode.level">Level</span>
+                                    </label>
+                                            <div class="form-group">
+                                                <input type="text" class="athma-form-control" name="vsc_level" id="field_level" [(ngModel)]="valueSetCode.level" />
+                                            </div>
+                                        </div>
+                                    </dd>
+    
+                                    <dd>
+                                        <div class="athma-form-group">
+                                            <label>
+                                        <span jhiTranslate="arthaApp.valueSetCode.comments">Comments</span>
+                                    </label>
+                                            <div class="form-group">
+                                                <input type="text" class="athma-form-control" name="vsc_comments" id="field_comments" [(ngModel)]="valueSetCode.comments" />
+                                            </div>
+                                        </div>
+                                    </dd>
+    
+                                    <dd>
+                                        <div class="athma-form-group">
+                                            <label>
+                                        <span jhiTranslate="arthaApp.valueSetCode.displayOrder">Display Order</span>
+                                    </label>
+                                            <div class="form-group">
+                                                <input type="text" class="athma-form-control" name="vsc_displayOrder" id="field_displayOrder" [(ngModel)]="valueSetCode.displayOrder" />
+                                            </div>
+                                        </div>
+                                    </dd>
+                                </dl>
+    
+                                <div class="row">
+                                    <div class="col report-button-container">
+                                        <button type="button" [disabled]="editForm.form.invalid" class="athma-btn athma-btn-primary mr-2 pull-right" (click)="addValueSetCode()">
+                                            <span jhiTranslate="arthaApp.common.action.add">Add</span>
+                                        </button>
+                                        <button type="button" class="athma-btn athma-btn-secondary pull-right mr-0" (click)="clearValueSetCode()">
+                                            <span jhiTranslate="arthaApp.common.action.cancel">Cancel</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid table-responsive">
+                        <table class="table table-striped athma-table-listing athma-table">
+                            <thead>
+                                <tr>
+                                    <th><span jhiTranslate="arthaApp.valueSetCode.code">Code</span></th>
+                                    <th><span jhiTranslate="arthaApp.valueSetCode.display">Display</span> <span class="fa fa-sort fa-sort-asc"></span></th>
+                                    <th><span jhiTranslate="global.common.status">Active</span></th>
+                                    <th><span jhiTranslate="arthaApp.valueSetCode.displayOrder">Display Order</span></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let valueSetCode of valueSetCodes; let i = index;" (click)="editValueSetCode(valueSetCode, i)" class="athma-pointer">
+                                    <td>{{valueSetCode?.code ? valueSetCode?.code : '-'}}</td>
+                                    <td>{{valueSetCode?.display ? valueSetCode?.display : '-'}}</td>
+                                    <td>{{valueSetCode.active | activeAsStatus }}</td>
+                                    <td>{{valueSetCode?.displayOrder ? valueSetCode?.displayOrder : '-'}}</td>
+                                    <td (click)="removeValueSetCode(i)"><span class="icon-cross" aria-hidden="true"></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    <!--Value Set Code Section End-->
+            <div class="row m-0" *ngIf="valueSet.modifiable">
+                <div class="col report-button-container">
+                    <button type="submit" [disabled]="!valueSet.modifiable && (editForm.form.invalid || editForm.form.dirty || isSaving) && !pageEdit"
+                        class="athma-btn athma-btn-primary pull-right mr-0">
+                        <span jhiTranslate="arthaApp.common.action.save">Save</span>
+                    </button>
+                    <button type="button" class="athma-btn athma-btn-secondary mr-2 pull-right" (click)="clear()">
+                        <span jhiTranslate="arthaApp.common.action.cancel">Cancel</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</perfect-scrollbar>

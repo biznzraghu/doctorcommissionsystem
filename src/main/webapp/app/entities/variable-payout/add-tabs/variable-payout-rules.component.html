@@ -1,0 +1,218 @@
+<div class="container-fluid variable-payout-rules p-0">
+    <div class="row" id="fixed-tbl-head" class="fixed-tbl-head-1">
+        <div class="d-flex w-100 header-container align-items-center">
+            <div class="col1 common-col">
+                <div jhiTranslate="arthaApp.variable-payout.rules.type">Type</div>
+            </div>
+            <div class="col11 common-col">
+                <div jhiTranslate="arthaApp.variable-payout.rules.value">Value</div>
+            </div>
+            <div class="col3 common-col">
+                <div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.type">Type</div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.visit">Visit</div>
+                </div>
+            </div>
+            <div class="col4 common-col">
+                <div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.type">Type</div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.beneficiary">Beneficiary</div>
+                </div>
+            </div>
+            <div class="col5 common-col">
+                <div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.or">% or</div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.fixedAmt">Fixed Amt</div>
+                </div>
+            </div>
+            <div class="col6 common-col">
+                <div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.quantity">Quantity</div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.fromTo">(From & To)</div>
+                </div>
+            </div>
+            <div class="col7 common-col">
+                <div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.amount">Amount</div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.netGross">(Net/Gross)</div>
+                </div>
+            </div>
+            <div class="col8 common-col">
+                <div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.patient">Patient</div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.category">Category</div>
+                </div>
+            </div>
+            <div class="col9 common-col">
+                <div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.tariff">Tariff</div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.class">Class</div>
+                </div>
+            </div>
+            <div class="col10 common-col">
+                <div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.amt">Amt</div>
+                    <div jhiTranslate="arthaApp.variable-payout.rules.material">Material</div>
+                </div>
+            </div>
+            <div class="col2 common-col">
+                <div jhiTranslate="arthaApp.variable-payout.rules.dept">Dept.</div>
+            </div>
+            <div class="col12 common-col">
+            </div>
+            <div class="col13 common-col">
+            </div>
+        </div>
+    </div>
+    <div class="row" class="add-rule-controls-1" id="add-rule-controls" *ngIf="!viewMode">
+        <jhi-add-rule-control #addControlForm [departmentList]="activeDepartments" [rule]="newRuleData" [isEditControl]="false" (onAddRecord)="onAddNewRule($event)" style="display: contents;"></jhi-add-rule-control>
+    </div>
+    <div class="row payout-adjustment" *ngIf="rulesDataInstance?.length > 0">
+    <div class="col-sm-12 fixed-header-table" >
+        <div class="support-dialog infinite-scroll-table ps" style="background-color: white;" >
+            <div class="infinite-scroll-table ps" [style.height.px]="setInfiniteScrollHeight()" [perfectScrollbar]="config">
+                <ng-container *ngFor="let rules of rulesDataInstance; trackBy: trackId; let i = index;">
+                    <div *ngIf="editRowIndex === i && editRuleData">
+                        <jhi-add-rule-control #editControlForm [departmentList]="activeDepartments" [rule]="editRuleData" [isEditControl]="true" (onUpdateRecord)="saveUpdates($event)" (onCancelUpdateRecord)="cancelUpdateRecord()" style="display: contents;"></jhi-add-rule-control>
+                    </div>
+                    <div class="d-flex athma-pointer"  *ngIf="editRowIndex !== i">
+                        <div class="col1 common-col breaking-word">
+                            {{TypeEnum[rules?.type]}}
+                        </div> 
+                        <div class="col11 common-col breaking-word" *ngIf="rules.type != 'SERVICE_GROUP'"> <!--*ngIf="payout?.employeeDetail else noData"-->
+                            {{rules?.templateValueDisplay ? rules?.templateValueDisplay : '-'}}
+                        </div>
+                        <div class="col11 common-col breaking-word" *ngIf="rules.type === 'SERVICE_GROUP'">
+                            {{rules?.serviceGroup?.length > 0 ? rules?.serviceGroup[0].name : '-'}} 
+                            <span [ngbTooltip]="(rules?.serviceGroup?.length > 1) ? valueListTemplate : '' ">
+                                <b style="color: #1AB394;">
+                                    {{rules?.serviceGroup?.length > 1 ? '+'  : ''}}
+                                </b>
+                                <b style="color: #1AB394;">
+                                    {{rules?.serviceGroup?.length > 1 ? rules?.serviceGroup.length -1  : ''}}
+                                </b>
+                            </span>
+                            <ng-template #valueListTemplate >
+                                <ul class="p-0 m-0 list-unstyled">
+                                    <li class="p-1 text-left" *ngFor="let type of rules?.serviceGroup" >
+                                    {{type.name}}
+                                    </li>
+                                </ul>
+                            </ng-template>
+                        </div>
+                        <div class="col3 common-col breaking-word">
+                            {{rules?.visitType?.length > 0 ? rules?.visitType[0] : '-'}} 
+                            <span [ngbTooltip]="(rules?.visitType?.length > 1) ? visitTypeListTemplate : '' ">
+                                <b style="color: #1AB394;">
+                                    {{rules?.visitType?.length > 1 ? '+'  : ''}}
+                                </b>
+                                <b style="color: #1AB394;">
+                                    {{rules?.visitType?.length > 1 ? rules?.visitType.length -1  : ''}}
+                                </b>
+                            </span>
+                            <ng-template #visitTypeListTemplate >
+                                <ul class="p-0 m-0 list-unstyled">
+                                    <li class="p-1 text-left" *ngFor="let type of rules?.visitType" >
+                                    {{type}}
+                                    </li>
+                                </ul>
+                            </ng-template>
+                        </div>
+                        <div class="col4 common-col breaking-word">
+                            {{BeneficiaryTypeEnum[rules?.beneficiary]}}
+                        </div>
+                        <div class="col5 common-col breaking-word">
+                            {{rules?.amount}}
+                        </div>
+                        <div class="col6 common-col breaking-word">
+                            {{rules?.minQuantity ? rules?.minQuantity : ''}} 
+                            {{rules?.maxQuantity ? '-' : ''}} 
+                            {{rules?.maxQuantity ? rules?.maxQuantity : ''}}
+                        </div>
+                        <div class="col7 common-col breaking-word">
+                            {{DiscountTypeEnum[rules?.applicableOn]}}
+                        </div>
+                        <div class="col8 common-col">
+                            {{PatientCategoryEnum[rules?.patientCategory]}}
+                        </div>
+                        <div class="col9 common-col breaking-word">
+                            {{rules?.tariffClass? rules?.tariffClass[0]?.display : '-'}}
+                            <span [ngbTooltip]="(rules?.tariffClass?.length > 1) ? tariffClassListTemplate : '' ">
+                                <b style="color: #1AB394;">
+                                    {{rules?.tariffClass?.length > 1 ? '+'  : ''}}</b>
+                                <b style="color: #1AB394;">
+                                    {{rules?.tariffClass?.length > 1 ? rules?.tariffClass.length -1  : ''}}
+                                </b> 
+                            </span>
+                            <ng-template #tariffClassListTemplate >
+                                <ul class="p-0 m-0 list-unstyled">
+                                    <li class="p-1 text-left" *ngFor="let type of rules?.tariffClass" >
+                                    {{type?.display}}
+                                    </li>
+                                </ul>
+                            </ng-template>
+                        </div>
+                        <div class="col10 common-col breaking-word">
+                            {{MaterialAmountEnum[rules?.materialAmount]}}
+                        </div>
+                        <div class="col2 common-col breaking-word">
+                            <!-- {{rules?.department ? rules?.department[0]?.name : '-' }} -->
+                            <jhi-athma-string-manipulation [stringTrim]="rules?.department?.length > 0 ?  rules?.department[0]?.code+'|'+rules?.department[0]?.name : '-' " [stringLength]="25" [tooltipDisplay]="true">
+                            </jhi-athma-string-manipulation>
+                            <!-- {{rules?.department?.length > 0 ?  rules?.department[0]?.code+'|'+rules?.department[0]?.name : '-'}}  -->
+                            <span [ngbTooltip]="(rules?.department?.length > 1) ? departmentListTemplate : '' ">
+                                <b style="color: #1AB394;">
+                                    {{rules?.department?.length > 1 ? '+'  : ''}}
+                                </b>
+                                <b style="color: #1AB394;">
+                                    {{rules?.department?.length > 1 ? rules?.department.length -1  : ''}}
+                                </b>
+                            </span>
+                        </div>
+                        <ng-template #departmentListTemplate >
+                            <ul class="p-0 m-0 list-unstyled">
+                                <li class="p-1 text-left" *ngFor="let department of rules?.department" >
+                                {{department?.code}}|{{department?.name}}
+                                </li>
+                            </ul>
+                        </ng-template>
+                        <div class="col12 common-col text-center athma-pointer" style="position: relative;" (click)="onAddExceptionsModal(rules)">
+                            <span>
+                                <i class="icon-Three-Dots_Horizontal" style="font-size: 1.5em;"></i>
+                            </span>
+                        </div>
+                        <div class="col13 common-col" style="position: relative;">
+                            <button class="adm-icon-button mt-1" (click)="editRuleRow(i)" *ngIf="!viewMode" > <!--[ngClass]="{'disabledLink':isRules === false}"-->
+                                <!-- <i aria-hidden="true" class="fa fa-times-circle fa-2x" style="font-size: 1.5em;"></i> -->
+                                <span class="icon-edit small-btn" style="font-size: 14px;"></span>
+                            </button>
+                            <button class="adm-icon-button mt-1" (click)="deleteRuleRow(i)" *ngIf="!viewMode" > <!--[ngClass]="{'disabledLink':isRules === false}"-->
+                                <!-- <i aria-hidden="true" class="fa fa-times-circle fa-2x" style="font-size: 1.5em;"></i> -->
+                                <span class="icon-delete small-btn" style="font-size: 14px;"></span>
+                            </button>
+                        </div>  
+                    </div>
+                </ng-container>
+                <div class="athma-no-records" *ngIf="rulesDataInstance?.length === 0">
+                    <span jhiTranslate="global.common.no-records-found"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div *ngIf="rulesDataInstance?.length === 0 && (!viewMode)" class="d-flex justify-content-center align-items-center no-record-found">
+            <i style="font-size:32px" class="icon-audit_audit" aria-hidden="true"></i>
+            <span style="font-size:18px">Add Rules</span>
+    </div>
+    <div *ngIf="rulesDataInstance?.length === 0 && viewMode" class="d-flex justify-content-center align-items-center no-record-found">
+        <i style="font-size:32px" class="icon-audit_audit" aria-hidden="true"></i>
+        <span style="font-size:18px">No Rule Available</span>
+    </div>
+</div>
+<ng-template #noData>
+    <td style="width:10%">
+        -
+    </td>
+</ng-template>
+        
+    

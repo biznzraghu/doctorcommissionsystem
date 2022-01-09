@@ -1,0 +1,27 @@
+<jhi-athma-page-header [height]="80">
+    <!--[height]="70" for tab view-->
+    <jhi-athma-list-header [title]="title" [createBtnTitle]="createBtnTitle" (openNew)="openNewPage()"
+        (searchItem)='search($event)' (clearSearch)='clear()' [options]="options"
+        (onSelectedTabChange)="onTabChange($event)" (openAdvanceSearch)="openAdvanceSearch()">
+    </jhi-athma-list-header>
+</jhi-athma-page-header>
+
+<!-- List Start -->
+<div class="row variable-payout-list-page payout-adjustment">
+    <div class="col-sm-12 fixed-header-table">
+        <ng-container *ngIf="tabIndex === 0">
+            <jhi-payouts-tab-list [parentSearch]="currentSearch">
+            </jhi-payouts-tab-list>
+        </ng-container>
+        <ng-container *ngIf="tabIndex === 1">
+            <jhi-change-requests-tab-list [parentSearch]="currentSearch">
+            </jhi-change-requests-tab-list>
+        </ng-container>
+        <ng-container *ngIf="tabIndex === 2">
+            <jhi-templates-tab-list [parentSearch]="currentSearch">
+            </jhi-templates-tab-list>
+        </ng-container>
+    </div>
+</div>
+<!-- List End -->
+<jhi-header-breadcrumb></jhi-header-breadcrumb>

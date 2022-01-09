@@ -1,0 +1,77 @@
+/* ==========================================================================
+Custom alerts for notification
+========================================================================== */
+
+.alerts {
+  .alert {
+    text-overflow: ellipsis;
+    pre {
+      background: none;
+      border: none;
+      font: inherit;
+      color: inherit;
+      padding: 0;
+      margin: 0;
+    }
+    .popover pre {
+      font-size: 10px;
+    }
+  }
+  .close {
+    outline: none;
+  }
+}
+
+.alerts .toast {
+  width: 30%;
+  top: 64px;
+  right: 1px;
+  height: auto;
+  position: absolute;
+  transition: visibility 0s linear 0.3s, opacity 0.3s linear;
+  z-index: 10001;
+  opacity: 1;
+}
+
+.toast .alert-danger,
+.toast .alert-success {
+  border-radius: 0;
+  font: normal normal normal 14px/1 FontAwesome;
+  margin: 0;
+}
+
+.toast .alert-danger:before {
+  font-weight: bold;
+  font-size: 1rem;
+  width: 10%;
+  display: inline-block;
+}
+
+.toast .alert-success:before,
+.toast .alert-danger:before {
+  font-weight: bold;
+  font-size: 1rem;
+  vertical-align: top;
+  width: 10%;
+  display: inline-block;
+}
+
+.toast .alert-success:before {
+  color: green;
+  content: '\f00c';
+}
+
+.toast .alert-danger:before {
+  color: red;
+  content: '\f071';
+}
+
+.alerts .alert pre {
+  display: inline-block;
+  width: 72%;
+  white-space: normal;
+  @include font-size($default-fs);
+  @include line-height($default-lh);
+  font-family: $ff-default !important;
+  overflow: inherit;
+}

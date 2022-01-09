@@ -1,0 +1,116 @@
+{
+    "name": "DepartmentPayout",
+    "fields": [
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "version",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "changeRequestStatus",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "latest",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "visitType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "netGross",
+            "fieldType": "NetGross",
+            "fieldValues": "NET,GROSS"
+        },
+        {
+            "fieldName": "applicableInvoice",
+            "fieldType": "ApplicableInvoices",
+            "fieldValues": "ALL_INVOICES,INVOICES_WITH_SURGERY,INVOICES_WITH_ANESTHESIA"
+        },
+        {
+            "fieldName": "onCostSale",
+            "fieldType": "OnCostSale",
+            "fieldValues": "NET,GROSS"
+        },
+      {
+        "fieldName": "allMaterials",
+        "fieldType": "Boolean"
+      },
+      {
+        "fieldName": "drugs",
+        "fieldType": "Boolean"
+      },
+      {
+        "fieldName": "implants",
+        "fieldType": "Boolean"
+      },
+      {
+        "fieldName": "consumables",
+        "fieldType": "Boolean"
+      },
+      {
+        "fieldName": "deptConsumption",
+        "fieldType": "Boolean"
+      },
+      {
+        "fieldName": "hscConsumption",
+        "fieldType": "Boolean"
+      }
+    ],
+    "relationships": [
+      {
+        "relationshipType":"one-to-one",
+        "otherEntityName":"department",
+        "otherEntityRelationShipName":"id",
+        "relationshipName":"department",
+        "otherEntityField":"id",
+        "ownerSide":true
+
+      },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "payoutRange",
+            "otherEntityRelationshipName": "DepartmentPayout",
+            "relationshipName": "payoutRange"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "applicableConsultant",
+            "otherEntityRelationshipName": "DepartmentPayout",
+            "relationshipName": "applicableConsultant"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "departmentConsumptionMaterialReduction",
+            "otherEntityRelationshipName": "DepartmentPayout",
+            "relationshipName": "departmentConsumptionMaterialReduction"
+        },
+      {
+        "relationshipType": "one-to-many",
+        "otherEntityName": "hscConsumptionMaterialReduction",
+        "otherEntityRelationshipName": "DepartmentPayout",
+        "relationshipName": "hscConsumptionMaterialReduction"
+      }
+    ],
+  "changelogDate": "20200422114400",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "department_payout",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "DepartmentPayout"
+}

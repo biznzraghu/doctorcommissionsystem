@@ -1,0 +1,23 @@
+<div class="d-flex flex-column p-1 mt-1">
+    <label>
+        <span jhiTranslate="arthaApp.report.inputLabel.unit">Unit</span>
+        <sup class="mandatorySign">*</sup>
+    </label>
+    <ng-select
+        [items]="unitListData | async" 
+        bindLabel="name" 
+        [hideSelected]="true"
+        [loading]="unitLoading"
+        [typeahead]="unitInput$"
+        [(ngModel)]="unit"
+        placeholder="Search by Unit Code or Name"
+        (change)="onChange($event)"
+         >
+        <ng-template ng-label-tmp let-item="item">
+            <span>{{ item.code }}, {{ item.name }}</span>
+        </ng-template>
+        <ng-template ng-option-tmp let-item="item" let-index="index">
+            <span>{{ item.code }}, {{ item.name }}</span>
+        </ng-template>
+    </ng-select>
+</div>

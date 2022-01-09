@@ -1,0 +1,33 @@
+{
+  "gatewayApp": {
+    "user": {
+      "label": {
+        "code": "Employee Code",
+        "name": "Display Name",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email ID",
+        "status": "Status",
+        "employeeNo": "Employee No"
+      },
+      "messages": {
+        "success": {
+          "update": "Mapping updated successfully !!",
+          "userUpdate": "A user is updated successfully !!",
+          "create": "Mapping created successfully !!",
+          "deleteUserOrgept": "Mapping deleted successfully !!"
+        },
+        "error": {
+          "duplicateDept": "{{ department }} Already exist",
+          "duplicateOrg": "{{organization}} Already exist",
+          "validateUnit": "Please select the <strong>Unit!</strong>",
+          "validatePayoutDepartment": "Please select the <strong>Payout Department!</strong>",
+          "duplicateRule": "{{ rule }} already exist",
+          "noNewMapping": "New mapping not found",
+          "emptyDept": "Can't update unit with empty department",
+          "largerImage": "Uploading {{fileName}} failed as the file size is more than 2Mb"
+        }
+      }
+    }
+  }
+}

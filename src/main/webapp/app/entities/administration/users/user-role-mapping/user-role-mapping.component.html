@@ -1,0 +1,52 @@
+<article class="unit-select-box p-4">
+  <ng-select 
+    [items]="unit$ | async" 
+    bindLabel="name" 
+    [hideSelected]="true" 
+    [loading]="unitLoading"
+    [typeahead]="unitInput$" 
+    [(ngModel)]="selectedUnit" 
+    placeholder="Search"
+    class="m-1 unit-selector" 
+    (change)="onUnitChange($event)">
+    <ng-template ng-option-tmp let-unit="item">
+      <div>{{unit.code}}</div> |
+      <div>{{unit.name}}</div>
+    </ng-template>
+  </ng-select>
+</article>
+<ng-container *ngIf="selectedUnit; else noUnitMapped">
+  <article>
+    <table class="table tablecustom athma-table-cal table-bordered mb-0">
+      <tbody>
+        <tr>
+          <td width="34%"
+              class="lightblue-pannel-heading athma-hsc-text text-left">
+            <h6 class="pull-left" style="word-break: break-all;">{{selectedUnit.code}}<span
+                style="color: red;">|</span>{{selectedUnit.name}}</h6>
+          </td>
+          <td>
+            <div class="card-body d-flex align-items-center flex-wrap p-1">
+              <ng-select [items]="roles$ | async" bindLabel="name" [hideSelected]="true"
+                  [loading]="roleLoading" [typeahead]="roleInput$"
+                  [(ngModel)]="selectedRole" (change)="onRoleSelect($event)" placeholder="Search"
+                  class="m-1 custom-ng-select">
+              </ng-select>
+              <ng-container *ngFor="let role of userRoleMappings; index as idx">
+                <article class="d-flex p-2 m-1 privilege align-items-center flex-wrap">
+                  <span class="mr-3"> {{role?.role?.name}}</span>
+                  <i class="icon-cross" (click)="removeRole(idx, role)"></i>
+                </article>
+              </ng-container>  
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+</ng-container>
+<ng-template #noUnitMapped>
+  <div class="mt-4 mb-4">
+    <span style="color: red;" jhiTranslate="global.common.no-records-found"></span>
+  </div>
+</ng-template>

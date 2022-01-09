@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Plan.
+    -->
+    <changeSet id="20200727120000-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="sponsor_id"
+                                 baseTableName="plan"
+                                 constraintName="fk_plan_sponsor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organization"/>
+
+        <addForeignKeyConstraint baseColumnNames="plan_template_id"
+                                 baseTableName="plan"
+                                 constraintName="fk_plan_plan_template_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plan"/>
+
+        <addForeignKeyConstraint baseColumnNames="part_of_id"
+                                 baseTableName="plan"
+                                 constraintName="fk_plan_part_of_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plan"/>
+
+        <addForeignKeyConstraint baseColumnNames="exception_sponsor_id"
+                                 baseTableName="plan"
+                                 constraintName="fk_plan_exception_sponsor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="exception_sponsor"/>
+
+    </changeSet>
+    <changeSet id="20202907132022-2" author="animesh">
+        <addColumn tableName="plan">
+            <column name="sponsor_details" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

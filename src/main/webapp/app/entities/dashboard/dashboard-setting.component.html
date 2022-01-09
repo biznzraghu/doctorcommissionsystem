@@ -1,0 +1,210 @@
+<jhi-alert></jhi-alert>
+<div class="modal-header">
+    <h4 class="modal-title h6">{{pageName}}</h4>
+    <span class="close" aria-label="Close" (click)="close()">
+        <span class="icon-cross icon-btn athma-pointer h6"></span>
+    </span>
+</div>
+<div class="modal-body" style="padding: 0px 15px;">
+    <div class="row setting-sub-header">
+        <div class="col-sm-3" style="border-right: 1px solid #95989A;">
+            <div class="h6 m-0" style="padding:8px 0px"><span jhiTranslate="arthaApp.dashboard.myTabs">My Tabs </span><span
+                    class="icon-add_outline pull-right athma-pointer" (click)="addTab()"></span></div>
+        </div>
+        <div class="col-sm-9">
+            <div class="athma-page-header header">
+                <section class="si-header-component">
+                    <div class="row align-items-center">
+                        <ul class="si-tab">
+                            <li (click)="selectedTab('Selected')">
+                                <a [ngClass]="{'active': selectedTabValue == 'Selected'}">
+                                    <span class="text-uppercase" jhiTranslate="arthaApp.dashboard.selectedWidgets">Selected
+                                        Widget
+                                    </span>
+                                </a>
+                            </li>
+                            <li (click)="selectedTab('All')">
+                                <a [ngClass]="{'active': selectedTabValue == 'All'}">
+                                    <span class="text-uppercase" jhiTranslate="arthaApp.dashboard.allWidgets">All Widget</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3 widget-height ps p-0" style="border-right: 1px solid #95989A;" [perfectScrollbar]="config">
+            <div class="my-tabs-list pt-0">
+                <!-- [sortableData]="dashboardTabs" -->
+                <ul class="nav nav-tabs" style="display:block;" dnd-sortable-container >
+                    <!-- [sortableIndex]="i" -->
+                    <li *ngFor="let item of dashboardTabs; let i = index" class="nav-item" dnd-sortable  (dblclick)="selectTab(item)"
+                    (onDropSuccess)="onDropSuccess(item)"
+                        (click)="viewDetail(item)" (mouseover)="showTabDeleteIcon(item)" (mouseleave)="hideTabDeleteIcon(item)" [class.active]="activeTab==item.dashboardOrder"
+                        style=" padding:15px">
+                        <span *ngIf=" item && !item.edit" class="list-item">
+                            <a class="text-uppercase">{{item.dashboardName}}</a>
+                            <span class="icon-cross pull-right" *ngIf="item.showDelete"  [ngbPopover]="removeTabPopover"
+                            triggers="manual" (click)="openDeleteTabPop(item)"
+                            container="body"
+                            placement="bottom-right" #removeTabPop="ngbPopover">
+                            </span>
+                            <ng-template #removeTabPopover>
+                                <div class="popover-container">
+                                    <div class="d-flex align-items-center modal-popup-body">
+                                         <p> Are you sure you want to Remove? </p>
+                                    </div>
+                                    <div class="d-flex justify-content-end modal-popup-footer">
+                                        <button type="button" class="athma-btn athma-btn-secondary athma-highlight-focus"
+                                            (click)="closeDeleteTabPop()">Cancel
+                                        </button>
+                            
+                                        <button class="athma-btn athma-btn-priamry athma-highlight-focus" type="button" (click)="deleteTab($event,item,i)">
+                                                Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </span>
+                        <span class="edit-list-item" *ngIf="item && item.edit">
+                            <input type="text" class="athma-form-control " id='formGroup1' placeholder="" [(ngModel)]="tabModel" placeholder="Enter tab name"
+                            />
+                            <span class="bg-white border-left-0 border-right-0 icon-checkmark icon-btn" (click)="saveList(item,i)"></span>
+                            <span class="bg-white border-left-0 icon-cross icon-btn m-0" style="border-right:1px solid #d9d9d9" (click)="deSelectTab(item)"></span>
+                        </span>
+                    </li>
+                </ul>
+                <ul *ngIf="addNew">
+                    <li style="padding:8px">
+                        <span class="edit-list-item">
+                            <input type="text" class="athma-form-control " id='formGroup'  #tabNameModel="ngModel" maxlength="32" [(ngModel)]="tabModel" placeholder="Enter tab name"
+                                />
+                            <span class="bg-white border-left-0 border-right-0 icon-checkmark icon-btn" (click)="saveList(newItem)"></span>
+                            <span class="bg-white border-left-0 icon-cross icon-btn m-0 " style="border-right:1px solid #d9d9d9" (click)="clearItem()"></span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-9 widget-height ps p-0 widgetTopSectionDiv" [perfectScrollbar]="config" #widgetTopSection >
+            <div class="widget-list pl-2 pr-2 pt-0 pb-0" #widgetInnerSection>
+                <ul class="" *ngIf="selectedTabValue=='Selected'; else allTab">
+                    <li *ngFor="let widget of dashboardList">
+                        <div class="row p-2">
+                            <div class="ml-3" style="width:120px;">
+                                <div class="widget-image text-center" *ngIf="widget?.widgetMaster?.thumbnail === 'LIST' ">
+                                    <img [src]="imageList[0]"
+                                            alt="placeholder+image">
+                                </div>
+                                <div class="widget-image text-center" *ngIf="widget?.widgetMaster?.thumbnail === 'GRAPH' ">
+                                    <img [src]="imageList[1]"
+                                            alt="placeholder+image">
+                                </div>
+                                <div class="widget-image text-center" *ngIf="widget?.widgetMaster?.thumbnail === '' ">
+                                    <img [src]="imageList[0]"
+                                            alt="placeholder+image">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="widget-title">{{widget.widgetMaster.title}}</div>
+                                <div class="widget-disc">{{widget.widgetMaster.description}}</div>
+                            </div>
+                            <div class="mr-3" style="width:100px">
+                                <span *ngIf="selectedTabValue=='Selected'" class="pull-right mr-0">
+                                    <span class="h6 mb-0 athma-pointer" [ngbPopover]="removeWidgetPopover"
+                                            triggers="manual" (click)="removeWidgetPop.isOpen() ? removeWidgetPop.close() : removeWidgetPop.open();"
+                                            container="body" (clickOutside)="removeWidgetPop.close();" 
+                                            placement="bottom-right" #removeWidgetPop="ngbPopover"
+                                    >
+                                        <i class="icon-delete" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+
+                                <ng-template #removeWidgetPopover>
+                                    <div class="popover-container">
+                                        <div class="d-flex align-items-center modal-popup-body">
+                                             <p> Are you sure you want to Remove? </p>
+                                        </div>
+                                        <div class="d-flex justify-content-end modal-popup-footer">
+                                            <button type="button" class="athma-btn athma-btn-secondary athma-highlight-focus"
+                                                (click)="removeWidgetPop?.popover.close();">Cancel
+                                            </button>
+                                
+                                            <button class="athma-btn athma-btn-priamry athma-highlight-focus" type="button" (click)="removeWidget(widget)">
+                                                    Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </ng-template>
+
+                                <!--
+                                    <button  class="athma-icon-button"
+                                    [disabled]="isDisabled" [ngbPopover]="cancelPopover"
+                                    triggers="manual" (click)="openConfirmPopup(cancelPop, service, idx, false)"
+                                    container="body" (clickOutside)="cancelPop.close();" 
+                                    placement="bottom-right" #cancelPop="ngbPopover">
+                                <span class="icon-delete icon"></span>
+                            </button>
+                                -->
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ng-template #allTab>
+                    <ul class="">
+                        <li *ngFor="let widget of allDashboardList">
+                            <div class="row p-2">
+                                <div class="ml-3" style="width:120px;">
+                                    <div class="widget-image text-center" *ngIf="widget?.thumbnail === 'LIST' ">
+                                        <img [src]="imageList[0]"
+                                            alt="placeholder+image">
+                                    </div>
+                                    <div class="widget-image text-center" *ngIf="widget?.thumbnail === 'GRAPH' ">
+                                        <img [src]="imageList[1]"
+                                            alt="placeholder+image">
+                                    </div>
+                                    <div class="widget-image text-center"  *ngIf="widget?.thumbnail === '' ">
+                                        <img [src]="imageList[0]"
+                                                alt="placeholder+image">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="widget-title">{{widget.title}}</div>
+                                    <div class="widget-disc">{{widget.description}}</div>
+                                </div>
+                                <div class="mr-3" style="width:100px">
+                                    <span *ngIf="selectedTabValue!='Selected'" class="pull-right">
+                                        <button class="athma-btn athma-btn-priamry mr-0" (click)="addWidget(widget)">Add
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <span *ngIf="(allDashboardList && allDashboardList.length == 0)" jhiTranslate="arthaApp.dashboard.noWidgetsAvailable">No
+                        Widgets Available...</span>
+                </ng-template>
+                <span *ngIf="selectedTabValue=='Selected' && dashboardList && dashboardList.length == 0" jhiTranslate="arthaApp.dashboard.noWidgetsAvailable">No
+                    Widgets Available...</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer" [ngClass]="{'justify-content-between': successMsg || errorMsg}">
+    <ng-container *ngIf="successMsg">
+        <p class="text-success m-0">{{successMsg}}</p>
+    </ng-container>
+    <ng-container *ngIf="errorMsg">
+        <p class="text-danger m-0">{{errorMsg}}</p>
+    </ng-container>
+    <div class="text-right">
+        <button type="button" class="athma-btn athma-btn-secondary mr-0"
+                jhiTranslate="arthaApp.dashboard.close" (click)="close()">Close
+        </button>
+        <!--TODO: Currently not required.-->
+        <!--<button type="button" class="athma-btn athma-btn-priamry mr-0" jhiTranslate="gatewayApp.dashboard.save"-->
+         <!--(click)="saveSettings()">Save</button>-->
+    </div>
+</div>

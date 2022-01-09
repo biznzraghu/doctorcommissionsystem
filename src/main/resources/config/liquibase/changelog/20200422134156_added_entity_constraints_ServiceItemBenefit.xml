@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity ServiceItemBenefit.
+    -->
+    <changeSet id="20200422134156-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="variable_payout_id"
+                                 baseTableName="service_item_benefit"
+                                 constraintName="fk_service_item_benefit_variable_payout_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="variable_payout"/>
+
+        <addForeignKeyConstraint baseColumnNames="plan_template_id"
+                                 baseTableName="service_item_benefit"
+                                 constraintName="fk_service_item_benefit_plan_template_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="service_item_benefit_template"/>
+
+    </changeSet>
+</databaseChangeLog>

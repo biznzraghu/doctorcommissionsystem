@@ -1,0 +1,21 @@
+<div class="card rounded-0 assigned-role-page">
+    <div class="card-header d-flex justify-content-between border-left-0 border-top-0">
+        <h4 class="athma-text-small mb-0" jhiTranslate="gatewayApp.role.header.assignedRoles">Assigned Roles</h4>
+    </div>
+    <div class="card-block card-body">
+        <ul  class="p-0" [ngClass]="{'m-0': roles?.length > 0}">
+            <li class="m-2" *ngFor="let role of roles; index as idx" style="display:inline-block;">
+                <div class="athma-assign-role-btn athma-btn athma-btn-primary">
+                    <span (click)="showPrivileges(role);" class="athma-pointer athma-hover-underline">{{role?.name}}</span>
+                    <span *ngIf="showAddRoleBtn" class="pull-right athma-pointer athma-rp-remove icon-cross ml-1" style="font-size:8px;margin-top: 2px;" aria-hidden="true"
+                             (click)="unAssignRole(idx)"></span>
+                </div>
+            </li>
+            <li *ngIf="showAddRoleBtn" class="m-2 athma-pointer" style="display:inline-block;" (click)="addNewRole();">
+                <div class="athma-assign-role-plain athma-btn athma-btn-primary-outline">
+                    <span>+ Add Role</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

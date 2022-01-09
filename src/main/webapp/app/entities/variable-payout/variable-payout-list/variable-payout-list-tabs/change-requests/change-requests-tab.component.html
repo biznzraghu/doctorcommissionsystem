@@ -1,0 +1,178 @@
+<div class="row payout-adjustment">
+    <div class="col-12 fixed-header-table">
+        <div class="fixed-header-table-head-container">
+            <table class="table athma-table fixed-header-table-head mb-0" [style.width.px]="fixedHeaderWidth()">
+                <thead class="dark-table-heading md-table">
+                    <tr arthaSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                        <th style="width:20%" arthaSortBy="employee.displayName.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.employeeName">
+                                Employee Name
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:20%" arthaSortBy="createdBy.displayName.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.createdBy">
+                                Created By
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:20%" arthaSortBy="createdDate">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.createdDate">
+                                Created Date
+                            </span>
+                            <span class="fa fa-sort fa-sort-desc"></span>
+                        </th>
+                        <th style="width:20%" arthaSortBy="transactionApprovalDetails.approvedBy.displayName.keyword">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.approvedBy">
+                                Approved By
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="version.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.version">
+                                Version
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="changeRequestStatus.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.requestStatus">
+                                Request Status
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="si-detail-table">
+            <div class="infinite-scroll-table ps position-relative" infinite-scroll debounce
+                [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="300" [scrollWindow]="false" [style.height.px]="setInfiniteScrollHeight()"
+                (scrolled)="loadPage(page + 1)" [perfectScrollbar]="config">
+                <table class="table athma-table fixed-header-table-body athma-table-layout-fixed">
+                    <tbody class="md-table" *ngIf="variablePayoutDatas && variablePayoutDatas?.length > 0">
+                        <ng-container
+                            *ngFor="let variablePayoutData of variablePayoutDatas; let i=index;">
+                            <tr (click)="updateDetail(variablePayoutData?.id)">
+                                <td width="20%">
+                                    <ng-container *ngIf="variablePayoutData?.employee" >
+                                        <span *ngIf="variablePayoutData?.employee?.displayName">
+                                            <!-- <jhi-athma-string-manipulation [suffixCharacterLength]="25" [prefixCharacterLength]="10"
+                                                [stringModified]="variablePayoutData?.employee?.displayName ? variablePayoutData?.employee?.displayName  : '-'" [stringLength]="55"
+                                                [tooltipDisplay]="true"> 
+                                            </jhi-athma-string-manipulation> -->
+                                            <jhi-athma-string-manipulation [stringModified]="variablePayoutData?.employee?.displayName ? variablePayoutData?.employee?.displayName :'-' "
+                                                [stringLength]="40" [tooltipDisplay]="true">
+                                            </jhi-athma-string-manipulation>
+                                        </span>
+                                        <br>
+                                        <span class="small-text-display" >
+                                            <span>{{variablePayoutData?.employee?.employeeNo ? variablePayoutData?.employee?.employeeNo
+                                                : '-'}}</span>
+                                        </span>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="!variablePayoutData?.employee" >
+                                            -
+                                    </ng-container>
+
+                                </td>
+                                <td width="20%">
+                                    <span *ngIf="variablePayoutData?.createdBy?.displayName">
+                                        <!-- <span>{{variablePayoutData?.createdBy?.displayName ? variablePayoutData?.createdBy?.displayName  : '-' }}</span> -->
+                                        <jhi-athma-string-manipulation [stringModified]="variablePayoutData?.createdBy?.displayName ? variablePayoutData?.createdBy?.displayName :'-' "
+                                            [stringLength]="40" [tooltipDisplay]="true">
+                                        </jhi-athma-string-manipulation>
+                                    </span>
+                                    <span *ngIf="!variablePayoutData?.createdBy?.displayName">
+                                        <span>{{variablePayoutData?.createdBy?.firstName ? (variablePayoutData?.createdBy?.firstName) + ' ' + (variablePayoutData?.createdBy?.lastName)  : '-'}}</span>
+                                    </span>
+                                </td>
+                                <td width="20%">
+                                    <span>
+                                        {{variablePayoutData?.createdDate ? (variablePayoutData?.createdDate | date: dateFormat) : '-'}}
+                                    </span>
+                                    <br>
+                                    <span class="small-text-display">
+                                        <span>{{variablePayoutData?.createdDate ? (variablePayoutData?.createdDate | date: dateTimeFormat)
+                                            : '-'}}</span>
+                                    </span>
+                                </td>
+                                <td width="20%">
+                                    <div class="col-sm-12 px-0 d-flex flex-column ">
+                                        <span *ngIf="variablePayoutData?.transactionApprovalDetails.length > 0">
+                                            <ng-container *ngIf="variablePayoutData?.changeRequestStatus === 'APPROVED'; else  otherStatus">
+                                                <span class="text">{{variablePayoutData?.transactionApprovalDetails ? variablePayoutData?.transactionApprovalDetails[0]?.approvedByDisplayName
+                                                    :'-'}}
+                                                    <span class="list-count-clr athma-pointer" (click)="preventNavigate($event)" [ngbTooltip]="approvedByListTemplate" tooltipClass="approved-list-popover-container"
+                                                        [placement]="['bottom','top']" #approvedByToolTip="ngbTooltip" triggers="click" container="body" *ngIf="variablePayoutData?.transactionApprovalDetails && variablePayoutData?.transactionApprovalDetails.length > 1">+{{variablePayoutData?.transactionApprovalDetails.length
+                                                        -1}}
+                                                    </span>
+                                                    <br>
+                                                    <span class="small-text-display">
+                                                        <span>{{variablePayoutData?.transactionApprovalDetails ? (variablePayoutData?.transactionApprovalDetails[0]?.approvedDateTime
+                                                            | date: dateTimeBothFormat) : '-'}}</span>
+                                                    </span>
+                                                </span>
+                                            </ng-container>
+                                            <ng-template #otherStatus>
+                                                <span>
+                                                    -
+                                                </span>
+                                            </ng-template>
+                                        </span>
+                                        <span *ngIf="variablePayoutData?.transactionApprovalDetails.length === 0">
+                                            -
+                                        </span>
+                                        <ng-template #approvedByListTemplate style="background-color: antiquewhite;">
+                                            <div class="ps" style="position: relative;max-height: 150px;width: 162px;" [perfectScrollbar]="config">
+                                                <ng-container *ngFor="let approved of variablePayoutData?.transactionApprovalDetails ;let i = index">
+                                                    <div class="d-flex py-2 pr-2" *ngIf="i !== 0">
+                                                        <div class="col-1 p-0 pt-1">
+                                                            <div class="approval-status-badge" [ngClass]="(approved.type==='REJECTED') ? 'reject':'approved'">
+                                                                <i class="fa" [ngClass]="approved.type ? 'fa-check':'fa-times'"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-11 p-0 pl-2 text-left">
+                                                            <div class="border-bottom pb-1">
+                                                                <div class="approved-by-display-name">{{approved?.approvedByDisplayName}}</div>
+                                                                <div class="approve-dateTime">
+                                                                    {{approved?.approvedDateTime | date:'dd/MM/yyyy H:mm'}}</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </ng-container>
+                                            </div>
+                                        </ng-template>
+                                    </div>
+                                </td>
+                                <td width="10%">
+                                    <span>
+                                        {{variablePayoutData?.version ? 'v'+variablePayoutData?.version+'.0' : '-'}}
+                                    </span>
+                                </td>
+                                <td width="10%">
+                                    <span
+                                    [ngClass]='{
+                                        "status-draft": variablePayoutData?.changeRequestStatus === "DRAFT",
+                                        "status-approved": variablePayoutData?.changeRequestStatus === "APPROVED",
+                                        "status-rejected": variablePayoutData?.changeRequestStatus === "REJECTED",
+                                        "status-pending-approval": variablePayoutData?.changeRequestStatus === "PENDING_APPROVAL"
+                                    }'>
+                                    {{variablePayoutData?.changeRequestStatus ? statusClassMap[variablePayoutData?.changeRequestStatus] : '-'}}</span>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                    <tfoot *ngIf="variablePayoutDatas?.length===0 && noRecordFound">
+                        <tr>
+                            <td colspan="8" class="athma-no-records"><span
+                                    jhiTranslate="global.common.no-records-found"></span></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

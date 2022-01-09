@@ -1,0 +1,245 @@
+<div class="department-payout department-payout-bg" [class.disabled]="formDisabled">
+    <div class="w-100 pl-2 pr-2 pt-2 pb-2 deparment-body position-relative" [perfectScrollbar]="config">
+        <div class="department-payout-container mb-2">
+            <div class="row p-0 mr-0">
+                <div class="col-sm-12 pr-0 heading">
+                    <span>Basic Details</span>
+                </div>
+            </div>
+            <div class="row p-0 mr-0">
+                <div class="col-sm-3 pr-0">
+                    <div class="athma-form-group">
+                        <label>
+                            <span>Visit Type
+                                <sup class="mandatorySign">*</sup>
+                            </span>
+                        </label>
+                        <div class="bootstrap-tagsinput  p-0 d-flex">
+                            <ng-container *ngIf="visitDisplay?.length <= 5">
+                                <span class="p-1 text-left athma-tag-container" *ngFor="let type of visitDisplay">
+                                    {{type}}
+                                </span>
+                            </ng-container>
+                            <ng-container *ngIf="visitDisplay?.length > 5">
+                                <span
+                                    class="athma-tag-container">{{visitDisplay.length>0 ? visitDisplay[0] : '-'}}</span>
+                                <span [ngbTooltip]="(visitDisplay?.length > 1) ? visitTypeListTemplate : '' "
+                                    class="athma-pointer pt-1" [placement]="'bottom'">
+                                    <b style="color: #1AB394;">
+                                        {{visitDisplay?.length > 1 ? '+'  : ''}}
+                                    </b>
+                                    <b style="color: #1AB394;">
+                                        {{visitDisplay?.length > 1 ? visitDisplay.length -1  : ''}}
+                                    </b>
+                                </span>
+                            </ng-container>
+                            <ng-template #visitTypeListTemplate style="background-color: antiquewhite;">
+                                <ul class="p-0 m-0 list-unstyled">
+                                    <li class="p-1 text-left" *ngFor="let type of visitDisplay">
+                                        {{type}}
+                                    </li>
+                                </ul>
+                            </ng-template>
+                        </div>
+                        <!-- <span class="athma-form-control  bootstrap-tagsinput athma-tag-container"
+                            style="margin-left: 1px;">
+                            <jhi-athma-string-manipulation [stringTrim]="displayVisitParams()"
+                                [placementValue]="'right'" [stringLength]="32" [tooltipDisplay]="true">
+                            </jhi-athma-string-manipulation>
+
+                        </span> -->
+                    </div>
+                </div>
+                <div class="col-1 pr-0">
+                    <label>
+                        <span>Net/Gross</span>
+                        <sup class="mandatorySign">*</sup>
+                    </label>
+                    <div class="p-0 d-flex">
+                        {{selectedNetGross?.name}}
+                    </div>
+                </div>
+                <div class="col-5">
+
+                    <label>
+                        <span>
+                            Variable Range
+                            <sup class="mandatorySign">*</sup>
+                        </span>
+                    </label>
+                    <div class="form-group p-0 d-flex" *ngIf="departmentPayout.payoutRanges.length>0">
+                        <!-- <input type="text" class="athma-form-control" name="name" id="field_name"
+                                style="width:385px;border-right:none;" [(ngModel)]="variableRange"> -->
+                        <span class="p-1 text-left athma-tag-container">
+                            {{variableRange}}
+                        </span>
+                        <span 
+                            class="icon-info athma-pointer athma-tag-container" (click)="openPopup(false)"
+                            style="position: relative;font-size: 20px;border-left:none"></span>
+
+                    </div>
+                </div>
+                <div class="col-sm-1" style="min-width: 180px !important;">
+                    <div class="athma-form-group">
+                        <label>
+                            <span>Applicable Invoices</span>
+                        </label>
+                        <div class="p-0 d-flex">
+                            {{selectedApplicable?.name}}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <div class="athma-form-group">
+                        <label>
+                            <span>
+                                Status
+                            </span>
+                            <sup class="mandatorySign">*</sup>
+                        </label>
+                        <div class="form-group">
+                            <jhi-athma-switch class="athma-form-control pl-0 pt-0" name="active" [disabled]="true"
+                                [(ngModel)]="departmentPayout.status">
+                            </jhi-athma-switch>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row p-0 mr-0">
+                <div class="col-sm-3 pr-0">
+                    <div class="athma-form-group">
+                        <label>
+                            <span>Consultants</span>
+                        </label>
+                        <div class="text-center p-0 d-flex " *ngIf="departmentPayout.applicableConsultants.length>0">
+                            <span type="text" class="athma-tag-container" style="top: unset;left: unset;"
+                                [ngClass]="{'display-consultant': (queryCount !== null && queryCount !== undefined )}">{{queryCount}}</span>
+
+
+                            <span class="icon-info athma-pointer athma-tag-container " (click)="openConsultantPopup()"
+                                style="position: relative;font-size: 20px;left: 128px;"></span>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="department-payout-container mb-2" style="height: 350px;">
+            <div class="row p-0 mr-0">
+                <div class="col-sm-12 pr-0 heading">
+                    <span>Material Reductions</span>
+                </div>
+            </div>
+            <div class="row p-0 mr-0">
+
+                <div class="col-2 pr-0">
+                    <label>
+                        <span>On Cost/Sale</span>
+                        <sup class="mandatorySign">*</sup>
+                    </label>
+
+                    <div class="pt-1 d-flex">
+                        {{selectedOnCost?.name}}
+                    </div>
+                </div>
+            </div>
+            <div class="row  mr-0 pt-4">
+                <div class="col-sm-1 pl-4">
+                    <div class="athma-form-group" style="width:100px">
+                        <input [tabindex]="10" class="input-100 athma-checkbox-container" type="checkbox"
+                            style="position: absolute;left: 14px;" id="excludeCheckbox1"
+                            [(ngModel)]="departmentPayout.allMaterials" [disabled]="true" />&nbsp; All Materials
+                        <label for="excludeCheckbox1" style="border-color: #CACAD3 !important;"></label>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <div class="athma-form-group" style="position: absolute;left: 44px;">
+                        <input [tabindex]="10" class="input-100 athma-checkbox-container" type="checkbox"
+                            id="excludeCheckbox1" style="position: absolute;right: 40px;"
+                            [(ngModel)]="departmentPayout.drugs" [disabled]="true" />&nbsp; Drugs
+                        <label for="excludeCheckbox1" style="border-color: #CACAD3 !important;"></label>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <div class="athma-form-group">
+                        <input [tabindex]="10" class="input-100 athma-checkbox-container" type="checkbox"
+                            id="excludeCheckbox1" style="position: absolute;left: 5px;"
+                            [(ngModel)]="departmentPayout.implants" [disabled]="true" />&nbsp; Implants
+                        <label for="excludeCheckbox1" style="border-color: #CACAD3 !important;"></label>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="athma-form-group">
+                        <input [tabindex]="10" class="input-100 athma-checkbox-container" type="checkbox"
+                            id="excludeCheckbox1" style="position: absolute;left: 5px;"
+                            [(ngModel)]="departmentPayout.consumables" [disabled]="true" />&nbsp; Consumables
+                        <label for="excludeCheckbox1" style="border-color: #CACAD3 !important;"></label>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="row mr-0 pt-3">
+
+                <div class="col-sm-2 pl-4 pt-3">
+                    <div class="athma-form-group">
+                        <input [tabindex]="10" class="input-100 athma-checkbox-container" type="checkbox"
+                            id="excludeCheckbox1" style="position: absolute;left: 14px;"
+                            [(ngModel)]="departmentPayout.hscConsumption" [disabled]="true" />&nbsp; HSC Consumption
+                        <label for="excludeCheckbox1" style="border-color: #CACAD3 !important;"></label>
+                    </div>
+                </div>
+                <div class="col-11 pl-2" *ngIf="departmentPayout.hscConsumptionMaterialReductions.length>0">
+                    <div class="table athma-table-cal  mb-2 pl-2">
+                        <div>
+                            <ng-container *ngIf="departmentPayout.hscConsumptionMaterialReductions.length > 0">
+                                <div class="athma-tag-container p-0 mt-2 mr-2"
+                                    *ngFor="let pom of departmentPayout.hscConsumptionMaterialReductions; let itemIndex = index;">
+                                    <div class="tag-content mr-2">{{pom?.hscName}}</div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mr-0 pt-3">
+                <!-- Search Box -->
+
+                <div class="col-sm-2 pl-4">
+                    <div class="athma-form-group">
+                        <input [tabindex]="10" class="input-100 athma-checkbox-container" type="checkbox"
+                            id="excludeCheckbox1" style="position: absolute;left: 14px;"
+                            [(ngModel)]="departmentPayout.deptConsumption" (click)="onClickReductions($event)"
+                            [disabled]="true" />&nbsp;
+                        Deptartment Consumption
+                        <label for="excludeCheckbox1" style="border-color: #CACAD3 !important;"></label>
+                    </div>
+                </div>
+                <div class="col-11 pl-3" *ngIf="departmentPayout.departmentConsumptionMaterialReductions.length>0">
+                    <div *ngIf="departmentPayout.departmentConsumptionMaterialReductions.length > 0">
+                        <div class="athma-tag-container mr-2"
+                            *ngFor="let pom of departmentPayout.departmentConsumptionMaterialReductions; let itemIndex = index;">
+                            <div class="tag-content mr-2">{{pom?.departmentName}}</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="atham-btn-container-fixed-bottom" style="padding: 0;">
+    <div class="col report-button-container">
+        <button type="button" class="athma-btn athma-btn-secondary mr-2 pull-right" (click)="close()">
+            <span>Close</span>
+        </button>
+    </div>
+</div>
+
+<jhi-header-dialog-breadcrumb [routeUrl]=" '/artha/department-payout'">
+    <span class="navbar-version" jhiTranslate="global.menu.entities.departmentPayout"></span>
+</jhi-header-dialog-breadcrumb>

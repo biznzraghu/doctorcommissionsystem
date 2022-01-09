@@ -1,0 +1,76 @@
+<div class="card rounded-0 assigned-privileges-page">
+    <div class="card-header d-flex justify-content-between border-left-0 border-top-0">
+        <h4 class="athma-text-small mb-0" jhiTranslate="gatewayApp.role.header.assignedPrivileges">Assigned Privileges
+        </h4>
+        <div class="d-inline-flex">
+            <ng-container *ngIf="showAddFeatureBtn">
+                <div class="athma-btn athma-btn-primary-outline" (click)="showModuleFeatures()">
+                    <span>+ Add Feature</span>
+                </div>
+            </ng-container>
+            <div *ngIf="privileges?.length !== 0" ngbDropdown
+                class="dropdown-labels dropdown push-right display-inline">
+                <button class="athma-btn" id="assignedPrivileges" ngbDropdownToggle>Filters</button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="assignedPrivileges">
+                    <ul>
+                        <li class="removeFilters">
+                            <a class="athma-pointer  text-blue" (click)="removeFilters()"
+                                href="javascript:void(0);">Remove Filters</a>
+                        </li>
+                        <li *ngFor="let key of privilegeLabels();" class="athma-pointer"
+                            [ngClass]="{'selected': privilegesToFilter[key]  === true, 'not-selected': privilegesToFilter[key]  === false }"
+                            (click)="filterPrivileges(privilegesToFilter[key] = !privilegesToFilter[key])">
+                            <div *ngIf="key!=='Others'"
+                                [ngClass]="privilegeColorCodes[key]?privilegeColorCodes[key]:privilegeColorCodes['Others']"
+                                class="athma-privilege-colorBox athma-privilege"></div>
+                            <span *ngIf="key!=='Others'"> {{key}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-container *ngIf="privilegesWithModuleAndFeatures else emptyPrivileges">
+        <ng-container *ngFor="let module of privilegesWithModuleAndFeatures | keyvalue">
+            <section class="assigned-privileges">
+                <div width="10%">{{module.key}}</div>
+                <ul class="m-0">
+                    <li class="assigned-features" *ngFor="let feature of module.value | keyvalue; index as idx"> 
+                        <p class="m-0 p-4 feature">{{feature.key}}</p> 
+                        <ul class="list-unstyled list-inline text-left p-3 feature border-lrft-0">
+                            <li class="list-inline-item athma-privilege py-1 px-2" *ngFor="let privilege of feature.value; index as prevIndex"
+                                [ngClass]="privilegeColorCodes[privilege.name]? privilegeColorCodes[privilege.name]: privilegeColorCodes['Others']">
+                                <span> {{privilege.name}} </span>
+                                <i  style="font-size:8px;" class="icon-cross privilege-delete athma-pointer" (click)="unAssignPrivilege(module, feature,privilege, prevIndex)"></i>
+                           </li>
+                           <li class="list-inline-item">
+                            <div ngbDropdown class="dropdown">
+                                <div class="athma-btn athma-btn-primary-outline privilege-add athma-pointer" id="addPrivilege{{idx}}" ngbDropdownToggle (click)="showUnAssignedPrivileges(feature)"> + Add Privilege</div>
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="addPrivilege">
+                                    <ul class="m-0 p-0" *ngIf="unAssignedPrivileges?.length else noPrivligesFound">
+                                            <li *ngFor="let privilege of unAssignedPrivileges; index as unAssignPrevilegeIndex" 
+                                            class="athma-pointer d-flex align-items-center text-left py-1 px-2"
+                                            [ngClass]="{'selected': privilegesToFilter[privilege.name]  === true, 'not-selected': privilegesToFilter[privilege.name]  === false }"
+                                            (click)="assignPrivilege(privilege)">
+                                            <div class="athma-privilege-colorBox athma-privilege" [ngClass]="privilegeColorCodes[privilege.name]? privilegeColorCodes[privilege.name]: privilegeColorCodes['Others']"></div>
+                                            <span> {{privilege.name}}</span>
+                                        </li>
+                                    </ul>
+                                    <ng-template #noPrivligesFound>
+                                        <span class="p-1 position-relative" style="top: 12px;">No privileges found to add</p>
+                                    </ng-template> 
+                                </div>
+                            </div>
+                        </li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+        </ng-container>
+    </ng-container>
+    <ng-template #emptyPrivileges>
+        <span *ngIf="privileges?.length == 0" class="athma-rp-li athma-top-border p-2"
+        style="color:blue;font-weight:600;">No Privileges Assigned</span>
+    </ng-template>
+</div>

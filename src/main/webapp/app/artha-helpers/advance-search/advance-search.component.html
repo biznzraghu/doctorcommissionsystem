@@ -1,0 +1,241 @@
+<div class="modal-header">
+    <h6 class="modal-title">Advanced Search</h6>
+    <button type="button" class="close" aria-label="Close" style="outline: 0px;" (click)="cancel()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!-- Modal body - S -->
+<div class="modal-body">
+    <!-- Inline input - S -->
+    <div class="inline-input">
+        <!-- ads Group - S -->
+        <div class="ads-grp" *ngFor="let inputf of newInputElement; let inputIndex = index">
+            <div class="athma-segment-input-group" *ngIf="inputf.isDisplay">
+                <label class="athma-segment-group-label">
+                    <span>{{"arthaApp."+pageName+".tbl-headers."+( inputf.fieldName) | translate}}</span>
+                </label>
+                <div class="athma-segment-group-fields">
+                    <input type="text" placeholder="Enter" class="athma-form-control athma-form-control-md" [(ngModel)]="inputf.name">
+                </div>
+                <a class="athma-segment-group-remove" (click)="removeInput(inputIndex)">x</a>
+            </div>
+        </div>
+
+        <div class="ads-grp" *ngFor="let dateEle of newDateElement; let dateIndex =index ">
+            <div class="athma-segment-input-group" *ngIf="dateEle.isDisplay">
+                <label class="athma-segment-group-label">
+                    <span>{{"arthaApp."+pageName+".tbl-headers."+(dateEle.fieldName) | translate}}</span>
+                </label>
+                <div class="athma-segment-group-fields">
+                    <div class="input-type-div athma-form-date-control" daterangepicker (selected)="selectedDate($event, dateIndex)" (cancelDaterangepicker)="calendarEventsHandler($event)"
+                        (applyDaterangepicker)="calendarEventsHandler($event)" (hideDaterangepicker)="calendarEventsHandler($event)"
+                        (showDaterangepicker)="calendarEventsHandler($event)" [options]="options">
+                        <span class="uneditable-input" name="daterange">
+                            {{ dateEle.startDate | date: dateFormat }}-{{ dateEle.endDate| date: dateFormat }}
+                        </span>
+                    </div>                   
+                </div>
+                <a class="athma-segment-group-remove" (click)="removeDate(dateIndex)">x</a>
+            </div>
+        </div>
+
+        <div class="ads-grp" *ngFor="let tHead of newTypeheadEle; let tyIndex=index;">
+            <div class="athma-segment-input-group height-expand" *ngIf="tHead.isDisplay">
+                <label class="athma-segment-group-label">
+                    <span>{{"arthaApp."+pageName+".tbl-headers."+(tHead.fieldName) | translate}}</span>
+                </label>
+
+                <div *ngIf="tHead.tempData" class="input-chips athma-segment-tags-group">
+                    <div class="athma-tag-container" *ngFor="let tempStore of tHead.tempData; let storeIndex=index">
+                        <div class="tag-content">{{ tempStore }}</div>
+                        <div class="close-tag" (click)="removeTypeHeadTempData(tyIndex, storeIndex)">x</div>
+                    </div>
+                </div>
+
+                <div class="athma-segment-group-fields">
+                    <input type="text" class="athma-form-control athma-form-control-md" (keyup)="getCurrentIndex(tyIndex)" #inputStore [ngbTypeahead]="searchTypeAhead"
+                        [inputFormatter]="tHead.inputFormat" [resultFormatter]="tHead.resultFormatter" (selectItem)="selectTypehead($event,inputStore,tyIndex)"
+                        placeholder="Search" />
+                </div>
+                <a class="athma-segment-group-remove" (click)="removeTypeHead(tyIndex)">x</a>
+            </div>
+        </div>
+
+        <div class="ads-grp" *ngIf="unit && unit.isDisplay">
+            <div class="athma-segment-input-group height-expand">
+                <label class="athma-segment-group-label">
+                    <span>{{"arthaApp."+pageName+".tbl-headers."+(unit.fieldName) | translate}}</span>
+                </label>
+
+                <div *ngIf="unit.tempData" class="input-chips athma-segment-tags-group">
+                    <div class="athma-tag-container" *ngFor="let tempStore of unit.tempData; let unitIndex=index">
+                        <div class="tag-content">{{ tempStore }}</div>
+                        <div class="close-tag" (click)="removeUnitData(unitIndex)">x</div>
+                    </div>
+                </div>
+                <!-- (keyup)="getCurrentIndex(tyIndex)" -->
+                <div class="athma-segment-group-fields">
+                    <!-- <input type="text" class="athma-form-control athma-form-control-md"  #unitStore [ngbTypeahead]="searchUnits"
+                        [inputFormatter]="inputFormatUnitsData" [resultFormatter]="formatUnitsData" (selectItem)="selectUnit($event,unitStore)"
+                        placeholder="Search" /> -->
+                </div>
+                <a class="athma-segment-group-remove" (click)="removeUnit()">x</a>
+            </div>
+        </div>
+
+
+        <div class="ads-grp" *ngFor="let ipselect of newSelectElement; let selectIndex=index">
+            <div class="athma-segment-input-group height-expand" *ngIf="ipselect.isDisplay">
+                <label class="athma-segment-group-label">
+                    <span>{{"arthaApp."+pageName+".tbl-headers."+(ipselect.fieldName) | translate}}</span>
+                </label>
+
+                <div *ngIf="ipselect.tempData" class="input-chips athma-segment-tags-group">
+                    <div class="athma-tag-container" *ngFor="let subData of ipselect.tempData; let subIndex=index">
+                        <ng-container *ngIf="ipselect.translation;else elseTemplate">
+                            <div class="tag-content" ><span>{{"global.menu.entities."+subData | translate}}</span></div>
+
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                            <div class="tag-content">{{ subData }}</div>
+                        </ng-template>
+
+                        <div class="close-tag" (click)="removeSelectChip(selectIndex,subIndex)">x</div>
+                    </div>
+                </div>
+
+                <div class="athma-segment-group-fields">
+                    <select class="athma-form-control athma-form-control-md" (change)="onchangeStatus($event, selectIndex)">
+                        <option value="">Select</option>
+                        <option *ngFor="let stat of ipselect.optionData" [value]="stat.value">{{ stat.name }}</option>
+                    </select>
+                </div>
+                <a class="athma-segment-group-remove" (click)="removeSelect(selectIndex)">x</a>
+            </div>
+        </div>
+
+        <!-- service dropdown for bed-definition -->
+        <div class="ads-grp" *ngIf="newServiceCenter && newServiceCenter.isDisplay">
+            <div class="athma-segment-input-group height-expand">
+                <label class="athma-segment-group-label">
+                    <span>{{"arthaApp.bedDefinition.home.hsc" | translate}}</span>
+                </label>
+
+                <div *ngIf="newServiceCenter.tempData" class="input-chips athma-segment-tags-group">
+                    <div class="athma-tag-container" *ngFor="let serviceCenter of newServiceCenter.tempData; let serviceIndex=index">
+                        <div class="tag-content">{{ serviceCenter }}</div>
+                        <div class="close-tag" (click)="removeServiceCenterData(serviceIndex)">x</div>
+                    </div>
+                </div>
+
+                <div class="athma-segment-group-fields">
+                    <select class="athma-form-control athma-form-control-md" (change)="onChangeBedService($event)">
+                        <option value="">Select</option>
+                        <option *ngFor="let serviceCenter of serviceList;" [value]="serviceCenter.name">{{ serviceCenter.name }}</option>
+                    </select>
+                </div>
+                <a class="athma-segment-group-remove" (click)="removeServiceCenter()">x</a>
+            </div>
+        </div>
+
+        <div class="ads-grp" *ngIf="newHscStore && newHscStore.isDisplay">
+            <div class="athma-segment-input-group height-expand">
+                <label class="athma-segment-group-label">
+                    <span>{{ newHscStore.labelName }}</span>
+                </label>
+
+                <div *ngIf="newHscStore.tempData" class="input-chips athma-segment-tags-group">
+                    <div class="athma-tag-container" *ngFor="let storeName of newHscStore.tempData; let hscIndex=index">
+                        <div class="tag-content">{{ storeName }}</div>
+                        <div class="close-tag" (click)="removehscStoreData(hscIndex)">x</div>
+                    </div>
+                </div>
+
+                <div class="athma-segment-group-fields">
+                    <!-- <input type="text" class="athma-form-control athma-form-control-md" (keyup)="checkUnitonCode()" #hscStore [ngbTypeahead]="searchHscStores"
+                        [inputFormatter]="inputFormatHscData" [resultFormatter]="formatHscData" (selectItem)="selectHscStore($event,hscStore)"
+                        placeholder="Search" /> -->
+                </div>
+                <a class="athma-segment-group-remove" (click)="removeHSC()">x</a>
+            </div>
+        </div>
+        <!-- ads Group - E -->
+
+    </div>
+    <!-- Inline input - E -->
+    <!-- Inline label group - S -->
+    <div class="inline-label-group">
+        <ul class="m-0 p-0">
+
+            <li class="inline-label-ele athma-btn athma-btn-secondary" *ngFor="let inf of newInputElement" (click)="inf.isDisplay = true">
+                <span>{{"arthaApp." + pageName + ".tbl-headers." + (inf.fieldName)  | translate}}</span>
+            </li>
+
+            <li class="inline-label-ele athma-btn athma-btn-secondary" *ngFor="let tHead of newTypeheadEle; let tIndex=index" (click)="displayTypehead(tIndex)">
+                <span>{{"arthaApp." + pageName + ".tbl-headers." + (tHead.fieldName)  | translate}}</span>
+            </li>
+
+            <li class="inline-label-ele athma-btn athma-btn-secondary" *ngFor="let dateEl of newDateElement; let tIndex=index" (click)="displayDateElement(tIndex)">
+                <span>{{"arthaApp." + pageName + ".tbl-headers." + (dateEl.fieldName)  | translate}}</span>
+            </li>
+
+            <li class="inline-label-ele athma-btn athma-btn-secondary" *ngFor="let selIp of newSelectElement; let tIndex=index" (click)="displaySelectElement(tIndex)">
+                <span>{{"arthaApp." + pageName + ".tbl-headers." + (selIp.fieldName)  | translate}}</span>
+            </li>
+
+            <li class="inline-label-ele athma-btn athma-btn-secondary" *ngIf="unit" (click)="displayUnit()">
+                <span>{{"arthaApp." + pageName + ".tbl-headers." + (unit.fieldName)  | translate}}</span>
+            </li>
+
+            <li class="inline-label-ele athma-btn athma-btn-secondary" *ngIf="newHscStore" (click)="displayStore()">
+                <span>{{"arthaApp." + pageName + ".tbl-headers." + (newHscStore.fieldName)  | translate}}</span>
+            </li>
+
+            <li class="inline-label-ele athma-btn athma-btn-secondary" *ngIf="newServiceCenter" (click)="displayServiceCenter()">
+                <span>{{"arthaApp." + pageName + ".tbl-headers." + (newServiceCenter.fieldName)  | translate}}</span>
+            </li>
+        </ul>
+    </div>
+    <!-- Inline label group - E -->
+    <!-- Search Query List - S -->
+    <div class="inline-input mt-3" *ngIf="searchQueryList">
+        <div class="bootstrap-tagsinput">
+            <div class="athma-tag-container athma-pointer" [class]=" searchList.id == activeSearch ? 'athma-tag-container athma-pointer tag-selected':'athma-tag-container athma-pointer'"
+                *ngFor="let searchList of searchQueryList">
+                <div class="tag-content" (click)="fetchSearchQuery(searchList)">{{ searchList.settingValue.name }}</div>
+                <div class="close-tag" (click)="removeSearchQuery(searchList.id)">x</div>
+            </div>
+        </div>
+    </div>
+    <!-- Search Query List - E -->
+</div>
+<!-- Modal body - E -->
+<!-- Modal footer - S -->
+<div class="modal-footer space-between" style="max-height: 60px;">
+    <div class="pull-left">
+        <div class="row">
+            <div class="col-sm-8">
+                <input type="text" style="width:100%" class="md-search athma-form-control" [(ngModel)]="queryName" placeholder="Enter Query Name"
+                    (keyup)="checkQueryName($event)">
+                <small *ngIf="sucessMsg">{{ sucessMsg }}</small>
+                <small class="text-danger error" *ngIf="errMsg">{{ errMsg }}</small>
+            </div>
+            <div class="col-sm-4">
+                <button type="button" [disabled]="invalidSearchName" class="btn athma-btn athma-btn-primary-outline nml-14" (click)="saveSearch()">
+                    <span>{{"entity.action.save"  | translate}}</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-actions">
+        <button type="button" class="athma-btn athma-btn-secondary" (click)="cancel()">
+            <span>{{"entity.action.cancel"  | translate}}</span>
+        </button>
+
+        <button type="button" class="athma-btn athma-btn-primary" (click)="continue()">
+            <span>{{"entity.action.search"  | translate}}</span>
+        </button>
+    </div>
+</div>
+<!-- Modal footer - E -->

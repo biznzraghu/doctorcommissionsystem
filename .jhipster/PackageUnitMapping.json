@@ -1,0 +1,41 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+
+        {
+            "relationshipName": "packageMaster",
+            "otherEntityName": "PackageMaster",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "unit",
+            "otherEntityName": "Organization",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "department",
+            "otherEntityName": "Organization",
+            "relationshipType": "one-to-many",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityRelationshipName": "packageUnitMapping",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+
+    ],
+    "changelogDate": "20201205140322",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "package_unit_mapping",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": true
+}

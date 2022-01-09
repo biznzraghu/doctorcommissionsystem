@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity DepartmentPayout.
+    -->
+    <changeSet id="20200730114400-1" author="jhipster">
+        <createTable tableName="department_payout">
+            <column name="id" type="bigint"  autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_by" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="version" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="change_request_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="latest" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="visit_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="net_gross" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="applicable_invoice" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="on_cost_sale" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="all_materials" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="drugs" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="implants" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="consumables" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="dept_consumption" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="hsc_consumption" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="department_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="unit_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20203007180322-1" author="anurag">
+        <modifyDataType tableName="department_payout" columnName="status" newDataType="boolean"></modifyDataType>
+    </changeSet>
+    <changeSet id="20203007160222-2" author="anurag">
+        <addColumn tableName="department_payout">
+            <column name="iu_datetime" type="timestamp" defaultValue="now()">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20200730124022-1" author="animesh">
+        <addColumn tableName="department_payout">
+            <column name="department_name" type="varchar(255)">
+            </column>
+        </addColumn>
+        <addColumn tableName="department_payout">
+            <column name="starting_version" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="current_version" type="integer">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200812124022-1" author="animesh">
+        <addColumn tableName="department_payout">
+            <column name="custom_department" type="boolean">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+        <addColumn tableName="transaction_approval_details">
+            <column name="comments" type="varchar(1024)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200814111022-1" author="animesh">
+        <addColumn tableName="department_payout">
+            <column name="active" type="boolean">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

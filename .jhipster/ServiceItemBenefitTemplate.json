@@ -1,0 +1,36 @@
+{
+  "name": "ServiceItemBenefitTemplate",
+  "fields": [
+    {
+      "fieldName": "templateName",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "serviceItemBenefit",
+      "otherEntityRelationshipName": "planTemplate",
+      "relationshipName": "serviceItemBenefit"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "variablePayout",
+      "otherEntityRelationshipName": "serviceItemBenefitTemplate",
+      "relationshipName": "variablePayout",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "changelogDate": "20200506082635",
+  "entityTableName": "service_item_benefit_template",
+  "dto": "no",
+  "pagination": "pager",
+  "searchEngine": "elasticsearch",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "clientRootFolder": "",
+  "applications": "*",
+  "service": "serviceImpl"
+}

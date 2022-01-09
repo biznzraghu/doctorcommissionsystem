@@ -1,0 +1,21 @@
+<jhi-widget-header [widgetData]="widgetData" (refreshWidget)="refreshData()"></jhi-widget-header>
+<div class="athma-widget">
+    <div class="overlay" [style.display]="loading?'block':'none'" *ngIf="loading">
+        <div class="widget-spinner"></div>
+    </div>
+    <div class="heading position-relative">
+        <span class="date-filter"><span>{{selectedDateFilter}}</span><span class="icon icon-calendar athma-pointer" (click)="dateFilterPop.isOpen() ? dateFilterPop.close() :  dateFilterPop.open();"
+        (clickOutside)="closeDateFilterPop()"
+                [ngbPopover]="dateFilterPopover" triggers="manual" #dateFilterPop="ngbPopover" placement="bottom-right"></span></span>
+        <ng-template #dateFilterPopover>
+            <ul class="list-unstyled hover-list m-0">
+                <li class="py-1 athma-pointer" *ngFor="let date of dateRanges" (click)="durationChange(date)">
+                    <span>{{date}}</span>
+                </li>
+            </ul>
+        </ng-template>
+    </div>
+    <div style="padding: 0px 10px; height: calc( 100% - 34px);">
+        <div id="doctorWiseRevenueTrend" width="100%" max-height="inherit"></div>
+    </div>
+</div>

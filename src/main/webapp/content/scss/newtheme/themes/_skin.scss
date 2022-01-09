@@ -1,0 +1,285 @@
+.skin {
+  /* Color Codes codes based on style guide */
+  /* Common - Colors (prefix: c)*/
+  // primary palette
+  $c-nh-blue: #0078d7;
+  $c-darkest-gray: #343536;
+  $c-orange: #fca121;
+  $c-mountain-meadow: #1ab394;
+  // grey palette
+  $c-body-grey: #414146;
+  $c-light-body-grey: #787877;
+  $c-light-tab-grey: #9e9e9e;
+  $c-border-grey: #cacad3;
+  $c-light-grey: #cacad3;
+  $c-bg-grey: #fafafa;
+  $c-white: #ffffff;
+  $c-black: #000000;
+  $c-light-brown: #a77b14;
+  $c-list-border-grey: #b4b4be;
+  $c-modal-color: #292b2c;
+  $c-modal-header-color: #464646;
+  $c-modal-header-background-color: #f2f2f2;
+  $c-modal-footer-background-color: #eaeaef;
+  $c-modal-popup-footer-btn: #8a8989;
+  $c-modal-border-color: #bdbdbd;
+  $c-btn-hover-color: #f7f7f7;
+  $c-advance-search-modal-input-color: #ccc;
+  // selection palette
+  $c-selector-blue: #d7e3f4;
+  $c-tag-green: #d2fcd7;
+  // secondary palette
+  $c-sunshine-yellow: #ffb624;
+  $c-deep-orange: #ff7800;
+  $c-red: #ff2d00;
+  $c-burnt: #8d6e63;
+  $c-flamingo: #f06292;
+  $c-purple: #9575cd;
+  $c-deep-purple: #5e35b1;
+  $c-cyan: #4fc3f7;
+  $c-blue: #006cff;
+  $c-dark-teal: #377277;
+  $c-leaf-green: #8bc34a;
+  $c-dark-green: #2e7d32;
+  $c-deep-grey: #607d8b;
+  $c-dark-greenish: #2e7d32;
+  $c-charcoal: #424242;
+  $c-modal-success-green: #01a400;
+  // extended palette
+  $c-button-active-bg: #ffa800;
+  $c-button-hover-bg: #ffa800;
+  $c-button-disabled-bg: #f7c258;
+  // thrid palette
+  $c-selector-blue: #d7e3f4;
+  $c-search-bar-grey: #cacade;
+  $c-tag-green: #d2fcd7;
+  // Extra colors from developer
+  $c-remove-bg: #f75f54;
+  $c-dark-blue: #28328c; // temprature
+  $c-dark-orange: #ff7800; // prescription
+  $c-dark-dark-pastel-red: #cc2161; // added by developer
+  /* Common */
+  $theme-bg: $c-white;
+  $theme-normal-text: $c-body-grey;
+  $theme-links-text: $c-darkest-gray;
+  $theme-links-text-hover: $c-button-hover-bg;
+  $theme-error-text: $c-red;
+  $theme-bg-color: $c-darkest-gray;
+  $theme-border-color: $c-darkest-gray;
+  $theme-border-grey-color: $c-border-grey;
+  /* Specific - athma button (prefix: ab) */
+  // required button-bg($bg,$hoverBg,$disabledBg,$borderWidth,$borderColor,$hoverBorderColor,$disabledBorderColor)
+  $ab-primary-bg: $c-button-active-bg;
+  $ab-primary-bc: $c-button-active-bg;
+  $ab-primary-text: $c-white;
+  $ab-primary-hover-bg: $c-button-hover-bg;
+  $ab-primary-hover-bc: $c-button-hover-bg;
+  $ab-primary-hover-text: $c-white;
+  $ab-primary-disabled-bg: $c-button-disabled-bg;
+  $ab-primary-disabled-bc: $c-button-disabled-bg;
+  $ab-primary-disabled-text: $c-white;
+  // primary Outline
+  $ab-primary-outline-bg: $c-white;
+  $ab-primary-outline-bc: $c-darkest-gray;
+  $ab-primary-outline-text: $c-darkest-gray;
+  $ab-primary-outline-hover-bg: $c-darkest-gray;
+  $ab-primary-outline-hover-bc: $c-darkest-gray;
+  $ab-primary-outline-hover-text: $c-white;
+  $ab-primary-outline-disabled-bg: $c-white;
+  $ab-primary-outline-disabled-bc: $c-border-grey;
+  $ab-primary-outline-disabled-text: $c-border-grey;
+  // secondary
+  $ab-secondary-bg: $c-white;
+  $ab-secondary-bc: $c-light-body-grey;
+  $ab-secondary-text: $c-body-grey;
+  $ab-secondary-hover-bg: $c-light-body-grey;
+  $ab-secondary-hover-bc: $c-light-body-grey;
+  $ab-secondary-hover-text: $c-white;
+  $ab-secondary-disabled-bg: $c-white;
+  $ab-secondary-disabled-bc: $c-border-grey;
+  $ab-secondary-disabled-text: $c-border-grey;
+  // Auxillary
+  $ab-auxillary-bg: $c-white;
+  $ab-auxillary-bc: $c-red;
+  $ab-auxillary-text: $c-red;
+  $ab-auxillary-hover-bg: $c-red;
+  $ab-auxillary-hover-bc: $c-red;
+  $ab-auxillary-hover-text: $c-white;
+  $ab-auxillary-disabled-bg: $c-white;
+  $ab-auxillary-disabled-bc: hexa-rgba-code($c-red, 0.7);
+  $ab-auxillary-disabled-text: $c-border-grey;
+  // Button group
+  $ab-group-default-bg: $c-white;
+  $ab-group-default-bc: $c-body-grey;
+  $ab-group-default-text: $c-body-grey;
+  $ab-group-hover-bg: $c-light-body-grey;
+  $ab-group-hover-bc: $c-light-body-grey;
+  $ab-group-hover-text: $c-white;
+  $ab-group-active-bg: $c-body-grey;
+  $ab-group-active-text: $c-white;
+  $ab-group-active-bc: $c-body-grey;
+  $ab-group-disabled-bg: $c-light-grey;
+  $ab-group-disabled-text: $c-body-grey;
+  $ab-group-disabled-bc: $c-body-grey;
+  // Icon button
+  $ab-icon-text: $c-light-body-grey;
+  $ab-icon-hover-text: $c-darkest-gray;
+  $ab-icon-disabled-text: $c-border-grey;
+  // Icon button with border
+  $ab-icon-w-border-bg: $c-white;
+  $ab-icon-w-border-bc: $c-red;
+  $ab-icon-w-border-text: $c-body-grey;
+  $ab-icon-w-border-hover-bg: $c-light-grey;
+  $ab-icon-w-border-hover-bc: $c-red;
+  $ab-icon-w-border-hover-text: $c-body-grey;
+  $ab-icon-w-border-disabled-bg: $c-white;
+  $ab-icon-w-border-disabled-bc: $c-border-grey;
+  $ab-icon-w-border-disabled-text: $c-border-grey;
+  /* Specific - Top Nav (prefix: tn) */
+  $tn-bg: $c-white;
+  $tn-normal-text: $theme-normal-text;
+  $tn-brand-text: $theme-normal-text;
+  $tn-border: $c-border-grey;
+  $tn-links-text: $c-white;
+  $tn-appmenu-bg: $c-white;
+  $tn-appmenu-border: $c-border-grey;
+  $tn-appmenu-box-shadow: $c-border-grey;
+  $tn-appmenu-item-border: $c-darkest-gray;
+  $tn-appmenu-item-bg: $c-darkest-gray;
+  $tn-appmenu-item-text: $c-white;
+  $tn-appmenu-item-hover-bg: $c-darkest-gray;
+  $tn-appmenu-item-hover-border: $c-darkest-gray;
+  $tn-appmenu-item-hover-text: $c-white;
+  $tn-notification-box-shadow: $c-border-grey;
+  /* Specific - athma forms (prefix: af) */
+  $af-label-text: $c-light-body-grey;
+  $af-default-text: $theme-normal-text;
+  $af-default-border: $c-border-grey;
+  $af-default-bg: $c-white;
+  $af-focus-border: $c-darkest-gray;
+  $af-placeholder-text: $c-light-body-grey;
+  $af-disabled-bg: $c-bg-grey;
+  $af-disabled-text: $c-border-grey;
+  $af-invalid-border: $c-red;
+  $af-valid-border: $c-dark-green;
+  /* Specific - Segment input group (prefix: sif) */
+  $sif-border: $c-border-grey;
+  $sif-label-bg: $c-body-grey;
+  $sif-label-text: $c-white;
+  $sif-form-control-focus: $c-cyan;
+  $sif-remove-btn-bg: $c-remove-bg;
+  $sif-remove-btn-text: $c-white;
+  /* Specific - athma switch field  (prefix: asf) */
+  $asf-bg: $c-body-grey;
+  $asf-active-bg: $c-dark-green;
+  $asf-box-shadow: $c-light-grey;
+  $asf-switch-bg: $c-white;
+  /* Specific - athma tag  (prefix: ats) */
+  $ats-bg: $c-tag-green;
+  $ats-text: $theme-normal-text;
+  // $ats-box-shadow: $c-light-grey;
+  // $ats-switch-bg: $c-white;
+  /* Specific - Athma status label (prefix: asl) */
+  $asl-text-color: $c-white;
+  $asl-new-bg: $c-sunshine-yellow;
+  $asl-draft-bg: $c-flamingo;
+  $asl-sent-for-approval-bg: $c-deep-orange;
+  $asl-approved-bg: $c-dark-green;
+  $asl-rejected-bg: $c-red;
+  $asl-closed-bg: $c-charcoal;
+  $asl-partially-issued-bg: $c-cyan;
+  $asl-issued-bg: $c-blue;
+  $asl-partially-processed-bg: $c-purple;
+  $asl-processed-bg: $c-deep-purple;
+  $asl-partially-received-bg: $c-leaf-green;
+  $asl-ordered-bg: $c-light-brown;
+  $asl-reversal-pending-bg: $c-deep-grey;
+  $asl-registered-bg: $c-dark-greenish;
+  $asl-inprogress-bg: $c-burnt;
+  $asl-return-bg: $c-dark-dark-pastel-red;
+  /* Specific - Athma badges  (prefix: abs) */
+  $abs-bg: $c-light-body-grey;
+  $abs-text: $c-white;
+  $abs-selected-bg: $c-darkest-gray;
+  $abs-hover-bg: $c-darkest-gray;
+  /* Specific - Athma medical indicator  (prefix: ami) */
+  $ami-text: $c-white;
+  $ami-temprature: $c-dark-blue;
+  $ami-prescription-status: $c-dark-orange;
+  /* Specific - Athma Typeahead  (prefix: ath) */
+  $amt-text: $c-body-grey;
+  $amt-border: $c-border-grey;
+  $amt-icon-color: $c-light-body-grey;
+  $amtw-text: $c-light-body-grey;
+  $amtw-active-text: $c-light-body-grey;
+  $amtw-active-bg: $c-light-body-grey;
+  /* Specific - athma input search control (prefix: aisc) */
+  $aisc-search-bg: $c-white;
+  $aisc-search-border: $c-border-grey;
+  $aisc-search-addon-color: $c-border-grey;
+  /* Specific - athma input addon control (prefix: aiac) */
+  $aiac-search-bg: $c-white;
+  $aiac-search-border: $c-border-grey;
+  $aiac-search-addon-color: $c-white;
+  $aiac-search-addon-bg: $c-body-grey;
+  /* Specific - Athma Radio Button  (prefix: arb) */
+  $arb-text: $c-body-grey;
+  $arb-normal-border-checked: $c-body-grey;
+  $arb-normal-bg-checked: $c-body-grey;
+  $arb-high-border-checked: $c-deep-orange;
+  $arb-high-bg-checked: $c-deep-orange;
+  $arb-border: $c-body-grey;
+  $arb-high-border: $c-deep-orange;
+  /* Specific - Athma delete button  (prefix: adb) */
+  $adb-bg: $c-red;
+  $adb-text: $c-white;
+  /* Specific - Athma expand button  (prefix: aeb) */
+  $aeb-bg: $c-white;
+  $aeb-text: $c-darkest-gray;
+  /* Specific - Athma form date control  (prefix: afdc) */
+  $afdc-border: $c-border-grey;
+  $afdc-text: $c-body-grey;
+  /* Specific - Ngb date control  (prefix: ngbdc) */
+  $ngbdc-bg: $c-darkest-gray;
+  $ngbdc-text: $c-white;
+  /* Specific - List page header  (prefix: alph) */
+  $alph-border: $c-border-grey;
+  $alph-tab-badge-active-border: $c-orange;
+  $alph-tab-badge-active-text: $c-darkest-gray;
+  $alph-tab-active-bg: $c-darkest-gray;
+  $alph-tab-badge-hover-border: $c-darkest-gray;
+  $alph-tab-badge-hover-text: $c-darkest-gray;
+  $alph-tab-hover-bg: $c-darkest-gray;
+  $alph-search-bg: $c-white;
+  $alph-search-border: #dbdbdb;
+  $alph-search-addon-color: #9a9a99;
+  /* Specific - Athma table (prefix: at) */
+  $at-hover-border: $c-darkest-gray;
+  $at-sort-icon-color: $c-orange;
+  $at-no-record-bg: $c-white;
+  $at-no-record-text: $c-red;
+  /* Specific - recipt tabs (prefix: rt) */
+  $rt-inactive-tab: $c-light-body-grey;
+  $rt-active-tab: $c-body-grey;
+  /* Specific - Sidebar (prefix: sd) */
+  $sd-bg: $c-darkest-gray;
+  $sd-default-text: $c-white;
+  $sd-item-border: hexa-rgba-code($c-white, 0.4);
+  $sd-toggle-icon-bg: $c-white;
+  $sd-active-item-bg: $c-orange;
+  $sd-item-hover-bg: transparent;
+  $sd-item-hover-border: $c-white;
+  $sd-item-inactive-bg: $c-light-body-grey;
+  $sd-item-inactive-text: hexa-rgba-code($c-white, 0.4); // $c-light-body-grey;
+  $sd-item-inactive-border: hexa-rgba-code($c-white, 0.4); // $c-light-body-grey;
+  $sd-more-item-border: hexa-rgba-code($c-white, 0.4); // 1.0 -0.4 = 0.6
+  /* Specific - Popover */
+  $po-border-popover-color: $c-list-border-grey;
+  $po-no-records-color: $c-light-grey;
+  $po-header-color: $c-body-grey;
+  /* Specific - Page Title (prefix: pt) */
+  $pt-bg: $c-bg-grey;
+  $document-indicator: #fa693d;
+  /* import theme specific items to change the color of its based on theme */
+  @import '../components/theme-specific';
+}

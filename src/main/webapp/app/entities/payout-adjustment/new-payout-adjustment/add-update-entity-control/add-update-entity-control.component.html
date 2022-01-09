@@ -1,0 +1,127 @@
+<table class="table athma-table">
+            <thead>
+                <tr>
+                    <th style="width: 40%;">
+                        <input type="text" class="athma-form-control" placeholder="Add Description" name="description" id="description" [(ngModel)]="dataInstance.description" [maxLength]="1024" required />
+                    </th>
+                    <th style="width: 15%;">
+                        <div class="row">
+                            <div class="col-5 pr-0">
+                                <select class="athma-form-control" [(ngModel)]="dataInstance.year">
+                                    <option [value]="dataInstance.year">{{dataInstance.year}}</option>
+                                </select>
+                            </div>
+                            <div class="col-5 p-0">
+                                <select class="athma-form-control" (change)="onMonthChange()" [(ngModel)]="dataInstance.month">
+                                    <ng-container *ngFor="let month of monthList">
+                                        <option [value]="month.value" >{{month.name}}</option>
+                                    </ng-container>
+                                </select>
+                            </div>
+                        </div>
+                    </th>
+                    <th style="width: 10%;">
+                        <div class="row">
+                            <div class="col-10 p-0">
+                                <select class="athma-form-control" [(ngModel)]="dataInstance.sign">
+                                    <option selected disabled [value]="undefined">Select sign</option>
+                                    <option value="POSITIVE">Positive</option>
+                                    <option value="NEGATIVE">Negative</option>
+                                </select>
+                            </div>
+                        </div>
+                    </th>
+                    <th style="width: 10%;">
+                        <input 
+                            type="text" 
+                            class="athma-form-control"
+                            placeholder="00.00" 
+                            [minlength]="0"
+                            [maxlength]="100000000" 
+                            name="amount" 
+                            [(ngModel)]="dataInstance.amount" 
+                            id="amount" 
+                            jhiNumeric 
+                            jhiAmount 
+                            required
+                            (change)="amountChanged()"
+                        />
+                    </th>
+                    <th style="width: 18%;">
+                        <div class="row">
+                            <div class="col-4 pr-0">
+                                <select class="athma-form-control" name="contra" (change)="onContraChange()" [(ngModel)]="dataInstance.contra" >
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                            <div class="col-8 pl-0 pr-2">
+                                <!-- Search Box -->
+                                <div class="athma-search-typeahead-container m-0">
+                                    <div class="athma-search-typeahead-border">
+                                        <span class="fa athma-typehead-search-right" style="top: 5px;" [ngClass]="contraSearch ? 'fa-spinner' : 'fa-search'">
+                                        </span>
+                                        <input type="text" class="athma-form-control pl-2 pr-4 athma-flexible athma-highlight-focus"
+                                            *ngIf="isPayoutForEmployee"
+                                            [(ngModel)]="contraEmployeeDetail"
+                                            [disabled]="dataInstance.contra === 'No' "
+                                            placeholder="Search and Add"
+                                            [ngbTypeahead]="employeeSearchTypeahead" #Empinput
+                                            [inputFormatter]="employeeSearchData" 
+                                            [resultTemplate]="employeeSearchTemplate"
+                                            (selectItem)="onSelectEmployee($event)"
+                                        />
+                                        <input type="text" class="athma-form-control pl-2 pr-4 athma-flexible athma-highlight-focus"
+                                            *ngIf="!isPayoutForEmployee"
+                                            [(ngModel)]="contraDepartmentDetail"
+                                            [disabled]="dataInstance.contra === 'No' "
+                                            placeholder="Search and Add"
+                                            [ngbTypeahead]="departmentSearchTypeahead" #deptinput
+                                            [inputFormatter]="departmentSearchData" 
+                                            [resultTemplate]="departmentSearchTemplate"
+                                            (selectItem)="onSelectDepartment($event)"
+                                        />
+                                    </div>
+                                </div>
+                                <!-- Search Box -->
+                            </div>
+                        </div>
+                    </th>
+                    <!-- <th style="width: 12%;">
+                        
+                    </th> -->
+                    <th style="width: 7%;" > <!-- *ngIf="!isEditMode"-->
+                        <button class="athma-icon-button add-icon mb-1" [disabled]="isEditMode" (click)="onClickAddRecord()">
+                            <span class="icon-add" style="position: relative;font-size: 20px;top: 0px;"></span>
+                        </button>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+        <div class="insert-payout-modal">
+            <ng-template class="item-list" #employeeSearchTemplate let-r="result" let-t="term">
+                <li>
+                    <div class="d-flex align-items-center pl-2">
+                            <span> {{ r?.employeeNumber ? r?.employeeNumber : '-' }}
+                                <span class="pr-1" *ngIf="r?.displayName">
+                                    <b class="text-gray">|</b>
+                                </span> 
+                                {{r?.displayName }}
+                            </span>
+                        </div>
+                </li>
+            </ng-template>
+
+            <ng-template class="item-list" #departmentSearchTemplate let-r="result" let-t="term">
+                <li>
+                    <div class="d-flex align-items-center pl-2">
+                            <span> {{ r?.code ? r?.code : '-' }}
+                                <span class="pr-1" *ngIf="r?.name">
+                                    <b class="text-gray">|</b>
+                                </span> 
+                                {{r?.name }}
+                            </span>
+                        </div>
+                </li>
+            </ng-template>
+        </div>

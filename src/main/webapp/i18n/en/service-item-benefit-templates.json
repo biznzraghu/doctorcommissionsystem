@@ -1,0 +1,11 @@
+{
+  "arthaApp": {
+    "serviceItemBenefitTemplate": {
+      "home": {
+        "title": "variable payouts template"
+      },
+      "created": "Template created successfully!",
+      "updated": "Template updated successfully!"
+    }
+  }
+}

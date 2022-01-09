@@ -1,0 +1,37 @@
+{
+    "name": "ApplicableConsultant",
+    "fields": [
+        {
+            "fieldName": "include",
+            "fieldType": "Boolean"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "departmentPayout",
+            "otherEntityRelationshipName": "applicableConsultant",
+            "relationshipName": "departmentPayout",
+            "otherEntityField": "id"
+        },
+      {
+        "relationshipType": "one-to-one",
+        "otherEntityName": "userMaster",
+        "otherEntityRelationshipName": "applicableConsultant",
+        "relationshipName": "userMaster",
+        "otherEntityField": "id",
+        "ownerSide":true
+
+
+      }
+    ],
+  "changelogDate": "20200422114600",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "applicable_consultant",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "ApplicableConsultant"
+}

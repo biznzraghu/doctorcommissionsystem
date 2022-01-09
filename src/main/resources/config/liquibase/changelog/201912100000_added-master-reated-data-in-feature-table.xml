@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+
+    <changeSet id="201912100000_added-column-in-feature-table" author="Santosh">
+
+        <addColumn tableName="feature">
+            <column name="menu_link" type="varchar(255)">
+            </column>
+        </addColumn>
+
+    </changeSet>
+
+    <changeSet id="201912100000_added-master-reated-data-in-feature-table" author="Santosh">
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="1001"/>
+            <column name="name" value="Department"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="type" value="Master"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="menu_link" value="department"/>
+        </insert>
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="1002"/>
+            <column name="name" value="Unit"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="type" value="Master"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="menu_link" value="unit"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="1003"/>
+            <column name="name" value="Users"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="type" value="Master"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="menu_link" value="users"/>
+        </insert>
+
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="1004"/>
+            <column name="name" value="Tasks"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="type" value="Master"/>
+            <column name="display_order" valueNumeric="4"/>
+            <column name="menu_link" value="tasks"/>
+        </insert>
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="1005"/>
+            <column name="name" value="Value Set"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="type" value="Master"/>
+            <column name="display_order" valueNumeric="5"/>
+            <column name="menu_link" value="value-set"/>
+        </insert>
+
+
+    </changeSet>
+    <changeSet id="202008062040-Added-Feature and Privilege Variable Payout Report Breakup" author="anurag">
+        <insert tableName="feature">
+            <column name="id" valueSequenceNext="feature_id_seq"/>
+            <column name="code" value="100101"/>
+            <column name="name" value="Variable Payout Breakup"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="type" value="REPORT"/>
+            <column name="display_order" valueNumeric="5"/>
+            <column name="menu_link" value="report/variable-payout-breakup"/>
+        </insert>
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001102"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='100101')"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

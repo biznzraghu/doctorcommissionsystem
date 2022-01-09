@@ -1,0 +1,63 @@
+<div class="mis-report-table">
+    <table class="table athma-table fixed-header-table-head mb-0">
+        <thead>
+            <tr arthaSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                <th width="25%" arthaSortBy="createdBy.login.keyword">
+                    <span jhiTranslate="arthaApp.misReport.tbl-headers.createdBy">
+                        Created By
+                    </span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th width="25%" arthaSortBy="createdDate">
+                    <span jhiTranslate="arthaApp.misReport.tbl-headers.createdDate">
+                        Created Date
+                    </span>
+                    <span class="fa fa-sort fa-sort-desc"></span>
+                </th>
+                <th width="25%">
+                    <span jhiTranslate="arthaApp.misReport.tbl-headers.queryParams">
+                        Query Params
+                    </span>
+                    <!-- <span class="fa fa-sort"></span> -->
+                </th>
+                <th width="20%" arthaSortBy="status.keyword">
+                    <span jhiTranslate="arthaApp.misReport.tbl-headers.status">
+                        Status
+                    </span>
+                    <span class="fa fa-sort"></span>
+                </th>
+                <th width="5%"></th>
+            </tr>
+        </thead>
+    </table>
+    <div class="infinite-scroll-table" infinite-scroll debounce [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300" [scrollWindow]="false" [style.maxHeight.px]="setInfiniteScrollHeight()" [perfectScrollbar]="scrollBarConfig">
+        <table class="table athma-table fixed-header-table-body">
+            <tbody>
+                <tr *ngFor="let report of misReports; let index = index" style="height: 50px">
+                    <td width="25%"> {{report?.createdBy?.login+ (report?.createdBy?.displayName ? (','+report?.createdBy?.displayName):'')}}</td>
+                    <td width="25%">{{ report.createdDate | date:'dd/MM/yyyy HH:mm' }}</td>
+                    <td width="25%">
+                        <span *ngFor="let param of queryParams[index];let last = last">{{ unCamelCase(param.key) }}: {{ param.value }}<ng-template [ngIf]="!last">,&nbsp;</ng-template></span>
+                    </td>
+                    <td width="20%">{{ report.status }}</td>
+                    <td width="5%">
+                        <button *ngIf="report.status === 'FAILED'" class="athma-icon-button ml-3">
+                            <span class="icon-alert failed-icon"></span>
+                            <!-- <span class="icon-alert failed-icon" placement="left" container="body" ngbPopover="{{report.error}}" triggers="mouseenter:mouseleave"></span> -->
+                        </button>
+                        <button *ngIf="report.status === 'COMPLETED'" class="athma-export-button ml-3 export-CSV" (click)="downloadReport(report.id)">
+                            <span class="icon-export_csv"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="misReports.length === 0">
+                    <td colspan="6" class="athma-no-records">
+                        <span>
+                            No Records Found
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

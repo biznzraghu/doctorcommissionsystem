@@ -1,0 +1,140 @@
+<section class="modal-header">
+    <h3 class="modal-title">Payout Type - Range Based</h3>
+</section>
+<div class="employee-payout-container department-payout" style="height: 250px;">
+    <div class="col-md-12 p-0 tbl-div-hg-47 ">
+        <div class="fixed-header-table-head-container">
+            <table class="table athma-table mb-0">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">
+                            From
+                        </th>
+                        <th style="width: 30%;">
+                            To
+                        </th>
+                        <th style="width: 30%;">
+                            Percentage
+                        </th>
+                        <th style="width: 10%;">
+                        </th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="fixed-header-table-head-container">
+            <table class="table athma-table mb-0">
+                <tbody class="md-table">
+                    <tr class="add-payout-controls" *ngIf="isEditMode">
+                        <td style="width: 30%;">
+                            <input type="text" numeric class="athma-form-control " name="from" (change)="formModified()"
+                                placeholder="Enter" [(ngModel)]="payoutRange.fromAmount" autocomplete="off"
+                                keyup="this.value=this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                id="fromId" min="0" max="999999999" maxlength="9"
+                                (keypress)="limitToTwoDecimals($event)">
+                        </td>
+                        <td style="width: 30%;">
+                            <input type="text" class="athma-form-control " name="to" (change)="formModified()"
+                                placeholder="Enter" [(ngModel)]="payoutRange.toAmount" id="toId"
+                                keyup="this.value=this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                                (keypress)="limitToTwoDecimals($event)" max="999999999" maxlength="9" min="1"
+                                autocomplete="off">
+                        </td>
+                        <td style="width: 30%;">
+                            <input type="text" class="athma-form-control " name="percentage" (change)="formModified()"
+                                placeholder="Enter" [(ngModel)]="payoutRange.percentage" id="percentageId"
+                                (ngModelChange)="addPercentage($event)" min="1" max="100" maxlength="5"
+                                autocomplete="off" twoDigitDecimaNumber>
+                        </td>
+                        <td style="width: 10%;" class="text-right">
+                            <button class="athma-icon-button add-icon m-0" (click)="onClickAddRecord()"
+                                [class.disabled]="!isEnableAdd">
+                                <span class="icon-add" style="position: relative;font-size: 20px;top: 2px;"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div class="infinite-scroll-table ps position-relative"
+                [ngStyle]="{'height':isEditMode ? '170px' : '219px' }" [perfectScrollbar]="config">
+                <table class="table athma-table mb-0">
+                    <tbody class="md-table">
+                        <ng-container *ngFor="let payoutR of payoutRangeList; let i=index;">
+                            <tr *ngIf="editStayBenefitIndex === i">
+                                <td class="text-left pl-3" style="width: 30%">
+                                    <input type="text" class="athma-form-control" placeholder="Enter" name="from"
+                                        [(ngModel)]="payoutR.fromAmount" id="fromId">
+                                    <!-- <span *ngIf="!isEdit">{{payoutR.fromAmount}}</span> -->
+                                </td>
+                                <td class="text-left pl-3" style="width: 30%">
+                                    <input type="text" class="athma-form-control" placeholder="Enter" name="to"
+                                        [(ngModel)]="payoutR.toAmount" id="toId">
+                                    <!-- <span *ngIf="!isEdit">{{payoutR.toAmount}}</span> -->
+                                </td>
+                                <td class="text-left pl-3" style="width: 20%">
+                                    <input type="text" class="athma-form-control" placeholder="Enter" name="percentage"
+                                        [(ngModel)]="payoutR.percentage" id="percentageId">
+                                    <!-- <span *ngIf="!isEdit">{{payoutR.percentage}}%</span> -->
+                                </td>
+
+                                <td class="pr-2 text-center" style="width: 20%">
+                                    <div class="hideicons" *ngIf="isEditMode">
+                                        <span class="athma-icon-button m-0 py-1 attach-btn athma-highlight-focus"
+                                            (click)="addPayoutRang()">
+                                            <span class="icon-checkmark"
+                                                style="font-size:1.1rem;padding-right: 10px;"></span>
+                                        </span>
+                                        <span (click)="deleteRange(payoutR)" class="athma-pointer">
+                                            <i class="icon-cross" style="font-size:1.1rem" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr *ngIf="editStayBenefitIndex !== i">
+                                <td class="text-left pl-3" style="width: 30%">
+
+                                    <span>{{payoutR.fromAmount}}</span>
+                                </td>
+                                <td class="text-left pl-3" style="width: 30%">
+
+
+                                    <span>{{payoutR.toAmount}}</span>
+                                </td>
+                                <td class="text-left pl-3" style="width: 20%">
+
+
+                                    <span>{{payoutR.percentage}}%</span>
+                                </td>
+
+                                <td class="pr-2 text-center" style="width: 20%">
+                                    <div class="hideicons" *ngIf="isEditMode">
+                                        <span class="athma-icon-button m-0 py-1 attach-btn athma-highlight-focus"
+                                            (click)="editPayoutRange(i)">
+                                            <span class="icon-edit"
+                                                style="font-size:1.1rem;padding-right: 10px;"></span>
+                                        </span>
+                                        <span (click)="deleteRange(payoutR)" class="athma-pointer">
+                                            <i class="icon-cross" style="font-size:1.1rem" aria-hidden="true"></i>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer" *ngIf="isEditMode">
+    <button class="athma-btn athma-btn-secondary" (click)="close()">Cancel</button>
+    <button class="athma-btn athma-btn-primary" (click)="process()">Done</button>
+</div>
+<div class="modal-footer" *ngIf="!isEditMode">
+    <button class="athma-btn athma-btn-primary" (click)="close()">Close</button>
+</div>

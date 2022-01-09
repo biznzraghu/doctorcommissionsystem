@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20202707203022-2-Added Privilege For Payout Adjustment" author="Anurag">
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="000000000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="999"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='100200')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001102"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='100200')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001101"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='100200')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="000000000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="999"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='100300')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001102"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='100300')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001101"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='100300')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="000000000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="999"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='101000')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001102"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='101000')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001101"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='101000')"/>
+        </insert>
+
+    </changeSet>
+    <changeSet id="20202807130322-2" author="anurag">
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="000000000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="999"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='1006')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001102"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='1006')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001101"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='1006')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="000000000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="999"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='1007')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001102"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='1007')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001101"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='1007')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="000000000"/>
+            <column name="name" value="All"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="999"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='1008')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001102"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='1008')"/>
+        </insert>
+
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001101"/>
+            <column name="name" value="Modify"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='1008')"/>
+        </insert>
+    </changeSet>
+    <changeSet id="20202907104722-2" author="anurag">
+        <insert tableName="privilege">
+            <column name="id" valueSequenceNext="privilege_id_seq"/>
+            <column name="code" value="1001102"/>
+            <column name="name" value="View"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="feature_id" valueComputed="(select id from feature where code ='100100')"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

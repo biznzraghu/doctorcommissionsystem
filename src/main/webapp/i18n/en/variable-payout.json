@@ -1,0 +1,133 @@
+{
+  "arthaApp": {
+    "variable-payout": {
+      "home": {
+        "title": "Variable Payout",
+        "createTemplate": "Create Template",
+        "variableTemplate": "Variable Template",
+        "editTemplate": "Edit Template",
+        "createNewTemplate": "Create New Template"
+      },
+      "tbl-headers": {
+        "department": "Department",
+        "employee": "Employee",
+        "createdBy": "Created By",
+        "createdDate": "Created Date",
+        "version": "Version",
+        "status": "Status",
+        "approvedBy": "Approved By",
+        "templateDetails": "Template Details",
+        "lastModifiedBy": "Last Modified By",
+        "true": "Active",
+        "false": "InActive",
+        "created-by": "Created By",
+        "date": "Created Date",
+        "approved-by": "Approved By",
+        "templateName": "Template Name",
+        "lastModified-by": "Last Modified By",
+        "requestStatus": "Request Status",
+        "employeeDetails": "Employee Details",
+        "employeeName": "Employee Name"
+      },
+      "template-header": {
+        "code": "Code",
+        "name": "Name"
+      },
+      "modal-header": {
+        "applicableServicesforLengthofStay": "Applicable Services for Length of Stay",
+        "copyRules": "Copy Rules",
+        "addExceptions": "Add Exceptions",
+        "additionalRules": "Additional Rules"
+      },
+      "tab-headers": {
+        "basicDetails": "BASIC DETAILS",
+        "rules": "RULES",
+        "exceptions": "EXCEPTIONS",
+        "unitMapping": "UNIT MAPPING",
+        "employeeNameAndCode": "Employee Name/Code",
+        "sponsor": "SPONSOR",
+        "serviceItemException": "SERVICE / ITEM EXCEPTION",
+        "templateNameAndCode": "Template Name/Code"
+      },
+      "basic-details": {
+        "payoutDetails": "Payout Details",
+        "commencementDate": "Commencement Date",
+        "contractEndDate": "Contract End Date",
+        "minimumAssuredAmount": "Minimum Assured Amount",
+        "minimumAssuredValidity": "Minimum Assured Validity",
+        "maximumPayoutAmt": "Maximum Payout Amt",
+        "uploadContract": "Upload Contract",
+        "departmentRevenueBenefit": "Department Revenue Benefit",
+        "department": "Department",
+        "revenueBenefitType": "Revenue Benefit Type",
+        "payoutPercentage": "Payout Percentage(%)",
+        "upperLimit": "Upper Limit",
+        "lengthOfStayBenefit": "Length of Stay Benefit",
+        "lengthOfStayCriteria": "Length of Stay Criteria",
+        "days": "Days",
+        "perDayPayoutAmount": "Per Day Payout Amount",
+        "services": "Services",
+        "status": "Status",
+        "AVERAGE": "Average",
+        "FIXED": "Fixed",
+        "CONTRIBUTION_BASED": "Contribution Based"
+      },
+      "rules": {
+        "type": "Type",
+        "value": "Value",
+        "visit": "Visit",
+        "beneficiary": "Beneficiary",
+        "or": "% or",
+        "fixedAmt": "Fixed Amt",
+        "quantity": "Quantity",
+        "fromTo": "(From & To)",
+        "amount": "Amount",
+        "netGross": "(Net/Gross)",
+        "patient": "Patient",
+        "category": "Category",
+        "tariff": "Tariff",
+        "class": "Class",
+        "amt": "Amt",
+        "material": "Material",
+        "dept": "Dept.",
+        "noIncentive": "No Incentive for Surgery if patient dies",
+        "applicableSponsor": "Applicable Sponsor",
+        "exemptedSponsor": "Exempted Sponsor",
+        "sponsorType": "Sponsor Type",
+        "plan": "Plan",
+        "NET": "Net",
+        "GROSS": "Gross"
+      },
+      "validation": {
+        "daysValidation": "Days should be in range <strong>1-100</strong>",
+        "selectDepartment": "Please select the <strong>Department!</strong>",
+        "selectRevenueBenefitType": "Please select the <strong>Revenue Benefit Type!</strong>",
+        "enterPercentage": "Please enter <strong>Payout Percentage!</strong>",
+        "enterDays": "Please enter <strong>Days!</strong>",
+        "enterPerDayPayoutAmount": "Please enter <strong>Per Day Payout Amount!</strong>",
+        "selectServices": "Please select <strong>Services!</strong>",
+        "selectEmployee": "Select <strong>Employee</strong> to proceed",
+        "componentExist": "<strong>Component</strong> already selected",
+        "selectType": "Please select <strong>Type</strong>",
+        "selectValue": "Please select <strong>Value</strong>",
+        "departmentExist": "<strong>Department</strong> already selected",
+        "unitExist": "<strong>Unit</strong> already selected",
+        "planExist": "<strong>Plan</strong> already selected",
+        "sponsorTypeExist": "<strong>Sponsor Type</strong> already selected",
+        "templateExist": "<strong>Template</strong> already selected",
+        "selectCommencementDate": "Please select <strong>Commencement Date</strong>",
+        "selectContractEndDate": "Please select <strong>Contract End Date</strong>",
+        "selectMinimumAssuredValidity": "Please select <strong>Minimum Assured Validity</strong>",
+        "exceptionExist": "<strong>Exception</strong> already exist",
+        "minAssuredAmountValidity": "Minimum Assured Amount cannot be greater than <strong>9,99,99,999.99 </strong>",
+        "maxPayoutAmountValidity": "Maximum Payout Amount cannot be greater than <strong>9,99,99,999.99 </strong>",
+        "fixedAmountValidity": "Fixed Amount cannot be greater than <strong>9,99,99,999.99 </strong>",
+        "upperLimitValidity": "Upper Limit cannot be greater than <strong>9,99,99,999.99 </strong>"
+      }
+    },
+    "variablePayout": {
+      "created": "A new variable payout created successfully",
+      "updated": "A variable payout updated successfully"
+    }
+  }
+}

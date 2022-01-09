@@ -1,0 +1,49 @@
+<section class="modal-header">
+    <h3 class="modal-title">Change Unit</h3>
+</section>
+<div class="modal-body">
+    <form name="editForm" disable-sidebar role="form" novalidate (ngSubmit)="save()" #editForm="ngForm" class="athma-form white">
+        <div class="athma-form-group">
+            <label>
+                <span>
+                    Select Unit 
+                    <sup class="mandatorySign">*</sup>
+                </span>
+            </label>
+            <div class="form-group">
+                <ng-select 
+                    [items]="unitListData | async" 
+                    bindLabel="name"
+                    name="unitSearch" 
+                    id="unitSearch"
+                    [loading]="unitLoading"
+                    [typeahead]="unitInput$"
+                    placeholder="Search by Unit Code or Name"
+                    [(ngModel)]="unit"
+                    #unitSearchSearch 
+                    notFoundText="No results found"
+                    clearAllText=""
+                    required
+                    >
+                    <ng-template ng-label-tmp let-item="item">
+                                <span>{{ item.code }}, {{ item.name }}</span>
+                    </ng-template>
+                    <ng-template ng-option-tmp let-item="item" let-index="index">
+                        <span>{{ item.code }}, {{ item.name }}</span>
+                    </ng-template>
+                </ng-select>
+
+                <div [hidden]="!(editForm.controls.hospital?.dirty && editForm.controls.hospital?.invalid)">
+                    <small class="form-text text-danger" [hidden]="!editForm.controls.hospital?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br>
+</div>
+<div class="modal-footer">
+    <button class="athma-btn athma-btn-secondary" (click)="no()">Cancel</button>
+    <button class="athma-btn athma-btn-primary" (click)="yes()">Update</button>
+</div>

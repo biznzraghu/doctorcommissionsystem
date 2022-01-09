@@ -1,0 +1,21 @@
+<section class="modal-header">
+    <h3 class="modal-title" jhiTranslate="arthaApp.variable-payout.home.createNewTemplate">Create New Template</h3>
+</section>
+<div class="insert-payout-modal modal-body pt-0 pb-0 mt-3">
+    <!-- <div class="mb-3">
+        <label jhiTranslate="arthaApp.variable-payout.template-header.code">Code</label>
+        <input type="text" placeholder="Enter code" class="athma-form-control athma-flexible"
+            [(ngModel)]="variablePayoutTemplate.code" disabled />
+    </div> -->
+    <div class="mb-3">
+        <label jhiTranslate="arthaApp.variable-payout.template-header.name">Name</label>
+        <input type="text" maxlength="512" class="athma-form-control athma-flexible" placeholder="Enter Template name"
+            name="serviceCode" [(ngModel)]="variablePayoutTemplate.templateName" />
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="athma-btn athma-btn-secondary" jhiTranslate="arthaApp.payoutAdjustment.button.close"
+        (click)="close()">Close</button>
+    <button [disabled]="!variablePayoutTemplate?.templateName" class="athma-btn athma-btn-primary" jhiTranslate="arthaApp.payoutAdjustment.button.proceed"
+        (click)="createNewTemplate()">Proceed</button>
+</div>

@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h4 class="modal-title" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+</div>
+<div class="modal-body">
+    <p>Are you sure you want to delete the variable payout document of <strong>{{variablePayoutInformation.employee.displayName}}</strong> having EmployeeNo: <strong>{{ variablePayoutInformation.employee.employeeNo}}</strong>?</p>
+</div>
+<div class="modal-footer">
+    <div class="modal-actions">
+    <button class="athma-btn athma-btn-secondary" jhiTranslate="global.common.no" (click)="no()">No</button>
+    <button class="athma-btn athma-btn-primary" jhiTranslate="global.common.yes" (click)="yes()">Yes</button>
+    </div>
+</div>

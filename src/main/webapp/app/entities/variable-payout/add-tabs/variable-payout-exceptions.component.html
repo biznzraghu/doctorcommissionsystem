@@ -1,0 +1,116 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 tbl-div-hg-30 p-0 pl-1">
+            <table class="table athma-table">
+                <thead>
+                    <tr>
+                        <th width="16%">
+                            <span jhiTranslate="arthaApp.variable-payout.rules.type">Type</span>
+                        </th>
+                        <th width="80%">
+                            <span jhiTranslate="arthaApp.variable-payout.rules.value">Value</span>
+                        </th>
+                        <th width="4%">
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <form #addExceptionForm="ngForm" style="width: 100%;">
+        <div class="col-md-12 p-0 tbl-div-hg-51 pl-1" style="background:#e5e5e5;" *ngIf="!viewMode">
+            <table class="table athma-table">
+                <tr class="athma-pointer">
+                    <td width="16%" class="pr-0">
+                        <ng-select 
+                            name="type" 
+                            id="type" 
+                            [clearable]="true" 
+                            [(ngModel)]="selectedType" 
+                            [items]="typeList" 
+                            placeholder="Select" 
+                            bindLabel="name" 
+                            bindValue="code" 
+                            (change)="selectedTypeChange()"
+                            notFoundText="No results found"
+                            [searchable]="true"
+                        >
+                        </ng-select>
+                    </td>
+                    <td width="80%" class="pr-0">
+                        <div class="athma-search-typeahead-container m-0">
+                            <div class="athma-search-typeahead-border">
+                                <input  style="max-width: 100%;" id="service-typeahead-format" 
+                                        name="service-typeahead" 
+                                        [disabled]="!selectedType" 
+                                        type="text"
+                                        class="athma-form-control" 
+                                        [ngbTypeahead]="ServiceItemValueSearchTypeahead"
+                                        [inputFormatter]="inputFormatServiceItemValueTypeheadData" 
+                                        [resultTemplate]="serviceValueTemplate"
+                                        placeholder="Search with Code / Name" 
+                                        [(ngModel)]="selectedServiceItemValue"  
+                                    />
+                                <span *ngIf="!ServiceItemValueSearching" class="fa fa-search athma-typehead-search-left"
+                                    style="top:8px !important;"></span>
+                                <span *ngIf="ServiceItemValueSearching"
+                                    class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left"
+                                    style="top:8px !important;"></span>
+                            </div>
+                        </div>
+                        <ng-template class="item-list" #serviceValueTemplate let-r="result" let-t="term">
+                            <li>
+                                <div class="d-flex align-items-center pl-2">
+                                    <span> {{ r?.code ? r?.code : '-' }}
+                                        <span class="pr-1" *ngIf="r?.name || r?.display">
+                                            <b class="text-gray">|</b>
+                                        </span>
+                                        {{r?.name || r?.display}}
+                                    </span>
+                                </div>
+                            </li>
+                        </ng-template>
+                    </td>
+                    <td width="4%" class="pr-0">
+                        <button class="adm-icon-button mt-1">
+                            <i aria-hidden="true" class="fa fa-plus-circle fa-2x" style="font-size: 1.5em;" (click)="addExceptions()"></i>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </form>
+        <div *ngIf="noRecordFound && (!viewMode)" class="d-flex justify-content-center align-items-center no-record-found">
+            <i style="font-size:32px" class="icon-audit_audit" aria-hidden="true"></i>
+            <span style="font-size:18px">Add Exceptions</span>
+        </div>
+        <div *ngIf="noRecordFound && viewMode" class="d-flex justify-content-center align-items-center no-record-found">
+            <i style="font-size:32px" class="icon-audit_audit" aria-hidden="true"></i>
+            <span style="font-size:18px">No Exceptions Available</span>
+        </div>
+        <div class="row" style="background:#fff;">
+            <div class="col-sm-12 fixed-header-table">
+                <div class="si-detail-table" *ngIf="templateExceptions?.length">
+                    <div class="infinite-scroll-table position-relative ps"  style="height:384px;" [perfectScrollbar]="config">
+                        <table class="table athma-table fixed-header-table-body athma-table-layout-fixed">
+                            <tbody class="md-table">
+                                <tr class="athma-pointer" *ngFor="let serviceItemException of templateExceptions; let i = index;" class="athma-pointer on-hover">
+                                    <td width="16%" class="pr-0">
+                                        {{serviceItemException?.exceptionType}}
+                                    </td>
+                                    <td width="80%" class="pr-0 pl-3">
+                                        <div class="col-8 p-0 pl-2">{{serviceItemException?.value?.name}}</div>
+                                    </td>
+                                    <td width="4%" class="pr-0" style="padding-left: 14px;">
+                                        <button class="athma-icon-button add-icon m-0" (click)="removeException(i)"  *ngIf="!viewMode">
+                                            <span class="icon-cross small-btn"></span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

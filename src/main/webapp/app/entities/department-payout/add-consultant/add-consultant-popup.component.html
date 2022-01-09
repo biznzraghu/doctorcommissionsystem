@@ -1,0 +1,104 @@
+<section class="modal-header">
+    <h3 class="modal-title" *ngIf="applicableConsultant?.length===0">Add Consultants</h3>
+    <h3 class="modal-title" *ngIf="applicableConsultant?.length>0">Add Consultants ({{applicableConsultant?.length}})
+    </h3>
+</section>
+<div class="employee-payout-container" [ngStyle]="{'height':isEditMode ? '350px' : '303px' }">
+    <div class="row " style="height: 35px;">
+        <div class="col-sm-12">
+            <div class="athma-icon-btn-group pull-right d-flex">
+                <div class="athma-icon-button px-1" style="padding-top: 10px;">
+                    <input [tabindex]="10" style="position: absolute;right: 110px;" type="checkbox"
+                        (click)="populateFilteredConsultant($event.target.checked)" [(ngModel)]="activeData"><span
+                        class="pl-1"><b>Active</b></span>
+                    <label for="activeCheckBox" style="border-color: #CACAD3 !important;"></label>
+                </div>
+                <span class="athma-icon-button px-0" style="padding-top:6px" (click)="export()">
+                    <i class="icon-export" style="font-size: 20px;" aria-hidden="true" title="Export"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row mr-0 add-payout-controls ml-0">
+        <div class="col-md-12 tbl-div-hg-47 " *ngIf="isEditMode">
+            <div class="athma-search-typeahead-container pt-2">
+                <div class="athma-search-typeahead">
+                    <input id="sponsor-typeahead-format" name="sponsor-typeahead" type="text" class="athma-form-control"
+                        (selectItem)="setConsultant($event)" [ngbTypeahead]="searchUserTypehead" #input
+                        [resultTemplate]="consultantOutputFormat" [inputFormatter]="consultantInputFormat"
+                        placeholder="Search by Employee Code or Name" />
+                    <span *ngIf="!searchingConsultant" class="fa fa-search athma-typehead-search-left"></span>
+                    <span *ngIf="searchingConsultant"
+                        class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left"></span>
+
+                </div>
+            </div>
+        </div>
+        <div style="background-color: #eaeaef;border-top: 1px solid #cacad3;" *ngIf="!isEditMode"></div>
+
+    </div>
+    <div class="infinite-scroll-table ps position-relative" infinite-scroll debounce
+        [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="2" [infiniteScrollThrottle]="300"
+        [scrollWindow]="false" [style.height.px]="270" (scrolled)="loadPage(page + 1)" [perfectScrollbar]="config"
+        [ngStyle]="{'padding-top':isEditMode ? '8px' : '0' }">
+        <table class="table athma-table mb-0">
+            <tbody class="md-table">
+
+                <tr *ngFor="let cons of consultantList; let i=index;" style="height: 24px;">
+
+                    <td style="width:10%" (click)="addRecord(cons)" *ngIf="isEditMode">
+                        <div class="status-badge " [ngClass]="getClass(cons)">
+                            <i class="fa fa-check"></i>
+                        </div>
+                    </td>
+                    <td style="width:10%" *ngIf="!isEditMode">
+                        <div class="status-badge " [ngClass]="getClass(cons)">
+                            <i class="fa fa-check"></i>
+                        </div>
+                    </td>
+                    <td style="width:25%" [ngClass]="getStyle(cons)" (click)="addRecord(cons)" *ngIf="isEditMode">
+                        <span>{{cons?.employeeNumber ? cons?.employeeNumber : cons?.employeeCode}}</span>
+                        <span style="padding-left: 20px;"> |</span>
+                    </td>
+                    <td style="width:25%" [ngClass]="getStyle(cons)" *ngIf="!isEditMode">
+                        <span>{{cons?.employeeNumber ? cons?.employeeNumber : cons?.employeeCode}}</span>
+                        <span style="padding-left: 20px;">|</span>
+                    </td>
+
+                    <td style="width:65%" [ngClass]="getStyle(cons)" (click)="addRecord(cons)" *ngIf="isEditMode">
+                        <jhi-athma-string-manipulation [stringModified]="cons?.displayName ? cons?.displayName : '-'"
+                            [stringLength]="22" [tooltipDisplay]="true">
+                        </jhi-athma-string-manipulation>
+                    </td>
+                    <td style="width:65%" [ngClass]="getStyle(cons)" *ngIf="!isEditMode">
+                        <jhi-athma-string-manipulation [stringModified]="cons?.displayName ? cons?.displayName : '-'"
+                            [stringLength]="22" [tooltipDisplay]="true">
+                        </jhi-athma-string-manipulation>
+                    </td>
+                </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <ng-template class="item-list" #consultantOutputFormat let-r="result">
+        <li>
+            <div class="d-flex align-items-center pl-2">
+                <span> {{ r?.employeeNumber ? r?.employeeNumber : '-' }}
+                    <span class="pr-1" *ngIf="r?.displayName">
+                        <b class="text-gray">|</b>
+                    </span>
+                    {{r?.displayName }}
+                </span>
+            </div>
+        </li>
+    </ng-template>
+</div>
+<div class="modal-footer" *ngIf="isEditMode">
+    <button class="athma-btn athma-btn-secondary" (click)="close()">Cancel</button>
+    <button class="athma-btn athma-btn-primary" (click)="process()">Add</button>
+</div>
+<div class="modal-footer" *ngIf="!isEditMode">
+    <button class="athma-btn athma-btn-primary" (click)="close()">Close</button>
+</div>

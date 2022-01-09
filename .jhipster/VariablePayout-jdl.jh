@@ -1,0 +1,127 @@
+enum RevenueBenefitType {
+FIXED,CONTRIBUTION_BASED
+}
+entity Department {
+code String,
+name String,
+active Boolean
+}
+
+entity DepartmentRevenueBenefit{
+revenueBenefitType RevenueBenefitType required,
+payoutPercentage Float required,
+upperLimit BigDecimal,
+startingVersion Integer required,
+currentVersion Integer required
+}
+relationship OneToOne {
+	DepartmentRevenueBenefit{department} to Department
+}
+enum LengthOfStayCriteria {
+FIXED, AVERAGE
+}
+entity LengthOfStayBenefit{
+lengthOfStayCriteria LengthOfStayCriteria,
+days Integer required,
+perDayPayoutAmount BigDecimal,
+startingVersion Integer required,
+currentVersion Integer required
+}
+
+entity StayBenefitService {
+stayBenefitId Long,
+serviceId Long required,
+serviceCode String required,
+serviceName String required
+}
+
+relationship OneToOne {
+	LengthOfStayBenefit{department} to Department
+}
+
+relationship OneToMany {
+	LengthOfStayBenefit{stayBenefitServices} to StayBenefitService
+}
+
+
+enum Type {
+ALL_SERVICES,SERVICE_TYPE,SERVICE_GROUP,SERVICE_NAME,SERVICE_INSIDE_PACKAGE,ALL_PACKAGES,PACKAGE_CATEGORY,PACKAGE_GROUP,PACKAGE_NAME,PACKAGE_MINUS_MATERIAL_COST,ALL_ITEMS,ITEM_CATEGORY,ITEM_GROUP,ITEM_NAME
+}
+enum Beneficiary {
+ORDERING_CONSULTANT,RENDERING_CONSULTANT,ADMITTING_CONSULTANT,NONE_AND_PERFORMING_USER
+}
+enum PaymentMode{
+PERCENTAGE, AMOUNT
+}
+
+enum ApplicableOn{
+NET, GROSS
+}
+
+enum PatientCategory{
+CASH, CREDIT, CASH_CREDIT
+}
+
+enum MaterialAmount{
+COST, SALE, MARGIN
+}
+
+entity ServiceItemBenefit{
+type Type required,
+serviceGroup String,
+serviceType String,
+itemCategory  String,
+itemGroup  String,
+packageCategory  String,
+visitType  String,
+components  String,
+beneficiary Beneficiary required,
+paymentMode PaymentMode,
+paymentValue BigDecimal,
+minQuantity Integer,
+maxQuantity Integer,
+amount BigDecimal,
+applicableOn ApplicableOn,
+patientCategory PatientCategory,
+tariffClass String,
+materialAmount MaterialAmount,
+department Long,
+applicableSponsor Long,
+exemptedSponsor Long,
+serviceException Long,
+itemException Long,
+onDeathIncentive Boolean
+}
+
+enum ChangeRequestStatus{
+DRAFT,PENDING_APPROVAL,APPROVED,REJECTED
+}
+
+entity VariablePayout {
+employeeId Long required,
+version Integer,
+createdBy Long,
+createdDate LocalDate,
+approvedBy Long,
+approvedDate LocalDate,
+changeRequestStatus ChangeRequestStatus,
+startingVersion Integer,
+currentVersion Integer,
+remarks String,
+commencementDate LocalDate required,
+contractEndDate LocalDate required,
+minAssuredAmount BigDecimal,
+maxPayoutAmount BigDecimal,
+minAssuredValidityDate LocalDate,
+status Boolean,
+uploadContract String
+}
+
+relationship OneToMany {
+	VariablePayout{departmentRevenueBenefits} to DepartmentRevenueBenefit
+    VariablePayout{lengthOfStayBenefits} to LengthOfStayBenefit
+    VariablePayout{serviceItemBenefits} to ServiceItemBenefit
+}
+
+service all with serviceImpl
+paginate all with infinite-scroll

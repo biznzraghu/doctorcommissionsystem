@@ -1,0 +1,35 @@
+{
+    "name": "PayoutRange",
+    "fields": [
+        {
+            "fieldName": "fromAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "toAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "percentage",
+            "fieldType": "Float"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "departmentPayout",
+            "otherEntityRelationshipName": "payoutRange",
+            "relationshipName": "departmentPayout",
+            "otherEntityField": "id"
+        }
+    ],
+  "changelogDate": "20200422114500",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "payout_range",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "PayoutRange"
+}

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20201028120000_added_columns_service_analysis_staging" author="Damodhar">
+
+        <addColumn tableName="service_analysis_staging">
+            <column name="invoice_id" type="bigint"></column>
+            <column name="visit_code" type="varchar"></column>
+            <column name="ordering_department_id" type="bigint"></column>
+            <column name="ordering_department_code" type="varchar"></column>
+            <column name="ordering_doctor_id" type="bigint"></column>
+            <column name="ordering_doctor_login" type="varchar"></column>
+
+            <column name="rendering_department_id" type="bigint"></column>
+            <column name="rendering_department_code" type="varchar"></column>
+            <column name="rendering_doctor_id" type="bigint"></column>
+            <column name="rendering_doctor_login" type="varchar"></column>
+
+            <column name="admitting_department_id" type="bigint"></column>
+            <column name="admitting_department_code" type="varchar"></column>
+            <column name="admitting_department_name" type="varchar"></column>
+            <column name="admitting_doctor_id" type="bigint"></column>
+            <column name="admitting_doctor_login" type="varchar"></column>
+            <column name="admitting_doctor_name" type="varchar"></column>
+
+            <column name="sponsor_ref_code" type="varchar"></column>
+            <column name="plan_code" type="varchar"></column>
+            <column name="tariff_class_id" type="bigint"></column>
+            <column name="item_group_id" type="bigint"></column>
+            <column name="billing_group_id" type="bigint"></column>
+            <column name="finance_group_id" type="bigint"></column>
+            <column name="refer_package_id" type="bigint"></column>
+            <column name="package_category" type="varchar"></column>
+
+        </addColumn>
+
+    </changeSet>
+
+    <changeSet id="20201028120000_added_columns_invoice_list_staging" author="Damodhar">
+
+        <addColumn tableName="invoice_list_staging">
+            <column name="invoice_id" type="bigint"></column>
+            <column name="unit_code" type="varchar"></column>
+            <column name="visit_code" type="varchar"></column>
+            <column name="visit_no" type="varchar"></column>
+            <column name="patient_net_amount" type="real"></column>
+            <column name="sponsor_net_amount" type="real"></column>
+            <column name="created_by_employeeno" type="varchar"></column>
+            <column name="created_by_display_name" type="varchar"></column>
+            <column name="source_type" type="varchar"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20201028120000_added_columns_department_hsc_consumption_staging" author="Damodhar">
+
+        <addColumn tableName="department_hsc_consumption_staging">
+            <column name="document_id" type="bigint"></column>
+            <column name="document_type" type="varchar"></column>
+            <column name="consumed_date" type="timestamp"></column>
+            <column name="item_type_name" type="varchar"></column>
+            <column name="item_type_code" type="varchar"></column>
+            <column name="item_category_name" type="varchar"></column>
+            <column name="item_category_code" type="varchar"></column>
+            <column name="expiry_date" type="timestamp"></column>
+            <column name="consignment_item" type="boolean"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20201028120000_added_columns_MCR_staging" author="Damodhar">
+        <addColumn tableName="mcr_staging">
+            <column name="invoice_id" type="bigint"></column>
+            <column name="invoice_item_id" type="bigint"></column>
+            <column name="ordering_doctor_id" type="bigint"></column>
+            <column name="ordering_doctor_login" type="varchar"></column>
+            <column name="ordering_department_id" type="bigint"></column>
+            <column name="ordering_department_code" type="varchar"></column>
+            <column name="ordering_hsc_code" type="varchar"></column>
+            <column name="issuing_store_code" type="varchar"></column>
+            <column name="sponsor_ref_code" type="varchar"></column>
+            <column name="plan_code" type="varchar"></column>
+            <column name="billing_group_code" type="varchar"></column>
+            <column name="package_code" type="varchar"></column>
+            <column name="is_consignment" type="boolean"></column>
+            <column name="owner_code" type="varchar"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20201028120000_create_table_etl_concept" author="Damodhar">
+        <createTable tableName="etl_concept">
+            <column name="key" type="varchar"/>
+            <column name="value" type="varchar"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20201028120000_insert_into_etl_concept" author="Damodhar">
+        <!-- Insert invoice list related keys -->
+        <insert tableName="etl_concept">
+            <column name="key" value="invoice_list_from_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="invoice_list_to_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="invoice_list_last_sync_id"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="invoice_list_last_sync_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="invoice_list_last_sync_transaction_time"/>
+            <column name="value" value=""/>
+        </insert>
+
+        <!-- Insert service analysis related keys -->
+        <insert tableName="etl_concept">
+            <column name="key" value="service_analysis_from_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="service_analysis_to_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="service_analysis_last_sync_id"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="service_analysis_last_sync_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="service_analysis_last_sync_transaction_time"/>
+            <column name="value" value=""/>
+        </insert>
+
+        <!-- Insert material consumption tracking related keys -->
+        <insert tableName="etl_concept">
+            <column name="key" value="material_consumption_from_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="material_consumption_to_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="material_consumption_last_sync_id"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="material_consumption_last_sync_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="material_consumption_last_sync_transaction_time"/>
+            <column name="value" value=""/>
+        </insert>
+
+        <!-- Insert department hsc consumption related keys -->
+        <insert tableName="etl_concept">
+            <column name="key" value="department_hsc_consumption_from_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="department_hsc_consumption_to_date_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="department_hsc_consumption_last_sync_id"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="department_hsc_consumption_last_sync_time"/>
+            <column name="value" value=""/>
+        </insert>
+        <insert tableName="etl_concept">
+            <column name="key" value="department_hsc_consumption_last_sync_transaction_time"/>
+            <column name="value" value=""/>
+        </insert>
+    </changeSet>
+    <changeSet id="20202112121622-2" author="anurag">
+        <addColumn tableName="service_analysis_staging">
+            <column name="ordering_doctor_executed" type="boolean" defaultValue="false"></column>
+            <column name="admitting_doctor_executed" type="boolean" defaultValue="false"></column>
+            <column name="rendering_doctor_executed" type="boolean" defaultValue="false"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="202017022013922-2" author="anurag">
+        <addColumn tableName="mcr_staging">
+            <column name="ordering_doctor_executed" type="boolean" defaultValue="false"></column>
+            <column name="admitting_doctor_executed" type="boolean" defaultValue="false"></column>
+            <column name="rendering_doctor_executed" type="boolean" defaultValue="false"></column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

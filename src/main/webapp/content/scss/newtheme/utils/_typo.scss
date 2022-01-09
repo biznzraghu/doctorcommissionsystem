@@ -1,0 +1,10 @@
+@mixin font-size($px) {
+  font-size: $px; // px fallback
+  font-size: ($px / $base) * 1rem; // calculate rem font-size
+}
+
+/*-- line height into rem --*/
+@mixin line-height($px) {
+  line-height: $px; // px fallback
+  line-height: ($px / $base) * 1rem; // calculate rem line-height
+}

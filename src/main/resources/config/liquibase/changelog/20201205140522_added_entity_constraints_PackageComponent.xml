@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity PackageComponent.
+    -->
+    <changeSet id="20201205140522-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="package_master_id"
+                                 baseTableName="package_component"
+                                 constraintName="fk_package_component_package_master_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="package_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="service_group_id"
+                                 baseTableName="package_component"
+                                 constraintName="fk_package_component_service_group_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="group_master"/>
+
+        <addForeignKeyConstraint baseColumnNames="item_category_id"
+                                 baseTableName="package_component"
+                                 constraintName="fk_package_component_item_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item_category"/>
+
+    </changeSet>
+</databaseChangeLog>

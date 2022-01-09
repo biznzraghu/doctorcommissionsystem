@@ -1,0 +1,163 @@
+<div class="athma-vertical-scroll">
+
+    <div style="margin-bottom:10px">
+        <jhi-athma-page-header [height]="77">
+            <jhi-athma-list-header [title]="title" [options]="options" (onSelectedTabChange)="onTabChange($event)">
+            </jhi-athma-list-header>
+            <div class="row mt-1">
+                <div class="col-10"></div>
+                <div class="col-2">
+                    <button type="button" class="athma-btn athma-btn-secondary back-btn "
+                        style="margin-top: -48px;margin-left: 6px;" (click)="backToList()">
+                        <i class="fa fa-arrow-left"></i>
+                        <span>
+                            Back to list
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </jhi-athma-page-header>
+
+    </div>
+    <jhi-athma-page-header [height]="85">
+        <div class="col-8 input-border-none ">
+
+            <div class="input-group search-btn list-header-search border-1">
+                <ng-select [items]="isUnitCreation ? organizationUnits : departments" name="code"
+                    bindLabel="name" style="width: 478px;"
+                    placeholder="{{ 'arthaApp.unit.'+(isUnitCreation ? 'select-unit-ph' : 'select-department-ph') | translate}}"
+                    [(ngModel)]="selectedUnit" (change)="assignOrganizationCode($event)" [clearable]="false"
+                    [disabled]="true">
+                </ng-select>
+            </div>
+
+
+        </div>
+
+
+    </jhi-athma-page-header>
+
+    <div>
+        <div class="m-2">
+            <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+                <div class="athma-section padding-10">
+                    <dl class="row form-dl three-column-form mb-0 pb-0">
+                        <dd>
+                            <div class="athma-form-group">
+                                <label>
+                                    <span jhiTranslate="arthaApp.unit.code">Code</span>
+                                </label>
+                                <div class="form-group">
+                                    <input type="text" class="athma-form-control" name="code" id="field_name"
+                                        [(ngModel)]="unitDetail.code" disabled />
+                                </div>
+                            </div>
+                        </dd>
+
+                        <dd>
+                            <div class="athma-form-group">
+                                <label>
+                                    <span jhiTranslate="arthaApp.unit.name">Name</span>
+                                </label>
+                                <div class="form-group">
+                                    <input type="text" class="athma-form-control" name="name" id="field_name"
+                                        [(ngModel)]="unitDetail.name" />
+                                </div>
+                            </div>
+                        </dd>
+                        <dd>
+                            <div class="athma-form-group">
+                                <label>
+                                    <span jhiTranslate="arthaApp.unit.licenseNumber">License Number</span>
+                                </label>
+                                <div class="form-group">
+                                    <input type="text" class="athma-form-control" name="licenseNumber"
+                                        id="field_license_number" [(ngModel)]="unitDetail.licenseNumber" />
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <hr class="athma-header-line mt-1 mb-1" />
+                </div>
+                <div class="athma-section padding-10">
+                    <dl class="row form-dl three-column-form mb-0 pb-0">
+
+
+
+                        <dd>
+                            <div class="athma-form-group">
+                                <label>
+                                    <span jhiTranslate="arthaApp.unit.website">Website</span>
+                                </label>
+                                <div class="form-group">
+                                    <input type="text" class="athma-form-control" name="website" id="field_website"
+                                        [(ngModel)]="unitDetail.website" />
+                                </div>
+                            </div>
+                        </dd>
+
+
+
+                        <dd>
+                            <div class="athma-form-group">
+                                <label>
+                                    <span jhiTranslate="arthaApp.unit.clinical">Clinical</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class="athma-checkbox-container">
+                                        <div class="athma-checkbox-sm">
+                                            <input type="checkbox" name="clinical" id="field_clinical"
+                                                [(ngModel)]="unitDetail.clinical" />
+                                            <label for="field_clinical"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </dd>
+
+                        <dd>
+                            <div class="athma-form-group">
+                                <label>
+                                    <span jhiTranslate="arthaApp.unit.status">Active</span>
+                                </label>
+                                <div class="form-group">
+                                    <jhi-athma-switch class="form-control athma-form-control no-padding no-border"
+                                        name="active" [(ngModel)]="unitDetail.active"></jhi-athma-switch>
+                                </div>
+                            </div>
+                        </dd>
+
+                        <dd>
+                            <div class="athma-form-group">
+                                <label>
+                                    <span jhiTranslate="arthaApp.unit.description">Description</span>
+                                </label>
+                                <div class="form-group">
+                                    <textarea class="athma-form-control" name="comments" id="field_comments"
+                                        [(ngModel)]="unitDetail.description" maxlength="250"></textarea>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                <section class="white padding-10">
+                    <div class="row">
+                        <div class="col report-button-container">
+                            <button type="submit" [disabled]="editForm.form.invalid || !editForm.form.dirty || isSaving"
+                                class="athma-btn athma-btn-primary pull-right mr-0">
+                                <span jhiTranslate="entity.action.save">Save</span>
+                            </button>
+
+                            <button type="button" class="athma-btn athma-btn-secondary mr-2 pull-right"
+                                (click)="clear()">
+                                <span jhiTranslate="entity.action.cancel">Cancel</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </form>
+        </div>
+    </div>
+</div>

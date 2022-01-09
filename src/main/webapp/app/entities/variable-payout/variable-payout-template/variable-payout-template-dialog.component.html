@@ -1,0 +1,177 @@
+<!-- <jhi-artha-detail-header></jhi-artha-detail-header> -->
+<div class="row template-header-container" style="height:48px;">
+    <div class="col-6"> 
+        <table class="table header-details mt-2 mb-0 w-100" style="position:relative;">
+            <tbody>
+                <tr>
+                    <td style="width: 30%">                      
+                        <span  style="position:absolute;left:18px; top:8px;" jhiTranslate="arthaApp.variable-payout.template-header.code">Code</span>
+                        <input  type="text" 
+                                placeholder="Enter code"
+                                class="athma-form-control athma-flexible" 
+                                style="width:117px;position:absolute;left:61px;top:2px;color:black" 
+                                [(ngModel)]="variablePayoutTemplate.code" 
+                                [disabled]="isViewMode || isEditMode"
+                                [ngStyle]="{'background-color':(isViewMode || isEditMode) ? '#e6e2e2' : '' }"
+                            />
+                    </td>
+                    <td style="width: 50%">        
+                        <span  jhiTranslate="arthaApp.variable-payout.template-header.name" style="position:absolute;top:8px;left:208px;">Name</span>
+                        <div class="athma-form-group athma-flexible" style="position:absolute;top:2px;left:255px;">
+                            <div class="form-group">
+                                <div class="athma-search-typeahead-container m-0 admission-policy-details-container">
+                                    <div class="athma-search-typeahead-border result-table-format">
+                                        <input  type="text" 
+                                                class="athma-form-control athma-flexible"
+                                                style="width: 266px;padding-left:10px;" 
+                                                placeholder="Enter Template name" 
+                                                name="serviceCode"
+                                                [(ngModel)]="variablePayoutTemplate.templateName"
+                                                [disabled]="isViewMode"
+                                                [ngStyle]="{'background-color':isViewMode ? '#e6e2e2' : '' }"
+                                            />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>             
+                    </td>                  
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6 d-flex align-items-center justify-content-end">     
+        <ng-container *jhiHasAnyAuthority="modifyPrivileges">
+            <div class="export" *ngIf="showEditButton">
+                <button class="athma-icon-button" id="exportDropdownList" (click)="editDetail(variablePayoutTemplate.id)">
+                    <i class="icon-edit" style="font-size:22px;color: #e6e2e2;" aria-hidden="true"></i>
+                </button>
+            </div>
+        </ng-container> 
+    </div>
+</div>
+
+<!-- Prev code -->
+<div class="row pl-2">
+    <div class="col-12">
+        <div class="variable-payout-tabs">
+            <ul class="variable-tabs">
+                <li class="variable-tabs-tab variable-tab" [ngClass]="{'active': activeTab == 0}" (click)="getTabInfo(0)">
+                    <a href="javascript:void(0)"><span jhiTranslate="arthaApp.variable-payout.tab-headers.rules">RULES</span></a></li>
+                <li class="variable-tabs-tab variable-tab" [ngClass]="{'active': activeTab == 1}" (click)="getTabInfo(1)">
+                    <a href="javascript:void(0)"><span jhiTranslate="arthaApp.variable-payout.tab-headers.exceptions">EXCEPTIONS</span></a></li>
+                <li class="variable-tabs-tab variable-tab" [ngClass]="{'active': activeTab == 2}" (click)="getTabInfo(2)">
+                    <a href="javascript:void(0)"><span jhiTranslate="arthaApp.variable-payout.tab-headers.unitMapping">UNIT MAPPING</span>
+                    </a>
+                </li>
+            </ul>
+            <div *ngIf=" activeTab === 0 || activeTab === 1">
+                <span class="pull-right icon-export payout-export-template"></span>
+                <!-- <span class="pull-right icon-copy payout-copy-template" [class.disabled]="this.serviceItemBenefits.length === 0" (click)="copy()"></span> -->
+                <span class="pull-right icon-copy payout-copy-template" (click)="copy()"></span>
+                <ng-container *ngIf=" activeTab === 0">
+                    <span class="pull-right"> <!-- For Rules-->
+                        <input 
+                            #templateInput 
+                            type="text" 
+                            id="templateInput" 
+                            class="athma-form-control rounded-0 template-search" 
+                            placeholder="Search"
+                            style="border-right: 0;border-radius:0;" 
+                            name="templateInput" 
+                            style="max-width:200px;padding-left: 21px; padding-right: 21px;" 
+                            autocomplete="off" 
+                            autocomplete="false" 
+                            [(ngModel)]="searchRuleText"
+                            (ngModelChange) = "search($event)"
+                        />
+                        <span  class="fa fa-search template-search-icon"></span>
+                        <span  class="icon-cross template-clear-icon athma-pointer" *ngIf="searchRuleText" (click)="clearRuleSearch()"></span>
+                    </span> <!-- For Rules-->
+                </ng-container>
+                <ng-container *ngIf=" activeTab === 1">
+                    <span class="pull-right"> <!-- For Rules-->
+                        <input 
+                            #templateInput 
+                            type="text" 
+                            id="templateInput" 
+                            class="athma-form-control rounded-0 template-search" 
+                            placeholder="Search"
+                            style="border-right: 0;border-radius:0;" 
+                            name="templateInput" 
+                            style="max-width:200px;padding-left: 21px;" 
+                            autocomplete="off" 
+                            autocomplete="false" 
+                        />
+                        <span class="fa fa-search search-left template-search-icon"></span>
+                    </span> <!-- For Rules-->
+                </ng-container>
+                
+            </div>
+            <div *ngIf=" activeTab === 2">
+                <span class="pull-right">
+                    <input 
+                        #templateInput 
+                        type="text" 
+                        id="templateInput" 
+                        class="athma-form-control rounded-0 template-exception-search" 
+                        placeholder="Search"
+                        style="border-right: 0;border-radius:0;" 
+                        name="templateInput" 
+                        style="max-width:200px;padding-left: 21px;" 
+                        autocomplete="off" 
+                        autocomplete="false" 
+                    />
+                    <span class="fa fa-search search-left template-exception-search-icon"></span>
+                    <!-- <span *ngIf="patientSearching" class="fa fa-spinner fa-pulse fa-fw search-left" [style.left]="showSearchIcon ? '40px' : '8px'"
+                                                                        [style.top]="inputHeight == 'sm' ? '6px' : '8px'"></span> -->
+                </span>
+                <span class="pull-right icon-export payout-export-template" (click)="exportUnitMapping()"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="variable-payout">
+    <!-- Rules Start -->
+    <div [ngStyle]="{'display':(activeTab === 0) ? 'block' : 'none'}">
+        <jhi-variable-payout-rules  [parentData]="variablePayoutTemplate"
+                                    [viewMode]="isViewMode" 
+                                    [organizationCode]="unitCode"  
+                                    [(rulesDataInstance)]="serviceItemBenefits">
+        </jhi-variable-payout-rules> 
+    </div>
+    <!-- Rules End -->
+
+    <!-- Exceptions Start -->
+    <div  [ngStyle]="{'display':(activeTab === 1) ? 'block' : 'none'}">
+        <jhi-variable-payout-exceptions [viewMode]="isViewMode" [(templateExceptions)]="variablePayoutTemplate.serviceItemExceptions"></jhi-variable-payout-exceptions>
+    </div>
+    <!-- Exceptions End -->
+    <!-- Unit Mapping Start -->
+    <div  [ngStyle]="{'display':(activeTab === 2) ? 'block' : 'none'}">
+        <jhi-variable-payout-unit-mapping [viewMode]="isViewMode" [(templateOrganizations)]="variablePayoutTemplate.organization"></jhi-variable-payout-unit-mapping>
+    </div>
+    <!-- Unit Mapping End -->
+</div>
+
+<!-- Button Start -->
+<div class="button-container">
+    <div class="text-left">
+        
+    </div>
+    <div class="text-right">
+        <button class="athma-btn athma-btn-secondary" jhiTranslate="entity.action.cancel" (click)="cancel()">Cancel</button>
+        <button *ngIf="!showEditButton" class="athma-btn athma-btn-primary" (click)="isEditMode? update() : save()">{{isEditMode ? 'Update' : 'Save'}}</button>
+    </div>
+</div>
+<!-- Button End -->
+
+<jhi-header-dialog-breadcrumb *ngIf="!variablePayoutTemplate.code" [routeUrl]=" '/artha/variable-payouts'" [params]="{ currentTabIndex: 2 }">
+    <span class="navbar-version" jhiTranslate="arthaApp.variable-payout.home.createTemplate"></span>
+</jhi-header-dialog-breadcrumb>
+<jhi-header-dialog-breadcrumb *ngIf="variablePayoutTemplate.code" [routeUrl]=" '/artha/variable-payouts'" [params]="{ currentTabIndex: 2 }">
+    <span class="navbar-version" jhiTranslate="arthaApp.variable-payout.home.variableTemplate"></span>
+</jhi-header-dialog-breadcrumb>
+<jhi-header-dialog-breadcrumb *ngIf="isEditMode" [routeUrl]=" '/artha/variable-payouts'" [params]="{ currentTabIndex: 2 }">
+    <span class="navbar-version" jhiTranslate="arthaApp.variable-payout.home.editTemplate"></span>
+</jhi-header-dialog-breadcrumb>

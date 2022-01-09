@@ -1,0 +1,12 @@
+{
+  "arthaApp": {
+    "serviceItemBenefit": {
+      "home": {
+        "title": "Rules"
+      },
+      "created": "Rule created successfully!",
+      "updated": "Rule updated successfully!",
+      "deleted": "Rule deleted successfully!"
+    }
+  }
+}

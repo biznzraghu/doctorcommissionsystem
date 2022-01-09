@@ -1,0 +1,193 @@
+<section class="modal-header">
+    <h3 class="modal-title">{{ templateInfo?.templateName ? templateInfo?.templateName : '-'}}</h3>
+</section>
+<div class="template-rules">
+    <div class="copy-modal modal-body p-0" style="height:401px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 tbl-div-hg-40 p-0">
+                    <table class="table athma-table m-0" style="background-color:#f5f5f5;">
+                        <thead>
+                            <tr>
+                                <th width="10%">
+                                    <span jhiTranslate="arthaApp.variable-payout.rules.type">Type</span>
+                                </th>
+                                <th width="10%">
+                                    <span jhiTranslate="arthaApp.variable-payout.rules.value">Value</span>
+                                </th>
+                                <th width="9%">
+                                    <div class="thead-split-title">
+                                        <span class="thead-text-sm" jhiTranslate="arthaApp.variable-payout.rules.type">Type</span>
+                                        <span jhiTranslate="arthaApp.variable-payout.rules.visit">Visit</span>
+                                    </div>
+                                </th>
+                                <th width="10%" class="pl-3">
+                                    <div class="thead-split-title">
+                                        <span class="thead-text-sm" jhiTranslate="arthaApp.variable-payout.rules.type">Type</span>
+                                        <span jhiTranslate="arthaApp.variable-payout.rules.beneficiary">Beneficiary</span>
+                                    </div>
+                                </th>
+                                <th width="10%" class="pl-3">
+                                    <div class="thead-split-title">
+                                        <span class="thead-text-sm" jhiTranslate="arthaApp.variable-payout.rules.or">% or</span>
+                                        <span jhiTranslate="arthaApp.variable-payout.rules.fixedAmt">Fixed Amt</span>
+                                    </div>
+                                </th>
+                                <th width="11%" class="pl-3">
+                                    <div class="thead-split-title">
+                                        <span class="thead-text-sm" jhiTranslate="arthaApp.variable-payout.rules.quantity">Quantity</span>
+                                        <span jhiTranslate="arthaApp.variable-payout.rules.fromTo">(From & To)</span>
+                                    </div>
+                                </th>
+                                <th width="7%" class="pl-4">
+                                    <div class="thead-split-title">
+                                        <span class="thead-text-sm" jhiTranslate="arthaApp.variable-payout.rules.amount">Amount</span>
+                                        <span jhiTranslate="arthaApp.variable-payout.rules.netGross">(Net/Gross)</span>
+                                    </div>
+                                </th>
+                                <th width="7%" class="pl-4">
+                                    <div class="thead-split-title">
+                                        <span class="thead-text-sm" jhiTranslate="arthaApp.variable-payout.rules.patient">Patient</span>
+                                        <span jhiTranslate="arthaApp.variable-payout.rules.category">Category</span>
+                                    </div>
+                                </th>
+                                <th width="9%" class="pl-4">
+                                    <div class="thead-split-title">
+                                        <span class="thead-text-sm" jhiTranslate="arthaApp.variable-payout.rules.tariff">Tariff</span>
+                                        <span jhiTranslate="arthaApp.variable-payout.rules.class">Class</span>
+                                    </div>
+                                </th>
+                                <th width="7%" class="pl-4">
+                                    <div class="thead-split-title">
+                                        <span class="thead-text-sm" jhiTranslate="arthaApp.variable-payout.rules.amt">Amt</span>
+                                        <span jhiTranslate="arthaApp.variable-payout.rules.material">Material</span>
+                                    </div>
+                                </th>
+                                <th width="8%" class="pl-4">
+                                    <span jhiTranslate="arthaApp.variable-payout.rules.dept">Dept.</span>
+                                </th>
+                                <th width="2%">
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start of template row -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 tbl-div-hg-40 p-0 infinite-scroll-table ps position-relative" style="height:354px;" [perfectScrollbar]="config">
+                    <table class="table athma-table">
+                        <tbody>
+                            <tr *ngFor="let templateDetail of serviceItemBenefits">
+                                <td width="10%">
+                                    <jhi-athma-string-manipulation [stringTrim]="templateDetail?.type ? templateDetail?.type : '-' " [stringLength]="15" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </td>
+                                <td width="10%">
+                                    <jhi-athma-string-manipulation [stringTrim]="templateDetail?.templateValueDisplay ? templateDetail?.templateValueDisplay : '-' "
+                                        [stringLength]="15" [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation>
+                                </td>
+                                <td width="9%">
+                                    <ng-container *ngFor="let visitType of templateDetail?.visitType; let ind=index ">{{visitType+
+                                        (templateDetail.visitType.length-1 !=ind ? ',':'')}} </ng-container>
+                                </td>
+                                <td width="10%" class="pl-3">
+                                    <!-- <jhi-athma-string-manipulation [stringTrim]="templateDetail?.beneficiary ? templateDetail?.beneficiary : '-' " [stringLength]="15"
+                                        [tooltipDisplay]="true">
+                                    </jhi-athma-string-manipulation> -->
+                                    <span *ngIf="templateDetail?.beneficiary === 'ORDERING'">
+                                        Ordering
+                                    </span>
+                                    <span *ngIf="templateDetail?.beneficiary === 'RENDERING'">
+                                        Rendering
+                                    </span>
+                                    <span *ngIf="templateDetail?.beneficiary === 'ADMITTING'">
+                                        Admitting
+                                    </span>
+                                    <span *ngIf="templateDetail?.beneficiary === 'CONSULTANT'">
+                                        Consultant
+                                    </span>
+                                    <span *ngIf="!templateDetail?.beneficiary">
+                                        -
+                                    </span>
+                                </td>
+                                <td width="10%" class="pl-3">
+                                    {{templateDetail?.amount ? templateDetail?.amount : '-'}}
+                                </td>
+                                <td width="11%" class="pl-3">
+                                    {{templateDetail?.minQuantity ? templateDetail?.minQuantity : '-'}} - {{templateDetail?.maxQuantity ? templateDetail?.maxQuantity
+                                    : '-'}}
+                                </td>
+                                <td width="7%" class="pl-4">
+                                    <!-- {{templateDetail?.applicableOn ? templateDetail?.applicableOn : '-'}} -->
+                                    <span *ngIf="templateDetail?.applicableOn === 'NET'">
+                                        Net
+                                    </span>
+                                    <span *ngIf="templateDetail?.applicableOn === 'GROSS'">
+                                        Gross
+                                    </span>
+                                    <span *ngIf="!templateDetail?.applicableOn">
+                                        -
+                                    </span>
+                                </td>
+                                <td width="7%" class="pl-4">
+                                    <!-- {{templateDetail?.patientCategory ? templateDetail?.patientCategory : '-'}} -->
+                                    <span *ngIf="templateDetail?.patientCategory === 'CASH_CREDIT'">
+                                        Cash Credit
+                                    </span>
+                                    <span *ngIf="templateDetail?.patientCategory === 'CASH'">
+                                        Cash
+                                    </span>
+                                    <span *ngIf="templateDetail?.patientCategory === 'CREDIT'">
+                                        Credit
+                                    </span>
+                                    <span *ngIf="!templateDetail?.patientCategory">
+                                        -
+                                    </span>
+                                </td>
+                                <td width="9%" class="pl-4">
+                                    <ng-container *ngFor="let tariffClass of templateDetail?.tariffClass; let ind=index ">{{tariffClass?.display+
+                                        (templateDetail.tariffClass.length-1 !=ind ? ',':'')}} </ng-container>
+                                </td>
+                                <td width="7%" class="pl-4">
+                                    <!-- {{templateDetail?.materialAmount ? templateDetail?.materialAmount : '-'}} -->
+                                    <span *ngIf="templateDetail?.materialAmount === 'SALE'">
+                                        Sale
+                                    </span>
+                                    <span *ngIf="templateDetail?.materialAmount === 'MARGIN'">
+                                        Margin
+                                    </span>
+                                    <span *ngIf="templateDetail?.materialAmount === 'COST'">
+                                        Cost
+                                    </span>
+                                    <span *ngIf="!templateDetail?.materialAmount">
+                                        -
+                                    </span>
+                                </td>
+                                <td width="8%" class="pl-4">
+                                    <ng-container *ngFor="let department of templateDetail?.department; let ind=index ">{{department?.code
+                                        ? department?.code : '-'}} | {{department?.name+ (templateDetail.department.length-1
+                                        !=ind ? ',':'')}}
+                                    </ng-container>
+                                </td>
+                                <td width="2%">
+                                    <span class=" athma-pointer" (click)="onAddExceptionsModal(templateDetail)">
+                                        <i class="icon-Three-Dots_Horizontal" style="font-size: 1.5em;"></i>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- End of template row -->
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="athma-btn athma-btn-primary" jhiTranslate="entity.action.cancel" (click)="cancel()" >Cancel</button>
+</div>

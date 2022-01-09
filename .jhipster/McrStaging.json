@@ -1,0 +1,208 @@
+{
+  "fluentMethods": true,
+  "relationships": [],
+  "fields": [
+    {
+      "fieldName": "invoiceNumber",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "invoiceDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "visitType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "visitNo",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mrn",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "patientName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "patientType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "patientType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "patientGender",
+      "fieldType": "PatientGender",
+      "fieldValues": "MALE,FEMALE,OTHER",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "year",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "month",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "doctor",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderingDepartment",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderingHscName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "orderDateTime",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "issuingStore",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "issueDateTime",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "itemType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "itemCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "itemName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "batch",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "expiry",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "unitCost",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "unit_mrp",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "unitSaleRate",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "unitTax",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "uom",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "totalCost",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "purchaseUnitTax",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "costWithPurchaseTax",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "totalMrp",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "totalSaleRate",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "totalTax",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "discretionaryConcession",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "nonDiscretionaryConcession",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "itemNetAmount",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "inPackage",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "packageName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "patientPayable",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sponsorPayable",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sponsorRefName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "planName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "invoiceStatus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "invoiceApproveDateTime",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "billingGroup",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20191204071352",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "mcr_staging",
+  "pagination": "pager",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false
+}
+

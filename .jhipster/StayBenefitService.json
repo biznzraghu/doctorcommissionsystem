@@ -1,0 +1,48 @@
+{
+  "fluentMethods": true,
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "lengthOfStayBenefit",
+      "otherEntityRelationshipName": "stayBenefitServices",
+      "relationshipName": "lengthOfStayBenefit",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "stayBenefitId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "serviceId",
+      "fieldType": "Long",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "serviceCode",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "serviceName",
+      "fieldType": "String",
+      "fieldValidateRules": [
+        "required"
+      ]
+    }
+  ],
+  "changelogDate": "20200422134156",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "stay_benefit_service",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "StayBenefitService"
+}

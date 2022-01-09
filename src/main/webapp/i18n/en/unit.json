@@ -1,0 +1,28 @@
+{
+  "arthaApp": {
+    "unit": {
+      "home": {
+        "title": "Unit"
+      },
+      "code": "Code",
+      "name": "Name",
+      "description": "Description",
+      "licenseNumber": "License Number",
+      "website": "Website",
+      "status": "Status",
+      "clinical": "Clinical",
+      "deptname": "Department Name",
+      "startedOn": "Started On",
+      "select-unit-ph": "Click to select unit",
+      "select-department-ph": "Click to select department",
+      "yes": "Yes",
+      "no": "No",
+      "unitCode": "Unit Code",
+      "unitName": "Unit Name"
+    },
+    "unitValidation": {
+      "created": "A unit created successfully",
+      "updated": "A unit updated successfully"
+    }
+  }
+}

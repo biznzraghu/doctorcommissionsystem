@@ -1,0 +1,542 @@
+<form novalidate #basicDetailsFrom="ngForm">
+<!-- Payout Details start-->
+<div class="variable-payout-container mb-2">
+    <div class="col-sm-12 pr-0 heading pl-2 pb-3 border-bottom">
+        <span jhiTranslate="arthaApp.variable-payout.basic-details.payoutDetails">Payout Details</span>
+    </div>
+    <!-- Start of First Row -->
+    <div class="row p-0 mr-0 pl-2">
+        <div class="col-sm-2 pr-0">
+            <div class="request-date-container pt-0 pr-0">
+                <div class="athma-form-group">
+                    <label class="athma-form-label d-block">
+                        <span jhiTranslate="arthaApp.variable-payout.basic-details.commencementDate">Commencement
+                            Date</span>
+                        <sup class="mandatorySign">*</sup>
+                    </label>
+                    <div class="input-group">
+                        <input id="commencementDate" name="commencementDate" readonly class="athma-form-control"
+                            placeholder="dd/mm/yyyy" style="background: #fff;; color: inherit;" ngx-mydatepicker
+                            [options]="ngxDateOptions" [(ngModel)]="commencementDate"
+                            #commencementDateDp="ngx-mydatepicker" (dateChanged)="onChangeCommencementDate($event)">
+                        <span class="input-group-btn position-absolute basic-date-position">
+                            <span *ngIf="commencementDate"
+                                class="input-group-addon athma-pointer position-absolute clearRequestdate"
+                                (click)="clearCommencementdate()" aria-describedby="basic-addon1">
+                                <i class="icon-cross"></i>
+                            </span>
+                            <button type="button" class="btn btn-default icon-calendar-button p-0 m-0">
+                                <i class="icon-calendar athma-pointer" aria-hidden="true"
+                                    (click)="commencementDateDp.toggleCalendar();"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <div class="request-date-container pt-0 pr-0">
+                <div class="athma-form-group">
+                    <label class="athma-form-label d-block">
+                        <span jhiTranslate="arthaApp.variable-payout.basic-details.contractEndDate">Contract End
+                            Date</span>
+                        <sup class="mandatorySign">*</sup>
+                        <span class="icon-info" placement="right" tooltipClass="tooltip-text-container"
+                            ngbTooltip="Payout will be generated only till this date"></span>
+                    </label>
+                    <div class="input-group">
+                        <input id="contractEndDate" name="contractEndDate" readonly class="athma-form-control"
+                            placeholder="dd/mm/yyyy" style="background: #fff;; color: inherit;" ngx-mydatepicker
+                            [options]="ngxDateOptions" [(ngModel)]="contractEndDate"
+                            #contractEndDateDp="ngx-mydatepicker" (dateChanged)="onChangeContractEndDate($event)">
+                        <span class="input-group-btn position-absolute basic-date-position">
+                            <span *ngIf="contractEndDate"
+                                class="input-group-addon athma-pointer position-absolute clearRequestdate"
+                                (click)="clearContractEnddate()" aria-describedby="basic-addon1">
+                                <i class="icon-cross"></i>
+                            </span>
+                            <button type="button" class="btn btn-default icon-calendar-button p-0 m-0" (focus)="contractEndDateOptions();">
+                                <i class="icon-calendar athma-pointer" aria-hidden="true" 
+                                    (click)="contractEndDateDp.toggleCalendar();"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <div class="athma-form-group">
+                <label>
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.minimumAssuredAmount">Minimum Assured
+                        Amount</span>
+                </label>
+                <div class="form-group">
+                    <input type="text" name="minAssuredAmount"
+                        jhiNumeric jhiAmount
+                        class="athma-form-control athma-flexible" placeholder="Enter"
+                        [(ngModel)]="variablePayoutObj.minAssuredAmount"
+                        (change)="minAssuredAmountChanged()" />
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <div class="request-date-container pt-0 pr-0">
+                <div class="athma-form-group">
+                    <label class="athma-form-label d-block">
+                        <span jhiTranslate="arthaApp.variable-payout.basic-details.minimumAssuredValidity">Minimum
+                            Assured Validity</span>
+                        <sup class="mandatorySign" *ngIf="variablePayoutObj?.minAssuredAmount && variablePayoutObj?.minAssuredAmount !== '0'">*</sup>
+                    </label>
+                    <div class="input-group" [ngClass]="{'disabledLink':!variablePayoutObj?.minAssuredAmount || variablePayoutObj?.minAssuredAmount === '0'}">
+                        <input id="minimumAssuredDate" name="minimumAssuredDate"
+                         readonly class="athma-form-control disable-input-container"
+                            placeholder="dd/mm/yyyy" style="background: #fff;; color: inherit;" ngx-mydatepicker
+                            [(ngModel)]="minimumAssuredDate" #minimumAssuredDateDp="ngx-mydatepicker"
+                            [options]="minimumAssuredDateOptions" (dateChanged)="onChangeMinimumAssuredDate($event)">
+                        <span class="input-group-btn position-absolute basic-date-position">
+                            <span *ngIf="minimumAssuredDate"
+                                class="input-group-addon athma-pointer position-absolute clearRequestdate"
+                                (click)="clearMinimumAssuredDate()" aria-describedby="basic-addon1">
+                                <i class="icon-cross"></i>
+                            </span>
+                            <button type="button" class="btn btn-default icon-calendar-button p-0 m-0">
+                                <i class="icon-calendar athma-pointer" aria-hidden="true"
+                                    (click)="minimumAssuredDateDp.toggleCalendar();"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <div class="athma-form-group">
+                <label>
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.maximumPayoutAmt">Maximum Payout
+                        Amt</span>
+                </label>
+                <div class="form-group">
+                    <input type="text" name="maxPayoutAmount" jhiNumeric jhiAmount
+                        class="athma-form-control athma-flexible" placeholder="Enter"
+                        [(ngModel)]="variablePayoutObj.maxPayoutAmount"  (change)="maxPayoutAmoutChange()"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2 pr-0">
+            <div class="athma-form-group">
+                <label>
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.status">Status</span>
+                </label>
+                <div class="form-group">
+                    <jhi-athma-switch class="athma-form-control pl-0 pt-0" name="active"
+                        [(ngModel)]="variablePayoutObj.status"></jhi-athma-switch>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End of First Row-->
+    <!-- Start of Second Row -->
+    <div class="row p-0 mr-0 pl-2">
+        <div class="col-sm-2 pr-0">
+            <div class="athma-form-group">
+                <label>
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.uploadContract">Upload Contract</span>
+                </label>
+                <div class="form-group">
+                    <input style="display:none;" name="uploadContract" #uploadContract placeholder="Upload file..."
+                        type="file" (change)="uploadContractInfo($event)" />
+                    <div class="athma-pointer d-flex align-items-center mt-1 file-name-list">
+                        <svg width="10" height="16" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:svg="http://www.w3.org/2000/svg" href="javascript:void(0)"
+                            (click)="uploadContract.click()">
+                            <g stroke="null" id="Clip">
+                                <path stroke="null"
+                                    d="m4.91249,0.47554c-2.36861,0 -4.29582,1.69142 -4.29582,3.77023l0,8.48301c0,1.55946 1.44501,2.82767 3.22187,2.82767c1.77686,0 3.22187,-1.26821 3.22187,-2.82767l0,-8.48301c0,-1.03964 -0.96333,-1.88512 -2.14791,-1.88512s-2.14791,0.84548 -2.14791,1.88512l0,7.06918c0,0.26015 0.24057,0.47128 0.53697,0.47128c0.29695,0 0.53697,-0.21114 0.53697,-0.47128l0,-7.06918c0,-0.52029 0.48167,-0.94256 1.07396,-0.94256c0.59282,0 1.07396,0.42226 1.07396,0.94256l0,8.48301c0,1.03964 -0.96333,1.88512 -2.14791,1.88512c-1.18403,0 -2.14791,-0.84548 -2.14791,-1.88512l0,-8.48301c0,-1.55946 1.44501,-2.82767 3.22187,-2.82767c1.77686,0 3.22187,1.26821 3.22187,2.82767l0,7.06918c0,0.26015 0.24057,0.47128 0.53697,0.47128s0.53697,-0.21114 0.53697,-0.47128l0,-7.06918c0,-2.07881 -1.92721,-3.77023 -4.29582,-3.77023z"
+                                    id="svg_3" fill="#0078D7" />
+                            </g>
+                        </svg>
+                        <a class="text-decoration-none" href="javascript:void(0)"
+                            (click)="uploadContract.click()"><span>&nbsp;Attach file&nbsp;&nbsp;</span></a>
+                        <div class="d-flex align-items-center ml-1" *ngFor="let file of uploadFiles;let j=index;">
+                            {{file.name}}
+                            <button class="athma-icon-button athma-highlight-focus mt-1" style="font-size: 12px">
+                                <span class="icon-cross athma-pointer" (click)="removeUploadContract(j)"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Second Row -->
+</div>
+<!-- Payout Details End-->
+
+<!-- Department Revenue Benefit Start-->
+<div class="variable-payout-container mb-2">
+    <div class="col-sm-12 pr-0 heading pl-2 pb-3 mb-1 border-bottom">
+        <span jhiTranslate="arthaApp.variable-payout.basic-details.departmentRevenueBenefit">Department Revenue
+            Benefit</span>
+        <span class="icon-info" placement="right"
+            tooltipClass="tooltip-text-container department-length-of-stay-tooltip"
+            ngbTooltip="Department revenue benefit will allot the % of the department revenue to the associate based on the allotted pool revenue which is configured in Dept revenue configuration. If the type is selected as “Fixed” then a fixed % of the entered value will be allotted as Dept Revenue and if it is selected as “Contribution Based” then based on the user contribution to the department revenue it will arrive at the percentage."></span>
+    </div>
+    <table class="table athma-table mb-0">
+        <thead>
+            <tr>
+                <th width="30%" class="pl-3">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.department">Department</span>
+                    <sup class="mandatorySign">*</sup>
+                </th>
+                <th width="20%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.revenueBenefitType">Revenue Benefit
+                        Type</span>
+                    <sup class="mandatorySign">*</sup>
+                </th>
+                <th width="20%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.payoutPercentage">Payout
+                        Percentage(%)</span>
+                    <sup class="mandatorySign" *ngIf="departmentRevenueBenefit?.revenueBenefitType === 'FIXED'">*</sup>
+                </th>
+                <th width="20%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.upperLimit">Upper Limit</span>
+                </th>
+                <th width="10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="basic-department-table-header">
+                <td width="30%" class="pb-0">
+                    <div class="athma-form-group">
+                        <div class="form-group m-0 p-0">
+                            <div class="athma-search-typeahead-container m-0 admission-policy-details-container">
+                                <div class="athma-search-typeahead-border result-table-format">
+                                    <input type="text" id="departmentInput" name="departmentCreateFlow"
+                                        class="athma-form-control padding-left-30"
+                                        [ngbTypeahead]="departmentSearchTypeahead"
+                                        [inputFormatter]="inputFormatDepartmentTypeheadData"
+                                        [resultTemplate]="departmentSearchTemplate"
+                                        [(ngModel)]="departmentRevenueBenefit.department" placeholder="select"
+                                        (selectItem)="onSelectDepartment($event)"
+                                        (blur)="departmentRevenueBenefitChange()"
+                                         required />
+                                    <span *ngIf="!departmentSearching" class="fa fa-search athma-typehead-search-left department-search-icon"></span>
+                                    <span *ngIf="departmentSearching" class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left department-search-icon"></span>
+                                </div>
+                            </div>
+                            <ng-template class="item-list" #departmentSearchTemplate let-r="result" let-t="term">
+                                <li>
+                                    <div class="d-flex align-items-center pl-2">
+                                        <span> {{ r?.code ? r?.code : '-' }}
+                                            <span class="pr-1" *ngIf="r?.name">
+                                                <b class="text-gray">|</b>
+                                            </span>
+                                            {{r?.name }}
+                                        </span>
+                                    </div>
+                                </li>
+                            </ng-template>
+                        </div>
+                    </div>
+                </td>
+                <td width="25%">
+                    <select [tabindex]="10" name="revenueBenefitTypeCreateFlow" class="athma-form-control"
+                        [(ngModel)]="departmentRevenueBenefit.revenueBenefitType"
+                        (change)="revenueBenefitTypeChange('create')">
+                        <option value="FIXED">Fixed</option>
+                        <option value="CONTRIBUTION_BASED">Contribution Based</option>
+                    </select>
+                </td>
+                <td width="20%">
+                    <input type="text" name="payoutPercentageCreateFlow" class="athma-form-control" placeholder="Enter"
+                        [(ngModel)]="departmentRevenueBenefit.payoutPercentage"
+                        jhiNumeric jhiAmount (blur)="checkIsValidPercentage($event, 'departmentRevenueBenefit.payoutPercentage')"
+                        [disabled]="departmentRevenueBenefit.revenueBenefitType !== 'FIXED'" />
+                </td>
+                <td width="20%">
+                    <input 
+                        type="text" 
+                        name="upperLimitCreateFlow" 
+                        class="athma-form-control"
+                        (keyup.enter)="addDepartmentRevenue(this.departmentRevenueBenefit, 'create', 0)"
+                        jhiAmount 
+                        [(ngModel)]="departmentRevenueBenefit.upperLimit"
+                        (change)="upperLimitChanged()"
+                    />
+                </td>
+                <td width="10%">
+                    <button class="adm-icon-button" [ngClass]="{'disabledLink':isDuplicateRevenueDepartment === true}">
+                        <i aria-hidden="true" class="fa fa-plus-circle fa-2x"
+                            (click)="addDepartmentRevenue(this.departmentRevenueBenefit, 'create', 0)"></i>
+                    </button>
+                </td>
+            </tr>
+            <ng-container
+                *ngFor="let departmentRevenueBenefit of variablePayoutObj?.departmentRevenueBenefits; let Index = index">
+                <tr class="basic-department-table-header" *ngIf="editRevenueBenefitIndex === Index">
+                    <td width="30%" class="pb-0 pt-3">
+                        {{departmentRevenueBenefit?.department?.code ? departmentRevenueBenefit?.department?.code : '-'}}
+                        |
+                        {{departmentRevenueBenefit?.department?.name ? departmentRevenueBenefit?.department?.name : '-'}}
+                    </td>
+                    <td width="25%">
+                        <select [tabindex]="10" class="athma-form-control" name="revenueBenefitTypeUpdateFlow"
+                            [(ngModel)]="departmentRevenueBenefitUpdate.revenueBenefitType"
+                            (change)="revenueBenefitTypeChange('update')">
+                            <option value="Select" selected>Select</option>
+                            <option value="FIXED">Fixed</option>
+                            <option value="CONTRIBUTION_BASED">Contribution Based</option>
+                        </select>
+                    </td>
+                    <td width="20%">
+                        <input type="text" name="payoutPercentageUpdateFlow" class="athma-form-control" placeholder="Enter"
+                        jhiNumeric jhiAmount (blur)="checkIsValidPercentage($event, 'departmentRevenueBenefitUpdate.payoutPercentage')"
+                            [(ngModel)]="departmentRevenueBenefitUpdate.payoutPercentage"
+                            [disabled]="departmentRevenueBenefitUpdate.revenueBenefitType !== 'FIXED'" />
+                    </td>
+                    <td width="20%">
+                        <input type="text" name="upperLimitUpdateFlow" class="athma-form-control"
+                            (keyup.enter)="addDepartmentRevenue(departmentRevenueBenefitUpdate, 'update', Index)"
+                            jhiNumeric [integerOnly]="true"
+                            [(ngModel)]="departmentRevenueBenefitUpdate.upperLimit" />
+                    </td>
+                    <td width="10%">
+                        <button class="athma-icon-button add-icon m-0"
+                            (click)="addDepartmentRevenue(departmentRevenueBenefitUpdate, 'update', Index)"> <i
+                                class="icon-checkmark department-revenue-buttons"></i>
+                        </button>
+                        <button class="athma-icon-button add-icon m-0" (click)="cancelDepartmentUpdate()"> <i
+                                class="icon-cross department-revenue-buttons"></i> </button>
+                    </td>
+                </tr>
+                <tr class="athma-pointer on-hover" *ngIf="editRevenueBenefitIndex !== Index">
+                    <td width="30%">
+                        {{departmentRevenueBenefit?.department?.code ? departmentRevenueBenefit?.department?.code : '-'}}
+                        |
+                        {{departmentRevenueBenefit?.department?.name ? departmentRevenueBenefit?.department?.name : '-'}}
+                    </td>
+                    <!-- <td width="25%">
+                        {{departmentRevenueBenefit?.revenueBenefitType ? departmentRevenueBenefit?.revenueBenefitType : '-'}}
+                    </td> -->
+                    <td width="25%" *ngIf="departmentRevenueBenefit?.revenueBenefitType">
+                        <span *ngIf="departmentRevenueBenefit?.revenueBenefitType">
+                            {{'arthaApp.variable-payout.basic-details.' + departmentRevenueBenefit?.revenueBenefitType | translate }}
+                        </span>
+                        <span *ngIf="!departmentRevenueBenefit?.revenueBenefitType">
+                            -
+                        </span>
+                    </td>
+                    <td width="20%">
+                        {{departmentRevenueBenefit?.payoutPercentage ? departmentRevenueBenefit?.payoutPercentage : '-'}}
+                    </td>
+                    <td width="20%">
+                        {{departmentRevenueBenefit?.upperLimit ? departmentRevenueBenefit?.upperLimit : '-'}}</td>
+                    <td width="10%" class="group-btn">
+                        <button class="athma-icon-button add-icon m-0 department-revenue-buttons-icon"
+                            (click)="editDepartmentRevenue(Index, departmentRevenueBenefit)">
+                            <span class="icon-edit small-btn"></span>
+                        </button>
+                        <button class="athma-icon-button add-icon m-0 department-revenue-buttons-icon" 
+                            (click)="deleteDepartmentRevenue(Index)">
+                            <span class="icon-cross small-btn"></span>
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+<!-- Department Revenue Benefit End-->
+
+<!-- Length of Stay Benefit Start-->
+<div class="variable-payout-container mb-2">
+    <div class="col-sm-12 pr-0 heading pl-2 pb-3 mb-1 border-bottom">
+        <span jhiTranslate="arthaApp.variable-payout.basic-details.lengthOfStayBenefit">Length of Stay
+            Benefit</span>
+        <span class="icon-info" placement="right"
+            tooltipClass="tooltip-text-container department-length-of-stay-tooltip"
+            ngbTooltip="If case of “Average” the payout will be given only if the criteria matches. ALOS for a doc will be calculated based on all the IP patients that are admitted under him (for the selected services Final invoice) and the if average stay duration of all the patients is less than the entered days value. If the criteria matches then for the cases where discharge is done earlier than the entered average value, payout amount will be given for the entered amount. Payable amt = Per day payout amount x No of days (Across patients with early discharge) In case of “Fixed” the payout will be given irrespective of the average for each patient for whom there is an early discharge"></span>
+    </div>
+    <table class="table athma-table mb-0">
+        <thead>
+            <tr>
+                <th width="30%" class="pl-3">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.department">Department</span>
+                    <sup class="mandatorySign">*</sup>
+                </th>
+                <th width="15%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.lengthOfStayCriteria">Length of Stay
+                        Criteria</span>
+                </th>
+                <th width="10%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.days">Days</span>
+                    <sup class="mandatorySign">*</sup>
+                </th>
+                <th width="15%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.perDayPayoutAmount">Per Day Payout
+                        Amount</span>
+                    <sup class="mandatorySign">*</sup>
+                </th>
+                <th width="25%">
+                    <span jhiTranslate="arthaApp.variable-payout.basic-details.services">Services</span>
+                    <sup class="mandatorySign">*</sup>
+                </th>
+                <th width="10%"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="basic-department-table-header">
+                <td width="30%" class="pb-0">
+                    <div class="athma-form-group">
+                        <div class="form-group m-0 p-0">
+                            <div class="athma-search-typeahead-container m-0 admission-policy-details-container">
+                                <div class="athma-search-typeahead-border result-table-format">
+                                    <input type="text" id="stayBenefit" name="stayBenefit"
+                                        class="athma-form-control padding-left-30"
+                                        [ngbTypeahead]="departmentStaySearchTypeahead"
+                                        [inputFormatter]="inputFormatDepartmentStayTypeheadData"
+                                        [resultTemplate]="stayDepartmentSearchTemplate"
+                                        [(ngModel)]="lengthOfStayBenefit.department" 
+                                        placeholder="select" 
+                                        required 
+                                        (selectItem)="onSelectStayDepartment($event)"
+                                        (blur)="departmentStayBenefitChange()"
+                                        />
+                                    <span *ngIf="!departmentStaySearching" 
+                                        class="fa fa-search athma-typehead-search-left department-search-icon">
+                                    </span>
+                                    <span *ngIf="departmentStaySearching"
+                                        class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left department-search-icon">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td width="15%">
+                    <select [tabindex]="10" class="athma-form-control" name="lengthOfStayCriteriaCreateFlow"
+                        [(ngModel)]="lengthOfStayBenefit.lengthOfStayCriteria">
+                        <option value="AVERAGE">Average</option>
+                        <option value="FIXED">Fixed</option>
+                    </select>
+                </td>
+                <td width="10%">
+                    <input type="text" name="daysCreateFlow" class="athma-form-control" jhiNumeric [integerOnly]="true"
+                        (change)="daysValidation($event.target.value)" [(ngModel)]="lengthOfStayBenefit.days" placeholder="Enter" />
+                </td>
+                <td width="15%">
+                    <input type="text" name="perDayPayoutAmountCreateFlow" class="athma-form-control" [(ngModel)]="lengthOfStayBenefit.perDayPayoutAmount"
+                        (keypress)="isNumeric($event)" placeholder="Enter" />
+                </td>
+                <td width="25%" class="pb-0">
+                    <div class="athma-form-group mb-0">
+                        <div class="form-group mb-0">
+                            <ng-select name="stayBenefitServicesCriteriaCreateFlow" [items]="stayBenefitServicesList$ | async" bindLabel="name" [hideSelected]="true"
+                                [loading]="servicesLoading" dropdownPosition="top" multiple="true" [typeahead]="serviceInput$" [(ngModel)]="lengthOfStayBenefit.stayBenefitServices"
+                                 placeholder="Search and Add">
+                            </ng-select>
+                        </div>
+                    </div>
+                </td>
+                <td width="10%">
+                    <button class="adm-icon-button">
+                        <i aria-hidden="true" class="fa fa-plus-circle fa-2x"
+                            (click)="addStayBenefit(lengthOfStayBenefit, 'create', 0)"></i>
+                    </button>
+                </td>
+            </tr>
+            <ng-container
+                *ngFor="let lengthOfStayBenefit of variablePayoutObj?.lengthOfStayBenefits; let Index = index">
+                <tr *ngIf="editStayBenefitIndex === Index" class="basic-department-table-header">
+                    <td width="30%" class="pb-0 pt-3">
+                        {{lengthOfStayBenefit?.department?.code ? lengthOfStayBenefit?.department?.code : '-'}} |
+                        {{lengthOfStayBenefit?.department?.name ? lengthOfStayBenefit?.department?.name : '-'}}
+                    </td>
+                    <td width="15%">
+                        <select [tabindex]="10" class="athma-form-control" name="lengthOfStayCriteriaUpdateFlow"
+                            [(ngModel)]="lengthOfStayBenefitUpdate.lengthOfStayCriteria">
+                            <option value="AVERAGE">Average</option>
+                            <option value="FIXED">Fixed</option>
+                        </select>
+                    </td>
+                    <td width="10%">
+                        <input type="text" class="athma-form-control" name="daysUpdateFlow" (keypress)="isNumeric($event)"
+                            (change)="daysValidation($event.target.value)"
+                            [(ngModel)]="lengthOfStayBenefitUpdate.days" />
+                    </td>
+                    <td width="15%">
+                        <input type="text" class="athma-form-control" name="perDayPayoutAmountUpdateFlow"
+                            [(ngModel)]="lengthOfStayBenefitUpdate.perDayPayoutAmount" (keypress)="isNumeric($event)" />
+                    </td>
+                    <td width="25%" class="pb-0 athma-pointer pt-3" (click)="applicableServicesModal(Index)">
+                        <span
+                            *ngIf="lengthOfStayBenefit?.stayBenefitServices?.length">{{lengthOfStayBenefit?.stayBenefitServices[0]?.name || lengthOfStayBenefit?.stayBenefitServices[0]?.serviceName}}</span>
+                        <span class="length-stay-benefit-services" *ngIf="lengthOfStayBenefit?.stayBenefitServices?.length > 1">
+                            +{{lengthOfStayBenefit?.stayBenefitServices?.length - 1}}</span>
+                    </td>
+                    <td width="10%">
+                        <button class="athma-icon-button add-icon m-0"
+                            (click)="addStayBenefit(lengthOfStayBenefitUpdate, 'update', Index)"> <i
+                                class="icon-checkmark department-revenue-buttons"></i>
+                        </button>
+                        <button class="athma-icon-button add-icon m-0" (click)="cancelStateBenefitUpdate()"> <i
+                                class="icon-cross department-revenue-buttons"></i> </button>
+                    </td>
+                </tr>
+                <tr *ngIf="editStayBenefitIndex !== Index" class="athma-pointer on-hover">
+                    <td width="30%">
+                        {{lengthOfStayBenefit?.department?.code ? lengthOfStayBenefit?.department?.code : '-'}} |
+                        {{lengthOfStayBenefit?.department?.name ? lengthOfStayBenefit?.department?.name : '-'}}
+                    </td>
+                    <!-- <td width="15%">
+                        {{lengthOfStayBenefit?.lengthOfStayCriteria ? lengthOfStayBenefit?.lengthOfStayCriteria : '-'}}
+                    </td> -->
+                    <td width="15%">
+                        <span *ngIf="lengthOfStayBenefit?.lengthOfStayCriteria">
+                            {{'arthaApp.variable-payout.basic-details.' + lengthOfStayBenefit?.lengthOfStayCriteria | translate }}
+                        </span>
+                        <span *ngIf="!lengthOfStayBenefit?.lengthOfStayCriteria">
+                            -
+                        </span>
+                    </td>
+                    <td width="10%">
+                        {{lengthOfStayBenefit?.days ? lengthOfStayBenefit?.days : '-'}}
+                    </td>
+                    <td width="15%">
+                        {{lengthOfStayBenefit?.perDayPayoutAmount ? lengthOfStayBenefit?.perDayPayoutAmount : '-'}}
+                    </td>
+                    <td width="25%" (click)="applicableServicesModal(Index)">
+                        <span
+                            *ngIf="lengthOfStayBenefit?.stayBenefitServices?.length">{{lengthOfStayBenefit?.stayBenefitServices[0]?.name || lengthOfStayBenefit?.stayBenefitServices[0]?.serviceName}}</span>
+                        <span class="length-stay-benefit-services" *ngIf="lengthOfStayBenefit?.stayBenefitServices?.length > 1">
+                            +{{lengthOfStayBenefit?.stayBenefitServices?.length - 1}}</span>
+                    </td>
+                    <td width="10%" class="group-btn">
+                        <button class="athma-icon-button add-icon m-0 department-revenue-buttons-icon"
+                            (click)="editStateBenefit(Index, lengthOfStayBenefit)">
+                            <span class="icon-edit small-btn"></span>
+                        </button>
+                        <button class="athma-icon-button add-icon m-0 department-revenue-buttons-icon" 
+                            (click)="deleteStayBenefit(Index)">
+                            <span class="icon-cross small-btn"></span>
+                        </button>
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+</form>
+<ng-template class="item-list" #stayDepartmentSearchTemplate let-r="result" let-t="term">
+    <li>
+        <div class="d-flex align-items-center pl-2">
+            <span> {{ r?.code ? r?.code : '-' }}
+                <span class="pr-1" *ngIf="r?.name">
+                    <b class="text-gray">|</b>
+                </span>
+                {{r?.name }}
+            </span>
+        </div>
+    </li>
+</ng-template>
+<!-- Length of Stay Benefit End-->

@@ -1,0 +1,8 @@
+<ng-template #headerDialogView>
+    <a class="navbar-brand logo float-left athma-highlight-focus" [tabindex]="500" (keypress)="isBackEvent($event)">
+        <div class="navbar-arrow" (click)="back()">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+        </div>
+        <ng-content></ng-content>
+    </a>
+</ng-template>

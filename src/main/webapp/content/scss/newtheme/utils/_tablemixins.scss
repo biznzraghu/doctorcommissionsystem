@@ -1,0 +1,16 @@
+@mixin table() {
+  border: 0px solid #ededed;
+  margin: 0px;
+  thead {
+    th {
+      font-size: 12px;
+    }
+  }
+  tbody {
+    td {
+      padding: 10px;
+    }
+  }
+  tfoot {
+  }
+}

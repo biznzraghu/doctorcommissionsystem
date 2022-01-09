@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20191209084951-1" author="anurag">
+        <createTable tableName="service_analysis_staging">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="invoice_number" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="invoice_type" type="varchar(255)">
+
+            </column>
+            <column name="invoice_date" type="timestamp">
+
+            </column>
+            <column name="admission_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="admitted_for" type="varchar(255)">
+
+            </column>
+            <column name="visit_no" type="varchar(255)">
+
+            </column>
+            <column name="patient_mrn" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_gender" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patient_age" type="int">
+
+            </column>
+            <column name="visit_type" type="varchar(255)">
+
+            </column>
+            <column name="year" type="int">
+
+            </column>
+            <column name="month" type="int">
+
+            </column>
+            <column name="ordering_department_name" type="varchar(255)">
+
+            </column>
+            <column name="ordering_doctor_name" type="varchar(255)">
+
+            </column>
+            <column name="rendering_department_name" type="varchar(255)">
+
+            </column>
+            <column name="rendering_doctor_name" type="varchar(255)">
+
+            </column>
+            <column name="type" type="varchar(255)">
+
+            </column>
+            <column name="item_code" type="varchar(255)">
+
+            </column>
+            <column name="item_name" type="varchar(255)">
+
+            </column>
+            <column name="item_group" type="varchar(255)">
+
+            </column>
+            <column name="patient_type" type="varchar(255)">
+
+            </column>
+            <column name="sponsor_ref_name" type="varchar(255)">
+
+            </column>
+            <column name="plan_name" type="varchar(255)">
+
+            </column>
+            <column name="tariff_class" type="varchar(255)">
+
+            </column>
+            <column name="gross_amount" type="double">
+
+            </column>
+            <column name="tax_amount" type="double">
+
+            </column>
+            <column name="discretionary_concession" type="varchar(255)">
+
+            </column>
+            <column name="non_discretionary_concession" type="varchar(255)">
+
+            </column>
+            <column name="net_amount" type="double">
+
+            </column>
+            <column name="patient_amount" type="double">
+
+            </column>
+            <column name="sponsor_amount" type="double">
+
+            </column>
+            <column name="remarks" type="varchar(255)">
+
+            </column>
+            <column name="cancellation_discount_approver_name" type="varchar(255)">
+
+            </column>
+            <column name="billed_by" type="varchar(255)">
+
+            </column>
+            <column name="is_profile" type="varchar(255)">
+
+            </column>
+            <column name="quantity" type="double">
+
+            </column>
+            <column name="item_type" type="varchar(255)">
+
+            </column>
+            <column name="invoice_status" type="varchar(255)">
+
+            </column>
+            <column name="settlement_status" type="varchar(255)">
+
+            </column>
+            <column name="approved_date" type="timestamp">
+
+            </column>
+            <column name="discharge_date_time" type="varchar(255)">
+
+            </column>
+            <column name="billing_group_name" type="varchar(255)">
+
+            </column>
+            <column name="service_request_date_time" type="varchar(255)">
+
+            </column>
+            <column name="requested_by" type="varchar(255)">
+
+            </column>
+            <column name="service_rendering_date_time" type="varchar(255)">
+
+            </column>
+            <column name="rendered_by" type="varchar(255)">
+
+            </column>
+            <column name="requesting_service_patient_ward" type="varchar(255)">
+
+            </column>
+            <column name="rendering_service_patient_ward" type="varchar(255)">
+
+            </column>
+            <column name="hospital_unit_rate" type="double">
+
+            </column>
+            <column name="plan_unit_rate" type="double">
+
+            </column>
+            <column name="addon_parameter_value" type="varchar(255)">
+
+            </column>
+            <column name="total_mrp" type="varchar(255)">
+
+            </column>
+            <column name="revenue_department" type="varchar(255)">
+
+            </column>
+            <column name="revenue_doctor" type="varchar(255)">
+
+            </column>
+            <column name="finance_group_name" type="varchar(255)">
+
+            </column>
+            <column name="original_invoice_no" type="varchar(255)">
+
+            </column>
+            <column name="addon_parameter" type="varchar(255)">
+
+            </column>
+            <column name="ordered_date" type="timestamp">
+
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="20200405114023-1" author="anurag">
+        <addColumn tableName="service_analysis_staging">
+            <column name="employee_id" type="bigint">
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200405114023-2" author="anurag">
+        <addColumn tableName="service_analysis_staging">
+            <column name="rule_key_object" type="varchar(255)">
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200405114023-5" author="anurag">
+        <addColumn tableName="service_analysis_staging">
+            <column name="executed" type="boolean">
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200405114023-6" author="anurag">
+        <addColumn tableName="service_analysis_staging">
+            <column name="group_key" type="varchar(255)">
+            </column>
+            <column name="type_key" type="varchar(255)">
+            </column>
+        </addColumn>
+        <renameColumn tableName="service_analysis_staging" oldColumnName="rule_key_object" newColumnName="visit_type_tariff_class_key"></renameColumn>
+    </changeSet>
+    <changeSet id="20202705114023-1" author="animesh">
+        <addColumn tableName="service_analysis_staging">
+            <column name="unit_code" type="varchar(255)">
+            </column>
+            <column name="department_id" type="bigint">
+            </column>
+            <column name="dept_revenue_executed" type="boolean">
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20201408174822-2" author="anurag">
+        <dropNotNullConstraint tableName="service_analysis_staging" columnName="admission_date"></dropNotNullConstraint>
+        <dropNotNullConstraint tableName="service_analysis_staging" columnName="patient_mrn"></dropNotNullConstraint>
+    </changeSet>
+    <changeSet id="20201408180122-2" author="anurag">
+        <dropNotNullConstraint tableName="service_analysis_staging" columnName="patient_name"></dropNotNullConstraint>
+    </changeSet>
+    <changeSet id="20202508114922-2" author="anurag">
+        <dropColumn tableName="service_analysis_staging" columnName="department_id"></dropColumn>
+        <addColumn tableName="service_analysis_staging">
+            <column name="department_code" type="varchar(255)">
+                <constraints nullable="true"></constraints>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20202508135822-2" author="anurag">
+        <addDefaultValue tableName="service_analysis_staging" columnName="executed" defaultValue="false"></addDefaultValue>
+        <addDefaultValue tableName="service_analysis_staging" columnName="dept_revenue_executed" defaultValue="false"></addDefaultValue>
+    </changeSet>
+    <changeSet id="20200710122322-2" author="anurag">
+        <addColumn tableName="service_analysis_staging">
+            <column name="length_of_stay_executed" type="boolean" defaultValue="false"></column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

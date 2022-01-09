@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "applicableType",
+            "fieldType": "ConfigurationLevel",
+            "fieldValues": "Global,Unit"
+        },
+        {
+            "fieldName": "applicableTo",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "configuration",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "applicableEntity",
+            "fieldType": "String"
+
+        },
+		    {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+
+        },
+			  {
+            "fieldName": "creationDate",
+            "fieldType": "LocalDate"
+
+        },
+		  {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+
+        },
+			  {
+            "fieldName": "modifiedDate",
+            "fieldType": "LocalDate"
+
+        }
+    ],
+    "changelogDate": "20191205071352",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "configurations",
+    "pagination": "pager",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false
+}

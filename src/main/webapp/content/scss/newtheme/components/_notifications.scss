@@ -1,0 +1,349 @@
+//  notifications list view
+.notifications-list {
+  width: 525px;
+  max-height: calc(100vh - 64px);
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  background: #fff;
+  z-index: 2000;
+  border-radius: 2px;
+  overflow-y: auto;
+  &:after {
+    border-left: solid transparent 7px;
+    border-right: solid transparent 7px;
+    border-bottom: solid #ffffff 7px;
+    top: -6px;
+    content: ' ';
+    height: 0;
+    right: 37%;
+    position: absolute;
+    width: 0;
+    margin-right: 6px;
+  }
+  &:before {
+    border-left: solid transparent 7px;
+    border-right: solid transparent 7px;
+    border-bottom: solid rgba(0, 0, 0, 0.25) 7px;
+    top: -7px;
+    content: ' ';
+    height: 0;
+    right: 37%;
+    position: absolute;
+    width: 0;
+    margin-right: 6px;
+  }
+  .notifications-list-header {
+    width: 100%;
+    display: table;
+    padding: 13px;
+    padding-right: 5px;
+    border-bottom: 1px solid #ddd;
+    z-index: 100;
+    .notifications-list-header-title {
+      font-size: pixelToRem(12px);
+      font-weight: 600;
+      display: table-cell;
+      color: #0078d7;
+    }
+    .close-notifications {
+      font-size: 10px;
+      text-align: right;
+      padding-right: 10px;
+      color: #ff2d00;
+      cursor: pointer;
+    }
+  }
+  .notifications-list-body {
+    height: 400px;
+    overflow-y: auto;
+    color: #414146;
+    .notifications-list-container {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      .notifications-list-item {
+        list-style: none;
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+        // border-left: 3px solid white;
+        display: table;
+        table-layout: fixed;
+        width: 100%;
+        font-size: pixelToRem(12px);
+        .notifications-list-item-typeIcon,
+        .notifications-list-item-title,
+        .notifications-list-item-date,
+        .notifications-list-read-icon,
+        .notifications-list-item-details-arrow {
+          cursor: pointer;
+          display: table-cell;
+          vertical-align: middle;
+        }
+        .notifications-list-item-typeIcon {
+          width: 30px;
+          .fa,
+          [class^='icon-'],
+          [class*=' icon-'] {
+            font-size: pixelToRem(14px);
+            color: #414146;
+          }
+        }
+        .notifications-list-item-title {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          width: 227px;
+          max-width: 227px;
+        }
+        .notifications-list-item-date {
+          color: #aaa;
+          font-size: 0.8571em;
+          max-width: 110px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          text-align: right;
+          padding-right: 5px;
+          width: 110px;
+          white-space: nowrap;
+        }
+        .notifications-list-item-details-arrow {
+          width: 30px;
+          text-align: center;
+          font-weight: 700;
+          font-size: pixelToRem(14px);
+          color: #aaa;
+        }
+        .notifications-list-read-icon {
+          font-size: 0px;
+          width: 20px;
+          color: #0078d7;
+        }
+        &.notification-unread {
+          .notifications-list-item-typeIcon .fa,
+          .notifications-list-item-title {
+            // font-weight: bold;
+          }
+          .notifications-list-read-icon {
+            font-size: 14px;
+          }
+        }
+        &:hover {
+          background: #d7e3f4;
+        }
+        .content {
+          display: table-cell;
+          table-layout: fixed;
+          width: 426px;
+        }
+        .delete-btn {
+          display: table-cell;
+          vertical-align: middle;
+          .text {
+            background-color: red;
+            font-size: 10px;
+            margin: 0px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.notifications-detail {
+  width: 500px;
+  max-height: calc(100vh - 64px);
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  background: #fff;
+  z-index: 2000;
+  color: #414146;
+  border-radius: 2px;
+  box-shadow: 0px 3px 8px #464646;
+  overflow-y: auto;
+  &:after {
+    border-left: solid transparent 7px;
+    border-right: solid transparent 7px;
+    border-bottom: solid #ffffff 7px;
+    top: -6px;
+    content: ' ';
+    height: 0;
+    right: 37%;
+    position: absolute;
+    width: 0;
+    margin-right: 6px;
+  }
+  &:before {
+    border-left: solid transparent 7px;
+    border-right: solid transparent 7px;
+    border-bottom: solid rgba(0, 0, 0, 0.25) 7px;
+    top: -7px;
+    content: ' ';
+    height: 0;
+    right: 37%;
+    position: absolute;
+    width: 0;
+    margin-right: 6px;
+  }
+  .notifications-detail-header {
+    width: 100%;
+    display: table;
+    padding: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+    z-index: 100;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    color: #0078d7;
+    .notifications-detail-header-title {
+      cursor: pointer;
+      display: table-cell;
+      .fa,
+      [class^='icon-'],
+      [class*=' icon-'] {
+        // font-size: pixelToRem(20px);
+        margin-right: 8px;
+        // color: #707070;
+      }
+    }
+    .close-notifications {
+      font-size: 15px;
+      text-align: right;
+      padding-right: 10px;
+      color: #949292;
+      cursor: pointer;
+    }
+  }
+  .notifications-detail-body {
+    // Workflow start
+    color: #414146;
+    .notifications-workflow {
+      .notifications-workflow-header {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        .notifications-workflow-header-name {
+          display: flex;
+          color: #414146;
+          font-weight: 700;
+          align-items: center;
+          .notifications-detail-typeIcon {
+            font-size: pixelToRem(16px);
+            margin-right: 8px;
+          }
+          .notifications-detail-title {
+            font-size: pixelToRem(16px);
+            line-height: pixelToRem(18px);
+          }
+        }
+        .notifications-detail-createdDate {
+          display: block;
+          color: #707070;
+          padding: 10px 0px 0px 0px;
+          font-size: 10px;
+        }
+      }
+      .notifications-workflow-body {
+        padding: 0px;
+        .notifications-workflow-body-content {
+          padding: 10px;
+        }
+        a {
+          font-weight: 700;
+          color: #0078d7;
+        }
+        p {
+          line-height: 18px;
+        }
+      }
+      .notifications-workflow-footer {
+        padding: 10px;
+        border-top: 1px solid #ddd;
+      }
+    }
+    // Workflow end
+    // Message start
+    .notifications-message {
+      .notifications-message-header {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        .notifications-message-header-name {
+          display: flex;
+          color: #414146;
+          font-weight: 700;
+          align-items: center;
+          .notifications-detail-typeIcon {
+            font-size: pixelToRem(16px);
+            margin-right: 8px;
+          }
+          .notifications-detail-title {
+            font-size: pixelToRem(16px);
+            line-height: pixelToRem(18px);
+          }
+        }
+        .notifications-detail-createdDate {
+          display: block;
+          color: #707070;
+          padding: 10px 0px 0px 0px;
+          font-size: 10px;
+        }
+      }
+      .notifications-message-body {
+        padding: 10px;
+        .notifications-message-body-list {
+          padding: 0px;
+          list-style: none;
+          li {
+            padding-left: 8px;
+            &::before {
+              content: '-';
+              padding-left: 5px;
+              margin-right: 3px;
+            }
+            &:first-child {
+              padding: 0px;
+              &::before {
+                content: '';
+                padding-left: 0px;
+                margin-right: 0px;
+              }
+            }
+          }
+        }
+        a {
+          font-weight: 700;
+          color: #0078d7;
+        }
+        p {
+          line-height: 18px;
+        }
+      }
+    }
+    // Workflow end
+  }
+}
+
+.noNotificationsMessage {
+  line-height: 24px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-weight: bold;
+  padding-left: 17px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #ddd;
+}
+
+.notifications-count {
+  background-color: #e81111 !important;
+  font-size: 10px;
+  position: absolute;
+  top: 0;
+  left: 54%;
+  border-radius: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  border-bottom-left-radius: 3px;
+}

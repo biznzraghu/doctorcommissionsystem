@@ -1,0 +1,26 @@
+{
+    "arthaApp": {
+        "report": {
+            "home": {
+                "title": "Report"
+            },
+            "inputLabel": {
+                "employee": "Employee",
+                "unit": "Unit",
+                "year": "Year",
+                "month": "Month",
+                "department": "Department"
+            },
+            "button": {
+                "refreshReports": "Refresh Reports",
+                "execute": "Execute"
+            },
+            "validation": {
+                "selectUnit": "Please select <strong>Unit</strong>",
+                "selectYearMonth": "Please select <strong>Year</strong> and <strong>Month</Strong>",
+                "selectEmployee": "Please select <strong>Employee</strong>",
+                "selectDepartment": "Please select <strong>Department</strong>"
+            }
+        }
+    }
+}

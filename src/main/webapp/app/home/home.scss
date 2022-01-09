@@ -1,0 +1,155 @@
+/* ==========================================================================
+Main page styles
+========================================================================== */
+
+.hipster {
+  display: inline-block;
+  width: 347px;
+  height: 497px;
+  // background: url('../../content/images/jhipster_family_member_2.svg') no-repeat center top;
+  background-size: contain;
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (-moz-min-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .hipster {
+    background-size: contain;
+  }
+}
+
+/* ==========================================================================
+Main page styles
+========================================================================== */
+
+.login-panel {
+  .input-big {
+    height: 40px !important;
+    padding: 12px !important;
+  }
+  .panel-full-width {
+    width: 100%;
+  }
+}
+
+/* wait autoprefixer update to allow simple generation of high pixel density media query */
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+  .hipster {
+    background-size: contain;
+  }
+}
+
+.login {
+  .alert {
+    padding: 0.2rem 0.5rem !important;
+  }
+}
+
+.login {
+  &-panel {
+    background: transparent linear-gradient(180deg, #fff7e8 0%, #fafbfd 75%, #fafbfc 100%) 0% 0% no-repeat padding-box;
+    .left-panel {
+      position: relative;
+      &-bg {
+        background: url('../../content/images/header_images/payout-login-left.svg') no-repeat center;
+        position: absolute;
+        bottom: -14px;
+        height: 341px;
+        width: 320px;
+        background-size: contain;
+        left: -26px;
+      }
+    }
+    .right-panel {
+      position: relative;
+      &-bg {
+        background: url('../../content/images/header_images/payout-login-right.svg') no-repeat center;
+        position: absolute;
+        bottom: -40px;
+        height: 318px;
+        width: 362px;
+        background-size: contain;
+        right: -52px;
+      }
+    }
+    .login-form {
+      .card {
+        width: 360px;
+        min-height: 420px;
+        padding: 20px 16px;
+        box-shadow: 0px 5px 15px #00000029;
+        border-radius: 4px;
+        margin-left: 30px;
+        &-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          .card-title {
+            color: #343536;
+            letter-spacing: -0.68px;
+            font-size: 32px;
+            font-weight: bolder;
+          }
+          .title-bg {
+            background: url('../../content/images/header_images/payout-login-header.svg') no-repeat center;
+            height: 38px;
+            width: 55px;
+          }
+        }
+        &-body {
+          .form {
+            &-group {
+              margin-bottom: 30px;
+            }
+            .label {
+              font-size: 14px;
+              color: #343536;
+              opacity: 0.7;
+            }
+            .input-group-text {
+              border-radius: 2px;
+              color: #cccccc;
+              font-size: 18px;
+            }
+            input:focus {
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+            }
+            .athma-form-control,
+            .input-group-text {
+              border-color: #cccccc;
+            }
+            .athma-form-control:focus {
+              border-color: #cccccc !important;
+            }
+            .reset-btn {
+              .athma-btn {
+                min-width: 140px !important;
+              }
+            }
+            .visibilty-label {
+              font-size: 14px;
+            }
+          }
+          .reset-pwd-title {
+            color: #343536;
+            opacity: 0.7;
+          }
+          .newPwd,
+          .confirmPwd {
+            min-height: 70px;
+          }
+        }
+      }
+    }
+  }
+}

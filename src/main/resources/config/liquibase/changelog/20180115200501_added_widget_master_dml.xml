@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <!-- changed the Data type of Desciption column -->
+    <changeSet id="20213010151322-widget_master_id_seq" author="anurag">
+        <createSequence sequenceName="widget_master_id_seq" incrementBy="1" minValue="1" maxValue="9223372036854775807"
+                        startValue="1" cacheSize="1"></createSequence>
+    </changeSet>
+    <changeSet id="202030011732-2" author="anurag">
+        <dropColumn tableName="widget_master" columnName="description"></dropColumn>
+        <addColumn tableName="widget_master">
+            <column name="description" type="text"></column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20180115200501_added_widget_master_dml" author="anurag">
+
+        <insert tableName="widget_master">
+            <column name="id" valueSequenceNext="widget_master_id_seq"/>
+            <column name="code" value="102114102"/>
+            <column name="name" value="Doctor Wise Revenue Trend"/>
+            <column name="title" value="Doctor Wise Revenue Trend"/>
+           <!-- <column name="description" value="Net Revenue (= Cash Revenue[Cash in all currencies] + Card Revenue + e-wallet Revenue + Sponsor Revenue - Refund)..."/>-->
+            <column name="module" value="Variable Payout"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="thumbnail" value=""/>
+            <column name="properties" value='{"componentName": "DoctorWiseRevenueTrend","cols": 6, "rows": 4, "x": 12, "y": 50,"dragEnabled":true}'/>
+            <column name="settings" value='{"headerBG": "#0078D7"}'/>
+        </insert>
+
+        <insert tableName="widget_master">
+            <column name="id" valueSequenceNext="widget_master_id_seq"/>
+            <column name="code" value="102114102"/>
+            <column name="name" value="Department Wise Revenue Trend"/>
+            <column name="title" value="Department Wise Revenue Trend"/>
+            <!--column name="description" value="Net Revenue (= Cash Revenue[Cash in all currencies] + Card Revenue + e-wallet Revenue + Sponsor Revenue - Refund)..."/>-->
+            <column name="module" value="Department Payout"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="thumbnail" value=""/>
+            <column name="properties" value='{"componentName": "DepartmentWiseRevenueTrend","cols": 6, "rows": 4, "x": 12, "y": 50,"dragEnabled":true}'/>
+            <column name="settings" value='{"headerBG": "#0078D7"}'/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>

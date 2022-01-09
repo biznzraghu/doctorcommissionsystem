@@ -1,0 +1,33 @@
+{
+  "arthaApp": {
+    "department-payout": {
+      "home": {
+        "title": "Department Payout"
+      },
+      "tbl-headers": {
+        "department": "Department",
+        "created-by": "Created By",
+        "created-date": "Created Date",
+        "approved-by": "Approved By",
+        "version": "Version",
+        "status": "Status",
+        "date": "Date"
+      },
+      "validation": {
+        "variableRange": "From amount should be 0 and To amount should be 1 to 999999999",
+        "variableValidation": "Range should not overlap and should not have any gap",
+        "percentageRange": "Percentage should be  0 to 100",
+        "deptExist": "<strong>Department</strong> already selected",
+        "hscExist": "<strong>HSC</strong> already selected"
+      },
+      "created": "Department Payout has been created ",
+      "updated": "Department Payout has been updated",
+      "deleted": "Department Payout has been deleted",
+      "sendforapproval": "Department Payout has been send for approval",
+      "approved": "Department Payout has been approved",
+      "rejected": "Department Payout has been rejected",
+      "customdepartment": "Custom Department has been created",
+      "draft": "Department Payout has been draft"
+    }
+  }
+}

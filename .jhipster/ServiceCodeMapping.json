@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "service",
+            "otherEntityName": "ServiceMaster",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "standardCode",
+            "otherEntityName": "ValueSetCode",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20171208112645",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "service_code_mapping",
+    "microserviceName": "mdm",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": true
+}

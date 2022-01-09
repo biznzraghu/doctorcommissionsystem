@@ -1,0 +1,85 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "configurationCategory",
+            "otherEntityName": "ConfigurationCategory",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "module",
+            "otherEntityName": "module",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "key",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "displayName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+       {
+            "fieldName": "inputValue",
+            "fieldType": "String"
+
+        },
+        {
+            "fieldName": "allowableOverrideLevel",
+            "fieldType": "ConfigurationLevel",
+            "fieldValues": "Global,Unit",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "allowableDisplayLevel",
+            "fieldType": "ConfigurationLevel",
+            "fieldValues": "Global,Unit",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "inputType",
+            "fieldType": "ConfigurationInputType",
+            "fieldValues": "DropDown",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "validations",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isMandatory",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20191203062912",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "configuration_definition",
+    "pagination": "pager",
+    "searchEngine": "elasticsearch"
+}

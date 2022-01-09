@@ -1,0 +1,150 @@
+<jhi-artha-detail-header [options]="headerOptons" (onOpenComment)="openCommentBlock()"></jhi-artha-detail-header>
+
+<div class="container-fluid employee-payout-container">
+    <div class="row">
+        <div class="col-md-12 tbl-div-hg-47  p-0" id="fixed-tbl-head">
+            <table class="table athma-table">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;" jhiTranslate="arthaApp.payoutAdjustment.label.description">
+                            Description
+                        </th>
+                        <th style="width: 15%;" jhiTranslate="arthaApp.payoutAdjustment.label.year-month">
+                            Year & Month
+                        </th>
+                        <th style="width: 10%;">
+                            <small class="d-block detail">
+                                <b jhiTranslate="arthaApp.payoutAdjustment.label.positive/">Positive/</b>
+                            </small>
+                            <span jhiTranslate="arthaApp.payoutAdjustment.label.negative">Negative</span>
+                        </th>
+                        <th style="width: 10%;" jhiTranslate="arthaApp.payoutAdjustment.label.amount">
+                            Amount
+                        </th>
+                        <th style="width: 6%;" jhiTranslate="arthaApp.payoutAdjustment.label.contra">
+                            Contra
+                        </th>
+                        <th style="width: 12%;">
+                        </th>
+                        <th style="width: 7%;">
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-md-12 p-0 tbl-div-hg-47" [style.height.px]="setInfiniteScrollHeight()" [perfectScrollbar]="config" *ngIf="payoutAdjustmentData.payoutAdjustmentDetails && payoutAdjustmentData.payoutAdjustmentDetails.length > 0"> <!-- *ngIf="!noRecordFound"-->
+            <table class="table athma-table athma-table-layout-fixed">
+                <ng-container *ngFor="let payoutAdjustment of payoutAdjustmentData.payoutAdjustmentDetails; let i =index; ">
+                    <tr class="athma-pointer on-hover">
+                        <!--Description-->
+                            <td class="pl-3" style="width: 40%;">
+                                <!-- {{payoutAdjustment?.description}} -->
+                                <jhi-athma-string-manipulation [suffixCharacterLength]="30" [prefixCharacterLength]="10"
+                                    [stringModified]="payoutAdjustment?.description" [stringLength]="55"
+                                    [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation>
+                            </td>
+                        <!--Description-->
+                        <!--Year &  Month-->
+                        <td style="width: 15%;">
+                            {{payoutAdjustment?.year}}, {{MonthClassMap[payoutAdjustment?.month]}}
+                        </td>
+                        <!--Year &  Month-->
+
+                        <!--Sign-->
+                        <td style="width: 10%;">
+                            <div class="row">
+                                <div class="col-10 ml-1 p-0 " [ngClass]="(payoutAdjustment?.sign=='POSITIVE') ? 'positive-indication' : 'negative-indication'">
+                                    <b>{{payoutAdjustment?.sign=='POSITIVE' ? '+ve' : '-ve' }}</b>
+                                </div>
+                            </div>
+                        </td>
+                        <!--Sign-->
+
+                        <!--Amount-->
+                        <td style="width: 10%;">
+                            {{(payoutAdjustment?.amount || 0) | number: amountFormat}}
+                        </td>
+                        <!--Amount-->
+
+                        <!--Contra-->
+                        <td style="width: 18%;">
+                            <!-- For in case Employee-->
+                            <ng-container *ngIf="payoutAdjustment?.contraEmployeeDetail">
+                                {{payoutAdjustment?.contraEmployeeDetail ? payoutAdjustment?.contraEmployeeDetail?.displayName : '-'}}
+                                <small class="d-block detail">{{payoutAdjustment?.contraEmployeeId ? payoutAdjustment?.contraEmployeeId : ''}}</small>
+                            </ng-container>
+                            
+                            <!-- For in case Department-->
+                            <ng-container *ngIf="payoutAdjustment?.contraDepartment">
+                                {{payoutAdjustment?.contraDepartment ? payoutAdjustment?.contraDepartment?.name : '-'}}
+                                <small class="d-block detail">{{payoutAdjustment?.contraDepartment?.code ? payoutAdjustment?.contraDepartment?.code : ''}}</small>
+                            </ng-container>
+
+                            <ng-container *ngIf="((!payoutAdjustment?.contraEmployeeDetail) && (!payoutAdjustment?.contraDepartment))">
+                                -
+                            </ng-container>
+
+                        </td>
+                        <!--Contra-->
+                        <!--Controls-->
+                        <td style="width: 7%;" class="group-btn">
+                        </td>
+                        <!--Controls-->
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+        <div *ngIf="payoutAdjustmentData && payoutAdjustmentData.payoutAdjustmentDetails && payoutAdjustmentData.payoutAdjustmentDetails.length === 0" class="d-flex justify-content-center align-items-center no-record-found">
+            <i style="font-size:32px" class="icon-search_invoice" aria-hidden="true"></i>
+            <span style="font-size:18px">No entry to Proceed</span>
+        </div>
+    </div>
+    <div class="button-container row" id="fixed-footer" style="background-color: #eeeeee; height:105px;">
+        <div class="col-4 offset-5" style="
+        text-align: end;
+    ">
+            <span style="
+            font-size: 10px;
+            font-weight: 700;
+            ">Net Amount</span>
+            <!-- <h3>(+) {{grandTotal}}</h3> -->
+            <h3>({{grandTotalSymbol}}) {{(grandTotal || 0) | number: amountFormat }}</h3>
+        </div>
+    </div>
+    <div class="button-container">
+        
+        <div class="text-left">
+            <ng-container *ngIf="payoutAdjustmentData.status === 'PENDING_APPROVAL' ">
+                <button class="athma-btn athma-btn-secondary" jhiTranslate="arthaApp.payoutAdjustment.button.cancel" (click)="navigateTo('listPage')" >Cancel</button>
+            </ng-container>
+            <!--  <button class="athma-btn athma-btn-secondary">Reject</button>
+
+            <button class="athma-icon-button-border" style="min-width: 28px;">
+                <i class="fa fa-trash-o" aria-hidden="true"></i>
+            </button> -->
+        </div>
+        <div class="text-right">
+            <ng-container *ngIf="(payoutAdjustmentData.status === 'PENDING_APPROVAL')"> <!-- && (payoutAdjustmentData?.createdBy.id !== modifiedById) -->
+                <button class="athma-btn athma-btn-auxillary" jhiTranslate="arthaApp.payoutAdjustment.button.reject" [disabled]="payoutAdjustmentData && payoutAdjustmentData.payoutAdjustmentDetails && payoutAdjustmentData.payoutAdjustmentDetails.length === 0" (click)="openUserCommentBlock('REJECTED')">
+                    Reject
+                </button>
+                <button class="athma-btn athma-btn-primary" jhiTranslate="arthaApp.payoutAdjustment.button.approve" [disabled]="payoutAdjustmentData && payoutAdjustmentData.payoutAdjustmentDetails && payoutAdjustmentData.payoutAdjustmentDetails.length === 0" (click)="openUserCommentBlock('APPROVED')">
+                    Approve
+                </button>
+            </ng-container>
+
+            <ng-container *ngIf="payoutAdjustmentData.status !== 'PENDING_APPROVAL' ">
+                <button class="athma-btn athma-btn-primary" jhiTranslate="arthaApp.payoutAdjustment.button.close" (click)="navigateTo('listPage')">
+                    Close
+                </button>
+            </ng-container>
+            
+        </div>
+    </div>
+</div>
+
+
+<jhi-header-dialog-breadcrumb [routeUrl]=" '/artha/payout-adjustment'">
+    <span class="navbar-version" jhiTranslate="global.menu.entities.payoutAdjustment"></span>
+</jhi-header-dialog-breadcrumb>

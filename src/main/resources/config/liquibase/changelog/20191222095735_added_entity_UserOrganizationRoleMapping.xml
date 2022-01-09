@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity UserOrganizationRoleMapping.
+    -->
+    <changeSet id="20191222095735-1" author="jhipster">
+        <createTable tableName="user_organization_role_mapping">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="hospital" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="role" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20200909173522-2" author="anurag">
+        <renameColumn tableName="user_organization_role_mapping" oldColumnName="hospital" newColumnName="organization_id"></renameColumn>
+        <renameColumn tableName="user_organization_role_mapping" oldColumnName="role" newColumnName="role_id"></renameColumn>
+        <addColumn tableName="user_organization_role_mapping">
+            <column name="created_by" type="jsonb"></column>
+            <column name="modified_by" type="jsonb"></column>
+            <column name="created_datetime" type="timestamp"></column>
+            <column name="modified_datetime" type="timestamp"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200909173722-2" author="anurag">
+        <addForeignKeyConstraint baseColumnNames="organization_id"
+                                 baseTableName="user_organization_role_mapping"
+                                 constraintName="fk_user_organization_role_mapping_organization_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="organization"/>
+
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="user_organization_role_mapping"
+                                 constraintName="fk_user_organization_role_mapping_role_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="user_organization_role_mapping"
+                                 constraintName="fk_user_organization_role_mapping_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_master"/>
+
+        <addUniqueConstraint tableName="user_organization_role_mapping"
+                             columnNames="user_id,organization_id,role_id"
+                             constraintName="uk_user_organization_role_mapping" />
+    </changeSet>
+    <changeSet id="202021009134822-2" author="anurag">
+        <addColumn tableName="user_organization_role_mapping">
+            <column name="iu_datetime" type="timestamp" defaultValue="now()"></column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

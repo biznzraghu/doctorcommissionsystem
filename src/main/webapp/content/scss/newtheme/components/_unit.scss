@@ -1,0 +1,28 @@
+.unit-detail-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 63px);
+  .unit-detail-view {
+    margin-top: auto;
+  }
+}
+.unit-detail {
+  .input-border-none {
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+    }
+  }
+
+  .department-detail-view {
+    margin-top: 0px !important;
+  }
+  .back-btn {
+    margin-left: 31px;
+    width: 160px;
+  }
+  ngb-typeahead-window.dropdown-menu {
+    transform: translate(0px, 28px) !important;
+  }
+}

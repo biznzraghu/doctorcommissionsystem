@@ -1,0 +1,35 @@
+.report-header {
+    background: #fafafa;
+    border-bottom: 1px solid lightgrey;
+}
+
+.filter-section {
+    border-bottom: 1px solid lightgrey;    
+}
+
+.payout-btn-bg {
+    background-color: #FFA800;
+    color: #ffffff;
+}
+
+.select-width {
+    min-width: 100%;
+}
+
+.report-details-section {
+    border-bottom: 1px solid lightgrey;
+}
+
+.header {
+    div {
+        font-weight: 600; 
+    }
+}
+
+.ng-select.auto-grow {
+    display: flex;
+    .ng-dropdown-panel {
+        min-width: 100%;
+        width: auto;
+    }
+  }

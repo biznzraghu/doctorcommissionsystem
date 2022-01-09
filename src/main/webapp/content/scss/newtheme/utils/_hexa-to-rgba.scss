@@ -1,0 +1,10 @@
+// Hex to rgba
+@mixin hexa-rgba($hexcolor, $opacity) {
+  background-color: $hexcolor;
+  background-color: rgba($hexcolor, $opacity);
+}
+
+@function hexa-rgba-code($hexcolor, $opacity) {
+  @return transparentize($hexcolor, $opacity);
+  // send Opacity reverse order lile 0.7 for 0.3
+}

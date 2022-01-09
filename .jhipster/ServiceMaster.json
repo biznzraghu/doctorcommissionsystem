@@ -1,0 +1,100 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "serviceType",
+            "otherEntityName": "ServiceType",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "category",
+            "otherEntityName": "ServiceCategory",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "serviceGroup",
+            "otherEntityName": "Group",
+            "relationshipType": "many-to-one",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "ServiceMaster",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "shortName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "minReOrderDuration",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "serviceDuration",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "autoProcess",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "individuallyOrderable",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "consentRequired",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "insuranceExempted",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "profileService",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170105134156",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "service_master",
+    "pagination": "pager",
+    "microserviceName": "mdm",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false
+}

@@ -1,0 +1,51 @@
+{
+    "name": "TransactionApprovalDetails",
+    "fields": [
+        {
+            "fieldName": "documentType",
+            "fieldType": "DocumentType",
+            "fieldValues": "VARIABLE_PAYOUT,DEPARTMENT_PAYOUT,PAYOUT_ADJUSTMENT"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "approvedById",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "approvedByLogin",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "approvedByEmployeeNo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "approvedByDisplayName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "approvedDateTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "payoutAdjustment",
+            "otherEntityRelationshipName": "transactionApprovalDetails",
+            "relationshipName": "payoutAdjustment",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200423135500",
+    "entityTableName": "transaction_approval_details",
+    "dto": "no",
+    "service": "serviceImpl",
+    "pagination": "pager",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false
+}

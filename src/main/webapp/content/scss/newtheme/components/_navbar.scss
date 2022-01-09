@@ -1,0 +1,307 @@
+// File Name: _navbar.scss
+// Description: global top navbar styles
+// Used by: theme-specific.scss
+// Dependencies:
+// ------------------------------------------------------------
+.jh-navbar {
+  padding-left: pixelToRem(16px);
+  padding-right: pixelToRem(0px);
+  padding-top: 0;
+  padding-bottom: 0;
+  flex-direction: row;
+  height: 64px;
+  justify-content: space-between;
+  align-items: center;
+  border-width: 0px 0px 1px 0px;
+  border-style: solid;
+
+  .profile-image {
+    height: 40px;
+    width: 40px;
+    @include border-radius(50%);
+    margin: 0px 6px;
+  }
+
+  .fa-user-circle {
+    margin: 0px 6px;
+  }
+
+  .nav-userPref {
+    display: inline-flex;
+    flex-direction: column;
+
+    .nav-username {
+      font-size: pixelToRem(12px);
+      line-height: pixelToRem(12px);
+      overflow: hidden;
+      max-width: 150px;
+      word-break: break-word;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .nav-unit {
+      font-size: pixelToRem(10px);
+      line-height: pixelToRem(10px);
+      overflow: hidden;
+      max-width: 150px;
+      word-break: break-word;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .jh-logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 30px;
+    width: 27px;
+    vertical-align: middle;
+    background-size: contain;
+    display: flex;
+  }
+
+  .dropdown-toggle::after {
+    margin-left: 0.15em;
+  }
+
+  .logPanel > .dropdown-toggle::after {
+    margin-left: 0.15em;
+    display: none;
+  }
+
+  .logPanel {
+    a.nav-link {
+      padding-right: 0px;
+      font-size: pixelToRem(20px);
+    }
+  }
+
+  ul.navbar-nav {
+    padding: 8px;
+    align-items: center;
+  }
+
+  a.nav-link {
+    font-weight: $fw-regular;
+    font-size: pixelToRem($fs-xl);
+
+    .fa-link {
+      -ms-transform: rotate(135deg);
+      /* IE 9 */
+      -webkit-transform: rotate(135deg);
+      /* Chrome, Safari, Opera */
+      transform: rotate(135deg);
+    }
+  }
+
+  .jh-navbar-toggler {
+    color: #ccc;
+    font-size: 1.5em;
+    padding: 10px;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .navbar-title {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: pixelToRem($fs-m);
+    font-weight: $fw-regular;
+  }
+
+  .navbar-version {
+    font-size: pixelToRem($fs-m);
+    font-weight: $fw-semi-bold;
+  }
+
+  .navbar-arrow {
+    vertical-align: middle;
+    font-size: pixelToRem($fs-m);
+    padding-left: pixelToRem(12px);
+    padding-right: pixelToRem(12px);
+  }
+
+  div.navbar-arrow {
+    vertical-align: middle;
+    font-size: 20px;
+    vertical-align: middle;
+    background: #605e5c;
+    border: 0px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1px;
+    margin-right: pixelToRem(12px);
+    height: 24px;
+    width: 24px;
+    border-radius: 2px;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+  }
+
+  .athma-app {
+    display: flex;
+    align-items: center;
+    margin-right: pixelToRem(24px);
+    text-decoration: none;
+
+    &.active {
+      .athma-navbar-appmenu {
+        display: block;
+      }
+    }
+
+    .athma-navbar-appmenu {
+      display: none;
+      max-height: calc(100vh - 64px);
+      height: calc(100vh - 64px);
+      width: 359px;
+      position: absolute;
+      top: 44px;
+      left: -24px;
+      overflow-y: auto;
+      padding: 7px;
+      border-width: 0px 1px 1px 1px;
+      border-style: solid;
+      z-index: 2000;
+
+      .athma-navbar-appmenu-items {
+        height: 97px;
+        width: 97px;
+        margin: 7px;
+        display: inline-block;
+        text-align: center;
+        border-width: 1px;
+        border-style: solid;
+
+        .athma-module-icon {
+          width: 40px;
+          height: 40px;
+          background-size: contain;
+          display: inline-block;
+          margin-top: 15px;
+          margin-bottom: 10px;
+        }
+
+        .tile-title {
+          font-size: 11px;
+        }
+      }
+    }
+
+    .athma-app-icon {
+      width: 24px;
+      height: 24px;
+      font-size: pixelToRem(24px);
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+      display: inline-block;
+      @include opacity(0.9);
+    }
+  }
+
+  .navbar-brand {
+    // padding-top: 0;
+    &.logo {
+      padding-bottom: 0px;
+      display: flex;
+      align-items: center;
+
+      .logo-img {
+        height: 40px;
+        width: 112px;
+        display: inline-block;
+        vertical-align: middle;
+        background-image: url('data:image/png;base64,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');
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+      }
+    }
+  }
+
+  // .navbar-brand {
+  //   padding-top: 0rem;
+  // }
+  .nav-folder-star {
+    left: 14px;
+    position: absolute;
+    top: 14px;
+    font-size: pixelToRem(10px);
+  }
+
+  .user-link {
+    vertical-align: middle;
+
+    a.nav-link {
+      font-size: pixelToRem(12px);
+    }
+  }
+
+  .dropdown-menu {
+    font-size: pixelToRem(12px);
+
+    &:after {
+      border-left: solid transparent 7px;
+      border-right: solid transparent 7px;
+      border-bottom: solid #ffffff 7px;
+      top: -6px;
+      content: ' ';
+      height: 0;
+      right: 5%;
+      position: absolute;
+      width: 0;
+    }
+
+    &:before {
+      border-left: solid transparent 7px;
+      border-right: solid transparent 7px;
+      border-bottom: solid rgba(0, 0, 0, 0.25) 7px;
+      top: -7px;
+      content: ' ';
+      height: 0;
+      right: 5%;
+      position: absolute;
+      width: 0;
+    }
+  }
+
+  .line-item-badge {
+    font-weight: 600;
+    font-size: 10px;
+    color: #464646;
+    border-radius: 8px;
+    padding: 4px 5px;
+    margin-left: 10px;
+    line-height: 11px;
+  }
+
+  .logPanel {
+    .dropdown-menu {
+      right: -5px;
+      border-radius: 2px;
+
+      li {
+        a {
+          padding: 8px;
+        }
+      }
+    }
+  }
+}
+
+.navbar-remarks-badge {
+  margin-left: 20px;
+  margin-top: -72px;
+  vertical-align: middle;
+  font-size: 69%;
+  padding: 0.25em 0.4em;
+  background: #4caf50;
+}

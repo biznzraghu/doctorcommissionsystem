@@ -1,0 +1,71 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "packageMaster",
+            "otherEntityName": "PackageMaster",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "serviceGroup",
+            "otherEntityName": "group",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "itemCategory",
+            "otherEntityName": "itemCategory",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "packageComponentCategory",
+            "fieldType": "PackageComponentCategory",
+            "fieldValues": "SERVICE",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "autoOrder",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "exclude",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "quantityLimit",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+            ]
+        },
+        {
+            "fieldName": "amountLimit",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+            ]
+        }
+
+    ],
+    "changelogDate": "20201205140522",
+    "dto": "no",
+    "service": "serviceImpl",
+    "pagination": "pager",
+    "entityTableName": "package_component",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": true
+}

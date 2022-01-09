@@ -1,0 +1,16 @@
+<div class="d-flex flex-row">
+    <div class="d-flex flex-column py-1 mt-1">
+        <label>
+            <span jhiTranslate="arthaApp.report.inputLabel.year">Year</span>
+            <sup class="mandatorySign">*</sup>
+        </label>
+        <ng-select [items]="years" bindLabel="name" [(ngModel)]="selectedYear" (change)="select()" placeholder="Select Year"></ng-select>
+    </div>
+    <div class="d-flex flex-column py-1 mt-1">
+        <label>
+            <span jhiTranslate="arthaApp.report.inputLabel.month">Month</span>
+            <sup class="mandatorySign">*</sup>
+        </label>
+        <ng-select [items]="month" bindLabel="name" [(ngModel)]="currentMonth" (change)="select()" placeholder="Select Month"></ng-select>
+    </div>
+</div>

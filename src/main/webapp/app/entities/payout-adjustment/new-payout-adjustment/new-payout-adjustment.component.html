@@ -1,0 +1,242 @@
+<jhi-artha-detail-header [options]="headerOptons" (onOpenComment)="openCommentBlock()"></jhi-artha-detail-header>
+<div class="container-fluid employee-payout-container">
+    <div class="row">
+        <div class="col-md-12 tbl-div-hg-47  p-0" id="fixed-tbl-head">
+            <table class="table athma-table">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;" jhiTranslate="arthaApp.payoutAdjustment.label.description">
+                            Description
+                        </th>
+                        <th style="width: 15%;" jhiTranslate="arthaApp.payoutAdjustment.label.year-month">
+                            Year & Month
+                        </th>
+                        <th style="width: 10%;">
+                            <small class="d-block detail">
+                                <b jhiTranslate="arthaApp.payoutAdjustment.label.positive/">Positive/</b>
+                            </small>
+                            <span jhiTranslate="arthaApp.payoutAdjustment.label.negative">Negative</span>
+                        </th>
+                        <th style="width: 10%;" jhiTranslate="arthaApp.payoutAdjustment.label.amount">
+                            Amount
+                        </th>
+                        <th style="width: 6%;" jhiTranslate="arthaApp.payoutAdjustment.label.contra" *jhiHasAnyAuthority="payoutType">
+                            Contra
+                        </th>
+                        <th style="width: 12%;">
+                        </th>
+                        <th style="width: 7%;">
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="col-md-12 p-0 tbl-div-hg-47 add-payout-controls">
+            <jhi-add-update-entity-control [(dataInstance)]="newAdjustment" [isPayoutForEmployee]="payoutType === 'Employee' ? true : false " [isEditMode]="isEditActive" (onAddRecord)="onAddNewRecord()"></jhi-add-update-entity-control>
+        </div>
+        <div class="col-md-12 p-0 tbl-div-hg-47" [style.height.px]="setInfiniteScrollHeight()" [perfectScrollbar]="config" *ngIf="payoutAdjustmentData.payoutAdjustmentDetails && payoutAdjustmentData.payoutAdjustmentDetails.length > 0"> <!-- *ngIf="!noRecordFound"-->
+            <table class="table athma-table athma-table-layout-fixed">
+                <ng-container *ngFor="let payoutAdjustment of payoutAdjustmentData.payoutAdjustmentDetails; let i =index; ">
+                    <tr class="athma-pointer on-hover">
+                        <!--Description-->
+                            <td class="pl-3" style="width: 40%;" *ngIf="(editIndex !== i)">
+                                <!-- {{payoutAdjustment?.description}} -->
+                                <jhi-athma-string-manipulation [suffixCharacterLength]="30" [prefixCharacterLength]="10"
+                                    [stringModified]="payoutAdjustment?.description" [stringLength]="55"
+                                    [tooltipDisplay]="true">
+                                </jhi-athma-string-manipulation>
+                            </td>
+                            <td style="width: 40%;" *ngIf="(editIndex === i)">
+                                <input type="text" class="athma-form-control" placeholder="Add Description" name="description" id="description" [(ngModel)]="editAdjustment.description" [maxLength]="1024" required />
+                            </td>
+                        <!--Description-->
+                        <!--Year &  Month-->
+                        <td style="width: 15%;" *ngIf="(editIndex !== i)">
+                            {{payoutAdjustment?.year}}, {{MonthClassMap[payoutAdjustment?.month]}}
+                        </td>
+                        <td style="width: 15%;" *ngIf="(editIndex === i)">
+                            <div class="row">
+                                <div class="col-5 pr-0">
+                                    <select class="athma-form-control" [(ngModel)]="editAdjustment.year">
+                                        <option [value]="editAdjustment.year">{{editAdjustment.year}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-5 p-0">
+                                    <select class="athma-form-control" [(ngModel)]="editAdjustment.month">
+                                        <ng-container *ngFor="let month of monthList">
+                                            <option [value]="month.value" >{{month.name}}</option>
+                                        </ng-container>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <!--Year &  Month-->
+
+                        <!--Sign-->
+                        <td style="width: 10%;" *ngIf="(editIndex !== i)">
+                            <div class="row">
+                                <div class="col-10 ml-1 p-0 " [ngClass]="(payoutAdjustment?.sign=='POSITIVE') ? 'positive-indication' : 'negative-indication'">
+                                    <b>{{payoutAdjustment?.sign=='POSITIVE' ? '+ve' : '-ve' }}</b>
+                                </div>
+                            </div>
+                        </td>
+                        <td style="width: 10%;" *ngIf="(editIndex === i)">
+                            <div class="row">
+                                <div class="col-10 ml-1 p-0">
+                                    <select class="athma-form-control" [(ngModel)]="editAdjustment.sign">
+                                        <option value="POSITIVE">Positive</option>
+                                        <option value="NEGATIVE">Negative</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                        <!--Sign-->
+
+                        <!--Amount-->
+                        <td style="width: 10%;" *ngIf="(editIndex !== i)">
+                            {{(payoutAdjustment?.amount || 0) | number: amountFormat}}
+                        </td>
+                        <td style="width: 10%;" *ngIf="(editIndex === i)">
+                            <input 
+                                type="text" 
+                                class="athma-form-control" 
+                                placeholder="00.00" 
+                                name="amount" 
+                                [(ngModel)]="editAdjustment.amount" 
+                                id="amount" 
+                                jhiNumeric 
+                                jhiAmount 
+                                required 
+                                (change)="amountChanged()"
+                            />
+                        </td>
+                        <!--Amount-->
+
+                        <!--Contra-->
+                        <td style="width: 18%;" *ngIf="(editIndex !== i)">
+                            <!-- For in case Employee-->
+                            <ng-container *ngIf="payoutAdjustment?.contraEmployeeDetail">
+                                {{payoutAdjustment?.contraEmployeeDetail ? payoutAdjustment?.contraEmployeeDetail?.displayName : '-'}}
+                                <small class="d-block detail">{{payoutAdjustment?.contraEmployeeId ? payoutAdjustment?.contraEmployeeId : ''}}</small>
+                            </ng-container>
+                            
+                            <!-- For in case Department-->
+                            <ng-container *ngIf="payoutAdjustment?.contraDepartment">
+                                {{payoutAdjustment?.contraDepartment ? payoutAdjustment?.contraDepartment?.name : '-'}}
+                                <small class="d-block detail">{{payoutAdjustment?.contraDepartment?.code ? payoutAdjustment?.contraDepartment?.code : ''}}</small>
+                            </ng-container>
+
+                            <ng-container *ngIf="((!payoutAdjustment?.contraEmployeeDetail) && (!payoutAdjustment?.contraDepartment))">
+                                -
+                            </ng-container>
+                            
+                        </td>
+
+                        <td style="width: 18%;"  *ngIf="(editIndex === i)">
+                            <div class="row">
+                                <div class="col-4 pr-0">
+                                    <select class="athma-form-control" name="contra" (change)="onContraChange()" [(ngModel)]="editAdjustment.contra" >
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-8 pl-0 pr-2" *ngIf="payoutType === 'Employee'">
+                                    <ng-select [items]="employee$ | async"
+                                        class="ng-select-ellipsis" bindLabel="displayName" name="parentService"
+                                        placeholder="Search and Add"
+                                        id="parentService"
+                                        (change)="onSelectEmployee($event)"
+                                        [disabled]="editAdjustment.contra === 'No'"
+                                        appendTo="body"
+                                        [typeahead]="employeeInput$" [(ngModel)]="editAdjustment.contraEmployeeDetail"
+                                        #searchEmployeeContra>
+                                        <ng-template ng-option-tmp let-item="item">
+                                            <!-- <span> {{item.code}} - {{item.name}}</span> -->
+                                            <span> {{ item?.employeeNumber ? item?.employeeNumber : '-' }}
+                                                <span class="pr-1" *ngIf="item?.displayName">
+                                                    <b class="text-gray">|</b>
+                                                </span> 
+                                                {{item?.displayName }}
+                                            </span>
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+
+                                <div class="col-8 pl-0 pr-2" *ngIf="payoutType !== 'Employee'">
+                                    <ng-select [items]="department$ | async"
+                                        class="ng-select-ellipsis" bindLabel="name" name="departmentService"
+                                        placeholder="Search and Add"
+                                        id="departmentService"
+                                        (change)="onSelectDepartment($event)"
+                                        [disabled]="editAdjustment.contra === 'No'"
+                                        appendTo="body"
+                                        [typeahead]="departmentInput$" [(ngModel)]="editAdjustment.contraDepartment"
+                                        #searchDepartmentContra>
+                                        <ng-template ng-option-tmp let-itemData="item">
+                                            <!-- <span> {{item.code}} - {{item.name}}</span> -->
+                                            <span> {{ itemData?.code ? itemData?.code : '-' }}
+                                                <span class="pr-1" *ngIf="itemData?.name">
+                                                    <b class="text-gray">|</b>
+                                                </span> 
+                                                {{itemData?.name }}
+                                            </span>
+                                        </ng-template>
+                                    </ng-select>
+                                </div>
+                            </div>
+                        </td>
+                        <!--Contra-->
+                        <!--Controls-->
+                        <td style="width: 7%;vertical-align: middle;" class="group-btn" *ngIf="(editIndex !== i)">
+                            <button class="athma-icon-button add-icon m-0" (click)="onClickEdit(i)" >
+                                <span class="icon-edit small-btn"></span>
+                            </button>
+                            <button class="athma-icon-button add-icon m-0" (click)="onDeleteRow(i)">
+                                <span class="icon-cross small-btn"></span>
+                            </button>
+                        </td>
+                        <td style="width: 7%;vertical-align: middle;" class="group-btn" *ngIf="(editIndex === i)">
+                            <button class="athma-icon-button add-icon m-0" (click)="onUpdateDetail()">
+                                <i class="icon-checkmark" style="position: relative;font-size: 16px;top: 0px;"></i>
+                            </button>
+                            <button class="athma-icon-button add-icon m-0" (click)="onUpdateCancel()">
+                                <i class="icon-cross" style="position: relative;font-size: 16px;top: 0px;"></i>
+                            </button>
+                        </td>
+                        <!--Controls-->
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+        <div *ngIf="payoutAdjustmentData && payoutAdjustmentData.payoutAdjustmentDetails && payoutAdjustmentData.payoutAdjustmentDetails.length === 0" class="d-flex justify-content-center align-items-center no-record-found">
+            <i style="font-size:32px" class="icon-search_invoice" aria-hidden="true"></i>
+            <span style="font-size:18px">Add an entry to Proceed</span>
+        </div>
+    </div>
+    <div class="button-container row" id="fixed-footer" style="background-color: #eeeeee; height:105px;">
+        <div class="col-4 offset-5" style="
+        text-align: end;
+    ">
+            <span style="
+            font-size: 10px;
+            font-weight: 700;
+            ">Net Amount</span>
+            <!-- <h3>(+) {{grandTotal}}</h3> -->
+            <h3>({{grandTotalSymbol}}) {{(grandTotal || 0) | number: amountFormat }}</h3>
+        </div>
+    </div>
+    <div class="button-container">
+        
+        <div class="text-left">
+        </div>
+        <div class="text-right">
+            <button class="athma-btn athma-btn-secondary" jhiTranslate="arthaApp.payoutAdjustment.button.cancel" (click)="navigateTo('listPage')">Cancel</button>
+            <button class="athma-btn athma-btn-primary" jhiTranslate="arthaApp.payoutAdjustment.button.sendForApproval" (click)="openCommentBoxForsendForApproval()" [disabled]="payoutAdjustmentData?.payoutAdjustmentDetails?.length === 0">Send for Approval</button>
+        </div>
+    </div>
+</div>
+
+
+<jhi-header-dialog-breadcrumb [routeUrl]=" '/artha/payout-adjustment'">
+    <span class="navbar-version" jhiTranslate="global.menu.entities.payoutAdjustment"></span>
+</jhi-header-dialog-breadcrumb>

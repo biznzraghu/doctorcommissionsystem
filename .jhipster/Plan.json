@@ -1,0 +1,102 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "sponsor",
+            "otherEntityName": "Organization",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "planTemplate",
+            "otherEntityName": "Plan",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "partOf",
+            "otherEntityName": "Plan",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+      {
+        "relationshipType": "many-to-one",
+        "otherEntityName": "exceptionSponsor",
+        "otherEntityRelationshipName": "plan",
+        "relationshipName": "exceptionSponsor",
+        "otherEntityField": "id"
+      }
+    ],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+      {
+        "fieldName": "template",
+        "fieldType": "Boolean"
+      },
+      {
+        "fieldName": "createdBy",
+        "fieldType": "String"
+      },
+      {
+        "fieldName": "createdDate",
+        "fieldType": "LocalDate"
+      },
+      {
+        "fieldName": "modifiedBy",
+        "fieldType": "String"
+      },
+      {
+        "fieldName": "modifiedDate",
+        "fieldType": "LocalDate"
+      },
+      {
+        "fieldName": "contractStartDate",
+        "fieldType": "LocalDate"
+      },
+      {
+        "fieldName": "contractEndDate",
+        "fieldType": "LocalDate"
+      },
+      {
+        "fieldName": "applicableStartDate",
+        "fieldType": "LocalDate"
+      },
+      {
+        "fieldName": "applicableEndDate",
+        "fieldType": "LocalDate"
+      },
+      {
+        "fieldName": "opAuthorization",
+        "fieldType": "Boolean"
+      },
+      {
+        "fieldName": "ipAuthorization",
+        "fieldType": "Boolean"
+      },
+      {
+        "fieldName": "sponsorPayTax",
+        "fieldType": "Boolean"
+      }
+    ],
+  "changelogDate": "20200727120000",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "plan",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "Plan"
+}

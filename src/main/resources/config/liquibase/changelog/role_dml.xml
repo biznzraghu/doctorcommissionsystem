@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="role_dml-1" author="anurag">
+        <insert tableName="role">
+            <column name="id" valueSequenceNext="role_id_seq"/>
+            <column name="name" value="SUPER_USER" />
+            <column name="description" value="Super User"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="created_by" value='{"id": 1, "login": "admin", "employeeNo": "admin", "displayName": "Administrator"}' />
+            <column name="created_datetime" valueComputed="current_timestamp" />
+        </insert>
+        <insert tableName="role_privilege">
+            <column name="role_id" valueComputed="(select id from role where name = 'SUPER_USER')" />
+            <column name="privilege_id" valueComputed="(select id from privilege where code = '000000000')"/>
+        </insert>
+        <insert tableName="role">
+            <column name="id" valueSequenceNext="role_id_seq"/>
+            <column name="name" value="MDM_ADMIN" />
+            <column name="description" value="MDM Admin"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="created_by" value='{"id": 1, "login": "admin", "employeeNo": "admin", "displayName": "Administrator"}' />
+            <column name="created_datetime" valueComputed="current_timestamp" />
+        </insert>
+        <insert tableName="role_privilege">
+            <column name="role_id" valueComputed="(select id from role where name = 'MDM_ADMIN')" />
+            <column name="privilege_id" valueComputed="(select id from privilege where code = '100000000')"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

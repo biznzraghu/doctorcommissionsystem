@@ -1,0 +1,119 @@
+<div class="row payout-adjustment">
+    <div class="col-sm-12 fixed-header-table">
+        <div class="fixed-header-table-head-container">
+            <table class="table athma-table fixed-header-table-head mb-0" [style.width.px]="fixedHeaderWidth()">
+                <thead class="dark-table-heading md-table">
+                    <tr arthaSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+                        <th style="width:30%" arthaSortBy="employee.displayName.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.employeeDetails">
+                                Employee Details
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:30%" arthaSortBy="createdBy.displayName.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.createdBy">
+                                Created By
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:15%" arthaSortBy="createdDate">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.createdDate">
+                                Created Date
+                            </span>
+                            <span class="fa fa-sort fa-sort-desc"></span>
+                        </th>
+                        <th style="width:15%" arthaSortBy="version.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.version">
+                                Version
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                        <th style="width:10%" arthaSortBy="changeRequestStatus.sort">
+                            <span class="item-heading" jhiTranslate="arthaApp.variable-payout.tbl-headers.status">
+                                Status
+                            </span>
+                            <span class="fa fa-sort"></span>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="si-detail-table">
+            <div class="infinite-scroll-table ps position-relative" infinite-scroll debounce
+                [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="2"
+                [infiniteScrollThrottle]="300" [scrollWindow]="false" [style.height.px]="setInfiniteScrollHeight()"
+                (scrolled)="loadPage(page + 1)" [perfectScrollbar]="config">
+                <table class="table athma-table fixed-header-table-body athma-table-layout-fixed">
+                    <tbody class="md-table" *ngIf="variablePayoutDatas && variablePayoutDatas?.length > 0">
+                        <ng-container
+                            *ngFor="let variablePayoutData of variablePayoutDatas;let i=index;">
+                            <tr (click)="updateDetail(variablePayoutData?.id)">
+                                <td width="30%">
+                                    <ng-container *ngIf="variablePayoutData?.employee" >
+                                        <span *ngIf="variablePayoutData?.employee?.displayName">
+                                            <jhi-athma-string-manipulation [stringModified]="variablePayoutData?.employee?.displayName ? variablePayoutData?.employee?.displayName :'-' " [stringLength]="40"
+                                                [tooltipDisplay]="true">
+                                            </jhi-athma-string-manipulation>
+                                        </span>
+                                        <br>
+                                        <span class="small-text-display" >
+                                            <span>{{variablePayoutData?.employee?.employeeNo ? variablePayoutData?.employee?.employeeNo
+                                                : '-'}}</span>
+                                        </span>
+                                    </ng-container>
+
+                                    <ng-container *ngIf="!variablePayoutData?.employee" >
+                                            -
+                                    </ng-container>
+                                    
+
+                                </td>
+                                <td width="30%">
+                                    <span *ngIf="variablePayoutData?.createdBy?.displayName">
+                                        <!-- <span>{{variablePayoutData?.createdBy?.displayName ? variablePayoutData?.createdBy?.displayName  : '-' }}</span> -->
+                                        <jhi-athma-string-manipulation [stringModified]="variablePayoutData?.createdBy?.displayName ? variablePayoutData?.createdBy?.displayName :'-' "
+                                            [stringLength]="40" [tooltipDisplay]="true">
+                                        </jhi-athma-string-manipulation>
+                                    </span>
+                                    <span *ngIf="!variablePayoutData?.createdBy?.displayName">
+                                        <span>{{variablePayoutData?.createdBy?.firstName ? (variablePayoutData?.createdBy?.firstName) + ' ' + (variablePayoutData?.createdBy?.lastName)  : '-'}}</span>
+                                    </span>
+                                </td>
+                                <td width="15%">
+                                    <span>
+                                        {{variablePayoutData?.createdDate ? (variablePayoutData?.createdDate | date: dateFormat) : '-'}}
+                                    </span>
+                                    <br>
+                                    <span class="small-text-display">
+                                        <span>{{variablePayoutData?.createdDate ? (variablePayoutData?.createdDate | date: dateTimeFormat)
+                                            : '-'}}</span>
+                                    </span>
+                                </td>
+                                <td width="15%">
+                                    <span>
+                                        {{variablePayoutData?.version ? 'v'+variablePayoutData?.version+'.0' : '-'}}
+                                    </span>
+                                </td>
+                                <td width="10%">
+                                    <span>
+                                        <span class="athma-status-label"
+                                            [ngClass]="(variablePayoutData?.status) ? 'status-active' : 'status-inactive'">{{variablePayoutData?.status | activeAsStatus }}
+                                        </span>
+                                    </span>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                    <tfoot *ngIf="variablePayoutDatas?.length===0 && noRecordFound">
+                        <tr>
+                            <td colspan="8" class="athma-no-records"><span
+                                    jhiTranslate="global.common.no-records-found"></span></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

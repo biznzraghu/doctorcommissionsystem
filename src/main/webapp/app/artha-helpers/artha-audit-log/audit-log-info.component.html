@@ -1,0 +1,52 @@
+<div class="card rounded-0 border-right-0 border-left-0">
+    <div class="card-header">
+            <h4 class="margin-0 padding-6" jhiTranslate="global.audit-log.auditRevision"></h4>
+    </div>
+</div>
+<dl class="row form-dl four-column-form mb-0 pb-0">
+
+    <dd>
+        <div class="athma-form-group">
+            <label>
+                <span jhiTranslate="global.audit-log.username"></span>
+            </label>
+            <div class="form-group">
+                <span>{{auditEntity.modifiedBy}}</span>
+            </div>
+        </div>
+    </dd>
+
+    <dd>
+        <div class="athma-form-group">
+            <label>
+                <span jhiTranslate="global.audit-log.datetime"></span>
+            </label>
+            <div class="form-group">
+                <span>{{auditEntity.modifiedDate | date: 'y-MM-dd HH:mm'}}</span>
+            </div>
+        </div>
+    </dd>
+
+    <dd>
+        <div class="athma-form-group">
+            <label>
+                <span jhiTranslate="global.audit-log.action"></span>
+            </label>
+            <div class="form-group">
+                <span>{{auditEntity.action}}</span>
+            </div>
+        </div>
+    </dd>
+
+    <dd>
+        <div class="athma-form-group">
+            <label>
+                    <span jhiTranslate="global.audit-log.commitVersion"></span>
+            </label>
+            <div class="form-group">
+                <span>{{auditEntity.commitVersion}}</span>
+            </div>
+        </div>
+    </dd>
+
+</dl>

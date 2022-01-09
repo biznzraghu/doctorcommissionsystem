@@ -1,0 +1,86 @@
+{
+    "name": "DoctorPayout",
+    "fields": [
+        {
+            "fieldName": "unit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "employeeId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "month",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "variablePayoutId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "doctorPayoutInvoice",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "consultatntType",
+            "fieldType": "ConsultantType",
+            "fieldValues": "ADMITTING_CONSULTANT,RENDERING_CONSULTANT"
+        },
+        {
+            "fieldName": "departmentRevenueBenefitId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "departmentRevenueBenefitAmount",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "losBenefietId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "serviceItemBenefitAmount",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "doctorPayoutLOS",
+            "otherEntityRelationshipName": "doctorPayout",
+            "relationshipName": "losBenefietId"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "invoiceDoctorPayout",
+            "otherEntityRelationshipName": "doctorPayout",
+            "relationshipName": "doctorPayoutInvoice"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "doctorPayoutDepartment",
+            "otherEntityRelationshipName": "doctorPayout",
+            "relationshipName": "departmentRevenueBenefitId"
+        }
+    ],
+    "changelogDate": "20200423211255",
+    "entityTableName": "doctor_payout",
+    "dto": "no",
+    "pagination": "pager",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

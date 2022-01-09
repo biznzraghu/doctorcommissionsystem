@@ -1,0 +1,21 @@
+<jhi-page-ribbon></jhi-page-ribbon>
+<div class="body-main">
+    <div class="alert alert-danger" role="alert" *ngIf="!(isConnected | async)" style="position:fixed; left:0;right:0;top:0;z-index:10000;border-radius:0px;">
+        <i class="fa fa-thumbs-down mr-2" aria-hidden="true"></i>
+        <span>It seems like you lost internet connection.</span>
+    </div>
+    <section class="main-component">
+        <div class="sidebar-container" [ngClass]="{'d-none': hideSideMenu}">
+            <!-- <router-outlet name="sidebar"></router-outlet> -->
+            <jhi-sidebar></jhi-sidebar>
+        </div>
+        <div class="app-content">
+            <header class="main-header" [ngClass]="{'d-none': hideMainMenu}">
+                <router-outlet name="navbar"></router-outlet>
+            </header>
+            <router-outlet></router-outlet>
+            <router-outlet name="popup"></router-outlet>
+        </div>
+    </section>
+</div>
+<jhi-http-blocker-spinner></jhi-http-blocker-spinner>

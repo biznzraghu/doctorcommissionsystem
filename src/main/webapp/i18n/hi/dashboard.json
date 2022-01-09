@@ -1,0 +1,21 @@
+{
+    "arthaApp": {
+      "dashboard": {
+        "home": {
+          "title": "Dashboard"
+        },
+        "name": "Name",
+        "close": "Close",
+        "save": "Save",
+        "layout": "Layout",
+        "user": "User",
+        "displayOrder": "Display Order",
+        "dashboardWidget": "Dashboard Widget",
+        "myTabs": "My Tabs",
+        "selectedWidgets": "Selected Widgets",
+        "allWidgets": "All Widgets",
+        "noWidgetsAvailable": "No Widgets Available..."
+      }
+    }
+  }
+  

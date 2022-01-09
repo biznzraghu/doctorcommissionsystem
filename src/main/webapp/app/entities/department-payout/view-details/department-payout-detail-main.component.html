@@ -1,0 +1,56 @@
+<jhi-artha-detail-header [options]="options" (onOpenComment)="openViewCommentBlock()"></jhi-artha-detail-header>
+<div class="row">
+    <div class="col-12 ">
+        <div class="department-payout-tabs">
+            <ul class="department-tabs">
+                <li class="department-tabs-tab department-tab"
+                    [ngClass]="{'active': smTabDetail[0].value===tabStatus.value}">
+                    <a (click)="selectTab(smTabDetail[0])">{{smTabDetail[0].label}}</a>
+                </li>
+                <li class="department-tabs-tab department-tab"
+                    [ngClass]="{'active': smTabDetail[1].value===tabStatus.value}">
+                    <a (click)="selectTab(smTabDetail[1])">{{smTabDetail[1].label}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="department-payout" [ngSwitch]="tabStatus.value">
+    <jhi-department-payout-tab-content *ngSwitchCase="'detail'">
+        <jhi-department-payout-detail [departmentPayout]="departmentPayout" [preferences]="preferences">
+        </jhi-department-payout-detail>
+    </jhi-department-payout-tab-content>
+    <jhi-department-payout-tab-content *ngSwitchCase="'excption'">
+        <jhi-department-payout-exceptions-detail [departmentPayout]="departmentPayout">
+        </jhi-department-payout-exceptions-detail>
+    </jhi-department-payout-tab-content>
+</div>
+<ng-container *jhiHasAnyAuthority="modifyPrivileges">
+    <div class="atham-btn-container-fixed-bottom" style="padding: 0;">
+        <div class="col report-button-container">
+            <div *ngIf="departmentPayout.changeRequestStatus ==='PENDING_APPROVAL'">
+                <ng-container *ngIf=" departmentPayout?.createdBy?.id !== preferences?.user?.id">
+                    <button type="submit" class="athma-btn athma-btn-primary pull-right mr-0"
+                        (click)="save('APPROVED')">
+                        <span>Approve</span>
+                    </button>
+                    <button type="button" class="athma-btn athma-btn-auxillary mr-2 pull-right"
+                        (click)="save('REJECTED')">
+                        <span>Reject</span>
+                    </button>
+                </ng-container>
+                <button type="button" class="athma-btn athma-btn-primary mr-2 pull-left" (click)="cancel()">
+                    <span>Cancel</span>
+                </button>
+            </div>
+            <div class="atham-btn-container-fixed-bottom" style="padding: 0;"
+                *ngIf="departmentPayout.changeRequestStatus ==='REJECTED'">
+                <div class="col report-button-container">
+                    <button type="button" class="athma-btn athma-btn-primary mr-2 pull-right" (click)="cancel()">
+                        <span>Close</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

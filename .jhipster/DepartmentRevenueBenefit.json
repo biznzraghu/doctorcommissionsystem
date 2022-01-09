@@ -1,0 +1,64 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "department",
+            "otherEntityRelationshipName": "departmentRevenueBenefit",
+            "relationshipName": "department",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "variablePayout",
+            "otherEntityRelationshipName": "departmentRevenueBenefits",
+            "relationshipName": "variablePayout",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "revenueBenefitType",
+            "fieldType": "RevenueBenefitType",
+            "fieldValues": "FIXED,CONTRIBUTION_BASED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "payoutPercentage",
+            "fieldType": "Float",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "upperLimit",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "startingVersion",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "currentVersion",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20200422134156",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "department_revenue_benefit",
+    "pagination": "infinite-scroll",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false,
+    "name": "DepartmentRevenueBenefit"
+}

@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "valueSetCode",
+            "otherEntityName": "ValueSetCode",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "standardCode",
+            "otherEntityName": "ValueSetCode",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20191203084949",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "value_set_code_mapping",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": true
+}

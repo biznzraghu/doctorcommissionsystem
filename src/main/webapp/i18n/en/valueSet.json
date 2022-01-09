@@ -1,0 +1,43 @@
+{
+  "arthaApp": {
+    "value-set": {
+      "home": {
+        "title": "Value Set"
+      }
+    },
+    "valueSet": {
+      "home": {
+        "title": "Value Sets",
+        "createLabel": "Create a new Value Set",
+        "createOrEditLabel": "Create or edit a Value Set",
+        "search": "Search for Value Set"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Value Set {{ id }}?"
+      },
+      "detail": {
+        "title": "Value Set"
+      },
+      "code": "Code",
+      "name": "Name",
+      "definition": "Definition",
+      "active": "Active",
+      "source": "Source",
+      "definingURL": "Defining URL",
+      "oid": "Oid",
+      "systemURL": "System URL",
+      "systemOID": "System OID",
+      "status": "Status",
+      "save": {
+        "success": "Value Set {{ code }} is saved"
+      }
+    }
+  },
+  "mdmApp": {
+    "valueSet": {
+      "created": "A new Value Set is created with identifier {{ param }}",
+      "updated": "A Value Set is updated with identifier {{ param }}",
+      "deleted": "A Value Set is deleted with identifier {{ param }}"
+    }
+  }
+}

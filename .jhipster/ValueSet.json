@@ -1,0 +1,59 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "code",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "definition",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "source",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "definingURL",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "oid",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "systemURL",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "systemOID",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20191203084947",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "value_set",
+    "pagination": "pager",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false
+}

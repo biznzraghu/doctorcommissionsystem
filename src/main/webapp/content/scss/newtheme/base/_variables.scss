@@ -1,0 +1,229 @@
+/*---------------------------------------------------------------
+File Name: _variables.scss
+Description: All variable declarations
+Used by:
+Dependencies: google fonts, local fonts
+------------------------------------------------------------ */
+
+/*----------------------------------------------------------------
+[ Typography ]
+---------------------------------------------------------------- */
+
+// Import -- open sans
+// ---------
+@import 'open-sans';
+// @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+// Font family - prefix: ff
+// ---------
+$ff-open-sans: 'Open Sans', sans-serif, Arial, Helvetica;
+$ff-arial: Arial, Helvetica, sans-serif;
+$ff-icomoon: 'icomoon';
+$ff-default: $ff-open-sans;
+// Font weights - prefix: fw
+// $fw-light: 300;      // not used currently
+$fw-regular: 400;
+$fw-semi-bold: 600;
+$fw-bold: 700;
+//$fw-extra-bold: 800; // not used currently
+$default-fw: $fw-regular !default;
+// Font size - prefix: fs
+// ---------
+$fs-base: 12px !default;
+$fs-s: 10px;
+$fs-m: 14px;
+$fs-l: 16px;
+$fs-xl: 20px;
+$fs-xxl: 24px;
+$default-fs: $fs-base !default;
+$base: 16px;
+
+/* for calculating REM*/
+
+// Line height - prefix: lh
+// ---------
+$lh-base: 13px !default;
+$lh-s: 11px;
+$lh-m: 16px;
+$lh-l: 18px;
+$lh-xl: 24px;
+$lh-xxl: 32px;
+$default-lh: $lh-base !default;
+// Font size - heading typo
+// ---------
+h1 {
+  font-size: ($fs-xxl / $base) * 1rem;
+  line-height: $lh-xxl;
+  font-weight: $fw-bold;
+}
+
+h2 {
+  font-size: ($fs-xl / $base) * 1rem;
+  line-height: $lh-xl;
+  font-weight: $fw-bold;
+}
+
+h3 {
+  font-size: ($fs-l / $base) * 1rem;
+  line-height: $lh-l;
+  font-weight: $fw-bold;
+}
+
+h4 {
+  font-size: ($fs-base / $base) * 1rem;
+  line-height: $lh-base;
+  font-weight: $fw-bold;
+}
+
+h5 {
+  font-size: ($fs-s / $base) * 1rem;
+  line-height: $lh-s;
+  font-weight: $fw-bold;
+}
+
+// Iconfont size
+// ---------
+$ifs-deafult-size: 12px;
+
+/*----------------------------------------------------------------
+[ z-index ]
+---------------------------------------------------------------- */
+
+$z-indexes: (
+  'modal': 1500,
+  'dropdown': 1400,
+  'default': 1,
+  'below': -1
+);
+
+/*----------------------------------------------------------------
+[ Colour ] - default colors
+---------------------------------------------------------------- */
+
+$default-background: #ffffff;
+$default-normal-text: #414146;
+$default-links-text: #0078d7;
+$default-error-text: #ff2d00;
+
+/*------------------------------------------------------------------
+[ border-radius - global options]
+------------------------------------------------------------------*/
+
+$default-boder-radius: 2px;
+$default-boder-radius-addon: 1px;
+
+/*------------------------------------------------------------------
+[ Transitions Settings - global options]
+------------------------------------------------------------------*/
+
+$transition-speed: 0.3s;
+$transition-fn: ease-in-out;
+
+/*----------------------------------------------------------------
+[ Buttons] - as per document (prefix: $athma-btn)
+---------------------------------------------------------------- */
+
+$athma-btn-min-width: 80px;
+$athma-btn-height: 28px;
+$athma-btn-sm-height: 24px;
+$athma-btn-padding: 8px;
+$athma-btn-sm-padding: 4px;
+$athma-btn-margin: 0px 8px;
+$athma-btn-fs: 13px;
+$athma-btn-fw: $fw-bold;
+$athma-btn-border-radius: $default-boder-radius;
+$athma-btn-border-width: 1px;
+
+/*----------------------------------------------------------------
+[ Form inputs fields ] - as per document (prefix: $athma-finput)
+---------------------------------------------------------------- */
+
+$athma-finput-height: 28px;
+$athma-finput-min-width: 40px;
+$athma-finput-max-width: 480px;
+$athma-finput-padding: 8px;
+$athma-finput-border-radius: $default-boder-radius;
+$athma-finput-border-width: 1px;
+$athma-finput-border-style: solid;
+$athma-finput-margin: 0px;
+$athma-finput-select-padding: 0px 8px;
+
+/* small input field */
+
+$athma-finput-s-height: 24px;
+$athma-finput-s-padding: 6px 8px;
+
+/* input field widths */
+
+$athma-finput-s-width: 40px;
+$athma-finput-m-width: 80px;
+$athma-finput-l-width: 180px;
+$athma-finput-xl-width: 480px;
+
+/* gaps - between input field and label, between input and inline field*/
+
+$athma-finput-group-margin: 0px 0px 12px 0px;
+$athma-gap-input-label: 5px;
+$athma-gap-input-inlineMessage: 0px;
+
+/*----------------------------------------------------------------
+[ Segment inputs fields ] - as per document (prefix: $athma-sif)
+---------------------------------------------------------------- */
+
+$athma-sif-height: 28px;
+$athma-sif-padding: 8px;
+$athma-sif-margin: 0px;
+$athma-sif-border-width: 1px;
+$athma-sif-border-radius: $default-boder-radius;
+$athma-sif-label-min-width: 56px;
+$athma-sif-select-min-width: 56px;
+$athma-sif-input-min-width: 56px;
+
+/*----------------------------------------------------------------
+[ Athma tags ] - as per document (prefix: $athma-tags)
+---------------------------------------------------------------- */
+
+$athma-tags-padding: 8px;
+$athma-tags-margin-close: 8px;
+$athma-tags-height: 24px;
+$athma-tags-margin: 8px;
+
+/*----------------------------------------------------------------------
+[ Athma status labels ] - as per document (prefix: $athma-status-label)
+-----------------------------------------------------------------------*/
+
+$athma-status-label-padding: 1px 4px;
+$athma-status-label-height: 16px;
+$athma-status-label-fw: $fw-bold;
+$athma-status-label-border-radius: $default-boder-radius;
+$athma-status-label-fs: 11px;
+$athma-status-label-line-height: 14px;
+
+/*----------------------------------------------------------------
+[ Athma badges ] - as per document (prefix: $athma-badges)
+---------------------------------------------------------------- */
+
+$athma-badges-padding-left: 8px;
+$athma-badges-padding-right: 8px;
+$athma-badges-height: 12px;
+$athma-badges-border-radius: 20px;
+$athma-badges-fs: $fs-s;
+$athma-badges-line-height: $lh-s;
+$athma-badges-fw: $fw-regular;
+
+/*-------------------------------------------------------------------------------------
+[ Athma medical indicator ] - as per document (prefix: $athma-medical-indicator)
+------------------------------------------------------------------------------------- */
+
+$athma-medical-indicator-padding-left: 4px;
+$athma-medical-indicator-padding-right: 4px;
+$athma-medical-indicator-height: 12px;
+$athma-medical-indicator-border-radius: 20px;
+$athma-medical-indicator-fs: $fs-s;
+$athma-medical-indicator-line-height: $lh-s;
+$athma-medical-indicator-fw: $fw-regular;
+
+/*-------------------------------------------------------------------------------------
+[ Table ] - as per document (prefix: $athma-table)
+------------------------------------------------------------------------------------- */
+
+$athma-table-text-sm: $fs-s;

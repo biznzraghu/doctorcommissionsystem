@@ -1,0 +1,70 @@
+<div id="sidebar-wrapper"  *ngIf="isAuthenticated()">
+    <div class="sidebar-navigation">
+        <div class="sidebar-mainmenu athma-customScroll">
+            <div class="sidebar-logo-container" (click)="openDashboard()">
+                <div class="sidebar-logo"></div>
+            </div>
+            <ng-container *ngFor="let module of userMenus;">
+                <div class="sidebar-mainmenu-item" [ngClass]="{'active': module.src === selectedModule}" (mouseenter)="mainMenuOverHandler($event)">
+                    <span class="sb-icon icon-athmamodules" [ngClass]="imagePath[module.src]"></span>
+                    <!-- <img src="../../../content/images/menu_report.svg"> -->
+
+                    <div class="sb-subitem">
+                        <h6 class="sb-subitem-title mb-0">
+                            <!-- <span class="sb-icon icon-athmamodules" [ngClass]="imagePath[module.title]"></span> -->
+                            <span>{{module.title}}</span>
+                        </h6>
+                        <perfect-scrollbar class="sidebar-first-level-slimscroll" [style.maxHeight]="'calc(100vh - 64px)'" [config]="config" [usePSClass]="true">
+                            <div class="sb-subitems">
+                                <ng-container *ngFor="let subModule of module.childs;">
+
+                                    <div *ngIf="subModule.title === 'TRANSACTION'">
+                                        <ul class="m-0 p-0">
+                                            <li *ngFor="let menuItems of subModule.childs;">
+                                                <a class="sb-subitems-link" (click)="navigateToModule(menuItems.src, module.src)" [ngClass]="{'active': menuItems.src === selectedMenu}">
+                                                    {{menuItems.title}}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div *ngIf="subModule.title !== 'TRANSACTION'">
+                                        <ul class="m-0 p-0">
+                                            <li>
+                                                <div class="inner-menu-link">
+                                                    <div class="nontransaction-category full-width" (click)="enableInnerMenu($event)" [ngClass]="{'active': ( (module.src === selectedModule) && (subModule.src === selectedFeatureType))}">
+                                                        <span>{{subModule.title}}</span>
+                                                        <!-- <span class="inner-menu-link-icon icon-next_chevron pull-right ml-2 mr-2" [ngClass]="{'blink_me':( (module.src === selectedModule) && (subModule.src === selectedFeatureType))}"></span> -->
+                                                        <span class="inner-menu-link-icon icon-next_chevron pull-right ml-2 mr-2" ></span>
+                                                    </div>
+                                                    <div class="inner-menu">
+                                                        <h6 class="sb-subitem-title mb-0" (click)="disableInnerMenu($event)">
+                                                            <span class="sb-icon icon-back_chevron"></span>
+                                                            <span>Back</span>
+                                                        </h6>
+                                                        <div class="sb-im-subitems" [style.maxHeight]="'calc(100vh - 64px)'" [perfectScrollbar]="config">
+                                                            <ul class="m-0 p-0">
+                                                                <li *ngFor="let menuItems of subModule.childs;">
+                                                                    <a class="sb-subitems-link" (click)="navigateToModule(menuItems.src, module.src, subModule.src)" [ngClass]="{'active': menuItems.src === selectedMenu}">
+                                                                        {{menuItems.title}}
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </perfect-scrollbar>
+
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+        <!-- <div class="bottom-fixed-menu" (click)="toggleSidebar()">
+            <i class="fa" [ngClass]="{'fa-angle-double-right':!sidebarExpand,'fa-angle-double-left':sidebarExpand}" aria-hidden="true"></i>
+        </div> -->
+    </div>
+</div>

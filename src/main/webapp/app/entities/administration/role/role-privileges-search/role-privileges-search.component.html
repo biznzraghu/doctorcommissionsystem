@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h6 class="modal-title">Role Details</h6>
+  <button type="button" class="close" aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body privilegs-search-modal">
+  <div *ngIf="!findDetOfRole" class="position-relative mt-1">
+    <div class="athma-form-group">
+      <div class="athma-search-typeahead-container m-0">
+        <div class="athma-search-typeahead-border result-table-format">
+          <input type="text" id="addRoleInput" name="addRole" class="athma-form-control"
+            [class.is-invalid]="searchFailed" [(ngModel)]="addRole"
+            [ngbTypeahead]="searchRolesTypehead" [inputFormatter]="inputFormatRolesTypeheadData"
+            [resultFormatter]="formatRolesTypeheadData" placeholder="Type Role Name"
+            (selectItem)="OnSelectRole($event.item)" />
+          <span *ngIf="!searching" class="fa fa-search athma-typehead-search-left"></span>
+          <span *ngIf="searching"
+            class="fa fa-spinner fa-pulse fa-fw athma-typehead-search-left"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="findDetOfRole" class="position-relative push-right" style="margin-top:3px;">
+    <span style="width:100%;display:inline-block;"
+      class="position-relative athma-role-privilege-search-header">
+      {{findDetOfRole.name}}
+    </span>
+  </div>
+  <ng-container *ngIf="privilegesWithModuleAndFeatures">
+    <ng-container *ngFor="let module of privilegesWithModuleAndFeatures | keyvalue">
+      <section class="assigned-privileges">
+        <div width="10%">{{module.key}}</div>
+        <ul class="m-0">
+          <li class="assigned-features"
+            *ngFor="let feature of module.value | keyvalue; index as idx">
+            <p class="m-0 py-4 px-0 feature">{{feature.key}}</p>
+            <ul class="list-unstyled list-inline text-left py-3 px-0 feature border-left-0">
+              <li class="list-inline-item athma-privilege py-1 px-2"
+                *ngFor="let privilege of feature.value; index as prevIndex"
+                [ngClass]="privilegeColorCodes[privilege.name]? privilegeColorCodes[privilege.name]: privilegeColorCodes['Others']">
+                <span> {{privilege.name}} </span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </ng-container>
+  </ng-container>
+</div>
+
+<div class="modal-footer" *ngIf="!findDetOfRole">
+  <div class="modal-actions">
+    <button class="athma-btn athma-btn-primary" (click)="addSelectedRole()">Add</button>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+{
+  "fluentMethods": true,
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "variablePayout",
+      "otherEntityRelationshipName": "serviceItemBenefits",
+      "relationshipName": "variablePayout",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "serviceItemBenefitTemplate",
+      "otherEntityRelationshipName": "serviceItemBenefit",
+      "relationshipName": "planTemplate",
+      "otherEntityField": "id"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "Type",
+      "fieldValues": "ALL_SERVICES,SERVICE_TYPE,SERVICE_GROUP,SERVICE_NAME,SERVICE_INSIDE_PACKAGE,ALL_PACKAGES,PACKAGE_CATEGORY,PACKAGE_GROUP,PACKAGE_NAME,PACKAGE_MINUS_MATERIAL_COST,ALL_ITEMS,ITEM_CATEGORY,ITEM_GROUP,ITEM_NAME",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "rule_key",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "serviceGroup",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "serviceType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "itemCategory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "itemGroup",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "packageCategory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "visitType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "components",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "beneficiary",
+      "fieldType": "Beneficiary",
+      "fieldValues": "ORDERING_CONSULTANT,RENDERING_CONSULTANT,ADMITTING_CONSULTANT,NONE_AND_PERFORMING_USER",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "paymentMode",
+      "fieldType": "PaymentMode",
+      "fieldValues": "PERCENTAGE,AMOUNT"
+    },
+    {
+      "fieldName": "paymentValue",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "minQuantity",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "maxQuantity",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "applicableOn",
+      "fieldType": "ApplicableOn",
+      "fieldValues": "NET,GROSS"
+    },
+    {
+      "fieldName": "patientCategory",
+      "fieldType": "PatientCategory",
+      "fieldValues": "CASH,CREDIT,CASH_CREDIT"
+    },
+    {
+      "fieldName": "tariffClass",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "materialAmount",
+      "fieldType": "MaterialAmount",
+      "fieldValues": "COST,SALE,MARGIN"
+    },
+    {
+      "fieldName": "department",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "applicableSponsor",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "exemptedSponsor",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "serviceException",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "itemException",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "onDeathIncentive",
+      "fieldType": "Boolean"
+    }
+  ],
+  "changelogDate": "20200422134156",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "service_item_benefit",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "ServiceItemBenefit"
+}

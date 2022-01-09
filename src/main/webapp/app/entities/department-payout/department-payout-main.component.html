@@ -1,0 +1,96 @@
+<jhi-artha-detail-header [options]="options" (onUserSearchType)="onDepartmentSearch($event)"
+    [searchResultList]="depList" (onUserSelect)="selectedDepartment($event)" (addNewDepartment)="onAddNewDepartment()" [showEditIcon]="allowToEditDocument"
+    (onOpenComment)="openViewCommentBlock()" (onVersionChange)="onVersionChange($event)" (onEditDocument)="onClickEditDocument()"></jhi-artha-detail-header>
+<div class="row" *ngIf="isEmployeeSelected">
+    <div class="col-12 payout-bottom-border">
+        <div class="department-payout-tabs" style="position: relative;">
+            <ul class="department-tabs">
+                <li class="department-tabs-tab department-tab"
+                    [ngClass]="{'active': smTabDetail[0].value===tabStatus.value}">
+                    <a (click)="selectTab(smTabDetail[0])">{{smTabDetail[0].label}}</a>
+                </li>
+                <li class="department-tabs-tab department-tab"
+                    [ngClass]="{'active': smTabDetail[1].value===tabStatus.value}">
+                    <a (click)="selectTab(smTabDetail[1])">{{smTabDetail[1].label}}</a>
+                </li>
+            </ul>
+            <div *ngIf=" tabStatus.value === 'excption'">
+                <span class="pull-right">
+                    <input #payoutInput type="text" id="payoutInput"
+                        class="athma-form-control rounded-0 payout-exception-search" placeholder="Search"
+                        style="border-right: 0;border-radius:0;" name="patientInput"
+                        style="max-width:200px;padding-left: 21px;" autocomplete="off" autocomplete="false"
+                        [(ngModel)]="searchText" (ngModelChange)="search($event)" />
+                    <span class="fa fa-search search-left payout-exception-search-icon"></span>
+
+                </span>
+                <span class="pull-right icon-export payout-export"></span>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div *ngIf="!isEmployeeSelected" style="margin-top:248px;">
+    <div class="d-flex justify-content-center align-items-center no-record-found">
+        <i style="font-size:32px" class="icon-audit_audit" aria-hidden="true"></i>
+        <span style="font-size:18px;" >Select Department
+            to proceed</span>
+    </div>
+</div>
+<div class="department-payout" [ngSwitch]="tabStatus.value" *ngIf="isEmployeeSelected">
+    <jhi-department-payout-tab-content *ngSwitchCase="'detail'">
+        <jhi-department-payout-dialog *ngIf="isEditMode" [selectedDept]="selectedDept" [formDisabled]="formDisabled"
+            [(depPayout)]="departmentPayout" [preferences]="preferences"></jhi-department-payout-dialog>
+        <jhi-department-payout-detail *ngIf="!isEditMode" [departmentPayout]="departmentPayout"
+            [preferences]="preferences">
+        </jhi-department-payout-detail>
+    </jhi-department-payout-tab-content>
+    <jhi-department-payout-tab-content *ngSwitchCase="'excption'">
+        <jhi-department-payout-exceptions *ngIf="isEditMode" [formDisabled]="formDisabled" [departmentPayout]="departmentPayout"
+            (exceptionList)="getException($event)"></jhi-department-payout-exceptions>
+            <jhi-department-payout-exceptions-detail *ngIf="!isEditMode" [departmentPayout]="departmentPayout">
+            </jhi-department-payout-exceptions-detail>
+    </jhi-department-payout-tab-content>
+</div>
+    <!-- Button Start -->
+    <div class="button-container" *ngIf="showAllBtns">
+        <div class="text-left">
+            <ng-container>
+                <button class="athma-btn athma-btn-secondary" jhiTranslate="entity.action.cancel"
+                    (click)="cancel()">Cancel</button>
+            </ng-container>
+            <ng-container *jhiHasAnyAuthority="modifyPrivileges">
+                <button class="athma-btn athma-btn-auxillary" jhiTranslate="entity.action.delete"
+                    *ngIf="!allowToEditDocument && departmentPayout?.changeRequestStatus === 'DRAFT'"
+                    (click)="deleteDep()">
+                    Delete
+                </button>
+            </ng-container>
+        </div>
+        <div class="text-right">
+            <ng-container *jhiHasAnyAuthority="modifyPrivileges">
+                <ng-container
+                    *ngIf="departmentPayout?.changeRequestStatus === 'DRAFT' || !departmentPayout?.changeRequestStatus || departmentPayout?.changeRequestStatus === ''">
+                    <button class="athma-btn athma-btn-secondary" (click)="save('DRAFT')"
+                        [disabled]="!isEmployeeSelected || !departmentPayout.visitType || !departmentPayout.netGross || !departmentPayout.onCostSale || departmentPayout.payoutRanges.length===0">{{buttonHeading}}</button>
+                    <button class="athma-btn athma-btn-primary" jhiTranslate="entity.action.sendForApproval"
+                        (click)="save('PENDING_APPROVAL')" [disabled]="!isEmployeeSelected || !departmentPayout.visitType || !departmentPayout.netGross || !departmentPayout.onCostSale || departmentPayout.payoutRanges.length===0">Send for Approval</button>
+                </ng-container>
+                <ng-container
+                    *ngIf="(departmentPayout?.changeRequestStatus === 'PENDING_APPROVAL')  && (departmentPayout?.createdBy?.id !== preferences?.user?.id) ">
+                    <button class="athma-btn athma-btn-primary" jhiTranslate="entity.action.approve"
+                        (click)="save('APPROVED')" [disabled]="!isEmployeeSelected">Approve</button>
+                    <button class="athma-btn athma-btn-auxillary" jhiTranslate="entity.action.reject"
+                        (click)="save('REJECTED')" [disabled]="!isEmployeeSelected">Reject</button>
+                </ng-container>
+            </ng-container>
+        </div>
+    </div>
+    <div class="button-container justify-content-end" *ngIf="!showAllBtns">
+        <div class="text-right">
+            <button class="athma-btn athma-btn-primary" (click)="cancel()">
+                Close
+            </button>
+        </div>
+    </div>
+    <!-- Button End -->

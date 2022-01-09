@@ -1,0 +1,16 @@
+.value-set-detail {
+  .input-border-none {
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+    }
+  }
+  .back-btn {
+    margin-left: 31px;
+    width: 160px;
+  }
+  ngb-typeahead-window.dropdown-menu {
+    transform: translate(0px, 28px) !important;
+  }
+}

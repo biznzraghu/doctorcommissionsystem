@@ -1,0 +1,13 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [],
+    "changelogDate": "20201205130822",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "value_set_code",
+    "pagination": "no",
+    "microserviceName": "artha",
+    "searchEngine": "elasticsearch",
+    "enableEntityAudit": false
+}

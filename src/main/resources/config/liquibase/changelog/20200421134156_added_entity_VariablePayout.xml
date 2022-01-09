@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <!--
+        Added the entity VariablePayout.
+    -->
+    <changeSet id="variable-payout-20200421134156-1" author="Nirbhay">
+        <createTable tableName="variable_payout">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="unit_code" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="employee_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="version" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_by" type="jsonb">
+                <constraints nullable="true" />
+            </column>
+            <column name="created_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="change_request_status" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="starting_version" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="current_version" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="remarks" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="commencement_date" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            <column name="contract_end_date" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            <column name="min_assured_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="max_payout_amount" type="decimal(21,2)">
+                <constraints nullable="true" />
+            </column>
+            <column name="min_assured_validity_date" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+            <column name="status" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="upload_contract" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="iu_datetime" type="timestamp" defaultValue="now()">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+    </changeSet>
+    <changeSet id="20200308194622-2" author="anurag">
+        <addColumn tableName="variable_payout">
+            <column name="approved_by" type="jsonb"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200909112322-2" author="">
+        <addColumn tableName="variable_payout">
+            <column name="variable_payout_id" type="bigint"></column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="20200510122322-2" author="anurag">
+        <addColumn tableName="variable_payout">
+            <column name="employee" type="jsonb">
+                <constraints nullable="true"></constraints>
+            </column>
+        </addColumn>
+    </changeSet>
+</databaseChangeLog>

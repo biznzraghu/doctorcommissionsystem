@@ -1,0 +1,68 @@
+<section class="role-dialog-page">
+  <header class="header d-flex align-items-center">
+    <h2 class="mx-3" jhiTranslate="gatewayApp.role.header.createOrEditRole">CREATE OR EDIT ROLE</h2>
+  </header>
+  <article class="role-form my-4">
+    <form class="form d-flex align-items-start" role="form" (ngSubmit)="save()"
+      [formGroup]="roleForm">
+      <dl class="row form-dl four-column-form mb-0 pb-0 pt-1 w-100">
+
+        <dd>
+          <div class="athma-form-group">
+            <label class="float-left" for="name">
+              <span jhiTranslate="gatewayApp.role.label.name">Role Name</span>
+            </label>
+            <div class="form-group">
+              <input type="text" class="athma-form-control" name="name" id="name"
+                formControlName="name" />
+            </div>
+          </div>
+        </dd>
+
+        <dd>
+          <div class="athma-form-group">
+            <label class="float-left" for="desc">
+              <span jhiTranslate="gatewayApp.role.label.desc">Description</span>
+            </label>
+            <div class="form-group">
+              <input type="text" class="athma-form-control" name="description" id="desc"
+                formControlName="description" />
+            </div>
+          </div>
+        </dd>
+
+        <dd>
+          <div class="athma-form-group">
+            <label for="status">
+              <span jhiTranslate="gatewayApp.role.label.status">Status</span>
+            </label>
+            <div class="form-group">
+              <jhi-athma-switch class="athma-form-control pl-0 pt-0" name="active"
+                formControlName="status"></jhi-athma-switch>
+            </div>
+          </div>
+        </dd>
+      </dl>
+    </form>
+  </article>
+
+  <article class="privileges-and-role flex-grow-1">
+    <header class="d-flex align-items-center">
+      <h2 class="mx-3" jhiTranslate="gatewayApp.role.header.createOrEditRole">CREATE OR EDIT ROLE</h2>
+    </header>
+    <div class="card-block  card-body privilage-role-panel p-0">
+      <jhi-assigned-privileges [privileges]="role?.privileges"
+        (privilegesAdded)="onPrivilegesAdd($event)">
+      </jhi-assigned-privileges>
+      <jhi-assigned-roles [roles]="role.roles" (roleAdded)="onRoleAdded($event)"></jhi-assigned-roles>
+    </div>
+  </article>
+
+  <div class="row m-0">
+    <div class="col report-button-container">
+      <button class="athma-btn athma-btn-primary pull-right" (click)="save()">Submit</button>
+      <button class="athma-btn athma-btn-primary-outline pull-right"
+        (click)="clear()">Cancel</button>
+    </div>
+  </div>
+</section>

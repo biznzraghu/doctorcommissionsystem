@@ -1,0 +1,65 @@
+.role-dialog-page {
+  height: calc(100vh - 75px);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  header {
+    background: #f0f0f6;
+    height: 88px;
+  }
+  .privileges-and-role {
+    header {
+      background: #f0f0f6;
+      height: 56px;
+    }
+    .privilage-role-panel {
+      .assigned-privileges-page {
+        .assigned-privileges,
+        .assigned-features {
+          display: grid;
+          grid-template-columns: 190px auto;
+          text-align: center;
+          align-items: center;
+        }
+        .assigned-features {
+          .feature {
+            border: 1px solid #dee2e6;
+            border-top: 0;
+          }
+        }
+        .assigned-features:last-of-type {
+          .feature {
+            border-bottom: 0;
+          }
+        }
+        .assigned-privileges {
+          border: 1px solid #dee2e6;
+        }
+      }
+    }
+  }
+}
+
+.privilegs-search-modal {
+  .assigned-privileges,
+  .assigned-features {
+    display: grid;
+    grid-template-columns: 80px auto;
+    text-align: center;
+    align-items: center;
+  }
+  .assigned-features {
+    .feature {
+      border: 1px solid #dee2e6;
+      border-top: 0;
+    }
+  }
+  .assigned-features:last-of-type {
+    .feature {
+      border-bottom: 0;
+    }
+  }
+  .assigned-privileges {
+    border: 1px solid #dee2e6;
+  }
+}

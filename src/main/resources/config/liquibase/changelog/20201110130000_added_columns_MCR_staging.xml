@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20201110130000_added_columns_MCR_staging" author="Damodhar">
+
+        <addColumn tableName="mcr_staging">
+            <column name="admission_number" type="varchar"></column>
+            <column name="item_category_code" type="varchar"></column>
+            <column name="item_category_name" type="varchar"></column>
+            <column name="item_type_code" type="varchar"></column>
+            <column name="item_type_name" type="varchar"></column>
+            <column name="admitting_department_id" type="bigint"></column>
+            <column name="admitting_department_code" type="varchar"></column>
+            <column name="admitting_department_name" type="varchar"></column>
+            <column name="admitting_doctor_id" type="bigint"></column>
+            <column name="admitting_doctor_login" type="varchar"></column>
+            <column name="admitting_doctor_name" type="varchar"></column>
+        </addColumn>
+
+    </changeSet>
+
+    <changeSet id="20201110130000_alter_datatype_MCR_staging" author="Damodhar">
+        <modifyDataType columnName="patient_payable" newDataType="double" tableName="mcr_staging"/>
+        <modifyDataType columnName="sponsor_payable" newDataType="double" tableName="mcr_staging"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,46 @@
+<jhi-athma-page-header [height]="75">
+  <jhi-athma-list-header [title]="title" [createBtnTitle]="createBtnTitle" (clearSearch)='clear()'
+    (searchItem)='search($event)' (openNew)='createUser()' [options]="options">
+  </jhi-athma-list-header>
+</jhi-athma-page-header>
+<div class="table-responsive" *ngIf="roles">
+  <table
+    class="table athma-table dark-table-header bordered-bottom-table athma-table-listing table-hover">
+    <thead class="dark-table-heading md-table">
+      <tr arthaSort [(ascending)]="reverse" [(predicate)]="predicate" [callback]="reset.bind(this)">
+        <th arthaSortBy="name.sort"><span jhiTranslate="gatewayApp.role.label.name" >Name</span> <span
+            class="fa fa-sort fa-sort-asc"></span></th>
+        <th><span jhiTranslate="gatewayApp.role.label.desc">Description</span></th>
+        <th arthaSortBy="active.sort"><span jhiTranslate="global.common.status" >Active</span> <span
+            class="fa fa-sort"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of roles"  (click)="gotoRole(role)"
+           class="athma-pointer">
+        <td>
+          <!-- {{role.name ? role.name : '-'}} -->
+          <jhi-athma-string-manipulation [stringModified]="role?.name ? role?.name :'-' " 
+            [stringLength]="40" [tooltipDisplay]="true">
+          </jhi-athma-string-manipulation>
+        </td>
+        <td>
+          <!-- {{role.description ? role.description : '-'}} -->
+          <jhi-athma-string-manipulation [stringModified]="role?.description ? role?.description :'-' "
+            [stringLength]="40" [tooltipDisplay]="true">
+          </jhi-athma-string-manipulation>
+        </td>
+        <td>
+          {{role.active | activeAsStatus }}
+        </td>
+      </tr>
+    </tbody>
+    <tfoot *ngIf="roles.length === 0">
+      <tr>
+        <td colspan="4" class="athma-no-records"><span
+            jhiTranslate="global.common.no-records-found"></span></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<jhi-header-breadcrumb></jhi-header-breadcrumb>

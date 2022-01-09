@@ -1,0 +1,72 @@
+<section class="modal-header">
+    <h3 class="modal-title">{{title}} Department</h3>
+</section>
+<div class="employee-payout-container" style="height: 276px;">
+    <div class="row mr-0 ml-0 pt-3 ">
+        <div class="col-md-12 tbl-div-hg-47 ">
+            <div class="athma-form-group">
+                <label>
+                    <span>
+                        Code
+                    </span>
+                </label>
+                <div class="form-group">
+                    <input type="text" class="athma-form-control" name="name" id="field_code"
+                        [attr.disabled]="title ==='Update' ? true : null" placeholder="Enter code Name" name="code"
+                        [(ngModel)]="department.code">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mr-0 ml-0 pt-3">
+        <div class="col-md-12 tbl-div-hg-47 ">
+            <div class="athma-form-group">
+                <label>
+                    <span>
+                        Department Name
+                    </span>
+                </label>
+                <div class="form-group">
+                    <input type="text" class="athma-form-control" name="name" id="field_departmentName"
+                        placeholder="Enter Department Name" name="departmentName" [(ngModel)]="department.name">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mr-0 ml-0 pt-3 mb-3">
+        <div class="col-md-12 tbl-div-hg-47 ">
+            <div class="athma-form-group">
+                <label>
+                    <span>
+                        Description
+                    </span>
+                </label>
+                <div class="form-group">
+                    <textarea type="text" class="athma-form-control" name="name" id="field_partOf"
+                        placeholder="Enter description" name="partOf" [(ngModel)]="department.description"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mr-0 ml-0 pt-3">
+        <div class="col-md-12 tbl-div-hg-47 ">
+            <div class="athma-form-group">
+                <label>
+                    <span jhiTranslate="arthaApp.unit.status">Status</span>
+                </label>
+                <div class="form-group">
+                    <jhi-athma-switch class="athma-form-control pl-0 pt-0" name="active"
+                        [(ngModel)]="department.active"></jhi-athma-switch>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="modal-footer">
+    <button class="athma-btn athma-btn-secondary" (click)="close()">Cancel</button>
+    <button class="athma-btn athma-btn-primary" (click)="process()">Save</button>
+</div>

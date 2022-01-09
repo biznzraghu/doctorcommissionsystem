@@ -1,0 +1,172 @@
+// .athma-stock-tabs-header{
+// }
+.athma-page-header {
+  height: 88px;
+  padding: 14px 14px 0px 16px;
+  // border-bottom-width: 1px;
+  // border-bottom-style: solid;
+  .athma-btn {
+    .fa,
+    [class^='icon-'],
+    [class*=' icon-'] {
+      font-size: pixelToRem($default-fs);
+    }
+  }
+  .athma-list-header {
+    .athma-list-header-btn-group {
+      .athma-btn {
+        .fa,
+        [class^='icon-'],
+        [class*=' icon-'] {
+          font-size: pixelToRem($default-fs);
+        }
+      }
+      .athma-icon-button {
+        .fa,
+        [class^='icon-'],
+        [class*=' icon-'] {
+          font-size: 14px;
+        }
+      }
+      .athma-btn:first-child {
+        margin-left: 0px;
+      }
+    }
+    .search-btn {
+      button {
+        margin: 0px;
+        border-left: 0px !important;
+        border: 0px;
+        font-weight: 400;
+        color: #1ab394;
+        background: #ffffff;
+        &:hover {
+          color: #1ab394;
+          background: #ffffff;
+        }
+        &:active {
+          color: #1ab394;
+          background: #ffffff;
+        }
+      }
+    }
+  }
+  .si-header-component {
+    // ul.si-tab li a {
+    //     display: block;
+    //     padding: 16px 0px;
+    // }
+    .receipt-tabs {
+      margin-bottom: 12px;
+      display: inline-flex;
+      margin-right: 16px;
+    }
+    .si-tab,
+    .preview-tab {
+      padding: 0px;
+      margin: 0px;
+      list-style: none;
+      li {
+        font-weight: $fw-semi-bold;
+        display: inline-block;
+        margin-right: 24px;
+        a {
+          cursor: pointer;
+          line-height: 25px;
+          &.active {
+            border-bottom-width: 4px;
+            border-bottom-style: solid;
+            border-radius: 10px 10px 0px 0px;
+            padding-bottom: 12px;
+          }
+          &:hover {
+            border-bottom-width: 0px;
+            border-bottom-style: solid;
+            border-radius: 10px 10px 0px 0px;
+            padding-bottom: 12px;
+            .athma-badges {
+              background-color: blue;
+            }
+          }
+        }
+      }
+    }
+    .list-headers-icon-sets {
+      .athma-icon-button {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+/*----------------------------------------------------------------
+[ Header Search ]
+---------------------------------------------------------------- */
+
+.list-header-search {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2px;
+  max-width: 480px;
+  .input-group-addon {
+    font-size: pixelToRem($default-fs);
+    &:first-child {
+      padding-right: 0px;
+      padding-left: 8px;
+    }
+  }
+}
+
+// preview header using in tariff service master
+
+.preview-tab {
+  padding: 0px;
+  margin: 0px;
+  height: 38px;
+  overflow: hidden;
+  margin-bottom: 0;
+  list-style: none;
+  li {
+    font-weight: $fw-semi-bold;
+    display: inline-block;
+    margin-right: 24px;
+    a {
+      cursor: pointer;
+      line-height: 25px;
+      &.active {
+        border-bottom-width: 4px;
+        border-bottom-style: solid;
+        padding-bottom: 5px;
+        border-bottom-color: #0078d7;
+        color: #0078d7;
+      }
+      &:hover {
+        border-bottom-width: 0px;
+        border-bottom-style: solid;
+        padding-bottom: 12px;
+        border-bottom-color: #0078d7;
+        color: #0078d7 !important;
+        .athma-badges {
+          background-color: #0078d7;
+        }
+      }
+    }
+  }
+}
+
+.athma-typehead-create-btn {
+  position: absolute;
+  right: -33px;
+  top: 0;
+  padding: 4px 10px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  border-left: 0;
+}
+
+.list-header-tab {
+  margin-right: 2px;
+  padding-left: 14px;
+}

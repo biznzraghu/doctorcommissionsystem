@@ -1,0 +1,38 @@
+{
+  "arthaApp": {
+    "valueSetCode": {
+      "home": {
+        "title": "Value Set Codes",
+        "createLabel": "Create a new Value Set Code",
+        "createOrEditLabel": "Create or edit a Value Set Code",
+        "search": "Search for Value Set Code"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Value Set Code {{ id }}?"
+      },
+      "detail": {
+        "title": "Value Set Code"
+      },
+      "code": "Code",
+      "display": "Display",
+      "active": "Active",
+      "definition": "Definition",
+      "source": "Source",
+      "level": "Level",
+      "comments": "Comments",
+      "displayOrder": "Display Order",
+      "valueSet": "Value Set",
+      "add-valueSetCode": "Add Value Set Code",
+      "save": {
+        "success": "Value Set Code {{ code }} is saved"
+      }
+    }
+  },
+  "mdmApp": {
+    "valueSetCode": {
+      "created": "A new Value Set Code is created with identifier {{ param }}",
+      "updated": "A Value Set Code is updated with identifier {{ param }}",
+      "deleted": "A Value Set Code is deleted with identifier {{ param }}"
+    }
+  }
+}

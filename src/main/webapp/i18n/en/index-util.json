@@ -1,0 +1,9 @@
+{
+  "indexUtil": {
+    "home": {
+      "title": "Index Util",
+      "createLabel": "Create a new user",
+      "createOrEditLabel": "Create or edit a user"
+    }
+  }
+}

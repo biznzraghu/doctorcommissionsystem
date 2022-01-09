@@ -1,0 +1,32 @@
+{
+    "name": "DepartmentConsumptionMaterialReduction",
+    "fields": [
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "departmentPayout",
+            "otherEntityRelationshipName": "DepartmentConsumptionMaterialReduction",
+            "relationshipName": "departmentPayout",
+            "otherEntityField": "id"
+        },
+      {
+        "relationshipType":"one-to-one",
+        "otherEntityName":"department",
+        "otherEntityRelationShipName":"DepartmentConsumptionMaterialReduction",
+        "relationshipName":"department",
+        "otherEntityField":"id",
+        "ownerSide":true
+
+      }
+    ],
+  "changelogDate": "20200422114700",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "department_consumption",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "DepartmentConsumptionMaterialReduction"
+}

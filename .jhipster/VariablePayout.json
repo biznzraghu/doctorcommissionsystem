@@ -1,0 +1,116 @@
+{
+  "fluentMethods": true,
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "departmentRevenueBenefit",
+      "otherEntityRelationshipName": "variablePayout",
+      "relationshipName": "departmentRevenueBenefits"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "lengthOfStayBenefit",
+      "otherEntityRelationshipName": "variablePayout",
+      "relationshipName": "lengthOfStayBenefits"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "serviceItemBenefit",
+      "otherEntityRelationshipName": "variablePayout",
+      "relationshipName": "serviceItemBenefits"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "serviceItemBenefitTemplate",
+      "otherEntityRelationshipName": "variablePayout",
+      "relationshipName": "serviceItemBenefitTemplate",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "unitCode",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "employeeId",
+      "fieldType": "Long",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "version",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "createdBy",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "createdDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "changeRequestStatus",
+      "fieldType": "ChangeRequestStatus",
+      "fieldValues": "DRAFT,PENDING_APPROVAL,APPROVED,REJECTED"
+    },
+    {
+      "fieldName": "startingVersion",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "currentVersion",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "remarks",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "commencementDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "contractEndDate",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": [
+        "required"
+      ]
+    },
+    {
+      "fieldName": "minAssuredAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "maxPayoutAmount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "minAssuredValidityDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "uploadContract",
+      "fieldType": "String"
+    }
+  ],
+  "changelogDate": "20200421134156",
+  "dto": "no",
+  "service": "serviceImpl",
+  "entityTableName": "variable_payout",
+  "pagination": "infinite-scroll",
+  "microserviceName": "artha",
+  "searchEngine": "elasticsearch",
+  "enableEntityAudit": false,
+  "name": "VariablePayout"
+}

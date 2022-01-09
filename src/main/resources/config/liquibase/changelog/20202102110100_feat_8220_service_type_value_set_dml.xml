@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="20120102110100_feat_service_type_value_set_dml-1" author="anurag">
+        <insert tableName="value_set">
+            <column name="id" valueSequenceNext="value_set_id_seq"/>
+            <column name="code" value="SERVICE_TYPE" />
+            <column name="name" value="Service Type" />
+            <column name="definition" value="This example value set defines a set of codes that can be used to indicate that what all classes are available in hospitals" />
+            <column name="active" valueBoolean="true" />
+        </insert>
+        <insert tableName="value_set_code">
+            <column name="id" valueSequenceNext="value_set_code_id_seq"/>
+            <column name="code" value="Laboratory"/>
+            <column name="display" value="Laboratory"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="definition" value="Laboratory"/>
+            <column name="display_order" valueNumeric="1"/>
+            <column name="value_set_id" valueComputed="(select id from value_set where code = 'SERVICE_TYPE')"/>
+        </insert>
+        <insert tableName="value_set_code">
+            <column name="id" valueSequenceNext="value_set_code_id_seq"/>
+            <column name="code" value="Imaging"/>
+            <column name="display" value="Imaging"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="definition" value="An encounter in the Emergency Care Department."/>
+            <column name="display_order" valueNumeric="2"/>
+            <column name="value_set_id" valueComputed="(select id from value_set where code = 'SERVICE_TYPE')"/>
+        </insert>
+        <insert tableName="value_set_code">
+            <column name="id" valueSequenceNext="value_set_code_id_seq"/>
+            <column name="code" value="BloodBank"/>
+            <column name="display" value="Blood Bank"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="definition" value="Blood Bank"/>
+            <column name="display_order" valueNumeric="3"/>
+            <column name="value_set_id" valueComputed="(select id from value_set where code = 'SERVICE_TYPE')"/>
+        </insert>
+        <insert tableName="value_set_code">
+            <column name="id" valueSequenceNext="value_set_code_id_seq"/>
+            <column name="code" value="Anesthesia"/>
+            <column name="display" value="Anesthesia"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="definition" value="Anesthesia"/>
+            <column name="display_order" valueNumeric="4"/>
+            <column name="value_set_id" valueComputed="(select id from value_set where code = 'SERVICE_TYPE')"/>
+        </insert>
+        <insert tableName="value_set_code">
+            <column name="id" valueSequenceNext="value_set_code_id_seq"/>
+            <column name="code" value="Procedure"/>
+            <column name="display" value="Procedure"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="definition" value="Procedure"/>
+            <column name="display_order" valueNumeric="5"/>
+            <column name="value_set_id" valueComputed="(select id from value_set where code = 'SERVICE_TYPE')"/>
+        </insert>
+        <insert tableName="value_set_code">
+            <column name="id" valueSequenceNext="value_set_code_id_seq"/>
+            <column name="code" value="Consultation"/>
+            <column name="display" value="Consultation"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="definition" value="Consultation"/>
+            <column name="display_order" valueNumeric="6"/>
+            <column name="value_set_id" valueComputed="(select id from value_set where code = 'SERVICE_TYPE')"/>
+        </insert>
+        <insert tableName="value_set_code">
+            <column name="id" valueSequenceNext="value_set_code_id_seq"/>
+            <column name="code" value="Operation"/>
+            <column name="display" value="Operation"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="definition" value="Operation"/>
+            <column name="display_order" valueNumeric="7"/>
+            <column name="value_set_id" valueComputed="(select id from value_set where code = 'SERVICE_TYPE')"/>
+        </insert>
+        <insert tableName="value_set_code">
+            <column name="id" valueSequenceNext="value_set_code_id_seq"/>
+            <column name="code" value="Diet"/>
+            <column name="display" value="Diet"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="definition" value="Diet"/>
+            <column name="display_order" valueNumeric="8"/>
+            <column name="value_set_id" valueComputed="(select id from value_set where code = 'SERVICE_TYPE')"/>
+        </insert>
+        <insert tableName="value_set_code">
+            <column name="id" valueSequenceNext="value_set_code_id_seq"/>
+            <column name="code" value="Administrative"/>
+            <column name="display" value="Administrative"/>
+            <column name="active" valueBoolean="true"/>
+            <column name="definition" value="Administrative"/>
+            <column name="value_set_id" valueComputed="(select id from value_set where code = 'SERVICE_TYPE')"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

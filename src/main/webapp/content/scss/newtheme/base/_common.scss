@@ -1,0 +1,12 @@
+// FONT SIZES fs-4 to fs-30
+$font-sizes: 4;
+
+@for $i from 5 through 30 {
+  $font-sizes: append($font-sizes, $i);
+}
+
+@each $current-size in $font-sizes {
+  .fs-#{$current-size} {
+    font-size: #{$current-size}px;
+  }
+}
