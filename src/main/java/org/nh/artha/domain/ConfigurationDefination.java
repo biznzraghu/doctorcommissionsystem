@@ -1,5 +1,6 @@
 package org.nh.artha.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
@@ -8,8 +9,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.*;
 
 import org.hibernate.annotations.Cache;
-import org.nh.repository.hibernate.type.JsonBinaryType;
-import org.nh.repository.hibernate.type.JsonStringType;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.List;
@@ -28,10 +27,7 @@ import org.springframework.data.elasticsearch.annotations.Setting;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "artha_configurationdefination")
 @Setting(settingPath = "/es/settings.json")
-@TypeDefs({
-    @TypeDef(name = "json", typeClass = JsonStringType.class),
-    @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
-})
+@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 public class ConfigurationDefination implements Serializable {
 
     private static final long serialVersionUID = 1L;

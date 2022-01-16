@@ -9,7 +9,6 @@ import org.nh.artha.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.nh.seqgen.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -99,14 +98,12 @@ public class ServiceTypeResource {
         log.debug("REST request to search Tariff Class for query {}", modifiedQuery);
         try {
             org.springframework.data.domain.Page<?> page = commonValueSetCodeService.search(modifiedQuery, pageable);
-            HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/tariff-classes");
+            HttpHeaders headers = new HttpHeaders();
             return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-        }catch(SearchPhaseExecutionException | URISyntaxException e){
+        }catch(SearchPhaseExecutionException  e){
             log.error("No Index found for {}",e);// nothing to do with the exception hence mode is debug
             org.springframework.data.domain.Page page = new PageImpl(Collections.emptyList(), pageable, 0);
-            return new ResponseEntity(page.getContent(),
-                PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/tariff-classes"),
-                HttpStatus.OK);
+            return null;
         }
     }
 

@@ -1,5 +1,6 @@
 package org.nh.artha.web.rest;
 
+import io.github.jhipster.web.util.PaginationUtil;
 import org.elasticsearch.action.search.SearchPhaseExecutionException;
 import org.nh.artha.domain.GroupType;
 import org.nh.artha.repository.GroupTypeRepository;
@@ -9,7 +10,6 @@ import org.nh.artha.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import org.nh.seqgen.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +21,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -91,13 +92,13 @@ public class GroupTypeResource {
         log.debug("REST request to search for a page of GroupTypes for query {}", modifiedQuery);
         try {
             Page<?> page = commonValueSetCodeService.search(modifiedQuery, pageable);
-            HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/group-types");
+            HttpHeaders headers = new HttpHeaders();
             return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
         }catch(SearchPhaseExecutionException e){
             log.error("No Index found for {}",e);// nothing to do with the exception hence mode is debug
             Page page = new PageImpl(Collections.emptyList(), pageable, 0);
             return new ResponseEntity(page.getContent(),
-                PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/group-types"),
+                new HttpHeaders(),
                 HttpStatus.OK);
         }
     }

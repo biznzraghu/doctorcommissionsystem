@@ -32,7 +32,7 @@ public class ValueSet implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+          //  @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String code;
@@ -43,7 +43,7 @@ public class ValueSet implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+         //   @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String name;
@@ -57,7 +57,7 @@ public class ValueSet implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+          //  @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private Boolean active;

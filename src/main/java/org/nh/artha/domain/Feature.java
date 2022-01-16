@@ -45,7 +45,7 @@ public class Feature implements Serializable {
     @MultiField(
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private Integer displayOrder;

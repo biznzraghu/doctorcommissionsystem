@@ -18,21 +18,6 @@ public class JdbcTemplateConfig {
 
     private final Logger log = LoggerFactory.getLogger(JdbcTemplateConfig.class);
 
-    @Bean(name = "mdmDbDataSource")
-    @ConfigurationProperties("mdm.datasource")
-    public DataSource mdmDbDataSource() {
-        return  DataSourceBuilder.create().build();
-    }
 
-
-    @Bean("mdmDbTemplate") //used Qualifier because it was not picking the correct data source.It was picking the default data source
-    public JdbcTemplate mdmDbTemplate(@Qualifier("mdmDbDataSource") DataSource mdmDbDataSource){
-        return new JdbcTemplate(mdmDbDataSource);
-    }
-
-    @Bean("mdmDbNamedParameterTemplate")
-    public NamedParameterJdbcTemplate mdmDbNamedParameterTemplate(@Qualifier("mdmDbDataSource") DataSource mdmDbDataSource){
-        return  new NamedParameterJdbcTemplate(mdmDbDataSource);
-    }
 
 }

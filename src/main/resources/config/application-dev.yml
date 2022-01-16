@@ -18,6 +18,9 @@ logging:
     ROOT: DEBUG
     io.github.jhipster: DEBUG
     org.nh.artha: DEBUG
+    liquibase:
+      integration:
+        spring: DEBUG
 
 eureka:
   client:
@@ -53,23 +56,23 @@ spring:
     stream:
       kafka:
         binder:
-          brokers: 172.23.25.5
-          zk-nodes: 172.23.25.5
+          brokers: localhost
+          zk-nodes: localhost
       bindings:
         output:
           destination: topic-jhipster
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://172.23.25.5:5432/artha_db_dev
+    url: jdbc:postgresql://localhost:5432/artha_db
     username: postgres
-    password: nhdev
+    password: postgres
     hikari:
       poolName: Hikari
       auto-commit: false
-      maximumPoolSize: 2
+      maximumPoolSize: 20
   jpa:
     database-platform: io.github.jhipster.domain.util.FixedPostgreSQL10Dialect
-    show-sql: false
+    show-sql: true
     properties:
       hibernate.id.new_generator_mappings: false
       hibernate.connection.provider_disables_autocommit: false
@@ -80,20 +83,12 @@ spring:
       hibernate.cache.hazelcast.instance_name: artha
       hibernate.cache.use_minimal_puts: true
       hibernate.cache.hazelcast.use_lite_member: true
-  data:
-    elasticsearch:
-      cluster-nodes: 172.23.25.5:9300
-    jest:
-      uri: http://172.23.25.5:10200
+
   elasticsearch:
-    rest:
-      uris: http://172.23.25.5:10200
-    properties:
-      path:
-        home: target/elasticsearch
+    host: http://localhost:9200
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+    contexts: prod
   mail:
     host: localhost
     port: 25
@@ -163,19 +158,6 @@ spark:
     name: staging csv to json
   master: local[2]
 
-mdm:
-  datasource:
-    jdbcUrl: jdbc:postgresql://172.23.25.11:5432/mdm_db
-    username: postgres
-    password: nhtest
-    driver-class-name: org.postgresql.Driver
-artha:
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    jdbcUrl: jdbc:postgresql://172.23.25.5:5432/artha_db_dev
-    username: postgres
-    password: nhdev
-    driver-class-name: org.postgresql.Driver
 
 application:
   configs:

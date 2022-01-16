@@ -50,7 +50,7 @@
     <include file="config/liquibase/changelog/20201205140522_added_entity_PackageCodeMapping.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201205140522_added_entity_PackageComponent.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/202012905140122_added_entity_PackageMaster.xml" relativeToChangelogFile="false"/>
-   <!-- <include file="config/liquibase/changelog/20201205140322_added_entity_PackageUnitMapping.xml" relativeToChangelogFile="false"/>-->
+    <!-- <include file="config/liquibase/changelog/20201205140322_added_entity_PackageUnitMapping.xml" relativeToChangelogFile="false"/>-->
     <include file="config/liquibase/changelog/20200506082635_added_entity_ServiceItemBenefitTemplate.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/202006145722_added_entity_UserDepartmentMapping.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200807107222_added_entity_Module.xml" relativeToChangelogFile="false"/>
@@ -67,7 +67,7 @@
     <!--<include file="config/liquibase/changelog/201912100000_added-master-reated-data-in-feature-table.xml" relativeToChangelogFile="false"/>-->
     <!--<include file="config/liquibase/changelog/201912010000000_added-privaleges-for-master.xml" relativeToChangelogFile="false"/>-->
     <include file="config/liquibase/changelog/20191211115600_added_entity_constraints_DepartmentRevenue.xml" relativeToChangelogFile="false"/>
-   <!-- <include file="config/liquibase/changelog/20191211132509_added_entity_constraints_Role.xml" relativeToChangelogFile="false"/>-->
+    <!-- <include file="config/liquibase/changelog/20191211132509_added_entity_constraints_Role.xml" relativeToChangelogFile="false"/>-->
 
     <include file="config/liquibase/changelog/20191212112937_added_entity_constraints_PayoutDetails.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191212051842_added_entity_constraints_UserOrganizationMapping.xml" relativeToChangelogFile="false"/>
@@ -114,16 +114,16 @@
     <include file="config/liquibase/changelog/20200422114700_added_entity_DepartmentConsumptionMaterialReduction.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200422114700_added_entity_HscConsumptionMaterialReduction.xml" relativeToChangelogFile="false"/>
 
-   <!--<include file="config/liquibase/changelog/20200422114400_added_entity_constraints_DepartmentPayout.xml" relativeToChangelogFile="false"/>!-->
+    <!--<include file="config/liquibase/changelog/20200422114400_added_entity_constraints_DepartmentPayout.xml" relativeToChangelogFile="false"/>!-->
     <include file="config/liquibase/changelog/20200422114600_added_entity_constraints_ApplicableConsultant.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200422114500_added_entity_constraints_PayoutRange.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200422114700_added_entity_constraints_DepartmentConsumptionMaterialReduction.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20200422114700_added_entity_constraints_HscConsumptionMaterialReduction.xml" relativeToChangelogFile="false"/>
 
-    <include file="classpath:config/liquibase/sequence_generator_master.xml" relativeToChangelogFile="false"/>
+    <!--    <include file="classpath:config/liquibase/sequence_generator_master.xml" relativeToChangelogFile="false"/>-->
     <include file="config/liquibase/changelog/20200428150000_added_sequence_format_payout_adjustment.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20202107181022_added_entity_UserPersonalisation.xml" relativeToChangelogFile="false"></include>
-    <include file="config/liquibase/sql/quartz_tables.sql" relativeToChangelogFile="false"/>
+    <!--    <include file="config/liquibase/sql/quartz_tables.sql" relativeToChangelogFile="false"/>-->
     <!--<include file="config/liquibase/changelog/202027071814_Added_Feature_Privlige_PayoutAdjustment_DML.xml" relativeToChangelogFile="false"></include>-->
     <include file="config/liquibase/sql/user_organizationMapping_unique_contraints.sql" relativeToChangelogFile="false"></include>
     <include file="config/liquibase/changelog/20202010103720_added_invoice_list__StagingTable.xml" relativeToChangelogFile="false"/>

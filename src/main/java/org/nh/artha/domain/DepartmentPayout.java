@@ -1,6 +1,5 @@
 package org.nh.artha.domain;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -50,7 +49,7 @@ public class DepartmentPayout implements Serializable {
     @MultiField(
         mainField = @Field(type = FieldType.Date),
         otherFields = {
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+         //   @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private LocalDateTime createdDate=LocalDateTime.now();
@@ -62,7 +61,7 @@ public class DepartmentPayout implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+         //   @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private Integer version=1;
@@ -72,7 +71,7 @@ public class DepartmentPayout implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private Boolean status = Boolean.FALSE;
@@ -83,7 +82,7 @@ public class DepartmentPayout implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+         //   @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private ChangeRequestStatus changeRequestStatus;
@@ -159,7 +158,7 @@ public class DepartmentPayout implements Serializable {
     @MultiField(
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String departmentName;

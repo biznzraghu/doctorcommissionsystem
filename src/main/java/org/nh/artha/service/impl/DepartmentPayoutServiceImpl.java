@@ -123,7 +123,8 @@ public class DepartmentPayoutServiceImpl implements DepartmentPayoutService {
     public DepartmentPayout save(DepartmentPayout departmentPayout) {
         log.debug("Request to save DepartmentPayout : {}", departmentPayout);
         if (departmentPayout.getId() == null && departmentPayout.getStartingVersion() == null) {
-            String substring = sequenceGeneratorService.generateNumber("DepartmentPayout", "NH", departmentPayout);
+            String substring = "dep";
+                //sequenceGeneratorService.generateNumber("DepartmentPayout", "NH", departmentPayout);
             departmentPayout.setStartingVersion(Long.parseLong(substring.substring(substring.length() - 4)));
         }
         if (departmentPayout.getPayoutRanges() != null && !departmentPayout.getPayoutRanges().isEmpty()) {
