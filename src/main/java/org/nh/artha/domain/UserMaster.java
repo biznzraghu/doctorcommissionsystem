@@ -37,7 +37,7 @@ public class UserMaster implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+          //  @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String employeeNumber;
@@ -48,7 +48,7 @@ public class UserMaster implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String firstName;
@@ -58,7 +58,7 @@ public class UserMaster implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String lastName;
@@ -68,7 +68,7 @@ public class UserMaster implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+          //  @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String displayName;
@@ -83,7 +83,7 @@ public class UserMaster implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+          //  @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private Status status;

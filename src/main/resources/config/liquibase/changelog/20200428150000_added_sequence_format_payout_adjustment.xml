@@ -9,7 +9,19 @@
 
 
     <changeSet id="20200428150000_added_sequence_format_payout_adjustment" author="Damodhar">
-
+        <createTable tableName="sequence_format">
+            <column name="id" type="Integer"></column>
+            <column name="document_type" type="varchar(255)" ></column>
+            <column name="reset_expression" type="varchar(255)"></column>
+            <column name="prefix" type="varchar(255)"></column>
+            <column name="padding" type="varchar(255)"></column>
+            <column name="organization_code" type="varchar(255)"></column>
+            <column name="delimiter" type="varchar(255)"></column>
+        </createTable>
+        <createTable tableName="sequence_expression">
+            <column name="id" type="Integer"></column>
+            <column name="expression" type="varchar(255)"></column>
+        </createTable>
         <insert tableName="sequence_format">
             <column name="id" valueSequenceNext="sequence_format_id_seq"/>
             <column name="document_type" value="PayoutAdjustmentNumber" />

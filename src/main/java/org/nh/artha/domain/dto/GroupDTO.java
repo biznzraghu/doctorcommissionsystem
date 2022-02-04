@@ -5,9 +5,7 @@ import org.springframework.data.elasticsearch.annotations.*;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by Nirbhay
- */
+
 @Document(indexName = "group", type = "group", createIndex = false)
 public class GroupDTO implements Serializable {
 
@@ -17,7 +15,7 @@ public class GroupDTO implements Serializable {
             mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
             otherFields = {
                     @InnerField(suffix = "raw", type = FieldType.Keyword),
-                    @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+                   // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
             }
     )
     private String name;

@@ -39,7 +39,7 @@ public class Department implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String name;

@@ -25,7 +25,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
-import static org.nh.artha.domain.ExceptionSponsor_.plans;
 
 /**
  * Service Implementation for managing {@link Plan}.

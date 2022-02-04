@@ -4,8 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.nh.artha.config.ApplicationProperties;
 import org.nh.artha.domain.Department;
 import org.nh.artha.domain.Organization;
-import org.nh.artha.domain.dto.DepartmentDTO;
-import org.nh.artha.domain.dto.SponsorDTO;
+import org.nh.artha.domain.dto.SponsorDto;
 import org.nh.artha.repository.OrganizationRepository;
 import org.nh.artha.repository.search.OrganizationSearchRepository;
 import org.nh.artha.service.DepartmentService;
@@ -198,18 +197,18 @@ public class OrganizationResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(result));
     }
     @GetMapping("/_search/all-sponsors")
-    public ResponseEntity<List<SponsorDTO>> searchAllSponsors(@RequestParam String query, Pageable pageable) {
+    public ResponseEntity<List<SponsorDto>> searchAllSponsors(@RequestParam String query, Pageable pageable) {
         log.debug("REST request to search for a page of Sponsors for query {}", query);
-        List<SponsorDTO> sponsorDTOList=new ArrayList<>();
+        List<SponsorDto> sponsorDTOList=new ArrayList<>();
         List<Department> departmentList = departmentService.search(query);
         departmentList.forEach(department -> {
-            SponsorDTO sponsorDTO = objectMapper.convertValue(department, SponsorDTO.class);
+            SponsorDto sponsorDTO = objectMapper.convertValue(department, SponsorDto.class);
             sponsorDTOList.add(sponsorDTO);
         });
         Page<Organization> page = organizationService.searchForAllSponsors(query, PageRequest.of(0,99));
         List<Organization> content = page.getContent();
         content.forEach(organization -> {
-            SponsorDTO sponsorDTO = objectMapper.convertValue(organization, SponsorDTO.class);
+            SponsorDto sponsorDTO = objectMapper.convertValue(organization, SponsorDto.class);
             sponsorDTOList.add(sponsorDTO);
         });
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);

@@ -1,12 +1,12 @@
 package org.nh.artha.domain;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.*;
 
 import org.nh.artha.domain.dto.UserDTO;
 import org.nh.artha.domain.enumeration.MisReportStatus;
-import org.nh.repository.hibernate.type.JsonBinaryType;
-import org.nh.repository.hibernate.type.JsonStringType;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.Entity;

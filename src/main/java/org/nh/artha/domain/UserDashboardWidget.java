@@ -1,11 +1,12 @@
 package org.nh.artha.domain;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
+
 import org.hibernate.annotations.TypeDef;
-import org.nh.repository.hibernate.type.JsonBinaryType;
-import org.nh.repository.hibernate.type.JsonStringType;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Setting;
 

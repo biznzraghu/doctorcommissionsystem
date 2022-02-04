@@ -41,7 +41,7 @@ public class PayoutAdjustment implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+         //   @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String documentNumber;
@@ -56,7 +56,7 @@ public class PayoutAdjustment implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private TransactionType type;
@@ -91,7 +91,7 @@ public class PayoutAdjustment implements Serializable {
     @MultiField(
         mainField = @Field(type = FieldType.Date),
         otherFields = {
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private LocalDateTime createdDateTime=LocalDateTime.now();
@@ -101,7 +101,7 @@ public class PayoutAdjustment implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+          //  @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String status;

@@ -41,7 +41,7 @@ public class ServiceItemBenefitTemplate implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String templateName;
@@ -75,7 +75,7 @@ public class ServiceItemBenefitTemplate implements Serializable {
     @MultiField(
         mainField = @Field(type = FieldType.Date),
         otherFields = {
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private LocalDateTime createdDate=LocalDateTime.now();

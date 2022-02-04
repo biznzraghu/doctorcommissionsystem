@@ -117,7 +117,8 @@ public class VariablePayoutServiceImpl implements VariablePayoutService {
     @Transactional
     public VariablePayout save(VariablePayout variablePayout) {
         log.debug("Request to save VariablePayout : {}", variablePayout);
-        String substring = sequenceGeneratorService.generateNumber("VariablePayout", "NH", variablePayout);
+        String substring = "var";
+            //sequenceGeneratorService.generateNumber("VariablePayout", "NH", variablePayout);
         if(variablePayout.getId()==null && variablePayout.getVariablePayoutId()==null) {
             variablePayout.setVariablePayoutId(Long.parseLong(substring.substring(substring.length() - 4)));
         }

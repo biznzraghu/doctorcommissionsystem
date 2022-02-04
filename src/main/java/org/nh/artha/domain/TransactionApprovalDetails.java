@@ -57,7 +57,7 @@ public class TransactionApprovalDetails implements Serializable {
     @MultiField(
         mainField = @Field(type = FieldType.Date),
         otherFields = {
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+            //@InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private LocalDateTime approvedDateTime;

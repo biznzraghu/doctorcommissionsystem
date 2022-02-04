@@ -1,10 +1,10 @@
 package org.nh.artha.domain;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.*;
 import org.nh.artha.domain.dto.UserDTO;
-import org.nh.repository.hibernate.type.JsonBinaryType;
-import org.nh.repository.hibernate.type.JsonStringType;
 import org.springframework.data.elasticsearch.annotations.*;
 
 import javax.persistence.Entity;
@@ -42,7 +42,7 @@ public class Role implements Serializable {
     @MultiField(
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+           // @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String name;
@@ -55,7 +55,7 @@ public class Role implements Serializable {
     @MultiField(
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+         //   @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private Boolean active;

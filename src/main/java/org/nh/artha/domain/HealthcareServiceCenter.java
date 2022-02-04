@@ -1,12 +1,12 @@
 package org.nh.artha.domain;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
+import com.vladmihalcea.hibernate.type.json.JsonStringType;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.javers.core.metamodel.annotation.ShallowReference;
-import org.nh.repository.hibernate.type.JsonBinaryType;
-import org.nh.repository.hibernate.type.JsonStringType;
 import org.springframework.data.elasticsearch.annotations.*;
 
 import javax.persistence.*;
@@ -40,7 +40,7 @@ public class HealthcareServiceCenter implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+          //  @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String code;
@@ -51,7 +51,7 @@ public class HealthcareServiceCenter implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword),
+          //  @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword),
         }
     )
     private String name;
@@ -61,7 +61,7 @@ public class HealthcareServiceCenter implements Serializable {
         mainField = @Field(type = FieldType.Text, analyzer = "word_analyzer"),
         otherFields = {
             @InnerField(suffix = "raw", type = FieldType.Keyword),
-            @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
+          //  @InnerField(suffix = "sort", type = FieldType.ICU_Collation_Keyword)
         }
     )
     private String fullName;

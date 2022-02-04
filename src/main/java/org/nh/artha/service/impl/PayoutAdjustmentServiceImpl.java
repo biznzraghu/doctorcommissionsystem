@@ -49,7 +49,9 @@ public class PayoutAdjustmentServiceImpl implements PayoutAdjustmentService {
     public PayoutAdjustment save(PayoutAdjustment payoutAdjustment) {
         log.debug("Request to save PayoutAdjustment : {}", payoutAdjustment);
         if (payoutAdjustment.getDocumentNumber() == null || payoutAdjustment.getDocumentNumber().isEmpty()) {
-            payoutAdjustment.setDocumentNumber(sequenceGeneratorService.generateNumber("PayoutAdjustmentNumber","NH",payoutAdjustment));
+            payoutAdjustment.setDocumentNumber("ADJUST"
+               // sequenceGeneratorService.generateNumber("PayoutAdjustmentNumber","NH",payoutAdjustment)
+            );
         }
         PayoutAdjustment result = payoutAdjustmentRepository.save(payoutAdjustment);
         payoutAdjustmentSearchRepository.save(result);

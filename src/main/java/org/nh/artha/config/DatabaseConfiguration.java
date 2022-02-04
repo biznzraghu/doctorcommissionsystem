@@ -19,19 +19,12 @@ import javax.sql.DataSource;
 
 
 @Configuration
-@EntityScan({"org.nh.artha.domain","org.nh.seqgen.domain"})
-@EnableJpaRepositories({"org.nh.artha.repository","org.nh.seqgen.repository"})
+@EntityScan({"org.nh.artha.domain"})
+@EnableJpaRepositories({"org.nh.artha.repository"})
 @EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
 @EnableTransactionManagement
 @EnableElasticsearchRepositories("org.nh.artha.repository.search")
 public class DatabaseConfiguration {
 
-    private final Logger log = LoggerFactory.getLogger(DatabaseConfiguration.class);
 
-    @Bean(name = "dataSourcePrimary")
-    @ConfigurationProperties("artha.datasource")
-    @Primary
-    public DataSource dataSourcePrimary() {
-        return  DataSourceBuilder.create().build();
-    }
 }

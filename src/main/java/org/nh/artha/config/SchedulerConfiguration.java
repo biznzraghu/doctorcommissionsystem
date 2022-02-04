@@ -47,7 +47,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "payoutJobTriggers")
     public CronTriggerFactoryBean payoutJobTriggers(@Qualifier("payoutJobDetails") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "SAR_JOB_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "SAR_JOB_TRIGGER");
     }
     @Bean(name = "departmentRevenueJobDetails")
     public JobDetail departmentRevenueJobDetails() {
@@ -56,7 +56,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "departmentRevenueJobTriggers")
     public CronTriggerFactoryBean departmentRevenueJobTriggers(@Qualifier("departmentRevenueJobDetails") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "DEPARTMENT_REVENUE_JOB_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "DEPARTMENT_REVENUE_JOB_TRIGGER");
     }
 
 
@@ -95,7 +95,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "serviceNameTriggers")
     public CronTriggerFactoryBean serviceNameTriggers(@Qualifier("serviceNameJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "SERVICE_NAME_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "SERVICE_NAME_SYNC_TRIGGER");
     }
 
     @Bean(name = "serviceGroupJobSync")
@@ -105,7 +105,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "serviceGroupTriggers")
     public CronTriggerFactoryBean serviceGroupTriggers(@Qualifier("serviceGroupJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "SERVICE_GROUP_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "SERVICE_GROUP_SYNC_TRIGGER");
     }
 
     @Bean(name = "planJobSync")
@@ -115,7 +115,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "planTriggers")
     public CronTriggerFactoryBean planTriggers(@Qualifier("planJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "PLAN_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "PLAN_SYNC_TRIGGER");
     }
 
     @Bean(name = "packageJobSync")
@@ -125,7 +125,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "packageJobTrigger")
     public CronTriggerFactoryBean packageJobTrigger(@Qualifier("packageJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "PACKAGE_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "PACKAGE_SYNC_TRIGGER");
     }
 
     @Bean(name = "userJobSync")
@@ -135,7 +135,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "userJobTrigger")
     public CronTriggerFactoryBean userJobTrigger(@Qualifier("userJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "USER_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "USER_SYNC_TRIGGER");
     }
 
     @Bean(name = "itemJobSync")
@@ -145,7 +145,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "itemJobTrigger")
     public CronTriggerFactoryBean itemJobTrigger(@Qualifier("itemJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "ITEM_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "ITEM_SYNC_TRIGGER");
     }
 
     @Bean(name = "organizationJobSync")
@@ -155,7 +155,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "organizationJobTrigger")
     public CronTriggerFactoryBean organizationJobTrigger(@Qualifier("organizationJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "ORGANIZATION_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "ORGANIZATION_SYNC_TRIGGER");
     }
 
     @Bean(name = "userToUaaSyncJob")
@@ -165,7 +165,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "userToUaaJobTrigger")
     public CronTriggerFactoryBean usetToUaaJobTrigger(@Qualifier("userToUaaSyncJob") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "UAA_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "UAA_SYNC_TRIGGER");
     }
 
     @Bean(name = "UserorganizationJobSync")
@@ -175,7 +175,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "userorganizationJobTrigger")
     public CronTriggerFactoryBean userorganizationJobTrigger(@Qualifier("UserorganizationJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 1 * ?", "USERORGANIZATION_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "USERORGANIZATION_SYNC_TRIGGER");
     }
 
     @Bean(name = "departmentJobSync")
@@ -185,7 +185,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "departmentJobTrigger")
     public CronTriggerFactoryBean departmentJobTrigger(@Qualifier("departmentJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 1 * ?", "DEPARTMENT_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "DEPARTMENT_SYNC_TRIGGER");
     }
 
     @Bean(name = "tariffClassJobSync")
@@ -195,7 +195,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "tariffClassJobTrigger")
     public CronTriggerFactoryBean tariffClassJobTrigger(@Qualifier("tariffClassJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "TARIFF_CLASS_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "TARIFF_CLASS_SYNC_TRIGGER");
     }
 
     @Bean(name = "itemCategoryJobSync")
@@ -205,7 +205,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "itemCategoryJobTrigger")
     public CronTriggerFactoryBean itemCategoryJobTrigger(@Qualifier("itemCategoryJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "ITEM_CATEGORY_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "ITEM_CATEGORY_SYNC_TRIGGER");
     }
 
     @Bean(name = "itemGroupJobSync")
@@ -215,7 +215,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "itemGroupJobTrigger")
     public CronTriggerFactoryBean itemGroupJobTrigger(@Qualifier("itemGroupJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "ITEM_GROUP_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "ITEM_GROUP_SYNC_TRIGGER");
     }
     @Bean(name = "healthcareServiceCenterJobSync")
     public JobDetail healthcareServiceCenterJobSync() {
@@ -224,7 +224,7 @@ public class SchedulerConfiguration {
 
     @Bean (name = "healthcareServiceCenterTriggers")
     public CronTriggerFactoryBean healthcareServiceCenterTriggers(@Qualifier("healthcareServiceCenterJobSync") JobDetail jobDetail) {
-        return createCronTrigger(jobDetail, "0 0 12 ? JAN *", "HEALTHCARE_SERVICE_CENTER_SYNC_TRIGGER");
+        return createCronTrigger(jobDetail, "0 0 12 ? DEC *", "HEALTHCARE_SERVICE_CENTER_SYNC_TRIGGER");
     }
 
     @Bean(name = "serviceTypeJobSync")

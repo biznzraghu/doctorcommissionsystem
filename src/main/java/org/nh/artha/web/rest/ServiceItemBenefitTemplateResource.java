@@ -85,7 +85,8 @@ public class ServiceItemBenefitTemplateResource {
         if (serviceItemBenefitTemplate.getId() != null) {
             throw new BadRequestAlertException("A new serviceItemBenefitTemplate cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        String templateCode = sequenceGeneratorService.generateNumber("templateCode", "NH", serviceItemBenefitTemplate);
+        String templateCode = "";
+            //sequenceGeneratorService.generateNumber("templateCode", "NH", serviceItemBenefitTemplate);
         serviceItemBenefitTemplate.setCode(templateCode);
         ServiceItemBenefitTemplate result = serviceItemBenefitTemplateService.save(serviceItemBenefitTemplate);
         return ResponseEntity.created(new URI("/api/service-item-benefit-templates/" + result.getId()))
