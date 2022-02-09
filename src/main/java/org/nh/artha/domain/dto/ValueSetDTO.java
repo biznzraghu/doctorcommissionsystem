@@ -9,7 +9,7 @@ import java.util.Objects;
  * A ValueSetDTO.
  */
 
-@Document(indexName = "valueset", type = "valueset", createIndex = false)
+@Document(indexName = "valueset", createIndex = false)
 public class ValueSetDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;

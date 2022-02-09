@@ -20,6 +20,7 @@ import { ErrorHandlerInterceptor } from 'app/blocks/interceptor/errorhandler.int
 import { NotificationInterceptor } from 'app/blocks/interceptor/notification.interceptor';
 
 import { fontAwesomeIcons } from './icons/font-awesome-icons';
+import { IconPack } from '@fortawesome/fontawesome-svg-core';
 
 @NgModule({
   imports: [
@@ -79,8 +80,6 @@ import { fontAwesomeIcons } from './icons/font-awesome-icons';
 export class ArthaCoreModule {
   constructor(iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig, languageService: JhiLanguageService) {
     registerLocaleData(locale);
-    iconLibrary.addIconPacks(fas);
-    iconLibrary.addIcons(...fontAwesomeIcons);
     dpConfig.minDate = { year: moment().year() - 100, month: 1, day: 1 };
     languageService.init();
   }

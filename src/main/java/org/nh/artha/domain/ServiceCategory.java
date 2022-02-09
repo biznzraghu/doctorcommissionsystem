@@ -20,7 +20,7 @@ import static org.nh.artha.domain.ServiceCategory.VALUE_SET_CODE;
 @Entity
 @Table(name = "value_set_code")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@Document(indexName = "valuesetcode", type = "valuesetcode")
+@Document(indexName = "valuesetcode")
 @Setting(settingPath = "/es/settings.json")
 @Where(clause = "value_set_id = (select t.id from value_set t where t.code = '"+VALUE_SET_CODE+"')")
 public class ServiceCategory extends AbstractValueSetCode{

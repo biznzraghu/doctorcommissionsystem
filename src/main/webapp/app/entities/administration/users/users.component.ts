@@ -78,7 +78,7 @@ export class UsersComponent implements OnInit {
       last: 0
     };
     this.previousPage = 0;
-    this.predicate = 'displayName.sort';
+    this.predicate = 'displayName.raw';
     this.reverse = true;
     this.currentSearch = activatedRoute.snapshot.params['search'] ? activatedRoute.snapshot.params['search'] : '';
     this.isEdit = false;
@@ -232,7 +232,7 @@ export class UsersComponent implements OnInit {
         query: this.currentSearch ? this.currentSearch : '*',
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.sort() 
+        sort: this.sort()
       })
       .subscribe(
         (res: any) => this.exportHelper.openFile(res.body),

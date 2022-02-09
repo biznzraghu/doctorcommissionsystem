@@ -123,7 +123,7 @@
     <!--    <include file="classpath:config/liquibase/sequence_generator_master.xml" relativeToChangelogFile="false"/>-->
     <include file="config/liquibase/changelog/20200428150000_added_sequence_format_payout_adjustment.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20202107181022_added_entity_UserPersonalisation.xml" relativeToChangelogFile="false"></include>
-    <!--    <include file="config/liquibase/sql/quartz_tables.sql" relativeToChangelogFile="false"/>-->
+        <include file="config/liquibase/sql/quartz_tables.sql" relativeToChangelogFile="false"/>
     <!--<include file="config/liquibase/changelog/202027071814_Added_Feature_Privlige_PayoutAdjustment_DML.xml" relativeToChangelogFile="false"></include>-->
     <include file="config/liquibase/sql/user_organizationMapping_unique_contraints.sql" relativeToChangelogFile="false"></include>
     <include file="config/liquibase/changelog/20202010103720_added_invoice_list__StagingTable.xml" relativeToChangelogFile="false"/>

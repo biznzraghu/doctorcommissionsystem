@@ -9,6 +9,7 @@
 
 
     <changeSet id="20200428150000_added_sequence_format_payout_adjustment" author="Damodhar">
+        <createSequence sequenceName="sequence_format_id_seq" incrementBy="1" minValue="100000" dataType="Integer"></createSequence>
         <createTable tableName="sequence_format">
             <column name="id" type="Integer"></column>
             <column name="document_type" type="varchar(255)" ></column>
